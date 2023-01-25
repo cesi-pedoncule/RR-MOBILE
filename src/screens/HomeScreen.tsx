@@ -1,5 +1,5 @@
 import React from 'react';
-import { Alert, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import InputButton from '../components/InputButton';
 import commonStyles from '../styles/commonStyles';
 
