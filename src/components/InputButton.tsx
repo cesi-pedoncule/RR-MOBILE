@@ -1,4 +1,4 @@
-import { StyleSheet, TouchableHighlight, Text, View } from 'react-native'
+import { TouchableHighlight, Text } from 'react-native'
 import React from 'react'
 import commonStyles from '../styles/commonStyles';
 
