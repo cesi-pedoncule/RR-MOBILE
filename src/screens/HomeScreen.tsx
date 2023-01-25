@@ -3,7 +3,7 @@ import { Text, View } from 'react-native';
 import InputButton from '../components/InputButton';
 import commonStyles from '../styles/commonStyles';
 
-const HomeScreen = () => {
+export default function HomeScreen() {
     const onClick = () => {
         alert('test');
     }
@@ -15,7 +15,3 @@ const HomeScreen = () => {
         </View>
     );
 };
-
-
-
-export default HomeScreen;
