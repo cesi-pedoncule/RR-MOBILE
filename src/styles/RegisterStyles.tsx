@@ -2,18 +2,18 @@ import { StyleSheet } from "react-native"
 
 export default StyleSheet.create({
     registerContainer: {
-        marginTop: '7vh',
+        marginTop: '3vh',
         alignItems: 'center',
     },
     loginContainer: {
-        marginTop: '7vh',
+        marginTop: '5vh',
         backgroundColor: '#FFFFFF',
         alignItems: 'center',
     },
     registerButton: {
         alignItems: 'center',
         alignSelf: 'center',
-        marginTop: '7vh',
-        marginBottom: '20vh',
+        marginTop: '5vh',
+        marginBottom: '5vh',
     },
 });
