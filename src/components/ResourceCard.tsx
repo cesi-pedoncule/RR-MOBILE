@@ -1,6 +1,7 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 import commonStyles from '../styles/commonStyles';
+import ResourceCardStyles from '../styles/ResourceCardStyles';
 
 interface Props {
   user: string;
@@ -10,12 +11,12 @@ interface Props {
 
 export default function ResourceCard({user, title, description}:Props) {
   return (
-    <View style={commonStyles.cardBackground}>
+    <View style={ResourceCardStyles.cardBackground}>
       <View>
-        <Text style={commonStyles.cardUser}>{user}</Text>
-        <Text style={commonStyles.cardTitle}>{title}</Text>
+        <Text style={ResourceCardStyles.cardUser}>{user}</Text>
+        <Text style={ResourceCardStyles.cardTitle}>{title}</Text>
       </View>
-      <Text style={commonStyles.cardText}>{description}</Text>
+      <Text style={ResourceCardStyles.cardText}>{description}</Text>
     </View>
   )
 }
