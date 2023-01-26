@@ -8,20 +8,33 @@ import commonStyles from "../styles/commonStyles";
 import LoginStyles from "../styles/LoginStyles";
 import { StackNavigationProp } from "@react-navigation/stack";
 import InputText from "../components/InputText";
+import { Client } from "rr-apilib";
 
 type LoginStackParamList = {
     Home: undefined;
     Register: undefined;
 };
 
+// interface Props {
+//     client: Client;
+// }
+
+// export default function LoginScreen({ client }: Props) {
 export default function LoginScreen() {
+    const client = new Client();
+
     const navigation = useNavigation<StackNavigationProp<LoginStackParamList>>();
 
     const onClickRegisterText = () => {
         navigation.navigate('Register');
     }
 
-    const onClickLoginButton = () => {
+    const onClickLoginButton = async () => {
+        await client.login('user0@example.com', 'password');
+
+        const token = client.auth.token;
+
+        console.log(token);
         navigation.navigate('Home');
     }
 
