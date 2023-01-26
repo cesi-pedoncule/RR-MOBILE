@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Image, View } from 'react-native';
 import ButtonShowMoreItems from '../components/buttonShowMoreItems';
 import ResourceCard from '../components/ResourceCard';
+import TopBar from '../components/TopBar';
 import commonStyles from '../styles/commonStyles';
 import HomeStyles from '../styles/HomeStyles';
 
@@ -15,6 +16,7 @@ export default function HomeScreen() {
 
     return (
         <View style={commonStyles.container}>
+            <TopBar />
             <Image source={require('../assets/rr-logo.png')} style={commonStyles.logo} />
             <View style={commonStyles.content}>
                 <View style={HomeStyles.resourcesContainer} >
