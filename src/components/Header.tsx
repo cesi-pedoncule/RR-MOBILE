@@ -3,13 +3,18 @@ import { Text, TouchableHighlight, View } from "react-native";
 import commonStyles from "../styles/commonStyles";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { useNavigation } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
 
 interface Props {
     label: string;
-  }
+}
+
+type LoginStackParamList = {
+    Home: undefined;
+};
 
 export default function Header({label}: Props) {
-    const navigation = useNavigation();
+    const navigation = useNavigation<StackNavigationProp<LoginStackParamList>>();
 
     const onPressIcon = () => {
         navigation.navigate('Home');
