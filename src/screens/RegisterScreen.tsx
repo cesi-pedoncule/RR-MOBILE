@@ -8,6 +8,7 @@ import commonStyles from "../styles/commonStyles";
 import LoginStyles from "../styles/LoginStyles";
 import RegisterStyles from "../styles/RegisterStyles";
 import { StackNavigationProp } from "@react-navigation/stack";
+import InputText from "../components/InputText";
 
 type RegisterStackParamList = {
     Home: undefined;
@@ -32,15 +33,15 @@ export default function RegisterScreen() {
                 <Header label="Inscription" />
                 <View>
                     <View style={LoginStyles.loginContainer}>
-                        <Text>Nom</Text>
-                        <Text>Prénom</Text>
-                        <Text>Email</Text>
-                        <Text>Mot de passe</Text>
-                        <Text>Confirmation de mot de passe</Text>
+                        <InputText placeholder="Nom" type='default' />
+                        <InputText placeholder="Prénom" type='default' />
+                        <InputText placeholder="Email" type='email-address' />
+                        <InputText placeholder="Mot de passe" type='default' secureTextEntry={true} />
+                        <InputText placeholder="Confirmation de mot de passe" type='default' secureTextEntry={true} />
                     </View>
                     <View style={RegisterStyles.registerContainer}>
                         <Text>
-                            Déjà un compte ? 
+                            {"Déjà un compte ?"} 
                             <Link label="Connectez-vous maintenant" callBack={onClickLoginText} />
                         </Text>
                         <InputButton label="Valider" callBack={onClickRegisterButton} style={RegisterStyles.registerButton} />
