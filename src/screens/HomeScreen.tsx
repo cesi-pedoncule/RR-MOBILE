@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Image, View } from 'react-native';
 import ButtonShowMoreItems from '../components/buttonShowMoreItems';
+import NavBar from '../components/NavBar';
 import ResourceCard from '../components/ResourceCard';
 import commonStyles from '../styles/commonStyles';
 import HomeStyles from '../styles/HomeStyles';
@@ -27,6 +28,7 @@ export default function HomeScreen() {
                     }
                 </View>
             </View>
+            <NavBar/>
         </View>
     );
 };
