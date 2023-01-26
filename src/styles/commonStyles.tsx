@@ -89,8 +89,8 @@ export default StyleSheet.create({
         paddingHorizontal: 5,
     },
     cardBackground: {
-        width: 330,
-        height: 233,
+        width: "90%",
+        height: "20vh",
         backgroundColor: '#FFFFFF',
         borderBottomWidth: 2,
         borderBottomColor: '#EEEEEE',
@@ -99,6 +99,7 @@ export default StyleSheet.create({
         shadowOpacity: 0.25,
         shadowRadius: 4,
         borderRadius: 5,
+        marginBottom: 30,
     },
     cardUser:{
         fontWeight: 'bold',
@@ -120,5 +121,14 @@ export default StyleSheet.create({
         marginBottom: 20,
         marginLeft: 20,
         marginRight: 20,
+    },
+    moreItemsButton: {
+        width: 40,
+        height: 34,
+        justifyContent: 'center',
+        backgroundColor: '#F0F0F0',
+        borderRadius: 7,
+        transition: 0.2,
+        textAlign: 'center',
     },
 });

@@ -1,19 +1,32 @@
-import React from 'react';
-import { Text, View } from 'react-native';
-import InputButton from '../components/InputButton';
-import NavBar from '../components/NavBar';
+import React, { useState } from 'react';
+import { Image, View } from 'react-native';
+import ButtonShowMoreItems from '../components/buttonShowMoreItems';
+import ResourceCard from '../components/ResourceCard';
 import commonStyles from '../styles/commonStyles';
+import HomeStyles from '../styles/HomeStyles';
 
 export default function HomeScreen() {
-    const onClick = () => {
-        alert('test');
+    const [showMoreItems, setShowMoreItems] = useState(false);
+
+    const onClickShowMoreItems = () => {
+        setShowMoreItems(true);
+        alert('Load more items');
     }
 
     return (
         <View style={commonStyles.container}>
-            <Text>Home Screen</Text>
-            <InputButton label="test" callBack={onClick} />
-            <NavBar/>
+            <Image source={require('../assets/rr-logo.png')} style={commonStyles.logo} />
+            <View style={commonStyles.content}>
+                <View style={HomeStyles.resourcesContainer} >
+                    <ResourceCard title='Resource of test' user='usertest' description='Lorem ipsum bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla ...' />
+                    <ResourceCard title='Resource of test' user='usertest' description='Lorem ipsum bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla ...' />
+                    {
+                        !showMoreItems ?
+                        <ButtonShowMoreItems callBack={onClickShowMoreItems} />
+                        : null
+                    }
+                </View>
+            </View>
         </View>
     );
 };
