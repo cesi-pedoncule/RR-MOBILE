@@ -14,6 +14,6 @@ export default StyleSheet.create({
         alignItems: 'center',
         alignSelf: 'center',
         marginTop: '7vh',
-        marginBottom: '30vh',
+        marginBottom: '15vh',
     },
 });

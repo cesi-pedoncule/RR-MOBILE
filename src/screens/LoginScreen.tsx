@@ -7,6 +7,7 @@ import Link from "../components/Link";
 import commonStyles from "../styles/commonStyles";
 import LoginStyles from "../styles/LoginStyles";
 import { StackNavigationProp } from "@react-navigation/stack";
+import InputText from "../components/InputText";
 
 type LoginStackParamList = {
     Home: undefined;
@@ -31,8 +32,8 @@ export default function LoginScreen() {
                 <Header label="Connexion" />
                 <View>
                     <View style={LoginStyles.loginContainer}>
-                        <Text>Username</Text>
-                        <Text>Password</Text>
+                        <InputText placeholder="Email" type='email-address' />
+                        <InputText placeholder="Mot de passe" type='default' secureTextEntry={true} />
                     </View>
                     <View style={LoginStyles.registerContainer}>
                         <Text>
