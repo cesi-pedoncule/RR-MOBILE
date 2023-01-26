@@ -7,9 +7,15 @@ import Link from "../components/Link";
 import commonStyles from "../styles/commonStyles";
 import LoginStyles from "../styles/LoginStyles";
 import RegisterStyles from "../styles/RegisterStyles";
+import { StackNavigationProp } from "@react-navigation/stack";
+
+type RegisterStackParamList = {
+    Home: undefined;
+    Login: undefined;
+}
 
 export default function RegisterScreen() {
-    const navigation = useNavigation();
+    const navigation = useNavigation<StackNavigationProp<RegisterStackParamList>>();
 
     const onClickLoginText = () => {
         navigation.navigate('Login');

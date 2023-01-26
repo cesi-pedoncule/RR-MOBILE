@@ -6,9 +6,15 @@ import InputButton from "../components/InputButton";
 import Link from "../components/Link";
 import commonStyles from "../styles/commonStyles";
 import LoginStyles from "../styles/LoginStyles";
+import { StackNavigationProp } from "@react-navigation/stack";
+
+type LoginStackParamList = {
+    Home: undefined;
+    Register: undefined;
+};
 
 export default function LoginScreen() {
-    const navigation = useNavigation();
+    const navigation = useNavigation<StackNavigationProp<LoginStackParamList>>();
 
     const onClickRegisterText = () => {
         navigation.navigate('Register');
