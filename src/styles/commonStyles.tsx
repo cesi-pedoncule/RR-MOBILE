@@ -125,7 +125,6 @@ export default StyleSheet.create({
         alignItems: 'center',
     },
     categoriesContainer: {
-        marginTop: '2vh',
         marginBottom: '15vh',
         justifyContent: 'center',
         display: 'flex',
@@ -140,5 +139,7 @@ export default StyleSheet.create({
         borderRadius: 7,
         transition: 0.2,
         marginHorizontal: "6%",
+    scrollViewCategories: {
+        marginTop: '2vh',
     },
 });

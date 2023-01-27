@@ -20,7 +20,6 @@ export default function NavBar({client}: Props) {
     const navigation = useNavigation<StackNavigationProp<NavBarStackParamList>>();
 
     const onClickCategoriesButton = () => {
-        console.log('Categories')
         navigation.navigate('Categories');
     }
 
