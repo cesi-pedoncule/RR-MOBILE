@@ -11,7 +11,7 @@ export default function Header({label}: Props) {
 
     return (
         <View style={commonStyles.header}>
-            <HomeButton />
+            <HomeButton style={commonStyles.btnHomeBackground} />
             <Text style={commonStyles.title}>
                 { label }
             </Text>

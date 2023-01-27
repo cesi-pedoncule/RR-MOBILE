@@ -11,7 +11,7 @@ interface Props {
 export default function TopBar({hideSearchBar=false}: Props) {
     return (
         <View style={TopbarStyles.topBarBackground}>
-            <HomeButton />
+            <HomeButton style={TopbarStyles.btnHomeBackground}/>
             {
                 !hideSearchBar ? <SearchBar /> : null
             }

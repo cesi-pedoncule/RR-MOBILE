@@ -31,6 +31,13 @@ export default StyleSheet.create({
         borderTopLeftRadius: 30,
         borderTopRightRadius: 30,
     },
+    btnHomeBackground: {
+        justifyContent: 'center',
+        textAlign: 'center',
+        backgroundColor: '#FFFFFF',
+        borderRadius: 7,
+        transition: 0.2,
+    },
     header: {
         fontSize: 32,
         fontWeight: '800',
