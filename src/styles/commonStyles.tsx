@@ -98,6 +98,11 @@ export default StyleSheet.create({
         color: '#03989E',
         paddingHorizontal: 5,
     },
+    loader: {
+        position: 'absolute',
+        top: '35%',
+        left: '47%',
+    },
     moreItemsButton: {
         width: 40,
         height: 34,
