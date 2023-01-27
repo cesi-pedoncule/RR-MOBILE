@@ -2,15 +2,21 @@ import { Image, TouchableHighlight, View } from 'react-native'
 import NavBarStyles from '../styles/NavBarStyles'; 
 import { StackNavigationProp } from '@react-navigation/stack';
 import { useNavigation } from '@react-navigation/native';
+import { Client } from 'rr-apilib';
 
 type NavBarStackParamList = {
     Categories: undefined;
     Profil: undefined;
     ShareCreate: undefined;
     Ressources: undefined;
+    Login: undefined;
 }
 
-export default function NavBar() {
+interface Props {
+    client: Client;
+}
+
+export default function NavBar({client}: Props) {
     const navigation = useNavigation<StackNavigationProp<NavBarStackParamList>>();
 
     const onClickCategoriesButton = () => {
@@ -19,7 +25,11 @@ export default function NavBar() {
     }
 
     const onClickProfilButton = () => {
-        navigation.navigate('Profil');
+        if (client.auth.me === null) {
+            navigation.navigate('Login');
+        } else {
+            navigation.navigate('Profil');
+        }
     }
 
     const onClickShareResourceButton = () => {

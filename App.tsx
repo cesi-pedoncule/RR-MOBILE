@@ -21,12 +21,12 @@ export default function App() {
         }}
       >
         <Stack.Screen name="Login" component={LoginScreen} initialParams={client} />
-        <Stack.Screen name="Register" component={RegisterScreen} />
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Categories" component={CategoriesScreen} />
-        <Stack.Screen name="Profil" component={ProfilScreen} />
-        <Stack.Screen name="ShareCreate" component={ShareResourceScreen} />
-        <Stack.Screen name="Ressources" component={RessourcesScreen} />
+        <Stack.Screen name="Register" component={RegisterScreen} initialParams={client} />
+        <Stack.Screen name="Home" component={HomeScreen} initialParams={client} />
+        <Stack.Screen name="Categories" component={CategoriesScreen} initialParams={client} />
+        <Stack.Screen name="Profil" component={ProfilScreen} initialParams={client} />
+        <Stack.Screen name="ShareCreate" component={ShareResourceScreen} initialParams={client} />
+        <Stack.Screen name="Ressources" component={RessourcesScreen} initialParams={client} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { Image, View } from 'react-native';
+import { Client } from 'rr-apilib';
 import ButtonShowMoreItems from '../components/buttonShowMoreItems';
 import NavBar from '../components/NavBar';
 import ResourceCard from '../components/ResourceCard';
 import commonStyles from '../styles/commonStyles';
 
-export default function HomeScreen() {
+export default function HomeScreen({route}: any) {
+    const client = route.params as Client;
     const [showMoreItems, setShowMoreItems] = useState(false);
 
     const onClickShowMoreItems = () => {
@@ -27,7 +29,7 @@ export default function HomeScreen() {
                     }
                 </View>
             </View>
-            <NavBar/>
+            <NavBar client={client} />
         </View>
     );
 };
