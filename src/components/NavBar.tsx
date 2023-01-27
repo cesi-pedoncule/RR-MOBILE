@@ -22,7 +22,7 @@ export default function NavBar() {
       navigation.navigate('Profil');
   }
 
-  const onClickShareCreateButton = () => {
+  const onClickShareResourceButton = () => {
     navigation.navigate('ShareCreate');
   }
 
@@ -38,7 +38,7 @@ export default function NavBar() {
       <TouchableHighlight onPress={onClickCategoriesButton}style={NavBarStyles.buttonNavBar} underlayColor={"#FFF"}>
       <Image source={require('../assets/Catalogue.png')} style={NavBarStyles.logo} />
       </TouchableHighlight>
-      <TouchableHighlight onPress={onClickShareCreateButton}style={NavBarStyles.buttonNavBar} underlayColor={"#FFF"}>
+      <TouchableHighlight onPress={onClickShareResourceButton}style={NavBarStyles.buttonNavBar} underlayColor={"#FFF"}>
         <Image source={require('../assets/Partage.png')} style={NavBarStyles.logo}  />
       </TouchableHighlight>
       <TouchableHighlight onPress={onClickProfilButton}style={NavBarStyles.buttonNavBar} underlayColor={"#FFF"}>
