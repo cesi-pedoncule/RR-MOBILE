@@ -17,6 +17,16 @@ export default StyleSheet.create({
         backgroundColor: '#FFFFFF',
         width: '100%',
         position: 'absolute',
+        top : 250,
+        bottom: 0,
+        borderTopLeftRadius: 30,
+        borderTopRightRadius: 30,
+    },
+    contentWithTopBar : {
+        backgroundColor: '#FFFFFF',
+        width: '100%',
+        position: 'absolute',
+        top : 110,
         bottom: 0,
         borderTopLeftRadius: 30,
         borderTopRightRadius: 30,
@@ -96,5 +106,10 @@ export default StyleSheet.create({
         borderRadius: 10,
         transition: 0.2,
         textAlign: 'center',
+    },
+    resourcesContainer: {
+        marginTop: '2vh',
+        marginBottom: '15vh',
+        alignItems: 'center',
     },
 });
