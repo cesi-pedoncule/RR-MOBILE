@@ -1,4 +1,3 @@
-import { useNavigation } from "@react-navigation/native";
 import React, { useState } from "react";
 import { View, ScrollView } from 'react-native'
 import NavBar from "../components/NavBar";
