@@ -45,7 +45,7 @@ export default function CategoriesScreen({ route }: any) {
           }
         </View>
       </ScrollView>
-			<NavBar/>
+			<NavBar client={client}/>
 		</View>
 	</View>
   )
