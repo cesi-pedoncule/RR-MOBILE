@@ -5,6 +5,9 @@ export default StyleSheet.create({
         marginTop: '7vh',
         alignItems: 'center',
     },
+    loginContent: {
+        minHeight: '63vh',
+    },
     loginContainer: {
         marginTop: '7vh',
         backgroundColor: '#FFFFFF',

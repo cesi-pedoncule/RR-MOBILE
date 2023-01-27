@@ -87,5 +87,10 @@ export default StyleSheet.create({
     link: {
         color: '#03989E',
         paddingHorizontal: 5,
-    }
+    },
+    loader: {
+        position: 'absolute',
+        top: '35%',
+        left: '47%',
+    },
 });
