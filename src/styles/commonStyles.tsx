@@ -112,4 +112,13 @@ export default StyleSheet.create({
         marginBottom: '15vh',
         alignItems: 'center',
     },
+    categoriesContainer: {
+        marginTop: '2vh',
+        marginBottom: '15vh',
+        justifyContent: 'center',
+        display: 'flex',
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        
+    }
 });

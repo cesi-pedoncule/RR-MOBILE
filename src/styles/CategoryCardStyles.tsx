@@ -12,7 +12,8 @@ export default StyleSheet.create({
         shadowOpacity: 0.25,
         shadowRadius: 4,
         borderRadius: 15,
-        marginBottom: 30,
+        margin: 5,
+        alignSelf: 'flex-end',
     },
     cardTitle:{
         fontWeight: 'bold',
