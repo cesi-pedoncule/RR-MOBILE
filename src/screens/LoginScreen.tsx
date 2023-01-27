@@ -36,10 +36,6 @@ export default function LoginScreen({ route }: any) {
         setIsLoading(false);
     }
 
-    useEffect(() => {
-        
-    }, [isLoading]);
-
     return (
         <View style={commonStyles.container}>
             <Image source={require('../assets/rr-logo.png')} style={commonStyles.logo} />
