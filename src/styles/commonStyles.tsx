@@ -131,5 +131,14 @@ export default StyleSheet.create({
         display: 'flex',
         flexDirection: 'row',
         flexWrap: 'wrap',
-    }
+    },
+    returnBtn:{
+        padding: 10,
+        justifyContent: 'center',
+        textAlign: 'center',
+        backgroundColor: '#FFFFFF',
+        borderRadius: 7,
+        transition: 0.2,
+        marginHorizontal: "6%",
+    },
 });
