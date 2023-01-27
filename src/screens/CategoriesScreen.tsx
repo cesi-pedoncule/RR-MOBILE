@@ -20,7 +20,7 @@ export default function CategoriesScreen({ route }: any) {
         <View style={commonStyles.container}>
             <TopBar/>
             <View style={commonStyles.contentWithTopBar}> 
-                <ScrollView>
+                <ScrollView style={commonStyles.scrollViewCategories}>
                     <View style={commonStyles.categoriesContainer}>
                         {
                             categories.map((category, i) => {
