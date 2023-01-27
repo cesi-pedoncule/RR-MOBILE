@@ -36,6 +36,16 @@ export default function LoginScreen({ route }: any) {
         setIsLoading(false);
     }
 
+    const checkIsAuth = () => {
+        if (client.auth.me != null) {
+            navigation.navigate('Home');
+        }
+    }
+
+    useEffect(() => {
+        checkIsAuth();
+    }, []);
+
     return (
         <View style={commonStyles.container}>
             <Image source={require('../assets/rr-logo.png')} style={commonStyles.logo} />
