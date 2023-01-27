@@ -125,11 +125,13 @@ export default StyleSheet.create({
         alignItems: 'center',
     },
     categoriesContainer: {
-        marginTop: '2vh',
         marginBottom: '15vh',
         justifyContent: 'center',
         display: 'flex',
         flexDirection: 'row',
         flexWrap: 'wrap',
-    }
+    },
+    scrollViewCategories: {
+        marginTop: '2vh',
+    },
 });
