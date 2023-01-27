@@ -142,4 +142,5 @@ export default StyleSheet.create({
     scrollViewCategories: {
         marginTop: '2vh',
     },
+}
 });
