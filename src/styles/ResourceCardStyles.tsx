@@ -18,7 +18,6 @@ export default StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 20,
         marginLeft: 20,
-        marginTop: 5,
     },
     cardTitle:{
         textDecorationStyle: 'solid',
@@ -35,4 +34,14 @@ export default StyleSheet.create({
         marginLeft: 20,
         marginRight: 20,
     },
+    lineLikeAndUser:{
+        marginTop: 10,
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        display:'flex',
+        flexDirection : "row",
+    },
+    likeBtn:{
+        marginRight : 20,
+    }
 });
