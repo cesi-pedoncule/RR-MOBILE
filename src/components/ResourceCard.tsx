@@ -1,6 +1,5 @@
 import { View, Text } from 'react-native'
 import React from 'react'
-import commonStyles from '../styles/commonStyles';
 import ResourceCardStyles from '../styles/ResourceCardStyles';
 
 interface Props {
