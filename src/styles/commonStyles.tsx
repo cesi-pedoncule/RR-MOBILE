@@ -139,8 +139,8 @@ export default StyleSheet.create({
         borderRadius: 7,
         transition: 0.2,
         marginHorizontal: "6%",
+    },
     scrollViewCategories: {
         marginTop: '2vh',
     },
-}
 });
