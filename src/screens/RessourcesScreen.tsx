@@ -5,6 +5,7 @@ import NavBar from "../components/NavBar";
 import commonStyles from "../styles/commonStyles";
 import ButtonShowMoreItems from "../components/buttonShowMoreItems";
 import ResourceCard from "../components/ResourceCard";
+import TopBar from "../components/TopBar";
 
 export default function RessourcesScreen({ route }: any) {
     const client = route.params as Client;
@@ -17,6 +18,7 @@ export default function RessourcesScreen({ route }: any) {
 
     return (
         <SafeAreaView style={commonStyles.container}>
+            <TopBar />
             <Image source={require('../assets/rr-logo.png')} style={commonStyles.logo} />
             <View style={commonStyles.content}>
                 <ScrollView style={commonStyles.resourcesContainer} contentContainerStyle={commonStyles.scrollViewCenter} >
