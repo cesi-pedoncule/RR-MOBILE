@@ -23,9 +23,9 @@ export default function HomeScreen({ route }: any) {
                     {
                         resources.map((resource, i) => {
                             if (!showMoreItems && i < 6) {
-                                return <ResourceCard title={resource.title} user={resource.user?.name} description={resource?.description} key={i}></ResourceCard>
+                                return <ResourceCard resource={resource} key={i}></ResourceCard>
                             } else if (showMoreItems) {
-                                return <ResourceCard title={resource.title} user={resource.user?.name} description={resource?.description} key={i}></ResourceCard>
+                                return <ResourceCard resource={resource} key={i}></ResourceCard>
                             }
                         })
                     }
