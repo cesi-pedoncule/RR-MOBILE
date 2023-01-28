@@ -130,6 +130,15 @@ export default StyleSheet.create({
         flexDirection: 'row',
         flexWrap: 'wrap',
     },
+    returnBtn:{
+        padding: 10,
+        justifyContent: 'center',
+        textAlign: 'center',
+        backgroundColor: '#FFFFFF',
+        borderRadius: 7,
+        transition: 0.2,
+        marginHorizontal: "6%",
+    },
     scrollViewCategories: {
         marginTop: '2vh',
     },
