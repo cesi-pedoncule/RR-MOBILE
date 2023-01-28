@@ -3,12 +3,12 @@ import React from 'react'
 import ResourceCardStyles from '../styles/ResourceCardStyles';
 
 interface Props {
-  user: string;
+  user: string | undefined;
   title: string;
-  description: string;
+  description: string | null;
 }
 
-export default function ResourceCard({user, title, description}:Props) {
+export default function ResourceCard({user="Utilisateur inconnu", title, description=''}:Props) {
   return (
     <View style={ResourceCardStyles.cardBackground}>
       <View>
