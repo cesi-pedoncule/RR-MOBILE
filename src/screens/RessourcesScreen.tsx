@@ -1,6 +1,12 @@
 import React, { useState } from "react";
-import { View, Text, Image, SafeAreaView, ScrollView } from 'react-native'
+import {
+    View,
+    Image,
+    SafeAreaView,
+    ScrollView
+} from 'react-native'
 import { Client } from "rr-apilib";
+
 import NavBar from "../components/NavBar";
 import commonStyles from "../styles/commonStyles";
 import ButtonShowMoreItems from "../components/buttonShowMoreItems";
@@ -25,9 +31,9 @@ export default function RessourcesScreen({ route }: any) {
                     {
                         resources.map((resource, i) => {
                             if (!showMoreItems && i < 6) {
-                                return <ResourceCard title={resource.title} user={resource.user?.name} description={resource?.description} key={i}></ResourceCard>
+                                return <ResourceCard key={i} resource={resource} />
                             } else if (showMoreItems) {
-                                return <ResourceCard title={resource.title} user={resource.user?.name} description={resource?.description} key={i}></ResourceCard>
+                                return <ResourceCard key={i} resource={resource} />
                             }
                         })
                     }
