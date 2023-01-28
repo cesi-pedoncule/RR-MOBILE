@@ -55,6 +55,15 @@ export default StyleSheet.create({
         textAlign: 'center',
         paddingHorizontal: '20%',
     },
+    title1: {
+        fontSize: 32,
+    },
+    title2: {
+        fontSize: 24,
+    },
+    title3: {
+        fontSize: 20,
+    },
     btnBackground: {
         width: 126,
         height: 34,
