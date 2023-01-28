@@ -122,7 +122,6 @@ export default StyleSheet.create({
     resourcesContainer: {
         marginTop: '2vh',
         marginBottom: '15vh',
-        alignItems: 'center',
     },
     categoriesContainer: {
         marginBottom: '15vh',
@@ -133,5 +132,8 @@ export default StyleSheet.create({
     },
     scrollViewCategories: {
         marginTop: '2vh',
+    },
+    scrollViewCenter: {
+        alignItems: 'center',
     },
 });
