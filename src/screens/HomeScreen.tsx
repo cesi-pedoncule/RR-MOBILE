@@ -1,13 +1,21 @@
-import React, { useEffect, useState } from 'react';
-import { Image, SafeAreaView, ScrollView, View } from 'react-native';
+import {
+    Image,
+    SafeAreaView,
+    ScrollView,
+    View
+} from 'react-native';
 import { Client } from 'rr-apilib';
-import ButtonShowMoreItems from '../components/buttonShowMoreItems';
+import React, { useState } from 'react';
+
 import NavBar from '../components/NavBar';
-import ResourceCard from '../components/ResourceCard';
 import commonStyles from '../styles/commonStyles';
+import ResourceCard from '../components/ResourceCard';
+import ButtonShowMoreItems from '../components/buttonShowMoreItems';
 
 export default function HomeScreen({ route }: any) {
+    
     const client = route.params as Client;
+    
     const [showMoreItems, setShowMoreItems] = useState(false);
     const [resources, setResources] = useState(Array.from(client.resources.cache.values()));
 
@@ -23,9 +31,9 @@ export default function HomeScreen({ route }: any) {
                     {
                         resources.map((resource, i) => {
                             if (!showMoreItems && i < 6) {
-                                return <ResourceCard resource={resource} key={i}></ResourceCard>
+                                return <ResourceCard key={i} resource={resource} />
                             } else if (showMoreItems) {
-                                return <ResourceCard resource={resource} key={i}></ResourceCard>
+                                return <ResourceCard key={i} resource={resource} />
                             }
                         })
                     }
