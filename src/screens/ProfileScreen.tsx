@@ -13,13 +13,13 @@ type HomeStackParamList = {
     Home: undefined;
 };
 
-export default function ProfilScreen({route}: any) {
+export default function ProfileScreen({route}: any) {
     
     const client = route.params as Client;
     const navigation = useNavigation<StackNavigationProp<HomeStackParamList>>();
     
     const user = client.auth.me;
-    const userProfilName = user?.name + ' ' + user?.firstname;
+    const userProfileName = user?.name + ' ' + user?.firstname;
 
     const checkUserIsConnected = () => {
         if (!user) {
@@ -35,7 +35,7 @@ export default function ProfilScreen({route}: any) {
         <View style={commonStyles.container}>
             <TopBar hideSearchBar={true} />
             <View style={commonStyles.contentWithTopBar}>
-                <Header label={userProfilName} displayHomeButton={false} />
+                <Header label={userProfileName} displayHomeButton={false} />
                 <View style={ProfileStyles.profileContainer}>
                     <Text style={ProfileStyles.profileSubTitle}>{user?.resources.size} enregistrement(s)</Text>
                     <Text style={ProfileStyles.profileDescription}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed efficitur risus tempus, eleifend sem in, ornare quam. Integer ultrices</Text>

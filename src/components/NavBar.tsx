@@ -6,7 +6,7 @@ import { Client } from 'rr-apilib';
 
 type NavBarStackParamList = {
     Categories: undefined;
-    Profil: undefined;
+    Profile: undefined;
     ShareCreate: undefined;
     Ressources: undefined;
     Login: undefined;
@@ -23,11 +23,11 @@ export default function NavBar({client}: Props) {
         navigation.navigate('Categories');
     }
 
-    const onClickProfilButton = () => {
+    const onClickProfileButton = () => {
         if (client.auth.me === null) {
             navigation.navigate('Login');
         } else {
-            navigation.navigate('Profil');
+            navigation.navigate('Profile');
         }
     }
 
@@ -50,8 +50,8 @@ export default function NavBar({client}: Props) {
             <TouchableHighlight onPress={onClickShareResourceButton}style={NavBarStyles.buttonNavBar} underlayColor={"#FFF"}>
                 <Image source={require('../assets/Partage.png')} style={NavBarStyles.logo}  />
             </TouchableHighlight>
-            <TouchableHighlight onPress={onClickProfilButton}style={NavBarStyles.buttonNavBar} underlayColor={"#FFF"}>
-                <Image source={require('../assets/Profil.png')} style={NavBarStyles.logo}  />
+            <TouchableHighlight onPress={onClickProfileButton}style={NavBarStyles.buttonNavBar} underlayColor={"#FFF"}>
+                <Image source={require('../assets/Profile.png')} style={NavBarStyles.logo}  />
             </TouchableHighlight>
         </View>
     )
