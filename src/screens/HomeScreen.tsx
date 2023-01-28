@@ -1,35 +1,42 @@
-import React, { useState } from 'react';
-import { Image, View } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Image, SafeAreaView, ScrollView, View } from 'react-native';
 import { Client } from 'rr-apilib';
 import ButtonShowMoreItems from '../components/buttonShowMoreItems';
 import NavBar from '../components/NavBar';
 import ResourceCard from '../components/ResourceCard';
 import commonStyles from '../styles/commonStyles';
 
-export default function HomeScreen({route}: any) {
+export default function HomeScreen({ route }: any) {
     const client = route.params as Client;
     const [showMoreItems, setShowMoreItems] = useState(false);
+    const [resources, setResources] = useState(Array.from(client.resources.cache.values()));
 
     const onClickShowMoreItems = () => {
         setShowMoreItems(true);
-        alert('Load more items');
     }
 
     return (
-        <View style={commonStyles.container}>
+        <SafeAreaView style={commonStyles.container}>
             <Image source={require('../assets/rr-logo.png')} style={commonStyles.logo} />
             <View style={commonStyles.content}>
-                <View style={commonStyles.resourcesContainer} >
-                    <ResourceCard title='Resource of test' user='usertest' description='Lorem ipsum bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla ...' />
-                    <ResourceCard title='Resource of test' user='usertest' description='Lorem ipsum bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla ...' />
+                <ScrollView style={commonStyles.resourcesContainer} contentContainerStyle={commonStyles.scrollViewCenter} >
+                    {
+                        resources.map((resource, i) => {
+                            if (!showMoreItems && i < 6) {
+                                return <ResourceCard title={resource.title} user={resource.user?.name} description={resource?.description} key={i}></ResourceCard>
+                            } else if (showMoreItems) {
+                                return <ResourceCard title={resource.title} user={resource.user?.name} description={resource?.description} key={i}></ResourceCard>
+                            }
+                        })
+                    }
                     {
                         !showMoreItems ?
                         <ButtonShowMoreItems callBack={onClickShowMoreItems} />
                         : null
                     }
-                </View>
+                </ScrollView>
             </View>
             <NavBar client={client} />
-        </View>
+        </SafeAreaView>
     );
 };
