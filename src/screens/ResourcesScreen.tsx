@@ -13,7 +13,7 @@ import ButtonShowMoreItems from "../components/Button/ButtonShowMoreItems";
 import ResourceCard from "../components/Card/ResourceCard";
 import TopBar from "../components/TopBar";
 
-export default function RessourcesScreen({ route }: any) {
+export default function ResourcesScreen({ route }: any) {
     const client = route.params as Client;
     const [showMoreItems, setShowMoreItems] = useState(false);
     const [resources, setResources] = useState(Array.from(client.resources.cache.values()));
