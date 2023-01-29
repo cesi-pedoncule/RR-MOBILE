@@ -3,9 +3,9 @@ import { View, ScrollView, Text } from 'react-native'
 import { Client } from "rr-apilib";
 import NavBar from "../components/NavBar";
 import commonStyles from "../styles/commonStyles";
-import ButtonShowMoreItems from "../components/buttonShowMoreItems";
+import ButtonShowMoreItems from "../components/Button/ButtonShowMoreItems";
 import TopBar from "../components/TopBar";
-import CategoryCard from "../components/CategoryCard";
+import CategoryCard from "../components/Card/CategoryCard";
 
 export default function CategoriesScreen({ route }: any) {
     const client = route.params as Client;

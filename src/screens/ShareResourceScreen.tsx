@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { View, Text, ScrollView, SafeAreaView } from 'react-native'
 import { Client } from "rr-apilib";
-import ButtonShowMoreItems from "../components/buttonShowMoreItems";
-import InputButton from "../components/InputButton";
+import ButtonShowMoreItems from "../components/Button/ButtonShowMoreItems";
+import InputButton from "../components/Button/InputButton";
 import NavBar from "../components/NavBar";
-import ResourceCard from "../components/ResourceCard";
+import ResourceCard from "../components/Card/ResourceCard";
 import TopBar from "../components/TopBar";
 import commonStyles from "../styles/commonStyles";
-import ShareResourceStyles from "../styles/ShareResourceStyles";
+import ShareResourceStyles from "../styles/Screen/ShareResourceStyles";
 
 export default function ShareResourceScreen({ route }: any) {
 	const client = route.params as Client;

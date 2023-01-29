@@ -1,6 +1,6 @@
 import { View, Text, TextInput, KeyboardType } from 'react-native'
 import React from 'react'
-import commonStyles from '../styles/commonStyles';
+import commonStyles from '../../styles/commonStyles';
 
 interface Props {
   placeholder: string;

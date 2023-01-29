@@ -1,6 +1,6 @@
 import React from "react";
 import { Text, TouchableHighlight } from "react-native";
-import commonStyles from "../styles/commonStyles";
+import commonStyles from "../../styles/commonStyles";
 
 interface Props {
     callBack: () => void;

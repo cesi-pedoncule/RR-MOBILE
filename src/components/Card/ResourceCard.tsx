@@ -2,8 +2,8 @@ import { Resource } from 'rr-apilib'
 import React, { useState } from 'react'
 import { View, Text } from 'react-native'
 
-import LikeButton from './LikeButton'
-import ResourceCardStyles from '../styles/ResourceCardStyles'
+import LikeButton from '../Button/LikeButton'
+import ResourceCardStyles from '../../styles/Component/ResourceCardStyles'
 
 interface Props {
     resource: Resource;

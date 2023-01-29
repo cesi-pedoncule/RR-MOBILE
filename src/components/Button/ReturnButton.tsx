@@ -3,7 +3,7 @@ import { TouchableHighlight } from 'react-native'
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { StackNavigationProp } from "@react-navigation/stack";
 import { useNavigation } from "@react-navigation/native";
-import commonStyles from '../styles/commonStyles';
+import commonStyles from '../../styles/commonStyles';
 
 type ReturnButtonStackParamList = {
     ShareCreate: undefined;

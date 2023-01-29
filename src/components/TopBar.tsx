@@ -1,8 +1,8 @@
 import React from "react";
 import { View } from "react-native";
-import TopbarStyles from "../styles/TopbarStyles";
-import HomeButton from "./HomeButton";
-import SearchBar from "./SearchBar";
+import TopbarStyles from "../styles/Component/TopbarStyles";
+import HomeButton from "./Button/HomeButton";
+import SearchBar from "./Input/SearchBar";
 
 interface Props {
     hideSearchBar?: boolean;

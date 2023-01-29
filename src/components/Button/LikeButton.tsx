@@ -1,6 +1,6 @@
 import {Text, TouchableHighlight, View } from 'react-native'
 import React from 'react'
-import LikeButtonStyles from '../styles/LikeButtonStyles';
+import LikeButtonStyles from '../../styles/Component/LikeButtonStyles';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 interface Props {

@@ -9,8 +9,8 @@ import { Client } from "rr-apilib";
 
 import NavBar from "../components/NavBar";
 import commonStyles from "../styles/commonStyles";
-import ButtonShowMoreItems from "../components/buttonShowMoreItems";
-import ResourceCard from "../components/ResourceCard";
+import ButtonShowMoreItems from "../components/Button/ButtonShowMoreItems";
+import ResourceCard from "../components/Card/ResourceCard";
 import TopBar from "../components/TopBar";
 
 export default function RessourcesScreen({ route }: any) {

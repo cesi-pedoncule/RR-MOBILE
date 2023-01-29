@@ -1,6 +1,6 @@
 import React from "react";
 import { TextInput, View } from "react-native";
-import TopbarStyles from "../styles/TopbarStyles";
+import TopbarStyles from "../../styles/Component/TopbarStyles";
 
 export default function SearchBar() {
     return (
