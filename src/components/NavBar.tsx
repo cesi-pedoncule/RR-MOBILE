@@ -1,5 +1,5 @@
 import { Image, TouchableHighlight, View } from 'react-native'
-import NavBarStyles from '../styles/NavBarStyles'; 
+import NavBarStyles from '../styles/Component/NavBarStyles'; 
 import { StackNavigationProp } from '@react-navigation/stack';
 import { useNavigation } from '@react-navigation/native';
 import { Client } from 'rr-apilib';

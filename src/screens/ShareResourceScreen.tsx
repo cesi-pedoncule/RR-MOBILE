@@ -7,7 +7,7 @@ import NavBar from "../components/NavBar";
 import ResourceCard from "../components/Card/ResourceCard";
 import TopBar from "../components/TopBar";
 import commonStyles from "../styles/commonStyles";
-import ShareResourceStyles from "../styles/ShareResourceStyles";
+import ShareResourceStyles from "../styles/Screen/ShareResourceStyles";
 
 export default function ShareResourceScreen({ route }: any) {
 	const client = route.params as Client;

@@ -5,7 +5,7 @@ import Header from "../components/Header";
 import InputButton from "../components/Button/InputButton";
 import Link from "../components/Link";
 import commonStyles from "../styles/commonStyles";
-import LoginStyles from "../styles/LoginStyles";
+import LoginStyles from "../styles/Screen/LoginStyles";
 import { StackNavigationProp } from "@react-navigation/stack";
 import InputText from "../components/Input/InputText";
 import { Client } from "rr-apilib";

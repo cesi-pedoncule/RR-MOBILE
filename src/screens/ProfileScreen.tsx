@@ -7,7 +7,7 @@ import Header from "../components/Header";
 import NavBar from "../components/NavBar";
 import TopBar from "../components/TopBar";
 import commonStyles from "../styles/commonStyles";
-import ProfileStyles from "../styles/ProfileStyles";
+import ProfileStyles from "../styles/Screen/ProfileStyles";
 
 type HomeStackParamList = {
     Home: undefined;

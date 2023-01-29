@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { View, Text } from 'react-native'
 
 import LikeButton from '../Button/LikeButton'
-import ResourceCardStyles from '../../styles/ResourceCardStyles'
+import ResourceCardStyles from '../../styles/Component/ResourceCardStyles'
 
 interface Props {
     resource: Resource;
