@@ -1,6 +1,6 @@
 import { View, Text } from 'react-native'
 import React from 'react'
-import CategoryCardStyles from '../styles/CategoryCardStyles';
+import CategoryCardStyles from '../../styles/CategoryCardStyles';
 
 interface Props {
     title: string;

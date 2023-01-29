@@ -1,7 +1,7 @@
 import React from "react";
 import { Text, View } from "react-native";
 import commonStyles from "../styles/commonStyles";
-import HomeButton from "./HomeButton";
+import HomeButton from "./Button/HomeButton";
 
 interface Props {
     label: string;

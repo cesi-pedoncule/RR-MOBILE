@@ -2,13 +2,13 @@ import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { Image, Text, View } from "react-native";
 import Header from "../components/Header";
-import InputButton from "../components/InputButton";
+import InputButton from "../components/Button/InputButton";
 import Link from "../components/Link";
 import commonStyles from "../styles/commonStyles";
 import LoginStyles from "../styles/LoginStyles";
 import RegisterStyles from "../styles/RegisterStyles";
 import { StackNavigationProp } from "@react-navigation/stack";
-import InputText from "../components/InputText";
+import InputText from "../components/Input/InputText";
 
 type RegisterStackParamList = {
     Home: undefined;
