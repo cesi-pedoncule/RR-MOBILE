@@ -16,7 +16,6 @@ export default function ShareResourceScreen({ route }: any) {
 
 	const onClickShowMoreItems = () => {
 		setShowMoreItems(true);
-		alert('Load more items');
 	}
 
 	const onClickShareNewItem = () => {
