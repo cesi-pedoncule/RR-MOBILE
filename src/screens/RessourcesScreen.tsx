@@ -9,7 +9,7 @@ import { Client } from "rr-apilib";
 
 import NavBar from "../components/NavBar";
 import commonStyles from "../styles/commonStyles";
-import ButtonShowMoreItems from "../components/buttonShowMoreItems";
+import ButtonShowMoreItems from "../components/ButtonShowMoreItems";
 import ResourceCard from "../components/ResourceCard";
 import TopBar from "../components/TopBar";
 

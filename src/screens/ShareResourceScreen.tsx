@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { View, Text, ScrollView, SafeAreaView } from 'react-native'
 import { Client } from "rr-apilib";
-import ButtonShowMoreItems from "../components/buttonShowMoreItems";
+import ButtonShowMoreItems from "../components/ButtonShowMoreItems";
 import InputButton from "../components/InputButton";
 import NavBar from "../components/NavBar";
 import ResourceCard from "../components/ResourceCard";

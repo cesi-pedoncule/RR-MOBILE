@@ -10,7 +10,7 @@ import React, { useState } from 'react';
 import NavBar from '../components/NavBar';
 import commonStyles from '../styles/commonStyles';
 import ResourceCard from '../components/ResourceCard';
-import ButtonShowMoreItems from '../components/buttonShowMoreItems';
+import ButtonShowMoreItems from '../components/ButtonShowMoreItems';
 
 export default function HomeScreen({ route }: any) {
     
