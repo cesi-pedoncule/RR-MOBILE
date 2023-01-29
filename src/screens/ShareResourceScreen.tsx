@@ -13,6 +13,8 @@ export default function ShareResourceScreen({ route }: any) {
 	const client = route.params as Client;
   	const [showMoreItems, setShowMoreItems] = useState(false);
 
+	const resource = client.resources.cache.first();
+
 	const onClickShowMoreItems = () => {
 		setShowMoreItems(true);
 		alert('Load more items');
@@ -24,8 +26,15 @@ export default function ShareResourceScreen({ route }: any) {
 		<View style={commonStyles.contentWithTopBar}> 
 			<Text style={ShareResourceStyles.textSaves}>Enregitrées</Text>
 			<View style={commonStyles.resourcesContainer}>
-				<ResourceCard title='Resource of test' user='usertest' description='Lorem ipsum bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla ...' />
-				<ResourceCard title='Resource of test' user='usertest' description='Lorem ipsum bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla ...' />
+				{
+					!resource ?
+					<Text>Aucune ressource enregistrée</Text>
+					:
+					<>
+						<ResourceCard key={1} resource={resource} />
+						<ResourceCard key={2} resource={resource} />
+					</>
+				}
 				{
 					!showMoreItems ?
 					<ButtonShowMoreItems callBack={onClickShowMoreItems} />
