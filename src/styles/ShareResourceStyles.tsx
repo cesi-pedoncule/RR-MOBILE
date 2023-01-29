@@ -1,6 +1,10 @@
 import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
+	shareResourcesContainer : {
+		marginTop : 20,
+		alignItems : 'center',
+	},
 	textSaves : {
 		position: 'relative',
 		textAlign : "center",

@@ -25,7 +25,7 @@ export default function ShareResourceScreen({ route }: any) {
 		<TopBar/>
 		<View style={commonStyles.contentWithTopBar}> 
 			<Text style={ShareResourceStyles.textSaves}>Enregitrées</Text>
-			<View style={commonStyles.resourcesContainer}>
+			<View style={ShareResourceStyles.shareResourcesContainer}>
 				{
 					!resource ?
 					<Text>Aucune ressource enregistrée</Text>
