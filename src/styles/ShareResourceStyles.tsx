@@ -5,6 +5,16 @@ export default StyleSheet.create({
 		marginTop : 20,
 		alignItems : 'center',
 	},
+	resourcesContainerWithLoadMoreItems: {
+        marginTop: '2vh',
+        marginBottom: '5vh',
+		maxHeight: '48vh',
+	},
+	resourcesContainerWithoutLoadMoreItems: {
+        marginTop: '2vh',
+        marginBottom: '2vh',
+		maxHeight: '52vh',
+	},
 	textSaves : {
 		position: 'relative',
 		textAlign : "center",
@@ -14,12 +24,14 @@ export default StyleSheet.create({
 		textDecorationLine : 'underline',
 	},
 	addResourceBtn :{
-		position : 'absolute',
 		textAlign: 'center',
 		color: '#FFFFFF',
-		top : 430,	
-		paddingTop: 25 ,
-		paddingBottom: 25,
+		marginTop: 15,
+		paddingVertical: 25,
 		width : "40%"
+	},
+	buttonsContainer: {
+		justifyContent: 'center',
+		alignItems: 'center',
 	}
 });
