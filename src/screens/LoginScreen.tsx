@@ -17,7 +17,7 @@ type LoginStackParamList = {
 
 
 export default function LoginScreen({ route }: any) {
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
     const client = route.params as Client;
     const navigation = useNavigation<StackNavigationProp<LoginStackParamList>>();
 

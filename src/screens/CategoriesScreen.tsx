@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { View, ScrollView, Text } from 'react-native'
-import { Client } from "rr-apilib";
+import { Category, Client } from "rr-apilib";
 import NavBar from "../components/NavBar";
 import commonStyles from "../styles/commonStyles";
 import ButtonShowMoreItems from "../components/Button/ButtonShowMoreItems";
@@ -9,8 +9,8 @@ import CategoryCard from "../components/Card/CategoryCard";
 
 export default function CategoriesScreen({ route }: any) {
     const client = route.params as Client;
-    const [showMoreItems, setShowMoreItems] = useState(false);
-    const [categories, setCategories] = useState(Array.from(client.categories.cache.values()));
+    const [showMoreItems, setShowMoreItems] = useState<boolean>(false);
+    const [categories, setCategories] = useState<Category[]>(Array.from(client.categories.cache.values()));
 
     const onClickShowMoreItems = () => {
         setShowMoreItems(true);
