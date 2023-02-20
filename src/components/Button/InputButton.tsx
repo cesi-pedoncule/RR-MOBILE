@@ -9,9 +9,9 @@ interface Props {
 }
 
 export default function InputButton({ label, callBack, style}: Props) {
-  return (
-    <TouchableHighlight style={[InputButtonStyles.btnBackground, style]} onPress={callBack} underlayColor={"#FFFFFF"}>
-        <Text style={InputButtonStyles.btnText}>{label}</Text>
-    </TouchableHighlight>
-  )
+    return (
+        <TouchableHighlight style={[InputButtonStyles.btnBackground, style]} onPress={callBack} underlayColor={"#FFFFFF"}>
+            <Text style={InputButtonStyles.btnText}>{label}</Text>
+        </TouchableHighlight>
+    )
 }
