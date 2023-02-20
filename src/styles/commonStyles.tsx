@@ -64,19 +64,6 @@ export default StyleSheet.create({
     title3: {
         fontSize: 20,
     },
-    btnBackground: {
-        width: 126,
-        height: 34,
-        justifyContent: 'center',
-        backgroundColor: '#03989E',
-        borderRadius: 15,
-        transition: 0.2,
-    },
-    btnText: {
-        textAlign: 'center',
-        color: '#FFFFFF',
-        marginVertical: 8,
-    },
     link: {
         color: '#03989E',
         paddingHorizontal: 5,
@@ -85,15 +72,6 @@ export default StyleSheet.create({
         position: 'absolute',
         top: '35%',
         left: '47%',
-    },
-    moreItemsButton: {
-        width: 40,
-        height: 34,
-        justifyContent: 'center',
-        backgroundColor: '#F0F0F0',
-        borderRadius: 10,
-        transition: 0.2,
-        textAlign: 'center',
     },
     resourcesContainer: {
         marginTop: '2vh',
@@ -105,15 +83,6 @@ export default StyleSheet.create({
         display: 'flex',
         flexDirection: 'row',
         flexWrap: 'wrap',
-    },
-    returnBtn:{
-        padding: 10,
-        justifyContent: 'center',
-        textAlign: 'center',
-        backgroundColor: '#FFFFFF',
-        borderRadius: 7,
-        transition: 0.2,
-        marginHorizontal: "6%",
     },
     scrollViewCategories: {
         marginTop: '2vh',
