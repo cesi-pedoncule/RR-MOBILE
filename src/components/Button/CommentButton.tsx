@@ -8,7 +8,7 @@ interface Props {
 	commentNumber:number;
   }
 
-export default function CommentButton({callBack, commentNumber}:Props) {
+export default function CommentButton({ callBack, commentNumber }: Props) {
   return (
     <View style={CommentButtonStyles.container}>
         <Text style={CommentButtonStyles.numberComment}>{commentNumber.toString()}</Text>
