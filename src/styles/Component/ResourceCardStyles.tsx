@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 export default StyleSheet.create({
     cardBackground: {
         width: "90%",
-        height: "20vh",
+        height: 170,
         backgroundColor: '#F0F0F0',
         borderBottomWidth: 2,
         borderBottomColor: '#EEEEEE',

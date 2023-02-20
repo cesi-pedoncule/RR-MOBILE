@@ -9,7 +9,7 @@ export default StyleSheet.create({
     },
     logo: {
         width: '60%',
-        height: '30vh',
+        // height: '30%',
         position: 'absolute',
         top: 0,
     },
@@ -37,7 +37,7 @@ export default StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: '3vh',
+        marginTop: '6%',
     },
     title: {
         fontSize: 32,
@@ -65,18 +65,18 @@ export default StyleSheet.create({
         left: '47%',
     },
     resourcesContainer: {
-        marginTop: '2vh',
-        marginBottom: '15vh',
+        marginTop: '2%',
+        marginBottom: '15%',
     },
     categoriesContainer: {
-        marginBottom: '15vh',
+        marginBottom: '15%',
         justifyContent: 'center',
         display: 'flex',
         flexDirection: 'row',
         flexWrap: 'wrap',
     },
     scrollViewCategories: {
-        marginTop: '2vh',
+        marginTop: '2%',
     },
     scrollViewCenter: {
         alignItems: 'center',
