@@ -1,6 +1,6 @@
 import React from "react";
 import { Text, TouchableHighlight } from "react-native";
-import commonStyles from "../../styles/commonStyles";
+import moreItemsButtonStyles from "../../styles/Component/ButtonShowMoreItemsStyles";
 
 interface Props {
     callBack: () => void;
@@ -8,7 +8,7 @@ interface Props {
 
 export default function ButtonShowMoreItems({callBack}: Props) {
   return (
-    <TouchableHighlight onPress={callBack} style={commonStyles.moreItemsButton} underlayColor={"#FFFFFF"} >
+    <TouchableHighlight onPress={callBack} style={moreItemsButtonStyles.moreItemsButton} underlayColor={"#FFFFFF"} >
         <Text>...</Text>
     </TouchableHighlight>
   );
