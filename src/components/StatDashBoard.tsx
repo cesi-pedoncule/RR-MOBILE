@@ -17,17 +17,9 @@ export default function StatDashBoard({client} : Props) {
     let numberResourceSecMonth:number = 0;
     let numberResourceThirdMonth:number = 0;
 
-    let firstMonth:number = date.getMonth()-2;
-    let secMonth:number = date.getMonth()-1;
-    let thirdMonth:number = date.getMonth();
-    
-    if(secMonth<0){
-        secMonth = secMonth+12;
-        firstMonth = firstMonth+12;
-    } 
-    else if(firstMonth<0){
-        firstMonth = firstMonth+12;
-    }
+    const firstMonth:number = date.getMonth()-2 < 0 ? date.getMonth()-2+12 : date.getMonth()-2;
+    const secMonth:number = date.getMonth()-1 < 0 ? date.getMonth()-1+12 : date.getMonth()-1;
+    const thirdMonth:number = date.getMonth();
 
     resources.map((resource) => {
         if(resource.createdAt.getMonth() == firstMonth){
