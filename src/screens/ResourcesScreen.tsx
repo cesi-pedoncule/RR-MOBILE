@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import {
     View,
     Image,
-    SafeAreaView,
     ScrollView
 } from 'react-native'
 import { Client } from "rr-apilib";
@@ -23,7 +22,7 @@ export default function ResourcesScreen({ route }: any) {
     }
 
     return (
-        <SafeAreaView style={commonStyles.container}>
+        <View style={commonStyles.container}>
             <TopBar />
             <Image source={require('../assets/rr-logo.png')} style={commonStyles.logo} />
             <View style={commonStyles.content}>
@@ -45,6 +44,6 @@ export default function ResourcesScreen({ route }: any) {
                 </ScrollView>
             </View>
             <NavBar client={client} />
-        </SafeAreaView>
+        </View>
     )
 }

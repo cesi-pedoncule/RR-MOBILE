@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, ScrollView, SafeAreaView } from 'react-native'
+import { View, Text, ScrollView } from 'react-native'
 import { Client } from "rr-apilib";
 import ButtonShowMoreItems from "../components/Button/ButtonShowMoreItems";
 import InputButton from "../components/Button/InputButton";
@@ -23,7 +23,7 @@ export default function ShareResourceScreen({ route }: any) {
 	}
 
   return (
-	<SafeAreaView style={commonStyles.container}>
+	<View style={commonStyles.container}>
 		<TopBar />
 		<View style={commonStyles.contentWithTopBar}> 
 			<Text style={ShareResourceStyles.textSaves}>Enregitrées</Text>
@@ -58,6 +58,6 @@ export default function ShareResourceScreen({ route }: any) {
 			</View>
 			<NavBar client={client} />
 		</View>
-	</SafeAreaView>
+	</View>
   )
 }
