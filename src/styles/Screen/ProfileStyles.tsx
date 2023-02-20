@@ -23,4 +23,8 @@ export default StyleSheet.create({
         marginHorizontal: 10,
         justifyContent: 'center',
     },
+    statsContainer : {
+        alignItems : 'center',
+        justifyContent : 'space-around',
+    }
 });

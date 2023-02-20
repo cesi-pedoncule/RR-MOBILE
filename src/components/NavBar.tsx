@@ -8,7 +8,7 @@ type NavBarStackParamList = {
     Categories: undefined;
     Profile: undefined;
     ShareCreate: undefined;
-    Ressources: undefined;
+    Resources: undefined;
     Login: undefined;
 }
 
@@ -35,13 +35,13 @@ export default function NavBar({client}: Props) {
         navigation.navigate('ShareCreate');
     }
 
-    const onClickRessourcesButton = () => {
-        navigation.navigate('Ressources');
+    const onClickResourcesButton = () => {
+        navigation.navigate('Resources');
     }
 
     return (
         <View style={NavBarStyles.container}>
-            <TouchableHighlight onPress={onClickRessourcesButton} style={NavBarStyles.buttonNavBar} underlayColor={"#FFF"}>
+            <TouchableHighlight onPress={onClickResourcesButton} style={NavBarStyles.buttonNavBar} underlayColor={"#FFF"}>
                 <Image source={require('../assets/Ressources.png')} style={NavBarStyles.logo}  />
             </TouchableHighlight>
             <TouchableHighlight onPress={onClickCategoriesButton}style={NavBarStyles.buttonNavBar} underlayColor={"#FFF"}>

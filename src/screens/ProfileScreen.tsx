@@ -5,6 +5,7 @@ import { View, Text } from 'react-native'
 import { Client } from "rr-apilib";
 import Header from "../components/Header";
 import NavBar from "../components/NavBar";
+import StatDashBoard from "../components/StatDashBoard";
 import TopBar from "../components/TopBar";
 import commonStyles from "../styles/commonStyles";
 import ProfileStyles from "../styles/Screen/ProfileStyles";
@@ -40,7 +41,9 @@ export default function ProfileScreen({route}: any) {
                     <Text style={ProfileStyles.profileSubTitle}>{user?.resources.size} enregistrement(s)</Text>
                     <Text style={ProfileStyles.profileDescription}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed efficitur risus tempus, eleifend sem in, ornare quam. Integer ultrices</Text>
                     <Text style={[commonStyles.title, ProfileStyles.profileTitle]}>Statistiques</Text>
-                    <Text>Graph : // TODO </Text>
+                    <View style={ProfileStyles.statsContainer}>
+                        <StatDashBoard client={client}/>
+                    </View>
                 </View>
             </View>
             <NavBar client={client} />
