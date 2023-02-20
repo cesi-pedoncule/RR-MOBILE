@@ -31,9 +31,7 @@ export default function ProfileScreen({route}: any) {
     }
 
     const onClickDisconnect = () => {
-        if (user) {
-            navigation.navigate('Login');
-        }
+        navigation.navigate('Login');
     }
 
     useEffect(() => {
@@ -42,22 +40,26 @@ export default function ProfileScreen({route}: any) {
 
     return (
         <View style={commonStyles.container}>
-            <TopBar hideSearchBar={true} />
-            <View style={commonStyles.content}>
-                <Header label={userProfileName} displayHomeButton={false} />
-                <View style={ProfileStyles.profileContainer}>
-                    <Text style={ProfileStyles.profileSubTitle}>{user?.resources.size} enregistrement(s)</Text>
-                    <Text style={ProfileStyles.profileDescription}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed efficitur risus tempus, eleifend sem in, ornare quam. Integer ultrices</Text>
-                    <Text style={[commonStyles.title, ProfileStyles.profileTitle]}>Statistiques</Text>
-                    <View style={ProfileStyles.statsContainer}>
-                        <StatDashBoard user={user} />
+            {
+                user === null ? null : <View>
+                    <TopBar hideSearchBar={true} />
+                    <View style={commonStyles.content}>
+                        <Header label={userProfileName} displayHomeButton={false} />
+                        <View style={ProfileStyles.profileContainer}>
+                            <Text style={ProfileStyles.profileSubTitle}>{user?.resources.size} enregistrement(s)</Text>
+                            <Text style={ProfileStyles.profileDescription}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed efficitur risus tempus, eleifend sem in, ornare quam. Integer ultrices</Text>
+                            <Text style={[commonStyles.title, ProfileStyles.profileTitle]}>Statistiques</Text>
+                            <View style={ProfileStyles.statsContainer}>
+                                <StatDashBoard user={user} />
+                            </View>
+                            <View style={ProfileStyles.disconnectContainer}>
+                                <InputButton label={"Déconnexion"} callBack={onClickDisconnect}/>
+                            </View>
+                        </View>
                     </View>
-                    <View style={ProfileStyles.disconnectContainer}>
-                        <InputButton label={"Déconnexion"} callBack={onClickDisconnect}/>
-                    </View>
+                    <NavBar client={client} />
                 </View>
-            </View>
-            <NavBar client={client} />
+            }
         </View>
     )
 }

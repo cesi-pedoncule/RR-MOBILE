@@ -2,9 +2,10 @@ import React, { useState } from 'react'
 import StatDashBoardStyles from '../styles/Component/StatDashBoardStyles'
 import { BarChart } from "react-native-chart-kit";
 import { Resource, User } from 'rr-apilib';
+import { View } from 'react-native';
 
 interface Props {
-    user: User|null;
+    user: User;
 }
 
 export default function StatDashBoard({user} : Props) {
@@ -13,7 +14,7 @@ export default function StatDashBoard({user} : Props) {
 
     if(!user) {
         return (
-            <div></div>
+            <View></View>
         )
     }
 
