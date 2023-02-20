@@ -86,15 +86,6 @@ export default StyleSheet.create({
         top: '35%',
         left: '47%',
     },
-    moreItemsButton: {
-        width: 40,
-        height: 34,
-        justifyContent: 'center',
-        backgroundColor: '#F0F0F0',
-        borderRadius: 10,
-        transition: 0.2,
-        textAlign: 'center',
-    },
     resourcesContainer: {
         marginTop: '2vh',
         marginBottom: '15vh',
