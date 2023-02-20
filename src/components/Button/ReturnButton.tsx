@@ -11,13 +11,9 @@ type ReturnButtonStackParamList = {
 
 export default function ReturnButton() {
     const navigation = useNavigation<StackNavigationProp<ReturnButtonStackParamList>>();
-    
-    const onPressButton = () => {
-        navigation.navigate('ShareCreate');
-    }
 
   return (
-    <TouchableHighlight style={commonStyles.returnBtn} underlayColor="#FFFFFF" onPress={onPressButton}>
+    <TouchableHighlight style={commonStyles.returnBtn} underlayColor="#FFFFFF" onPress={() => navigation.goBack()}>
       <MaterialCommunityIcons name="arrow-left-top" size={24} color="black" />
     </TouchableHighlight>
   )
