@@ -64,19 +64,6 @@ export default StyleSheet.create({
     title3: {
         fontSize: 20,
     },
-    btnBackground: {
-        width: 126,
-        height: 34,
-        justifyContent: 'center',
-        backgroundColor: '#03989E',
-        borderRadius: 15,
-        transition: 0.2,
-    },
-    btnText: {
-        textAlign: 'center',
-        color: '#FFFFFF',
-        marginVertical: 8,
-    },
     link: {
         color: '#03989E',
         paddingHorizontal: 5,
