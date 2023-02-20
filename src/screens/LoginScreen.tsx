@@ -1,6 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
 import React, { useEffect, useState } from "react";
-import { ActivityIndicator, Image, Text, View } from "react-native";
+import { ActivityIndicator, Text, View } from "react-native";
 import Header from "../components/Header";
 import InputButton from "../components/Button/InputButton";
 import Link from "../components/Link";
@@ -48,7 +48,6 @@ export default function LoginScreen({ route }: any) {
 
     return (
         <View style={commonStyles.container}>
-            <Image source={require('../assets/rr-logo.png')} style={commonStyles.logo} />
             <View style={commonStyles.content}>
                 <Header label="Connexion" />
                 <View  style={LoginStyles.loginContent}>

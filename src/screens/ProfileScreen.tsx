@@ -34,7 +34,7 @@ export default function ProfileScreen({route}: any) {
     return (
         <View style={commonStyles.container}>
             <TopBar hideSearchBar={true} />
-            <View style={commonStyles.contentWithTopBar}>
+            <View style={commonStyles.content}>
                 <Header label={userProfileName} displayHomeButton={false} />
                 <View style={ProfileStyles.profileContainer}>
                     <Text style={ProfileStyles.profileSubTitle}>{user?.resources.size} enregistrement(s)</Text>
