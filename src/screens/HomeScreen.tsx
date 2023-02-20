@@ -3,7 +3,7 @@ import {
     ScrollView,
     View
 } from 'react-native';
-import { Client } from 'rr-apilib';
+import { Client, Resource } from 'rr-apilib';
 import React, { useState } from 'react';
 
 import NavBar from '../components/NavBar';
@@ -15,8 +15,8 @@ export default function HomeScreen({ route }: any) {
     
     const client = route.params as Client;
     
-    const [showMoreItems, setShowMoreItems] = useState(false);
-    const [resources, setResources] = useState(Array.from(client.resources.cache.values()));
+    const [showMoreItems, setShowMoreItems] = useState<boolean>(false);
+    const [resources, setResources] = useState<Resource[]>(Array.from(client.resources.cache.values()));
 
     const onClickShowMoreItems = () => {
         setShowMoreItems(true);
