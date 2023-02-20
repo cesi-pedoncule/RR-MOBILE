@@ -9,7 +9,7 @@ interface Props {
 
 export default function StatDashBoard({client} : Props) {
     const date:Date = new Date();
-    const month:string[] = ["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Aout","Septembre","Octobre","Novemebre","Décembre"];
+    const month:string[] = ["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Aout","Septembre","Octobre","Novembre","Décembre"];
 
     const [resources] = useState<Resource[]>(Array.from(client.resources.cache.values()));
 
