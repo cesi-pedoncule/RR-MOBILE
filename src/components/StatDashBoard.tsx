@@ -1,17 +1,23 @@
 import React, { useState } from 'react'
 import StatDashBoardStyles from '../styles/Component/StatDashBoardStyles'
 import { BarChart } from "react-native-chart-kit";
-import { Client, Resource } from 'rr-apilib';
+import { Resource, User } from 'rr-apilib';
 
 interface Props {
-    client: Client;
+    user: User|null;
 }
 
-export default function StatDashBoard({client} : Props) {
+export default function StatDashBoard({user} : Props) {
     const date:Date = new Date();
     const month:string[] = ["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Aout","Septembre","Octobre","Novembre","Décembre"];
 
-    const [resources] = useState<Resource[]>(Array.from(client.resources.cache.values()));
+    if(!user) {
+        return (
+            <div></div>
+        )
+    }
+
+    const [resources] = useState<Resource[]>(Array.from(user.resources.values()));
 
     let numberResourceFirstMonth:number = 0;
     let numberResourceSecMonth:number = 0;

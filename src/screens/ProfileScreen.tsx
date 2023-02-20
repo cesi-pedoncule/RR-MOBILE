@@ -42,7 +42,7 @@ export default function ProfileScreen({route}: any) {
                     <Text style={ProfileStyles.profileDescription}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed efficitur risus tempus, eleifend sem in, ornare quam. Integer ultrices</Text>
                     <Text style={[commonStyles.title, ProfileStyles.profileTitle]}>Statistiques</Text>
                     <View style={ProfileStyles.statsContainer}>
-                        <StatDashBoard client={client}/>
+                        <StatDashBoard user={user} />
                     </View>
                 </View>
             </View>
