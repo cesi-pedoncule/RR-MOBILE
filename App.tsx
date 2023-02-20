@@ -26,7 +26,7 @@ export default function App() {
         <Stack.Screen name="Categories" component={CategoriesScreen} initialParams={client} />
         <Stack.Screen name="Profile" component={ProfileScreen} initialParams={client} />
         <Stack.Screen name="ShareCreate" component={ShareResourceScreen} initialParams={client} />
-        <Stack.Screen name="Ressources" component={ResourcesScreen} initialParams={client} />
+        <Stack.Screen name="Resources" component={ResourcesScreen} initialParams={client} />
       </Stack.Navigator>
     </NavigationContainer>
   );
