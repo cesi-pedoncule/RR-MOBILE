@@ -33,5 +33,6 @@ export default StyleSheet.create({
         height: '70%',
         fontSize: 13,
         lineHeight: 16,
+        outlineStyle: 'none',
     },
 })
