@@ -20,7 +20,7 @@ export default StyleSheet.create({
         width : "20%",
     },
     logo : {
-        height :  "8vh",
+        height :  60,
         width : "80%",
     }
 });

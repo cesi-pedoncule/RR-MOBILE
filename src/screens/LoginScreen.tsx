@@ -50,7 +50,7 @@ export default function LoginScreen({ route }: any) {
         <View style={commonStyles.container}>
             <View style={commonStyles.content}>
                 <Header label="Connexion" />
-                <View  style={LoginStyles.loginContent}>
+                <View>
                     {
                         isLoading ? <ActivityIndicator size="large" color="#0000ff" style={commonStyles.loader} /> : 
                         <View>
