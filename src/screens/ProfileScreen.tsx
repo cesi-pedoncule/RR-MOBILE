@@ -3,6 +3,7 @@ import { StackNavigationProp } from "@react-navigation/stack";
 import React, { useEffect } from "react";
 import { View, Text } from 'react-native'
 import { Client } from "rr-apilib";
+import InputButton from "../components/Button/InputButton";
 import Header from "../components/Header";
 import NavBar from "../components/NavBar";
 import StatDashBoard from "../components/StatDashBoard";
@@ -12,6 +13,7 @@ import ProfileStyles from "../styles/Screen/ProfileStyles";
 
 type HomeStackParamList = {
     Home: undefined;
+    Login: undefined;
 };
 
 export default function ProfileScreen({route}: any) {
@@ -25,6 +27,12 @@ export default function ProfileScreen({route}: any) {
     const checkUserIsConnected = () => {
         if (!user) {
             navigation.navigate('Home');
+        }
+    }
+
+    const onClickDisconnect = () => {
+        if (user) {
+            navigation.navigate('Login');
         }
     }
 
@@ -43,6 +51,9 @@ export default function ProfileScreen({route}: any) {
                     <Text style={[commonStyles.title, ProfileStyles.profileTitle]}>Statistiques</Text>
                     <View style={ProfileStyles.statsContainer}>
                         <StatDashBoard user={user} />
+                    </View>
+                    <View style={ProfileStyles.disconnectContainer}>
+                        <InputButton label={"Déconnexion"} callBack={onClickDisconnect}/>
                     </View>
                 </View>
             </View>
