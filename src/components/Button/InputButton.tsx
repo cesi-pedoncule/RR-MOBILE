@@ -3,9 +3,9 @@ import React from 'react'
 import InputButtonStyles from '../../styles/Component/InputButtonStyles';
 
 interface Props {
-  label: string;
-  callBack: ()=>void;
-  style?: any;
+    label: string;
+    callBack: ()=>void;
+    style?: any;
 }
 
 export default function InputButton({ label, callBack, style}: Props) {
