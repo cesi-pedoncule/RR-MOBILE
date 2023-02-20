@@ -24,7 +24,6 @@ export default function HomeScreen({ route }: any) {
 
     return (
         <View style={commonStyles.container}>
-            <Image source={require('../assets/rr-logo.png')} style={commonStyles.logo} />
             <View style={commonStyles.content}>
                 <ScrollView style={commonStyles.resourcesContainer} contentContainerStyle={commonStyles.scrollViewCenter} >
                     {

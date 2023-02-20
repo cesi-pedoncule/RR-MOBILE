@@ -25,7 +25,7 @@ export default function ShareResourceScreen({ route }: any) {
   return (
 	<View style={commonStyles.container}>
 		<TopBar />
-		<View style={commonStyles.contentWithTopBar}> 
+		<View style={commonStyles.content}> 
 			<Text style={ShareResourceStyles.textSaves}>Enregitrées</Text>
 			{
 				resources.length === 0 ?

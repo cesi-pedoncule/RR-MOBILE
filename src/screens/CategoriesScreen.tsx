@@ -19,7 +19,7 @@ export default function CategoriesScreen({ route }: any) {
     return (
         <View style={commonStyles.container}>
             <TopBar/>
-            <View style={commonStyles.contentWithTopBar}> 
+            <View style={commonStyles.content}> 
                 <ScrollView style={commonStyles.scrollViewCategories}>
                     <View style={commonStyles.categoriesContainer}>
                         {
