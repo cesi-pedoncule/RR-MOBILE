@@ -12,9 +12,9 @@ type ReturnButtonStackParamList = {
 export default function ReturnButton() {
     const navigation = useNavigation<StackNavigationProp<ReturnButtonStackParamList>>();
 
-  return (
-    <TouchableHighlight style={ReturnButtonStyles.returnBtn} underlayColor="#FFFFFF" onPress={() => navigation.goBack()}>
-      <MaterialCommunityIcons name="arrow-left-top" size={24} color="black" />
-    </TouchableHighlight>
-  )
+    return (
+        <TouchableHighlight style={ReturnButtonStyles.returnBtn} underlayColor="#FFFFFF" onPress={() => navigation.goBack()}>
+        <MaterialCommunityIcons name="arrow-left-top" size={24} color="black" />
+        </TouchableHighlight>
+    )
 }
