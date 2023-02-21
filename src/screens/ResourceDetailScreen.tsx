@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import CommentCard from '../components/Card/CommentCard'
 import LikeButton from '../components/Button/LikeButton'
 import CommentButton from '../components/Button/CommentButton'
-import { Client } from 'rr-apilib'
+import { Client, Comment } from 'rr-apilib'
 import NavBar from '../components/NavBar'
 import ResourceDetailStyles from "../styles/Screen/ResourceDetailStyles";
 import TopBar from '../components/TopBar'
@@ -16,7 +16,8 @@ export default function ResourceDetailScreen({ route }: any) {
     
     const [isLikeResource, setIsLikeResource] = useState(false);
     const [numberLikeResource, setNumberLikeResource] = useState(0);
-    const [numberCommentResource, setNumberCommentResource] = useState(0);
+    const [comments, setComments] = useState<Comment[]>(Array.from(route.params.comments));
+    const [numberCommentResource, setNumberCommentResource] = useState(comments.length);
     
     const onClickLike = () => {
         setIsLikeResource(!isLikeResource);
@@ -35,8 +36,10 @@ export default function ResourceDetailScreen({ route }: any) {
 
     const title = route.params.title;
     const username = route.params.user ? `${route.params.user.name} ${route.params.user.firstname}` : "Utilisateur inconnu";
+    
     // Set the description to "Aucune description fournie" if the description is null or undefined
     const description = route.params.description ? (route.params.description) : "Aucune description fournie" ;
+
     return (
         <View style={ResourceDetailStyles.container}>
             <TopBar hideSearchBar={true}/>
@@ -57,9 +60,15 @@ export default function ResourceDetailScreen({ route }: any) {
                 </View>
                 <Text style={ResourceDetailStyles.commentTitle}>Commentaires</Text>
                 <View style={ResourceDetailStyles.commentContainer}>
-                    <CommentCard userName={'User Name'} comment={'Sunt minim anim amet elit. Magna sunt officia minim nulla id duis cupidatat do voluptate ea. Laboris ea id veniam consectetur reprehenderit fugiat laboris. Lorem officia sit nulla nulla. Mollit aliquip cupidatat nostrud ex magna ullamco consequat fugiat sunt consectetur ad qui elit.'}></CommentCard>
-                    <CommentCard userName={'User Name'} comment={'Sunt minim anim amet elit. Magna sunt officia minim nulla id duis cupidatat do voluptate ea. Laboris ea id veniam consectetur reprehenderit fugiat laboris. Lorem officia sit nulla nulla. Mollit aliquip cupidatat nostrud ex magna ullamco consequat fugiat sunt consectetur ad qui elit.'}></CommentCard>
-                    <CommentCard userName={'User Name'} comment={'Sunt minim anim amet elit. Magna sunt officia minim nulla id duis cupidatat do voluptate ea. Laboris ea id veniam consectetur reprehenderit fugiat laboris. Lorem officia sit nulla nulla. Mollit aliquip cupidatat nostrud ex magna ullamco consequat fugiat sunt consectetur ad qui elit.'}></CommentCard>
+                    {
+                        comments.map((comment, i) => {
+                            if (!showMoreItems && i < 6) {
+                                return <CommentCard key={i} userName={comment.user ? `${comment.user.name} ${comment.user.firstname}` : "Utilisateur inconnu"} comment={comment.comment}></CommentCard>
+                            } else if (showMoreItems) {
+                                return <CommentCard key={i} userName={comment.user ? `${comment.user.name} ${comment.user.firstname}` : "Utilisateur inconnu"} comment={comment.comment}></CommentCard>
+                            }
+                        })
+                    }
                     {
                         !showMoreItems ?
                         <ButtonShowMoreItems callBack={onClickShowMoreItems} />
