@@ -17,7 +17,8 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator 
         screenOptions={{
-          headerShown: false
+          headerShown: false,
+          animationEnabled: false
         }}
       >
         <Stack.Screen name="Login" component={LoginScreen} initialParams={client} />
