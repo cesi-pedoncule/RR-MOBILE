@@ -51,24 +51,19 @@ export default function ShareResourceScreen({ route }: any) {
 						showMoreItems ? ShareResourceStyles.resourcesContainerWithoutLoadMoreItems 
 						: ShareResourceStyles.resourcesContainerWithLoadMoreItems 
 					} 
-					contentContainerStyle={commonStyles.scrollViewCenter}>
-				{
-					resources.map((resource, i) => {
-						if (!showMoreItems && i < 2) {
-							return <ResourceCard key={i} resource={resource} callBack={() => navigation.navigate('ResourceDetail', resource)} />
-						} else if (showMoreItems) {
-							return <ResourceCard key={i} resource={resource} callBack={() => navigation.navigate('ResourceDetail', resource)} />
-						}
-					})
-				}
+					contentContainerStyle={commonStyles.scrollViewCenter}
+				>
+					{
+						resources.map((resource, i) => {
+							if ((!showMoreItems && i < 2) || showMoreItems) {
+								return <ResourceCard key={i} resource={resource} callBack={() => navigation.navigate('ResourceDetail', resource)} />
+							}
+						})
+					}
 				</ScrollView>
 			}
 			<View style={ShareResourceStyles.buttonsContainer}>
-				{
-					!showMoreItems ?
-					<ButtonShowMoreItems callBack={onClickShowMoreItems} />
-					: null
-				}
+				{ !showMoreItems && <ButtonShowMoreItems callBack={onClickShowMoreItems} /> }
 				<InputButton label="Nouvelle Ressource" callBack={onClickShareNewItem} style={ShareResourceStyles.addResourceBtn}></InputButton>
 			</View>
 			<NavBar client={client} />

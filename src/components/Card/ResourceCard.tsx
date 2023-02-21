@@ -32,19 +32,19 @@ export default function ResourceCard({ resource, callBack }: Props) {
 
     return (
         <View style={ResourceCardStyles.cardBackground}>
-            <View>
-                <View style={ResourceCardStyles.lineLikeAndUser}>
-                    <Text style={ResourceCardStyles.cardUser}>{username}</Text>
-                    <View style={ResourceCardStyles.likeBtn}>
-                        <LikeButton callBack={onClickLike} isLike={isLikeResource} likeNumber={numberLikeResource}/>
-                        <CommentButton callBack={onClickComment} commentNumber={numberCommentResource}/>
+            <TouchableHighlight onPress={callBack} underlayColor={"#FFFFFF"} >
+                <View>
+                    <View style={ResourceCardStyles.lineLikeAndUser}>
+                        <Text style={ResourceCardStyles.cardUser}>{username}</Text>
+                        <View style={ResourceCardStyles.likeBtn}>
+                            <LikeButton callBack={onClickLike} isLike={isLikeResource} likeNumber={numberLikeResource}/>
+                            <CommentButton callBack={onClickComment} commentNumber={numberCommentResource}/>
+                        </View>
                     </View>
-                </View>
-                <TouchableHighlight onPress={callBack} underlayColor={"#FFFFFF"} >
                     <Text style={ResourceCardStyles.cardTitle}>{resource.title}</Text>
-                </TouchableHighlight>
-            </View>
-            <Text style={ResourceCardStyles.cardText}>{description}</Text>
+                    <Text style={ResourceCardStyles.cardText}>{description}</Text>
+                </View>
+            </TouchableHighlight>
         </View>
     )
 }

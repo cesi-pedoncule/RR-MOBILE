@@ -11,7 +11,7 @@ import { StackNavigationProp } from "@react-navigation/stack";
 import { useNavigation } from "@react-navigation/native";
 
 type ResourcesStackParamList = {
-    ResourceDetail: Resource;
+    ResourceDetails: Resource;
 }
 
 export default function ResourcesScreen({ route }: any) {
@@ -39,17 +39,15 @@ export default function ResourcesScreen({ route }: any) {
                 <ScrollView style={commonStyles.resourcesContainer} contentContainerStyle={commonStyles.scrollViewCenter} >
                     {
                         resources.map((resource, i) => {
-                            if (!showMoreItems && i < 6) {
-                                return <ResourceCard key={i} resource={resource} callBack={() => navigation.navigate('ResourceDetail', resource)} />
-                            } else if (showMoreItems) {
-                                return <ResourceCard key={i} resource={resource} callBack={() => navigation.navigate('ResourceDetail', resource)} />
+                            if ((!showMoreItems && i < 6) || showMoreItems) {
+                                return <ResourceCard key={i} resource={resource} callBack={() => navigation.navigate('ResourceDetails', resource)} />
+                            } else {
+                                return null;
                             }
                         })
                     }
                     {
-                        !showMoreItems ?
-                        <ButtonShowMoreItems callBack={onClickShowMoreItems} />
-                        : null
+                        !showMoreItems && <ButtonShowMoreItems callBack={onClickShowMoreItems} />
                     }
                 </ScrollView>
             </View>

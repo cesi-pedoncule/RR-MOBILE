@@ -89,4 +89,8 @@ export default StyleSheet.create({
         marginLeft: 20,
         textDecorationLine: 'underline',
     },
+    noComment: {
+        position: 'absolute',
+        left: '20',
+    },
 });

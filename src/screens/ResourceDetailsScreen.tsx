@@ -5,12 +5,12 @@ import LikeButton from '../components/Button/LikeButton'
 import CommentButton from '../components/Button/CommentButton'
 import { Client, Comment } from 'rr-apilib'
 import NavBar from '../components/NavBar'
-import ResourceDetailStyles from "../styles/Screen/ResourceDetailStyles";
+import ResourceDetailsStyles from "../styles/Screen/ResourceDetailsStyles";
 import TopBar from '../components/TopBar'
 import ReturnButton from '../components/Button/ReturnButton'
 import ButtonShowMoreItems from '../components/Button/ButtonShowMoreItems'
 
-export default function ResourceDetailScreen({ route }: any) {
+export default function ResourceDetailsScreen({ route }: any) {
 
     const client = route.params as Client;
     
@@ -41,38 +41,37 @@ export default function ResourceDetailScreen({ route }: any) {
     const description = route.params.description ? (route.params.description) : "Aucune description fournie" ;
 
     return (
-        <View style={ResourceDetailStyles.container}>
+        <View style={ResourceDetailsStyles.container}>
             <TopBar hideSearchBar={true}/>
-            <ScrollView style={ResourceDetailStyles.contentWithTopBar}>
+            <ScrollView style={ResourceDetailsStyles.contentWithTopBar}>
                 <ReturnButton/>
-                <View style={ResourceDetailStyles.centerContent}>
-                    <View style={ResourceDetailStyles.cardBackground}>
-                        <View style={ResourceDetailStyles.lineLikeAndUser}>
-                            <Text style={ResourceDetailStyles.cardUser}>{username}</Text>
-                            <View style={ResourceDetailStyles.likeBtn}>
+                <View style={ResourceDetailsStyles.centerContent}>
+                    <View style={ResourceDetailsStyles.cardBackground}>
+                        <View style={ResourceDetailsStyles.lineLikeAndUser}>
+                            <Text style={ResourceDetailsStyles.cardUser}>{username}</Text>
+                            <View style={ResourceDetailsStyles.likeBtn}>
                                 <LikeButton callBack={onClickLike} isLike={isLikeResource} likeNumber={numberLikeResource}/>
                                 <CommentButton callBack={onClickComment} commentNumber={numberCommentResource}/>
                             </View>
                         </View>
-                        <Text style={ResourceDetailStyles.cardTitle}>{title}</Text>
-                        <Text style={ResourceDetailStyles.cardText}>{description}</Text>
+                        <Text style={ResourceDetailsStyles.cardTitle}>{title}</Text>
+                        <Text style={ResourceDetailsStyles.cardText}>{description}</Text>
                     </View>
                 </View>
-                <Text style={ResourceDetailStyles.commentTitle}>Commentaires</Text>
-                <View style={ResourceDetailStyles.commentContainer}>
+                <Text style={ResourceDetailsStyles.commentTitle}>Commentaires</Text>
+                <View style={ResourceDetailsStyles.commentContainer}>
                     {
                         comments.map((comment, i) => {
-                            if (!showMoreItems && i < 6) {
-                                return <CommentCard key={i} userName={comment.user ? `${comment.user.name} ${comment.user.firstname}` : "Utilisateur inconnu"} comment={comment.comment}></CommentCard>
-                            } else if (showMoreItems) {
-                                return <CommentCard key={i} userName={comment.user ? `${comment.user.name} ${comment.user.firstname}` : "Utilisateur inconnu"} comment={comment.comment}></CommentCard>
+                            if ((!showMoreItems && i < 6) || showMoreItems) {
+                                return <CommentCard key={i} comment={comment}></CommentCard>
                             }
                         })
                     }
                     {
-                        !showMoreItems ?
-                        <ButtonShowMoreItems callBack={onClickShowMoreItems} />
-                        : null
+                        numberCommentResource === 0 && <Text style={ResourceDetailsStyles.noComment}>Aucun commentaire</Text>
+                    }
+                    {
+                        !showMoreItems && numberCommentResource > 1 && <ButtonShowMoreItems callBack={onClickShowMoreItems} />
                     }
                 </View>          
             </ScrollView>
