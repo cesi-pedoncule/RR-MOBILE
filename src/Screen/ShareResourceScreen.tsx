@@ -47,13 +47,7 @@ export default function ShareResourceScreen({ route }: any) {
 				resources.length === 0 ?
 				<Text>Aucune ressource enregistrée</Text>
 				:
-				<ScrollView 
-					style={ 
-						showMoreItems ? ShareResourceStyles.resourcesContainerWithoutLoadMoreItems 
-						: ShareResourceStyles.resourcesContainerWithLoadMoreItems 
-					} 
-					contentContainerStyle={CommonStyles.scrollViewCenter}
-				>
+				<ScrollView style={ShareResourceStyles.resourcesContainer} contentContainerStyle={CommonStyles.scrollViewCenter}>
 					{
 						resources.map((resource, i) => {
 							if ((!showMoreItems && i < 2) || showMoreItems) {
@@ -61,13 +55,15 @@ export default function ShareResourceScreen({ route }: any) {
 							}
 						})
 					}
+					{ 
+						!showMoreItems && <ButtonShowMoreItems callBack={onClickShowMoreItems} /> 
+					}
 				</ScrollView>
 			}
 			<View style={ShareResourceStyles.buttonsContainer}>
-				{ !showMoreItems && <ButtonShowMoreItems callBack={onClickShowMoreItems} /> }
 				<InputButton label="Nouvelle Ressource" callBack={onClickShareNewItem} style={ShareResourceStyles.addResourceBtn}></InputButton>
 			</View>
-			<NavBar client={client} />
+			<NavBar client={client} shareResourceIsFocused={true}/>
 		</View>
 	</View>
   )

@@ -16,11 +16,16 @@ export default StyleSheet.create({
         width : "100%",
     },
     logo : {
-        height: 65,
-        width : "66%",
+        height: 50,
+        width : 50,
     },
     text: {
         color: "#03989E",
+        textAlign: 'center',
+    },
+    textFocused: {
+        color: "#396a83",
+        fontWeight : '700',
         textAlign: 'center',
     },
     buttonContainer: {

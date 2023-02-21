@@ -46,12 +46,10 @@ export default function ProfileScreen({route}: any) {
                                 <Text style={ProfileStyles.profileSubTitle}>{user?.resources.size} enregistrement(s)</Text>
                                 <Text style={ProfileStyles.profileDescription}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed efficitur risus tempus, eleifend sem in, ornare quam. Integer ultrices</Text>
                                 <Text style={[CommonStyles.title, ProfileStyles.profileTitle]} numberOfLines={1}>Statistiques</Text>
-                                <View style={ProfileStyles.statsContainer}>
-                                    <StatDashBoard user={user} />
-                                </View>
+                                <StatDashBoard user={user} />
                             </View>
                         </ScrollView>
-                        <NavBar client={client} />
+                        <NavBar client={client} profileIsFocused={true}/>
                     </View>
                 )
             }

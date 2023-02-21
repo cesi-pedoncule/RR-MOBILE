@@ -5,14 +5,9 @@ export default StyleSheet.create({
 		marginTop : 20,
 		alignItems : 'center',
 	},
-	resourcesContainerWithLoadMoreItems: {
+	resourcesContainer: {
         marginTop: '2%',
         marginBottom: '5%',
-		maxHeight: '60%',
-	},
-	resourcesContainerWithoutLoadMoreItems: {
-        marginTop: '2%',
-        marginBottom: '4.9%',
 		maxHeight: '65%',
 	},
 	textSaves : {
@@ -34,7 +29,7 @@ export default StyleSheet.create({
 		position : 'absolute',
 		justifyContent: 'center',
 		alignItems: 'center',
-		bottom: "15%",
+		bottom: 90,
 		width: "100%",
 	}
 });

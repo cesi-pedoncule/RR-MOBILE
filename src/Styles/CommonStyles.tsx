@@ -54,6 +54,6 @@ export default StyleSheet.create({
     },
     scrollView : {
         marginTop : 10,
-        marginBottom : 100,
+        marginBottom : 80,
     }
 });

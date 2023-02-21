@@ -14,9 +14,13 @@ type NavBarStackParamList = {
 
 interface Props {
     client: Client;
+    resourcesIsFocused ?: boolean;
+    categoriesIsFocused ?: boolean;
+    shareResourceIsFocused ?: boolean;
+    profileIsFocused ?: boolean;
 }
 
-export default function NavBar({client}: Props) {
+export default function NavBar({client, resourcesIsFocused=false, categoriesIsFocused = false, shareResourceIsFocused = false, profileIsFocused = false}: Props) {
     const navigation = useNavigation<StackNavigationProp<NavBarStackParamList>>();
 
     const onClickCategoriesButton = () => {
@@ -42,28 +46,61 @@ export default function NavBar({client}: Props) {
     return (
         <View style={NavBarStyles.container}>
             <TouchableHighlight onPress={onClickResourcesButton} underlayColor={"#FFF"} style={NavBarStyles.button}>
-                <View style={NavBarStyles.buttonContainer}>
-                    <Image source={require('../assets/Ressources.png')} style={NavBarStyles.logo}/>
-                    <Text style={NavBarStyles.text}>Ressources</Text>
-                </View>
+                {
+                    !resourcesIsFocused ? 
+                    <View style={NavBarStyles.buttonContainer}>
+                        <Image source={require('../assets/Ressources.png')} style={NavBarStyles.logo}/>
+                        <Text style={NavBarStyles.text}>Ressources</Text>
+                    </View> 
+                    : 
+                    <View style={NavBarStyles.buttonContainer}>
+                        <Image source={require('../assets/RessourcesFocused.png')} style={NavBarStyles.logo}/>
+                        <Text style={NavBarStyles.textFocused}>Ressources</Text>
+                    </View> 
+                }
             </TouchableHighlight>
             <TouchableHighlight onPress={onClickCategoriesButton} underlayColor={"#FFF"} style={NavBarStyles.button}>
-                <View style={NavBarStyles.buttonContainer}>
-                    <Image source={require('../assets/Catalogue.png')} style={NavBarStyles.logo}/>
-                    <Text style={NavBarStyles.text}>Catégories</Text>
-                </View>
+                {
+                    !categoriesIsFocused ?
+                    <View style={NavBarStyles.buttonContainer}>
+                        <Image source={require('../assets/Catalogue.png')} style={NavBarStyles.logo}/>
+                        <Text style={NavBarStyles.text}>Catégories</Text>
+                    </View>
+                    :
+                    <View style={NavBarStyles.buttonContainer}>
+                        <Image source={require('../assets/CatalogueFocused.png')} style={NavBarStyles.logo}/>
+                        <Text style={NavBarStyles.textFocused}>Catégories</Text>
+                    </View>
+                }
+                
             </TouchableHighlight>
             <TouchableHighlight onPress={onClickShareResourceButton} underlayColor={"#FFF"} style={NavBarStyles.button}>
-                <View style={NavBarStyles.buttonContainer}>
-                    <Image source={require('../assets/Partage.png')} style={NavBarStyles.logo}/>
-                    <Text style={NavBarStyles.text}>Partager</Text>
-                </View>
+                {
+                    !shareResourceIsFocused ?
+                    <View style={NavBarStyles.buttonContainer}>
+                        <Image source={require('../assets/Partage.png')} style={NavBarStyles.logo}/>
+                        <Text style={NavBarStyles.text}>Partager</Text>
+                    </View>
+                    :
+                    <View style={NavBarStyles.buttonContainer}>
+                        <Image source={require('../assets/PartageFocused.png')} style={NavBarStyles.logo}/>
+                        <Text style={NavBarStyles.textFocused}>Partager</Text>
+                    </View>
+                }
             </TouchableHighlight>
             <TouchableHighlight onPress={onClickProfileButton} underlayColor={"#FFF"} style={NavBarStyles.button}>
-                <View style={NavBarStyles.buttonContainer}>
-                    <Image source={require('../assets/Profile.png')} style={NavBarStyles.logo}/>
-                    <Text style={NavBarStyles.text}>Profile</Text>
-                </View>
+                {
+                    !profileIsFocused ?
+                    <View style={NavBarStyles.buttonContainer}>
+                        <Image source={require('../assets/Profile.png')} style={NavBarStyles.logo}/>
+                        <Text style={NavBarStyles.text}>Profile</Text>
+                    </View>
+                    :
+                    <View style={NavBarStyles.buttonContainer}>
+                        <Image source={require('../assets/ProfileFocused.png')} style={NavBarStyles.logo}/>
+                        <Text style={NavBarStyles.textFocused}>Profile</Text>
+                    </View>
+                }
             </TouchableHighlight>
         </View>
     )
