@@ -1,12 +1,13 @@
 import { View, Text, TouchableHighlight } from 'react-native'
 import React from 'react'
 import CategoryButtonStyles from '../../Styles/Components/Button/CategoryButtonStyles'
+import { Category } from 'rr-apilib';
 
 interface Props {
-    categoryName: string;
+    category: Category;
 }
 
-export default function CategoryButton({categoryName}:Props) {
+export default function CategoryButton({category}:Props) {
   
     const callBack = () => {
         alert('TODO: Category Reference Search Resource');
@@ -15,7 +16,7 @@ export default function CategoryButton({categoryName}:Props) {
     return (
         <View style={CategoryButtonStyles.btnBackground}>
             <TouchableHighlight onPress={callBack} underlayColor={"#F0F0F0"}>
-                <Text style={CategoryButtonStyles.btnText}>{categoryName}</Text>
+                <Text style={CategoryButtonStyles.btnText}>{category.name}</Text>
             </TouchableHighlight>
         </View>
   )
