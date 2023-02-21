@@ -17,8 +17,15 @@ export default function ResourceDetailsScreen({ route }: any) {
     
     const [isLikeResource, setIsLikeResource] = useState(false);
     const [numberLikeResource, setNumberLikeResource] = useState(0);
-    const [comments, setComments] = useState<Comment[]>(Array.from(route.params.comments));
-    const [numberCommentResource, setNumberCommentResource] = useState(comments.length);
+    const [comments, setComments] = useState<Comment[]>([]);
+
+    const title = route.params.title;
+    const username = route.params.user ? `${route.params.user.name} ${route.params.user.firstname}` : "Utilisateur inconnu";
+    
+    // Set the description to "Aucune description fournie" if the description is null or undefined
+    const description = route.params.description ? (route.params.description) : "Aucune description fournie" ;
+
+    const [showMoreItems, setShowMoreItems] = useState(false);
     
     const onClickLike = () => {
         setIsLikeResource(!isLikeResource);
@@ -29,17 +36,9 @@ export default function ResourceDetailsScreen({ route }: any) {
         //NO-OP
     }
 
-    const [showMoreItems, setShowMoreItems] = useState(false);
-
     const onClickShowMoreItems = () => {
         setShowMoreItems(true);
     }
-
-    const title = route.params.title;
-    const username = route.params.user ? `${route.params.user.name} ${route.params.user.firstname}` : "Utilisateur inconnu";
-    
-    // Set the description to "Aucune description fournie" if the description is null or undefined
-    const description = route.params.description ? (route.params.description) : "Aucune description fournie" ;
 
     return (
         <View style={CommonStyles.container}>
@@ -53,32 +52,33 @@ export default function ResourceDetailsScreen({ route }: any) {
                                 <Text style={ResourceDetailsStyles.cardUser}>{username}</Text>
                                 <View style={ResourceDetailsStyles.likeBtn}>
                                     <LikeButton callBack={onClickLike} isLike={isLikeResource} likeNumber={numberLikeResource}/>
-                                    <CommentButton callBack={onClickComment} commentNumber={numberCommentResource}/>
+                                    <CommentButton callBack={onClickComment} commentNumber={comments.length}/>
                                 </View>
+
                             </View>
                             <Text style={ResourceDetailsStyles.cardTitle}>{title}</Text>
                             <Text style={ResourceDetailsStyles.cardText}>{description}</Text>
                         </View>
                     </View>
-                    <Text style={ResourceDetailsStyles.commentTitle}>Commentaires</Text>
-                    <View style={ResourceDetailsStyles.commentContainer}>
-                        {
-                            comments.map((comment, i) => {
-                                if ((!showMoreItems && i < 6) || showMoreItems) {
-                                    return <CommentCard key={i} comment={comment}></CommentCard>
-                                }
-                            })
-                        }
-                        {
-                            numberCommentResource === 0 && <Text style={ResourceDetailsStyles.noComment}>Aucun commentaire</Text>
-                        }
-                        {
-                            !showMoreItems && numberCommentResource > 1 && <ButtonShowMoreItems callBack={onClickShowMoreItems} />
-                        }
-                    </View>          
-                </ScrollView>
-                <NavBar client={client}/>
-            </View>
+                </View>
+                <Text style={ResourceDetailsStyles.commentTitle}>Commentaires</Text>
+                <View style={ResourceDetailsStyles.commentContainer}>
+                    {
+                        comments.map((comment, i) => {
+                            if ((!showMoreItems && i < 6) || showMoreItems) {
+                                return <CommentCard key={i} comment={comment}></CommentCard>
+                            }
+                        })
+                    }
+                    {
+                        comments.length === 0 && <Text>Aucun commentaire</Text>
+                    }
+                    {
+                        !showMoreItems && comments.length > 1 && <ButtonShowMoreItems callBack={onClickShowMoreItems} />
+                    }
+                </View>          
+            </ScrollView>
+            <NavBar client={client}/>
         </View>
     )
 }
