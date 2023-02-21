@@ -1,13 +1,13 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import LoginScreen from './src/screens/LoginScreen';
-import RegisterScreen from './src/screens/RegisterScreen';
+import LoginScreen from './src/Screen/LoginScreen';
+import RegisterScreen from './src/Screen/RegisterScreen';
 import { Client } from 'rr-apilib';
-import ResourcesScreen from './src/screens/ResourcesScreen';
-import ProfileScreen from './src/screens/ProfileScreen';
-import ShareResourceScreen from './src/screens/ShareResourceScreen';
-import CategoriesScreen from './src/screens/CategoriesScreen';
-import ResourceDetailsScreen from './src/screens/ResourceDetailsScreen';
+import ResourcesScreen from './src/Screen/ResourcesScreen';
+import ProfileScreen from './src/Screen/ProfileScreen';
+import ShareResourceScreen from './src/Screen/ShareResourceScreen';
+import CategoriesScreen from './src/Screen/CategoriesScreen';
+import ResourceDetailsScreen from './src/Screen/ResourceDetailsScreen';
 
 const Stack = createStackNavigator();
 const client = new Client();

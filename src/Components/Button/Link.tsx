@@ -1,6 +1,6 @@
 import React from "react";
 import { Text, TouchableHighlight } from "react-native";
-import CommonStyles from "../styles/CommonStyles";
+import CommonStyles from "../../Styles/CommonStyles";
 
 interface Props {
     label: string;

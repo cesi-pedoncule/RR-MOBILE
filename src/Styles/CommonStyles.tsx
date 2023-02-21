@@ -7,12 +7,6 @@ export default StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'center',
     },
-    logo: {
-        width: '60%',
-        // height: '30%',
-        position: 'absolute',
-        top: 0,
-    },
     content : {
         backgroundColor: '#FFFFFF',
         width: '100%',
@@ -45,15 +39,6 @@ export default StyleSheet.create({
         fontWeight: '800',
         color: '#000000',
         textAlign: 'center',
-    },
-    title1: {
-        fontSize: 32,
-    },
-    title2: {
-        fontSize: 24,
-    },
-    title3: {
-        fontSize: 20,
     },
     link: {
         color: '#03989E',

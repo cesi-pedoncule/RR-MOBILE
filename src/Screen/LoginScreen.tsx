@@ -1,15 +1,15 @@
 import { useNavigation } from "@react-navigation/native";
 import React, { useEffect, useState } from "react";
 import { ActivityIndicator, Text, View } from "react-native";
-import Header from "../components/Header";
-import InputButton from "../components/Button/InputButton";
-import Link from "../components/Link";
-import CommonStyles from "../styles/CommonStyles";
-import LoginStyles from "../styles/Screen/LoginStyles";
+import Header from "../Components/Header";
+import InputButton from "../Components/Button/InputButton";
+import Link from "../Components/Button/Link";
+import CommonStyles from "../Styles/CommonStyles";
+import LoginStyles from "../Styles/Screen/LoginStyles";
 import { StackNavigationProp } from "@react-navigation/stack";
-import InputText from "../components/Input/InputText";
+import InputText from "../Components/Input/InputText";
 import { Client } from "rr-apilib";
-import TopBar from "../components/TopBar";
+import TopBar from "../Components/Input/TopBar";
 
 type LoginStackParamList = {
     Resources: undefined;

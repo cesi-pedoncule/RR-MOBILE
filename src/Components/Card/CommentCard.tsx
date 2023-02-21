@@ -1,6 +1,6 @@
 import { View, Text } from 'react-native'
 import React from 'react'
-import CommentCardStyles from '../../styles/Component/CommentCardStyles';
+import CommentCardStyles from '../../Styles/Components/Card/CommentCardStyles';
 import { Comment } from 'rr-apilib';
 
 interface Props {

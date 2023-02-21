@@ -5,7 +5,7 @@ import {
     TouchableHighlight
 } from 'react-native'
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import CommentButtonStyles from '../../styles/Component/CommentButtonStyles';
+import CommentButtonStyles from '../../Styles/Components/Button/CommentButtonStyles';
 
 interface Props {
 	callBack: () => void;

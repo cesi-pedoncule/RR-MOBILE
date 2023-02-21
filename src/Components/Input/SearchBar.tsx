@@ -1,6 +1,6 @@
 import React from "react";
 import { TextInput, View } from "react-native";
-import TopbarStyles from "../../styles/Component/TopbarStyles";
+import TopbarStyles from "../../Styles/Components/Input/TopbarStyles";
 
 interface Props {
     onChangeSearch: (text: string) => void;

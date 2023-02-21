@@ -1,14 +1,14 @@
 import { View, Text, ScrollView } from 'react-native'
 import React, { useState } from 'react'
-import CommentCard from '../components/Card/CommentCard'
-import LikeButton from '../components/Button/LikeButton'
-import CommentButton from '../components/Button/CommentButton'
+import CommentCard from '../Components/Card/CommentCard'
+import LikeButton from '../Components/Button/LikeButton'
+import CommentButton from '../Components/Button/CommentButton'
 import { Client, Comment } from 'rr-apilib'
-import NavBar from '../components/NavBar'
-import ResourceDetailsStyles from "../styles/Screen/ResourceDetailsStyles";
-import TopBar from '../components/TopBar'
-import ReturnButton from '../components/Button/ReturnButton'
-import ButtonShowMoreItems from '../components/Button/ButtonShowMoreItems'
+import NavBar from '../Components/NavBar'
+import ResourceDetailsStyles from "../Styles/Screen/ResourceDetailsStyles";
+import TopBar from '../Components/Input/TopBar'
+import ReturnButton from '../Components/Button/ReturnButton'
+import ButtonShowMoreItems from '../Components/Button/ButtonShowMoreItems'
 
 export default function ResourceDetailsScreen({ route }: any) {
 

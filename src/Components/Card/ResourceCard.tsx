@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { View, Text, TouchableHighlight } from 'react-native'
 
 import LikeButton from '../Button/LikeButton'
-import ResourceCardStyles from '../../styles/Component/ResourceCardStyles'
+import ResourceCardStyles from '../../Styles/Components/Card/ResourceCardStyles'
 import CommentButton from '../Button/CommentButton'
 
 interface Props {
@@ -40,7 +40,8 @@ export default function ResourceCard({ resource, callBack }: Props) {
                             <LikeButton callBack={onClickLike} isLike={isLikeResource} likeNumber={numberLikeResource}/>
                             <CommentButton callBack={onClickComment} commentNumber={numberCommentResource}/>
                         </View>    
-                        <Text style={ResourceCardStyles.cardTitle} numberOfLines={1}>{resource.title}</Text>
+                    </View>
+                    <Text style={ResourceCardStyles.cardTitle} numberOfLines={1}>{resource.title}</Text>
                     <Text style={ResourceCardStyles.cardText} numberOfLines={3}>{description}</Text>
                 </View>
             </TouchableHighlight>
