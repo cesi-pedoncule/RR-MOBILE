@@ -1,9 +1,5 @@
 import React, { useState } from "react";
-import {
-    View,
-    Image,
-    ScrollView
-} from 'react-native'
+import { View, ScrollView } from 'react-native'
 import { Client, Resource } from "rr-apilib";
 
 import NavBar from "../components/NavBar";
