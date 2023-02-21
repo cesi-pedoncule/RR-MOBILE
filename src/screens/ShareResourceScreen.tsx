@@ -12,14 +12,14 @@ import { StackNavigationProp } from "@react-navigation/stack";
 import { useNavigation } from "@react-navigation/native";
 
 type ShareResourceStackParamList = {
-    ResourceDetail: Resource;
+    ResourceDetails: Resource;
 }
 
 export default function ShareResourceScreen({ route }: any) {
 	const navigation = useNavigation<StackNavigationProp<ShareResourceStackParamList>>();
 
 	const client = route.params as Client;
-  const [showMoreItems, setShowMoreItems] = useState<boolean>(false);
+  	const [showMoreItems, setShowMoreItems] = useState<boolean>(false);
 	const [resources, setResources] = useState<Resource[]>(Array.from(client.resources.cache.values()));
 
 	const onClickShowMoreItems = () => {
@@ -51,12 +51,12 @@ export default function ShareResourceScreen({ route }: any) {
 						showMoreItems ? ShareResourceStyles.resourcesContainerWithoutLoadMoreItems 
 						: ShareResourceStyles.resourcesContainerWithLoadMoreItems 
 					} 
-					contentContainerStyle={commonStyles.scrollViewCenter}
+					contentContainerStyle={CommonStyles.scrollViewCenter}
 				>
 					{
 						resources.map((resource, i) => {
 							if ((!showMoreItems && i < 2) || showMoreItems) {
-								return <ResourceCard key={i} resource={resource} callBack={() => navigation.navigate('ResourceDetail', resource)} />
+								return <ResourceCard key={i} resource={resource} callBack={() => navigation.navigate('ResourceDetails', resource)} />
 							}
 						})
 					}
