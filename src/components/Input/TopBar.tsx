@@ -1,8 +1,8 @@
 import React from "react";
 import { View } from "react-native";
-import TopbarStyles from "../styles/Component/TopbarStyles";
-import HomeButton from "./Button/ResourcesButton";
-import SearchBar from "./Input/SearchBar";
+import TopbarStyles from "../../styles/Component/Input/TopbarStyles";
+import HomeButton from "../Button/ResourcesButton";
+import SearchBar from "./SearchBar";
 
 interface Props {
     onChangeSearch?: (text: string) => void;

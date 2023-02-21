@@ -3,13 +3,13 @@ import React, { useEffect, useState } from "react";
 import { ActivityIndicator, Text, View } from "react-native";
 import Header from "../components/Header";
 import InputButton from "../components/Button/InputButton";
-import Link from "../components/Link";
+import Link from "../components/Button/Link";
 import CommonStyles from "../styles/CommonStyles";
 import LoginStyles from "../styles/Screen/LoginStyles";
 import { StackNavigationProp } from "@react-navigation/stack";
 import InputText from "../components/Input/InputText";
 import { Client } from "rr-apilib";
-import TopBar from "../components/TopBar";
+import TopBar from "../components/Input/TopBar";
 
 type LoginStackParamList = {
     Resources: undefined;

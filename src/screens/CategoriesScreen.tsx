@@ -4,7 +4,7 @@ import { Category, Client } from "rr-apilib";
 import NavBar from "../components/NavBar";
 import CommonStyles from "../styles/CommonStyles";
 import ButtonShowMoreItems from "../components/Button/ButtonShowMoreItems";
-import TopBar from "../components/TopBar";
+import TopBar from "../components/Input/TopBar";
 import CategoryCard from "../components/Card/CategoryCard";
 import CategoryStyles from "../styles/Screen/CategoryStyles";
 

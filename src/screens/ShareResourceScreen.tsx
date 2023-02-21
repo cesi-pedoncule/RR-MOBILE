@@ -5,7 +5,7 @@ import ButtonShowMoreItems from "../components/Button/ButtonShowMoreItems";
 import InputButton from "../components/Button/InputButton";
 import NavBar from "../components/NavBar";
 import ResourceCard from "../components/Card/ResourceCard";
-import TopBar from "../components/TopBar";
+import TopBar from "../components/Input/TopBar";
 import CommonStyles from "../styles/CommonStyles";
 import ShareResourceStyles from "../styles/Screen/ShareResourceStyles";
 

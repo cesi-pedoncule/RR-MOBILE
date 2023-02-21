@@ -7,7 +7,7 @@ import InputButton from "../components/Button/InputButton";
 import Header from "../components/Header";
 import NavBar from "../components/NavBar";
 import StatDashBoard from "../components/StatDashBoard";
-import TopBar from "../components/TopBar";
+import TopBar from "../components/Input/TopBar";
 import CommonStyles from "../styles/CommonStyles";
 import ProfileStyles from "../styles/Screen/ProfileStyles";
 

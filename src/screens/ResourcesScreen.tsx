@@ -6,7 +6,7 @@ import NavBar from "../components/NavBar";
 import CommonStyles from "../styles/CommonStyles";
 import ButtonShowMoreItems from "../components/Button/ButtonShowMoreItems";
 import ResourceCard from "../components/Card/ResourceCard";
-import TopBar from "../components/TopBar";
+import TopBar from "../components/Input/TopBar";
 import ResourcesStyles from "../styles/Screen/ResourcesStyles";
 
 export default function ResourcesScreen({ route }: any) {
