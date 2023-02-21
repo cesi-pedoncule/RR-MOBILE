@@ -1,6 +1,6 @@
 import { Resource } from 'rr-apilib'
 import React, { useState } from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, TouchableHighlight } from 'react-native'
 
 import LikeButton from '../Button/LikeButton'
 import ResourceCardStyles from '../../styles/Component/ResourceCardStyles'
@@ -8,9 +8,10 @@ import CommentButton from '../Button/CommentButton'
 
 interface Props {
     resource: Resource;
+    callBack: () => void;
 }
 
-export default function ResourceCard({ resource }: Props) {
+export default function ResourceCard({ resource, callBack }: Props) {
 
     const [isLikeResource, setIsLikeResource] = useState(false);
     const [numberLikeResource, setNumberLikeResource] = useState(0);
@@ -39,7 +40,9 @@ export default function ResourceCard({ resource }: Props) {
                         <CommentButton callBack={onClickComment} commentNumber={numberCommentResource}/>
                     </View>
                 </View>
-                <Text style={ResourceCardStyles.cardTitle}>{resource.title}</Text>
+                <TouchableHighlight onPress={callBack} underlayColor={"#FFFFFF"} >
+                    <Text style={ResourceCardStyles.cardTitle}>{resource.title}</Text>
+                </TouchableHighlight>
             </View>
             <Text style={ResourceCardStyles.cardText}>{description}</Text>
         </View>

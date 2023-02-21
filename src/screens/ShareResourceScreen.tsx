@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { View, Text, ScrollView } from 'react-native'
-import { Client } from "rr-apilib";
+import { Client, Resource } from "rr-apilib";
 import ButtonShowMoreItems from "../components/Button/ButtonShowMoreItems";
 import InputButton from "../components/Button/InputButton";
 import NavBar from "../components/NavBar";
@@ -8,8 +8,16 @@ import ResourceCard from "../components/Card/ResourceCard";
 import TopBar from "../components/TopBar";
 import commonStyles from "../styles/commonStyles";
 import ShareResourceStyles from "../styles/Screen/ShareResourceStyles";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { useNavigation } from "@react-navigation/native";
+
+type ShareResourceStackParamList = {
+    ResourceDetail: Resource;
+}
 
 export default function ShareResourceScreen({ route }: any) {
+	const navigation = useNavigation<StackNavigationProp<ShareResourceStackParamList>>();
+
 	const client = route.params as Client;
   	const [showMoreItems, setShowMoreItems] = useState(false);
 	const [resources, setResources] = useState(Array.from(client.resources.cache.values()));
@@ -40,9 +48,9 @@ export default function ShareResourceScreen({ route }: any) {
 				{
 					resources.map((resource, i) => {
 						if (!showMoreItems && i < 2) {
-							return <ResourceCard key={i} resource={resource} />
+							return <ResourceCard key={i} resource={resource} callBack={() => navigation.navigate('ResourceDetail', resource)} />
 						} else if (showMoreItems) {
-							return <ResourceCard key={i} resource={resource} />
+							return <ResourceCard key={i} resource={resource} callBack={() => navigation.navigate('ResourceDetail', resource)} />
 						}
 					})
 				}
