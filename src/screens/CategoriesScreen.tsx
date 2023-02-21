@@ -31,9 +31,7 @@ export default function CategoriesScreen({ route }: any) {
                     <View style={commonStyles.categoriesContainer}>
                         {
                             categories.map((category, i) => {
-                                if (!showMoreItems && i < 6) {
-                                    return <CategoryCard title={category.name} numberResource={category.resources.size} key={i} ></CategoryCard>
-                                } else if (showMoreItems) {
+                                if ((!showMoreItems && i < 6) || showMoreItems) {
                                     return <CategoryCard title={category.name} numberResource={category.resources.size} key={i} ></CategoryCard>
                                 }
                             })
