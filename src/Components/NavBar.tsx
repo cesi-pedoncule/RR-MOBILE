@@ -1,4 +1,4 @@
-import { Image, TouchableHighlight, View } from 'react-native'
+import { Image, TouchableHighlight, View, Text } from 'react-native'
 import NavBarStyles from '../Styles/Components/NavBarStyles'; 
 import { StackNavigationProp } from '@react-navigation/stack';
 import { useNavigation } from '@react-navigation/native';
@@ -41,17 +41,29 @@ export default function NavBar({client}: Props) {
 
     return (
         <View style={NavBarStyles.container}>
-            <TouchableHighlight onPress={onClickResourcesButton} style={NavBarStyles.buttonNavBar} underlayColor={"#FFF"}>
-                <Image source={require('../assets/Ressources.png')} style={NavBarStyles.logo}  />
+            <TouchableHighlight onPress={onClickResourcesButton} underlayColor={"#FFF"} style={NavBarStyles.button}>
+                <View style={NavBarStyles.buttonContainer}>
+                    <Image source={require('../assets/Ressources.png')} style={NavBarStyles.logo}/>
+                    <Text style={NavBarStyles.text}>Ressources</Text>
+                </View>
             </TouchableHighlight>
-            <TouchableHighlight onPress={onClickCategoriesButton}style={NavBarStyles.buttonNavBar} underlayColor={"#FFF"}>
-                <Image source={require('../assets/Catalogue.png')} style={NavBarStyles.logo} />
+            <TouchableHighlight onPress={onClickCategoriesButton} underlayColor={"#FFF"} style={NavBarStyles.button}>
+                <View style={NavBarStyles.buttonContainer}>
+                    <Image source={require('../assets/Catalogue.png')} style={NavBarStyles.logo}/>
+                    <Text style={NavBarStyles.text}>Catégories</Text>
+                </View>
             </TouchableHighlight>
-            <TouchableHighlight onPress={onClickShareResourceButton}style={NavBarStyles.buttonNavBar} underlayColor={"#FFF"}>
-                <Image source={require('../assets/Partage.png')} style={NavBarStyles.logo}  />
+            <TouchableHighlight onPress={onClickShareResourceButton} underlayColor={"#FFF"} style={NavBarStyles.button}>
+                <View style={NavBarStyles.buttonContainer}>
+                    <Image source={require('../assets/Partage.png')} style={NavBarStyles.logo}/>
+                    <Text style={NavBarStyles.text}>Partager</Text>
+                </View>
             </TouchableHighlight>
-            <TouchableHighlight onPress={onClickProfileButton}style={NavBarStyles.buttonNavBar} underlayColor={"#FFF"}>
-                <Image source={require('../assets/Profile.png')} style={NavBarStyles.logo}  />
+            <TouchableHighlight onPress={onClickProfileButton} underlayColor={"#FFF"} style={NavBarStyles.button}>
+                <View style={NavBarStyles.buttonContainer}>
+                    <Image source={require('../assets/Profile.png')} style={NavBarStyles.logo}/>
+                    <Text style={NavBarStyles.text}>Profile</Text>
+                </View>
             </TouchableHighlight>
         </View>
     )
