@@ -4,7 +4,7 @@ import { Text, View } from "react-native";
 import Header from "../components/Header";
 import InputButton from "../components/Button/InputButton";
 import Link from "../components/Link";
-import commonStyles from "../styles/commonStyles";
+import commonStyles from "../styles/CommonStyles";
 import LoginStyles from "../styles/Screen/LoginStyles";
 import RegisterStyles from "../styles/Screen/RegisterStyles";
 import { StackNavigationProp } from "@react-navigation/stack";

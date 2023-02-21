@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { View, ScrollView, Text } from 'react-native'
 import { Category, Client } from "rr-apilib";
 import NavBar from "../components/NavBar";
-import commonStyles from "../styles/commonStyles";
+import commonStyles from "../styles/CommonStyles";
 import ButtonShowMoreItems from "../components/Button/ButtonShowMoreItems";
 import TopBar from "../components/TopBar";
 import CategoryCard from "../components/Card/CategoryCard";

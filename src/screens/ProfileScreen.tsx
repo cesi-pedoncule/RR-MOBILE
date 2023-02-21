@@ -8,7 +8,7 @@ import Header from "../components/Header";
 import NavBar from "../components/NavBar";
 import StatDashBoard from "../components/StatDashBoard";
 import TopBar from "../components/TopBar";
-import commonStyles from "../styles/commonStyles";
+import commonStyles from "../styles/CommonStyles";
 import ProfileStyles from "../styles/Screen/ProfileStyles";
 
 type ProfileStackParamList = {

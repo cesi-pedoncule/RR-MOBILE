@@ -35,6 +35,6 @@ export default StyleSheet.create({
 		justifyContent: 'center',
 		alignItems: 'center',
 		bottom: "15%",
-		width : "100%",
+		width: "100%",
 	}
 });

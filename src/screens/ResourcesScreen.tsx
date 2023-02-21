@@ -3,7 +3,7 @@ import { View, ScrollView } from 'react-native'
 import { Client, Resource } from "rr-apilib";
 
 import NavBar from "../components/NavBar";
-import commonStyles from "../styles/commonStyles";
+import commonStyles from "../styles/CommonStyles";
 import ButtonShowMoreItems from "../components/Button/ButtonShowMoreItems";
 import ResourceCard from "../components/Card/ResourceCard";
 import TopBar from "../components/TopBar";

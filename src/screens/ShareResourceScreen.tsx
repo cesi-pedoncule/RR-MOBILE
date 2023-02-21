@@ -6,7 +6,7 @@ import InputButton from "../components/Button/InputButton";
 import NavBar from "../components/NavBar";
 import ResourceCard from "../components/Card/ResourceCard";
 import TopBar from "../components/TopBar";
-import commonStyles from "../styles/commonStyles";
+import commonStyles from "../styles/CommonStyles";
 import ShareResourceStyles from "../styles/Screen/ShareResourceStyles";
 
 export default function ShareResourceScreen({ route }: any) {

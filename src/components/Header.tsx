@@ -1,6 +1,6 @@
 import React from "react";
 import { Text, View } from "react-native";
-import commonStyles from "../styles/commonStyles";
+import commonStyles from "../styles/CommonStyles";
 
 interface Props {
     label: string;
