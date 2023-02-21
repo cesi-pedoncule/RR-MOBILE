@@ -40,10 +40,9 @@ export default function ProfileScreen({route}: any) {
 
     return (
         <View style={commonStyles.container}>
+            <TopBar hideSearchBar={true} />
             {
-                user === null ? null : <View>
-                    <TopBar hideSearchBar={true} />
-                    <View style={commonStyles.content}>
+                user === null ? null : <View style={commonStyles.content}>
                         <Header label={userProfileName} displayHomeButton={false} />
                         <View style={ProfileStyles.profileContainer}>
                             <Text style={ProfileStyles.profileSubTitle}>{user?.resources.size} enregistrement(s)</Text>
@@ -56,7 +55,6 @@ export default function ProfileScreen({route}: any) {
                                 <InputButton label={"Déconnexion"} callBack={onClickDisconnect}/>
                             </View>
                         </View>
-                    </View>
                     <NavBar client={client} />
                 </View>
             }
