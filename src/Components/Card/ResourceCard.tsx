@@ -40,9 +40,9 @@ export default function ResourceCard({ resource, callBack }: Props) {
                             <LikeButton callBack={onClickLike} isLike={isLikeResource} likeNumber={numberLikeResource}/>
                             <CommentButton callBack={onClickComment} commentNumber={numberCommentResource}/>
                         </View>    
-                        <Text style={ResourceCardStyles.cardTitle} numberOfLines={1}>{resource.title}</Text>
-                        <Text style={ResourceCardStyles.cardText} numberOfLines={3}>{description}</Text>
                     </View>
+                    <Text style={ResourceCardStyles.cardTitle} numberOfLines={1}>{resource.title}</Text>
+                    <Text style={ResourceCardStyles.cardText} numberOfLines={3}>{description}</Text>
                 </View>
             </TouchableHighlight>
         </View>
