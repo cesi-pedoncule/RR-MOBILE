@@ -65,18 +65,18 @@ export default StyleSheet.create({
         left: '47%',
     },
     resourcesContainer: {
-        marginTop: '2%',
-        marginBottom: '15%',
+        marginTop: '5%',
+        marginBottom: '30%',
     },
     categoriesContainer: {
-        marginBottom: '15%',
+        marginBottom: '30%',
         justifyContent: 'center',
         display: 'flex',
         flexDirection: 'row',
         flexWrap: 'wrap',
     },
     scrollViewCategories: {
-        marginTop: '2%',
+        marginTop: '5%',
     },
     scrollViewCenter: {
         alignItems: 'center',
