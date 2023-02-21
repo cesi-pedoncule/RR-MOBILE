@@ -33,7 +33,7 @@ export default function CategoriesScreen({ route }: any) {
                         {
                             categories.map((category, i) => {
                                 if ((!showMoreItems && i < 6) || showMoreItems) {
-                                    return <CategoryCard title={category.name} numberResource={category.resources.size} key={i} ></CategoryCard>
+                                    return <CategoryCard category={category} key={i} ></CategoryCard>
                                 }
                             })
                         }

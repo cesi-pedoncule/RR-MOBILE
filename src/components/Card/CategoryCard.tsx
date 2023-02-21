@@ -1,10 +1,10 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 import CategoryCardStyles from '../../styles/Component/CategoryCardStyles';
+import { Category } from 'rr-apilib';
 
 interface Props {
-    title: string;
-    numberResource: number;
+    category: Category;
 }
 
 export default function CategoryCard({title, numberResource}:Props) {
