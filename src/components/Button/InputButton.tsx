@@ -1,6 +1,6 @@
 import { TouchableHighlight, Text } from 'react-native'
 import React from 'react'
-import InputButtonStyles from '../../styles/Component/InputButtonStyles';
+import InputButtonStyles from '../../styles/Component/Button/InputButtonStyles';
 
 interface Props {
     label: string;

@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Text } from 'react-native'
 
-import CategoryCardStyles from '../../styles/Component/CategoryCardStyles';
+import CategoryCardStyles from '../../styles/Component/Card/CategoryCardStyles';
 import { Category } from 'rr-apilib';
 
 interface Props {
