@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import { View, ScrollView, Text } from 'react-native'
 import { Category, Client } from "rr-apilib";
 import NavBar from "../components/NavBar";
-import commonStyles from "../styles/commonStyles";
+import CommonStyles from "../styles/CommonStyles";
 import ButtonShowMoreItems from "../components/Button/ButtonShowMoreItems";
 import TopBar from "../components/TopBar";
 import CategoryCard from "../components/Card/CategoryCard";
+import CategoryStyles from "../styles/Screen/CategoryStyles";
 
 export default function CategoriesScreen({ route }: any) {
     const client = route.params as Client;
@@ -24,11 +25,11 @@ export default function CategoriesScreen({ route }: any) {
     }
   
     return (
-        <View style={commonStyles.container}>
+        <View style={CommonStyles.container}>
             <TopBar onChangeSearch={handleChangeSearch} />
-            <View style={commonStyles.content}> 
-                <ScrollView style={commonStyles.scrollViewCategories}>
-                    <View style={commonStyles.categoriesContainer}>
+            <View style={CommonStyles.content}> 
+                <ScrollView style={CommonStyles.scrollView}>
+                    <View style={CategoryStyles.categoriesContainer}>
                         {
                             categories.map((category, i) => {
                                 if ((!showMoreItems && i < 6) || showMoreItems) {
@@ -36,13 +37,15 @@ export default function CategoriesScreen({ route }: any) {
                                 }
                             })
                         }
-                        {
-                            !showMoreItems ?
-                            <ButtonShowMoreItems callBack={onClickShowMoreItems} />
-                            : null
-                        }
                     </View>
                 </ScrollView>
+                <View style={CategoryStyles.showMoreItemsContainer}>
+                    {
+                        !showMoreItems && (
+                            <ButtonShowMoreItems callBack={onClickShowMoreItems} />
+                        )
+                    }
+                </View>
                 <NavBar client={client}/>
             </View>
         </View>
