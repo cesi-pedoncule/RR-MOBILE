@@ -2,25 +2,38 @@ import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
     container: {
+        backgroundColor : "white",
         position: 'absolute',
-        bottom:0,
-        left:0,
         alignItems : "center",
         justifyContent: 'space-between',
-        paddingRight:5,
-        paddingLeft:5,
-        paddingTop:5,
-        paddingBottom:15,
         display : "flex",
         flexDirection : "row",
+        bottom:0,
+        left:0,
+        paddingLeft: 5,
+        paddingRight: 5,
+        paddingBottom:5,
         width : "100%",
-        backgroundColor : "white",
-    },
-    buttonNavBar : {
-        width : "20%",
     },
     logo : {
-        height :  60,
-        width : "80%",
+        height: 50,
+        width : 50,
+    },
+    text: {
+        color: "#03989E",
+        textAlign: 'center',
+    },
+    textFocused: {
+        color: "#396a83",
+        fontWeight : '700',
+        textAlign: 'center',
+    },
+    buttonContainer: {
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    button : {
+        width : "25%",
+        height: "100%",
     }
 });
