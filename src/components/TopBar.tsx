@@ -5,15 +5,16 @@ import HomeButton from "./Button/HomeButton";
 import SearchBar from "./Input/SearchBar";
 
 interface Props {
+    onChangeSearch: (text: string) => void;
     hideSearchBar?: boolean;
 }
 
-export default function TopBar({hideSearchBar=false}: Props) {
+export default function TopBar({onChangeSearch, hideSearchBar=false}: Props) {
     return (
         <View style={TopbarStyles.topBarBackground}>
             <HomeButton style={TopbarStyles.btnHomeBackground}/>
             {
-                !hideSearchBar ? <SearchBar /> : null
+                !hideSearchBar ? <SearchBar onChangeSearch={onChangeSearch} /> : null
             }
         </View>
     );

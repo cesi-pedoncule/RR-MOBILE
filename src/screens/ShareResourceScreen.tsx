@@ -22,9 +22,16 @@ export default function ShareResourceScreen({ route }: any) {
 		alert('TODO: Navigate to ShareNewItemScreen');
 	}
 
+	const handleChangeSearch = (text: string) => {
+		const filteredResources = Array.from(client.resources.cache.values()).filter((resource) => {
+			return resource.title.toLowerCase().includes(text.toLowerCase());
+		});
+		setResources(filteredResources);
+	}
+
   return (
 	<View style={commonStyles.container}>
-		<TopBar />
+		<TopBar onChangeSearch={handleChangeSearch} />
 		<View style={commonStyles.content}> 
 			<Text style={ShareResourceStyles.textSaves}>Enregitrées</Text>
 			{
@@ -39,9 +46,7 @@ export default function ShareResourceScreen({ route }: any) {
 					contentContainerStyle={commonStyles.scrollViewCenter}>
 				{
 					resources.map((resource, i) => {
-						if (!showMoreItems && i < 2) {
-							return <ResourceCard key={i} resource={resource} />
-						} else if (showMoreItems) {
+						if ((!showMoreItems && i < 2) || showMoreItems) {
 							return <ResourceCard key={i} resource={resource} />
 						}
 					})

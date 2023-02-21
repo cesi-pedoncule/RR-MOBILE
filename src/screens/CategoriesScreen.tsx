@@ -15,18 +15,23 @@ export default function CategoriesScreen({ route }: any) {
     const onClickShowMoreItems = () => {
         setShowMoreItems(true);
     }
+
+    const handleChangeSearch = (text: string) => {
+        const filteredCategories = Array.from(client.categories.cache.values()).filter((category) => {
+            return category.name.toLowerCase().includes(text.toLowerCase());
+        });
+        setCategories(filteredCategories);
+    }
   
     return (
         <View style={commonStyles.container}>
-            <TopBar/>
+            <TopBar onChangeSearch={handleChangeSearch} />
             <View style={commonStyles.content}> 
                 <ScrollView style={commonStyles.scrollViewCategories}>
                     <View style={commonStyles.categoriesContainer}>
                         {
                             categories.map((category, i) => {
-                                if (!showMoreItems && i < 6) {
-                                    return <CategoryCard title={category.name} numberResource={category.resources.size} key={i} ></CategoryCard>
-                                } else if (showMoreItems) {
+                                if ((!showMoreItems && i < 6) || showMoreItems) {
                                     return <CategoryCard title={category.name} numberResource={category.resources.size} key={i} ></CategoryCard>
                                 }
                             })

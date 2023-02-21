@@ -1,9 +1,5 @@
 import React, { useState } from "react";
-import {
-    View,
-    Image,
-    ScrollView
-} from 'react-native'
+import { View, ScrollView } from 'react-native'
 import { Client, Resource } from "rr-apilib";
 
 import NavBar from "../components/NavBar";
@@ -21,16 +17,21 @@ export default function ResourcesScreen({ route }: any) {
         setShowMoreItems(true);
     }
 
+    const handleChangeSearch = (text: string) => {
+        const filteredResources = Array.from(client.resources.cache.values()).filter((resource) => {
+            return resource.title.toLowerCase().includes(text.toLowerCase());
+        });
+        setResources(filteredResources);
+    }
+
     return (
         <View style={commonStyles.container}>
-            <TopBar />
+            <TopBar onChangeSearch={handleChangeSearch} />
             <View style={commonStyles.content}>
                 <ScrollView style={commonStyles.resourcesContainer} contentContainerStyle={commonStyles.scrollViewCenter} >
                     {
                         resources.map((resource, i) => {
-                            if (!showMoreItems && i < 6) {
-                                return <ResourceCard key={i} resource={resource} />
-                            } else if (showMoreItems) {
+                            if ((!showMoreItems && i < 6) || showMoreItems) {
                                 return <ResourceCard key={i} resource={resource} />
                             }
                         })
