@@ -26,5 +26,9 @@ export default StyleSheet.create({
     statsContainer : {
         alignItems : 'center',
         justifyContent : 'space-around',
+    },
+    disconnectContainer : {
+        marginTop : 10,
+        alignItems : 'center',
     }
 });
