@@ -35,10 +35,14 @@ export default function ResourcesScreen({ route }: any) {
     }
 
     useEffect(() => {
-        if (resources.length === 0) {
-            setResources(Array.from(client.resources.cache.values()));
+        const fetchResources = async () => {
+            if (resources.length == 0) {
+                setResources(await client.resources.fetchAll());
+            } 
         }
-    }, [resources])
+
+        fetchResources();
+    }, [])
 
     return (
         <View style={CommonStyles.container}>
