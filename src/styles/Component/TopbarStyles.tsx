@@ -14,7 +14,7 @@ export default StyleSheet.create({
         padding: 10,
         justifyContent: 'center',
         textAlign: 'center',
-        backgroundColor: '#FFFFFF',
+        backgroundColor: '#F0F0F0',
         borderRadius: 7,
         transition: 0.2,
         marginHorizontal: "6%",
@@ -25,7 +25,7 @@ export default StyleSheet.create({
     searchBar: {
         width: "100%",
         padding: 14,
-        backgroundColor: '#FFFFFF',
+        backgroundColor: '#F0F0F0',
         borderRadius: 7,
     }
 });

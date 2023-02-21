@@ -11,22 +11,22 @@ import TopBar from "../components/TopBar";
 import commonStyles from "../styles/commonStyles";
 import ProfileStyles from "../styles/Screen/ProfileStyles";
 
-type HomeStackParamList = {
-    Home: undefined;
+type ProfileStackParamList = {
+    Resources: undefined;
     Login: undefined;
 };
 
 export default function ProfileScreen({route}: any) {
     
     const client = route.params as Client;
-    const navigation = useNavigation<StackNavigationProp<HomeStackParamList>>();
+    const navigation = useNavigation<StackNavigationProp<ProfileStackParamList>>();
     
     const user = client.auth.me;
     const userProfileName = user?.name + ' ' + user?.firstname;
 
     const checkUserIsConnected = () => {
         if (!user) {
-            navigation.navigate('Home');
+            navigation.navigate('Resources');
         }
     }
 
@@ -44,11 +44,11 @@ export default function ProfileScreen({route}: any) {
             {
                 user && ( 
                     <View style={commonStyles.content}>
-                        <Header label={userProfileName} displayHomeButton={false} />
+                        <Header label={userProfileName}/>
                         <View style={ProfileStyles.profileContainer}>
                             <Text style={ProfileStyles.profileSubTitle}>{user?.resources.size} enregistrement(s)</Text>
                             <Text style={ProfileStyles.profileDescription}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed efficitur risus tempus, eleifend sem in, ornare quam. Integer ultrices</Text>
-                            <Text style={[commonStyles.title, ProfileStyles.profileTitle]}>Statistiques</Text>
+                            <Text style={[commonStyles.title, ProfileStyles.profileTitle]} numberOfLines={1}>Statistiques</Text>
                             <View style={ProfileStyles.statsContainer}>
                                 <StatDashBoard user={user} />
                             </View>

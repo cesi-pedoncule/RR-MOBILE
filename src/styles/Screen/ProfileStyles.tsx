@@ -5,7 +5,7 @@ export default StyleSheet.create({
         padding: 10,
     },
     profileTitle: {
-        fontSize: 24,
+        fontSize: 32,
         fontWeight: '800',
         textAlign: 'center',
         marginVertical: 10,

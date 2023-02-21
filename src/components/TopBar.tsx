@@ -1,7 +1,7 @@
 import React from "react";
 import { View } from "react-native";
 import TopbarStyles from "../styles/Component/TopbarStyles";
-import HomeButton from "./Button/HomeButton";
+import HomeButton from "./Button/ResourcesButton";
 import SearchBar from "./Input/SearchBar";
 
 interface Props {
