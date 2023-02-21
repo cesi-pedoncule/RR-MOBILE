@@ -15,10 +15,17 @@ export default function CategoriesScreen({ route }: any) {
     const onClickShowMoreItems = () => {
         setShowMoreItems(true);
     }
+
+    const handleChangeSearch = (text: string) => {
+        const filteredCategories = Array.from(client.categories.cache.values()).filter((category) => {
+            return category.name.toLowerCase().includes(text.toLowerCase());
+        });
+        setCategories(filteredCategories);
+    }
   
     return (
         <View style={commonStyles.container}>
-            <TopBar/>
+            <TopBar onChangeSearch={handleChangeSearch} />
             <View style={commonStyles.content}> 
                 <ScrollView style={commonStyles.scrollViewCategories}>
                     <View style={commonStyles.categoriesContainer}>

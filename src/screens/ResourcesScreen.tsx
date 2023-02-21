@@ -17,9 +17,16 @@ export default function ResourcesScreen({ route }: any) {
         setShowMoreItems(true);
     }
 
+    const handleChangeSearch = (text: string) => {
+        const filteredResources = Array.from(client.resources.cache.values()).filter((resource) => {
+            return resource.title.toLowerCase().includes(text.toLowerCase());
+        });
+        setResources(filteredResources);
+    }
+
     return (
         <View style={commonStyles.container}>
-            <TopBar />
+            <TopBar onChangeSearch={handleChangeSearch} />
             <View style={commonStyles.content}>
                 <ScrollView style={commonStyles.resourcesContainer} contentContainerStyle={commonStyles.scrollViewCenter} >
                     {
