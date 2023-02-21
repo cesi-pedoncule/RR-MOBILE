@@ -35,14 +35,13 @@ export default function ResourceCard({ resource, callBack }: Props) {
             <TouchableHighlight onPress={callBack} underlayColor={"#FFFFFF"} >
                 <View>
                     <View style={ResourceCardStyles.lineLikeAndUser}>
-                        <Text style={ResourceCardStyles.cardUser}>{username}</Text>
+                        <Text style={ResourceCardStyles.cardUser} numberOfLines={1}>{username}</Text>
                         <View style={ResourceCardStyles.likeBtn}>
                             <LikeButton callBack={onClickLike} isLike={isLikeResource} likeNumber={numberLikeResource}/>
                             <CommentButton callBack={onClickComment} commentNumber={numberCommentResource}/>
-                        </View>
-                    </View>
-                    <Text style={ResourceCardStyles.cardTitle}>{resource.title}</Text>
-                    <Text style={ResourceCardStyles.cardText}>{description}</Text>
+                        </View>    
+                        <Text style={ResourceCardStyles.cardTitle} numberOfLines={1}>{resource.title}</Text>
+                    <Text style={ResourceCardStyles.cardText} numberOfLines={3}>{description}</Text>
                 </View>
             </TouchableHighlight>
         </View>

@@ -6,7 +6,7 @@ import InputButton from "../components/Button/InputButton";
 import NavBar from "../components/NavBar";
 import ResourceCard from "../components/Card/ResourceCard";
 import TopBar from "../components/TopBar";
-import commonStyles from "../styles/commonStyles";
+import CommonStyles from "../styles/CommonStyles";
 import ShareResourceStyles from "../styles/Screen/ShareResourceStyles";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { useNavigation } from "@react-navigation/native";
@@ -19,7 +19,7 @@ export default function ShareResourceScreen({ route }: any) {
 	const navigation = useNavigation<StackNavigationProp<ShareResourceStackParamList>>();
 
 	const client = route.params as Client;
-  	const [showMoreItems, setShowMoreItems] = useState<boolean>(false);
+  const [showMoreItems, setShowMoreItems] = useState<boolean>(false);
 	const [resources, setResources] = useState<Resource[]>(Array.from(client.resources.cache.values()));
 
 	const onClickShowMoreItems = () => {
@@ -38,9 +38,9 @@ export default function ShareResourceScreen({ route }: any) {
 	}
 
   return (
-	<View style={commonStyles.container}>
+	<View style={CommonStyles.container}>
 		<TopBar onChangeSearch={handleChangeSearch} />
-		<View style={commonStyles.content}> 
+		<View style={CommonStyles.content}> 
 			<Text style={ShareResourceStyles.textSaves}>Enregitrées</Text>
 			{
 				resources.length === 0 ?
