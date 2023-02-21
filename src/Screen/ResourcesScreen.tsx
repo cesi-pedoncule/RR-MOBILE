@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { View, ScrollView } from 'react-native'
+import React, { useEffect, useState } from "react";
+import { View, ScrollView, ActivityIndicator } from 'react-native'
 import { Client, Resource } from "rr-apilib";
 
 import NavBar from "../Components/NavBar";
@@ -34,24 +34,31 @@ export default function ResourcesScreen({ route }: any) {
         setResources(filteredResources);
     }
 
+    useEffect(() => {
+        if (resources.length === 0) {
+            setResources(Array.from(client.resources.cache.values()));
+        }
+    }, [resources])
+
     return (
         <View style={CommonStyles.container}>
             <TopBar onChangeSearch={handleChangeSearch} />
             <View style={CommonStyles.content}>
-                <ScrollView style={ResourcesStyles.resourcesContainer} contentContainerStyle={CommonStyles.scrollViewCenter} >
-                    {
-                        resources.map((resource, i) => {
-                            if ((!showMoreItems && i < 6) || showMoreItems) {
-                                return <ResourceCard key={i} resource={resource} callBack={() => navigation.navigate('ResourceDetails', resource)} />
-                            } else {
-                                return null;
-                            }
-                        })
-                    }
-                    {
-                        !showMoreItems && <ButtonShowMoreItems callBack={onClickShowMoreItems} />
-                    }
-                </ScrollView>
+                {
+                    resources.length === 0 ?  <ActivityIndicator size="large" color="#0000ff" style={CommonStyles.loader} /> :
+                    <ScrollView style={ResourcesStyles.resourcesContainer} contentContainerStyle={CommonStyles.scrollViewCenter} >
+                        {
+                            resources.map((resource, i) => {
+                                if ((!showMoreItems && i < 6) || showMoreItems) {
+                                    return <ResourceCard key={i} resource={resource} callBack={() => navigation.navigate('ResourceDetails', resource)} />
+                                } 
+                            })
+                        }
+                        {
+                            !showMoreItems && <ButtonShowMoreItems callBack={onClickShowMoreItems} />
+                        }
+                    </ScrollView>
+                }
             </View>
             <NavBar client={client} />
         </View>
