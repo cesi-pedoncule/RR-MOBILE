@@ -7,6 +7,7 @@ import commonStyles from "../styles/commonStyles";
 import ButtonShowMoreItems from "../components/Button/ButtonShowMoreItems";
 import ResourceCard from "../components/Card/ResourceCard";
 import TopBar from "../components/TopBar";
+import ResourcesStyles from "../styles/Screen/ResourcesStyles";
 
 export default function ResourcesScreen({ route }: any) {
     const client = route.params as Client;
@@ -28,7 +29,7 @@ export default function ResourcesScreen({ route }: any) {
         <View style={commonStyles.container}>
             <TopBar onChangeSearch={handleChangeSearch} />
             <View style={commonStyles.content}>
-                <ScrollView style={commonStyles.resourcesContainer} contentContainerStyle={commonStyles.scrollViewCenter} >
+                <ScrollView style={ResourcesStyles.resourcesContainer} contentContainerStyle={commonStyles.scrollViewCenter} >
                     {
                         resources.map((resource, i) => {
                             if ((!showMoreItems && i < 6) || showMoreItems) {

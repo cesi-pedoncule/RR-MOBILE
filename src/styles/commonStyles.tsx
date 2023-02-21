@@ -64,20 +64,6 @@ export default StyleSheet.create({
         top: '35%',
         left: '47%',
     },
-    resourcesContainer: {
-        marginTop: '5%',
-        marginBottom: '30%',
-    },
-    categoriesContainer: {
-        marginBottom: '30%',
-        justifyContent: 'center',
-        display: 'flex',
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-    },
-    scrollViewCategories: {
-        marginTop: '5%',
-    },
     scrollViewCenter: {
         alignItems: 'center',
     },

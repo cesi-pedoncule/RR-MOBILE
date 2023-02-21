@@ -6,6 +6,7 @@ import commonStyles from "../styles/commonStyles";
 import ButtonShowMoreItems from "../components/Button/ButtonShowMoreItems";
 import TopBar from "../components/TopBar";
 import CategoryCard from "../components/Card/CategoryCard";
+import CategoryStyles from "../styles/Screen/CategoryStyles";
 
 export default function CategoriesScreen({ route }: any) {
     const client = route.params as Client;
@@ -27,8 +28,8 @@ export default function CategoriesScreen({ route }: any) {
         <View style={commonStyles.container}>
             <TopBar onChangeSearch={handleChangeSearch} />
             <View style={commonStyles.content}> 
-                <ScrollView style={commonStyles.scrollViewCategories}>
-                    <View style={commonStyles.categoriesContainer}>
+                <ScrollView style={commonStyles.scrollView}>
+                    <View style={CategoryStyles.categoriesContainer}>
                         {
                             categories.map((category, i) => {
                                 if ((!showMoreItems && i < 6) || showMoreItems) {
@@ -36,13 +37,15 @@ export default function CategoriesScreen({ route }: any) {
                                 }
                             })
                         }
-                        {
-                            !showMoreItems ?
-                            <ButtonShowMoreItems callBack={onClickShowMoreItems} />
-                            : null
-                        }
                     </View>
                 </ScrollView>
+                <View style={CategoryStyles.showMoreItemsContainer}>
+                    {
+                        !showMoreItems ?
+                        <ButtonShowMoreItems callBack={onClickShowMoreItems} />
+                        : null
+                    }
+                </View>
                 <NavBar client={client}/>
             </View>
         </View>
