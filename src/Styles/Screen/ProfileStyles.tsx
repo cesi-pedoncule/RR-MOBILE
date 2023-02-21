@@ -27,8 +27,4 @@ export default StyleSheet.create({
         alignItems : 'center',
         justifyContent : 'space-around',
     },
-    disconnectContainer : {
-        marginTop : 10,
-        alignItems : 'center',
-    }
 });
