@@ -10,7 +10,7 @@ export default StyleSheet.create({
     },
     btnText: {
         textAlign: 'center',
-        color: '#FFFFFF',
+        color: '#000000',
         marginVertical: 8,
     },
 });
