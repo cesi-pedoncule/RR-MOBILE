@@ -9,7 +9,16 @@ import ResourceCard from "../Components/Card/ResourceCard";
 import TopBar from "../Components/Input/TopBar";
 import ResourcesStyles from "../Styles/Screen/ResourcesStyles";
 
+import { StackNavigationProp } from "@react-navigation/stack";
+import { useNavigation } from "@react-navigation/native";
+
+type ResourcesStackParamList = {
+    ResourceDetails: Resource;
+}
+
 export default function ResourcesScreen({ route }: any) {
+    const navigation = useNavigation<StackNavigationProp<ResourcesStackParamList>>();
+    
     const client = route.params as Client;
     const [showMoreItems, setShowMoreItems] = useState<boolean>(false);
     const [resources, setResources] = useState<Resource[]>(Array.from(client.resources.cache.values()));
@@ -33,14 +42,14 @@ export default function ResourcesScreen({ route }: any) {
                     {
                         resources.map((resource, i) => {
                             if ((!showMoreItems && i < 6) || showMoreItems) {
-                                return <ResourceCard key={i} resource={resource} />
+                                return <ResourceCard key={i} resource={resource} callBack={() => navigation.navigate('ResourceDetails', resource)} />
+                            } else {
+                                return null;
                             }
                         })
                     }
                     {
-                        !showMoreItems ?
-                        <ButtonShowMoreItems callBack={onClickShowMoreItems} />
-                        : null
+                        !showMoreItems && <ButtonShowMoreItems callBack={onClickShowMoreItems} />
                     }
                 </ScrollView>
             </View>

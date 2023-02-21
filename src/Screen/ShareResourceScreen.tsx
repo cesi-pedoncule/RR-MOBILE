@@ -2,14 +2,23 @@ import React, { useState } from "react";
 import { View, Text, ScrollView } from 'react-native'
 import { Client, Resource } from "rr-apilib";
 import ButtonShowMoreItems from "../Components/Button/ButtonShowMoreItems";
-import InputButton from "../Components/Button/InputButton";
 import NavBar from "../Components/NavBar";
-import ResourceCard from "../Components/Card/ResourceCard";
+import InputButton from "../Components/Button/InputButton";
 import TopBar from "../Components/Input/TopBar";
+import ResourceCard from "../Components/Card/ResourceCard";
 import CommonStyles from "../Styles/CommonStyles";
 import ShareResourceStyles from "../Styles/Screen/ShareResourceStyles";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { useNavigation } from "@react-navigation/native";
+
+
+type ShareResourceStackParamList = {
+    ResourceDetails: Resource;
+}
 
 export default function ShareResourceScreen({ route }: any) {
+	const navigation = useNavigation<StackNavigationProp<ShareResourceStackParamList>>();
+
 	const client = route.params as Client;
   	const [showMoreItems, setShowMoreItems] = useState<boolean>(false);
 	const [resources, setResources] = useState<Resource[]>(Array.from(client.resources.cache.values()));
@@ -43,22 +52,19 @@ export default function ShareResourceScreen({ route }: any) {
 						showMoreItems ? ShareResourceStyles.resourcesContainerWithoutLoadMoreItems 
 						: ShareResourceStyles.resourcesContainerWithLoadMoreItems 
 					} 
-					contentContainerStyle={CommonStyles.scrollViewCenter}>
-				{
-					resources.map((resource, i) => {
-						if ((!showMoreItems && i < 2) || showMoreItems) {
-							return <ResourceCard key={i} resource={resource} />
-						}
-					})
-				}
+					contentContainerStyle={CommonStyles.scrollViewCenter}
+				>
+					{
+						resources.map((resource, i) => {
+							if ((!showMoreItems && i < 2) || showMoreItems) {
+								return <ResourceCard key={i} resource={resource} callBack={() => navigation.navigate('ResourceDetails', resource)} />
+							}
+						})
+					}
 				</ScrollView>
 			}
 			<View style={ShareResourceStyles.buttonsContainer}>
-				{
-					!showMoreItems ?
-					<ButtonShowMoreItems callBack={onClickShowMoreItems} />
-					: null
-				}
+				{ !showMoreItems && <ButtonShowMoreItems callBack={onClickShowMoreItems} /> }
 				<InputButton label="Nouvelle Ressource" callBack={onClickShareNewItem} style={ShareResourceStyles.addResourceBtn}></InputButton>
 			</View>
 			<NavBar client={client} />

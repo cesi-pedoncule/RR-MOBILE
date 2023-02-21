@@ -7,6 +7,7 @@ import ResourcesScreen from './src/Screen/ResourcesScreen';
 import ProfileScreen from './src/Screen/ProfileScreen';
 import ShareResourceScreen from './src/Screen/ShareResourceScreen';
 import CategoriesScreen from './src/Screen/CategoriesScreen';
+import ResourceDetailsScreen from './src/Screen/ResourceDetailsScreen';
 
 const Stack = createStackNavigator();
 const client = new Client();
@@ -26,6 +27,7 @@ export default function App() {
         <Stack.Screen name="Profile" component={ProfileScreen} initialParams={client} />
         <Stack.Screen name="ShareCreate" component={ShareResourceScreen} initialParams={client} />
         <Stack.Screen name="Resources" component={ResourcesScreen} initialParams={client} />
+        <Stack.Screen name="ResourceDetails" component={ResourceDetailsScreen} initialParams={client} />
       </Stack.Navigator>
     </NavigationContainer>
   );
