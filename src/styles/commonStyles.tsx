@@ -81,4 +81,8 @@ export default StyleSheet.create({
     scrollViewCenter: {
         alignItems: 'center',
     },
+    scrollView : {
+        marginTop : "5%",
+        marginBottom : "30%",
+    }
 });

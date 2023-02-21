@@ -26,12 +26,15 @@ export default StyleSheet.create({
 	addResourceBtn :{
 		textAlign: 'center',
 		color: '#FFFFFF',
-		marginTop: 15,
+		marginTop : 5,
 		paddingVertical: 25,
 		width : "40%"
 	},
 	buttonsContainer: {
+		position : 'absolute',
 		justifyContent: 'center',
 		alignItems: 'center',
+		bottom: "15%",
+		width : "100%",
 	}
 });

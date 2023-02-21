@@ -1,7 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import React, { useEffect } from "react";
-import { View, Text } from 'react-native'
+import { View, Text, ScrollView } from 'react-native'
 import { Client } from "rr-apilib";
 import InputButton from "../components/Button/InputButton";
 import Header from "../components/Header";
@@ -44,18 +44,20 @@ export default function ProfileScreen({route}: any) {
             {
                 user && ( 
                     <View style={commonStyles.content}>
-                        <Header label={userProfileName}/>
-                        <View style={ProfileStyles.profileContainer}>
-                            <Text style={ProfileStyles.profileSubTitle}>{user?.resources.size} enregistrement(s)</Text>
-                            <Text style={ProfileStyles.profileDescription}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed efficitur risus tempus, eleifend sem in, ornare quam. Integer ultrices</Text>
-                            <Text style={[commonStyles.title, ProfileStyles.profileTitle]} numberOfLines={1}>Statistiques</Text>
-                            <View style={ProfileStyles.statsContainer}>
-                                <StatDashBoard user={user} />
+                        <ScrollView style={commonStyles.scrollView}>
+                            <Header label={userProfileName}/>
+                            <View style={ProfileStyles.profileContainer}>
+                                <Text style={ProfileStyles.profileSubTitle}>{user?.resources.size} enregistrement(s)</Text>
+                                <Text style={ProfileStyles.profileDescription}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed efficitur risus tempus, eleifend sem in, ornare quam. Integer ultrices</Text>
+                                <Text style={[commonStyles.title, ProfileStyles.profileTitle]} numberOfLines={1}>Statistiques</Text>
+                                <View style={ProfileStyles.statsContainer}>
+                                    <StatDashBoard user={user} />
+                                </View>
+                                <View style={ProfileStyles.disconnectContainer}>
+                                    <InputButton label={"Déconnexion"} callBack={onClickDisconnect}/>
+                                </View>
                             </View>
-                            <View style={ProfileStyles.disconnectContainer}>
-                                <InputButton label={"Déconnexion"} callBack={onClickDisconnect}/>
-                            </View>
-                        </View>
+                        </ScrollView>
                         <NavBar client={client} />
                     </View>
                 )
