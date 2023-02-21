@@ -3,13 +3,13 @@ import { StackNavigationProp } from "@react-navigation/stack";
 import React, { useEffect } from "react";
 import { View, Text, ScrollView } from 'react-native'
 import { Client } from "rr-apilib";
-import InputButton from "../components/Button/InputButton";
-import Header from "../components/Header";
-import NavBar from "../components/NavBar";
-import StatDashBoard from "../components/StatDashBoard";
-import TopBar from "../components/Input/TopBar";
-import CommonStyles from "../styles/CommonStyles";
-import ProfileStyles from "../styles/Screen/ProfileStyles";
+import InputButton from "../Components/Button/InputButton";
+import Header from "../Components/Header";
+import NavBar from "../Components/NavBar";
+import StatDashBoard from "../Components/StatDashBoard";
+import TopBar from "../Components/Input/TopBar";
+import CommonStyles from "../Styles/CommonStyles";
+import ProfileStyles from "../Styles/Screen/ProfileStyles";
 
 type ProfileStackParamList = {
     Resources: undefined;

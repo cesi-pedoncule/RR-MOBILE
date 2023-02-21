@@ -1,15 +1,15 @@
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { Text, View } from "react-native";
-import Header from "../components/Header";
-import InputButton from "../components/Button/InputButton";
-import Link from "../components/Button/Link";
-import CommonStyles from "../styles/CommonStyles";
-import LoginStyles from "../styles/Screen/LoginStyles";
-import RegisterStyles from "../styles/Screen/RegisterStyles";
+import Header from "../Components/Header";
+import InputButton from "../Components/Button/InputButton";
+import Link from "../Components/Button/Link";
+import CommonStyles from "../Styles/CommonStyles";
+import LoginStyles from "../Styles/Screen/LoginStyles";
+import RegisterStyles from "../Styles/Screen/RegisterStyles";
 import { StackNavigationProp } from "@react-navigation/stack";
-import InputText from "../components/Input/InputText";
-import TopBar from "../components/Input/TopBar";
+import InputText from "../Components/Input/InputText";
+import TopBar from "../Components/Input/TopBar";
 
 type RegisterStackParamList = {
     Resources: undefined;

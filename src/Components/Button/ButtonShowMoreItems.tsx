@@ -1,6 +1,6 @@
 import React from "react";
 import { Text, TouchableHighlight } from "react-native";
-import moreItemsButtonStyles from "../../styles/Component/Button/ButtonShowMoreItemsStyles";
+import moreItemsButtonStyles from "../../Styles/Components/Button/ButtonShowMoreItemsStyles";
 
 interface Props {
     callBack: () => void;

@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { View, ScrollView } from 'react-native'
 import { Client, Resource } from "rr-apilib";
 
-import NavBar from "../components/NavBar";
-import CommonStyles from "../styles/CommonStyles";
-import ButtonShowMoreItems from "../components/Button/ButtonShowMoreItems";
-import ResourceCard from "../components/Card/ResourceCard";
-import TopBar from "../components/Input/TopBar";
-import ResourcesStyles from "../styles/Screen/ResourcesStyles";
+import NavBar from "../Components/NavBar";
+import CommonStyles from "../Styles/CommonStyles";
+import ButtonShowMoreItems from "../Components/Button/ButtonShowMoreItems";
+import ResourceCard from "../Components/Card/ResourceCard";
+import TopBar from "../Components/Input/TopBar";
+import ResourcesStyles from "../Styles/Screen/ResourcesStyles";
 
 export default function ResourcesScreen({ route }: any) {
     const client = route.params as Client;

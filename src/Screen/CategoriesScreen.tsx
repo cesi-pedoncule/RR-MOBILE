@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { View, ScrollView, Text } from 'react-native'
 import { Category, Client } from "rr-apilib";
-import NavBar from "../components/NavBar";
-import CommonStyles from "../styles/CommonStyles";
-import ButtonShowMoreItems from "../components/Button/ButtonShowMoreItems";
-import TopBar from "../components/Input/TopBar";
-import CategoryCard from "../components/Card/CategoryCard";
-import CategoryStyles from "../styles/Screen/CategoryStyles";
+import NavBar from "../Components/NavBar";
+import CommonStyles from "../Styles/CommonStyles";
+import ButtonShowMoreItems from "../Components/Button/ButtonShowMoreItems";
+import TopBar from "../Components/Input/TopBar";
+import CategoryCard from "../Components/Card/CategoryCard";
+import CategoryStyles from "../Styles/Screen/CategoryStyles";
 
 export default function CategoriesScreen({ route }: any) {
     const client = route.params as Client;

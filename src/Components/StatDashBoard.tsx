@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import StatDashBoardStyles from '../styles/Component/StatDashBoardStyles'
+import StatDashBoardStyles from '../Styles/Components/StatDashBoardStyles'
 import { BarChart } from "react-native-chart-kit";
 import { Resource, User } from 'rr-apilib';
 import { View } from 'react-native';

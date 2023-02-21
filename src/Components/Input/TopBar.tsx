@@ -1,6 +1,6 @@
 import React from "react";
 import { View } from "react-native";
-import TopbarStyles from "../../styles/Component/Input/TopbarStyles";
+import TopbarStyles from "../../Styles/Components/Input/TopbarStyles";
 import HomeButton from "../Button/ResourcesButton";
 import SearchBar from "./SearchBar";
 
