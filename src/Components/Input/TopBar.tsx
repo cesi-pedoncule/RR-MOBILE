@@ -31,11 +31,11 @@ export default function TopBar({onChangeSearch, hideSearchBar=false, hideLogout=
                 !hideSearchBar && onChangeSearch ? <SearchBar onChangeSearch={onChangeSearch} /> : null
             }
             {
-                !hideLogout ? 
-                <TouchableHighlight style={TopbarStyles.disconnectContainer} underlayColor="#FFFFFF" onPress={onClickDisconnect}>
-                    <MaterialCommunityIcons name="logout" size={24} color="black" />
-                </TouchableHighlight>
-                : null
+                !hideLogout && (
+                    <TouchableHighlight style={TopbarStyles.disconnectContainer} underlayColor="#FFFFFF" onPress={onClickDisconnect}>
+                        <MaterialCommunityIcons name="logout" size={24} color="black" />
+                    </TouchableHighlight>
+                )
             }
         </View>
     );
