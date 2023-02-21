@@ -41,9 +41,9 @@ export default function CategoriesScreen({ route }: any) {
                 </ScrollView>
                 <View style={CategoryStyles.showMoreItemsContainer}>
                     {
-                        !showMoreItems ?
-                        <ButtonShowMoreItems callBack={onClickShowMoreItems} />
-                        : null
+                        !showMoreItems && (
+                            <ButtonShowMoreItems callBack={onClickShowMoreItems} />
+                        )
                     }
                 </View>
                 <NavBar client={client}/>
