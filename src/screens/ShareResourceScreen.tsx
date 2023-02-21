@@ -46,9 +46,7 @@ export default function ShareResourceScreen({ route }: any) {
 					contentContainerStyle={commonStyles.scrollViewCenter}>
 				{
 					resources.map((resource, i) => {
-						if (!showMoreItems && i < 2) {
-							return <ResourceCard key={i} resource={resource} />
-						} else if (showMoreItems) {
+						if ((!showMoreItems && i < 2) || showMoreItems) {
 							return <ResourceCard key={i} resource={resource} />
 						}
 					})
