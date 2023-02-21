@@ -23,9 +23,10 @@ export default StyleSheet.create({
         borderTopRightRadius: 30,
     },
     btnHomeBackground: {
-        justifyContent: 'center',
-        textAlign: 'center',
-        backgroundColor: '#FFFFFF',
+        position : 'absolute',
+        left : 20,
+        padding : 10,
+        backgroundColor: '#F0F0F0',
         borderRadius: 7,
         transition: 0.2,
     },
@@ -44,7 +45,6 @@ export default StyleSheet.create({
         fontWeight: '800',
         color: '#000000',
         textAlign: 'center',
-        paddingHorizontal: '20%',
     },
     title1: {
         fontSize: 32,
