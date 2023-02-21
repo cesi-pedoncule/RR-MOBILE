@@ -5,7 +5,7 @@ export default StyleSheet.create({
         padding: 10,
     },
     profileTitle: {
-        fontSize: 24,
+        fontSize: 32,
         fontWeight: '800',
         textAlign: 'center',
         marginVertical: 10,
@@ -23,4 +23,12 @@ export default StyleSheet.create({
         marginHorizontal: 10,
         justifyContent: 'center',
     },
+    statsContainer : {
+        alignItems : 'center',
+        justifyContent : 'space-around',
+    },
+    disconnectContainer : {
+        marginTop : 10,
+        alignItems : 'center',
+    }
 });

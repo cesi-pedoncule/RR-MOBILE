@@ -13,10 +13,10 @@ export default StyleSheet.create({
         shadowRadius: 4,
         borderRadius: 15,
         margin: 5,
-        maxHeight: "50vh",
+        maxHeight: "50%",
     },
     cardUser:{
-        height: "5vh",
+        height: "5%",
         fontWeight: 'bold',
         fontSize: 20,
         marginLeft: 20,
@@ -33,7 +33,7 @@ export default StyleSheet.create({
         marginRight: 20,
         left: 0,
         bottom: 0,
-        minHeight: "15vh",
+        minHeight: "15%",
         overflow: "scroll",
     },
 });

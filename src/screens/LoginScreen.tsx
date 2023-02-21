@@ -1,6 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
 import React, { useEffect, useState } from "react";
-import { ActivityIndicator, Image, Text, View } from "react-native";
+import { ActivityIndicator, Text, View } from "react-native";
 import Header from "../components/Header";
 import InputButton from "../components/Button/InputButton";
 import Link from "../components/Link";
@@ -9,15 +9,16 @@ import LoginStyles from "../styles/Screen/LoginStyles";
 import { StackNavigationProp } from "@react-navigation/stack";
 import InputText from "../components/Input/InputText";
 import { Client } from "rr-apilib";
+import TopBar from "../components/TopBar";
 
 type LoginStackParamList = {
-    Home: undefined;
+    Resources: undefined;
     Register: undefined;
 };
 
 
 export default function LoginScreen({ route }: any) {
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
     const client = route.params as Client;
     const navigation = useNavigation<StackNavigationProp<LoginStackParamList>>();
 
@@ -29,7 +30,7 @@ export default function LoginScreen({ route }: any) {
         setIsLoading(true);
         try {
             await client.auth.login('user0@example.com', 'password');
-            navigation.navigate('Home');
+            navigation.navigate('Resources');
         } catch (error) {
             alert('Mauvais identifiants');
         }
@@ -38,7 +39,7 @@ export default function LoginScreen({ route }: any) {
 
     const checkIsAuth = () => {
         if (client.auth.me != null) {
-            navigation.navigate('Home');
+            navigation.navigate('Resources');
         }
     }
 
@@ -48,10 +49,10 @@ export default function LoginScreen({ route }: any) {
 
     return (
         <View style={commonStyles.container}>
-            <Image source={require('../assets/rr-logo.png')} style={commonStyles.logo} />
+            <TopBar hideSearchBar={true} />
             <View style={commonStyles.content}>
                 <Header label="Connexion" />
-                <View  style={LoginStyles.loginContent}>
+                <View>
                     {
                         isLoading ? <ActivityIndicator size="large" color="#0000ff" style={commonStyles.loader} /> : 
                         <View>

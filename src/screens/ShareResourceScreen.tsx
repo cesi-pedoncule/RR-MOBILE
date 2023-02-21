@@ -19,8 +19,8 @@ export default function ShareResourceScreen({ route }: any) {
 	const navigation = useNavigation<StackNavigationProp<ShareResourceStackParamList>>();
 
 	const client = route.params as Client;
-  	const [showMoreItems, setShowMoreItems] = useState(false);
-	const [resources, setResources] = useState(Array.from(client.resources.cache.values()));
+  	const [showMoreItems, setShowMoreItems] = useState<boolean>(false);
+	const [resources, setResources] = useState<Resource[]>(Array.from(client.resources.cache.values()));
 
 	const onClickShowMoreItems = () => {
 		setShowMoreItems(true);
@@ -30,10 +30,17 @@ export default function ShareResourceScreen({ route }: any) {
 		alert('TODO: Navigate to ShareNewItemScreen');
 	}
 
+	const handleChangeSearch = (text: string) => {
+		const filteredResources = Array.from(client.resources.cache.values()).filter((resource) => {
+			return resource.title.toLowerCase().includes(text.toLowerCase());
+		});
+		setResources(filteredResources);
+	}
+
   return (
 	<View style={commonStyles.container}>
-		<TopBar />
-		<View style={commonStyles.contentWithTopBar}> 
+		<TopBar onChangeSearch={handleChangeSearch} />
+		<View style={commonStyles.content}> 
 			<Text style={ShareResourceStyles.textSaves}>Enregitrées</Text>
 			{
 				resources.length === 0 ?

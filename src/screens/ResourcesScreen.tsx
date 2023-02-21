@@ -1,9 +1,5 @@
 import React, { useState } from "react";
-import {
-    View,
-    Image,
-    ScrollView
-} from 'react-native'
+import { View, ScrollView } from 'react-native'
 import { Client, Resource } from "rr-apilib";
 
 import NavBar from "../components/NavBar";
@@ -22,17 +18,23 @@ export default function ResourcesScreen({ route }: any) {
     const navigation = useNavigation<StackNavigationProp<ResourcesStackParamList>>();
     
     const client = route.params as Client;
-    const [showMoreItems, setShowMoreItems] = useState(false);
-    const [resources, setResources] = useState(Array.from(client.resources.cache.values()));
+    const [showMoreItems, setShowMoreItems] = useState<boolean>(false);
+    const [resources, setResources] = useState<Resource[]>(Array.from(client.resources.cache.values()));
 
     const onClickShowMoreItems = () => {
         setShowMoreItems(true);
     }
 
+    const handleChangeSearch = (text: string) => {
+        const filteredResources = Array.from(client.resources.cache.values()).filter((resource) => {
+            return resource.title.toLowerCase().includes(text.toLowerCase());
+        });
+        setResources(filteredResources);
+    }
+
     return (
         <View style={commonStyles.container}>
-            <TopBar />
-            <Image source={require('../assets/rr-logo.png')} style={commonStyles.logo} />
+            <TopBar onChangeSearch={handleChangeSearch} />
             <View style={commonStyles.content}>
                 <ScrollView style={commonStyles.resourcesContainer} contentContainerStyle={commonStyles.scrollViewCenter} >
                     {

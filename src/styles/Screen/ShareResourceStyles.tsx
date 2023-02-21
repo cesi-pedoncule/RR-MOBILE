@@ -6,14 +6,14 @@ export default StyleSheet.create({
 		alignItems : 'center',
 	},
 	resourcesContainerWithLoadMoreItems: {
-        marginTop: '2vh',
-        marginBottom: '5vh',
-		maxHeight: '48vh',
+        marginTop: '2%',
+        marginBottom: '5%',
+		maxHeight: '60%',
 	},
 	resourcesContainerWithoutLoadMoreItems: {
-        marginTop: '2vh',
-        marginBottom: '2vh',
-		maxHeight: '52vh',
+        marginTop: '2%',
+        marginBottom: '4.9%',
+		maxHeight: '65%',
 	},
 	textSaves : {
 		position: 'relative',

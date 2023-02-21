@@ -1,6 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
-import { Image, Text, View } from "react-native";
+import { Text, View } from "react-native";
 import Header from "../components/Header";
 import InputButton from "../components/Button/InputButton";
 import Link from "../components/Link";
@@ -9,9 +9,10 @@ import LoginStyles from "../styles/Screen/LoginStyles";
 import RegisterStyles from "../styles/Screen/RegisterStyles";
 import { StackNavigationProp } from "@react-navigation/stack";
 import InputText from "../components/Input/InputText";
+import TopBar from "../components/TopBar";
 
 type RegisterStackParamList = {
-    Home: undefined;
+    Resources: undefined;
     Login: undefined;
 }
 
@@ -23,12 +24,12 @@ export default function RegisterScreen() {
     }
 
     const onClickRegisterButton = () => {
-        navigation.navigate('Home');
+        navigation.navigate('Resources');
     }
 
     return (
         <View style={commonStyles.container}>
-            <Image source={require('../assets/rr-logo.png')} style={commonStyles.logo} />
+            <TopBar hideSearchBar={true} />
             <View style={commonStyles.content}>
                 <Header label="Inscription" />
                 <View>

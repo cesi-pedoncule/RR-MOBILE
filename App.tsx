@@ -1,6 +1,5 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import HomeScreen from './src/screens/HomeScreen';
 import LoginScreen from './src/screens/LoginScreen';
 import RegisterScreen from './src/screens/RegisterScreen';
 import { Client } from 'rr-apilib';
@@ -18,12 +17,12 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator 
         screenOptions={{
-          headerShown: false
+          headerShown: false,
+          animationEnabled: false
         }}
       >
         <Stack.Screen name="Login" component={LoginScreen} initialParams={client} />
         <Stack.Screen name="Register" component={RegisterScreen} initialParams={client} />
-        <Stack.Screen name="Home" component={HomeScreen} initialParams={client} />
         <Stack.Screen name="Categories" component={CategoriesScreen} initialParams={client} />
         <Stack.Screen name="Profile" component={ProfileScreen} initialParams={client} />
         <Stack.Screen name="ShareCreate" component={ShareResourceScreen} initialParams={client} />
