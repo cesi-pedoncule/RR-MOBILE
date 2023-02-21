@@ -8,12 +8,12 @@ export default StyleSheet.create({
 	resourcesContainerWithLoadMoreItems: {
         marginTop: '2%',
         marginBottom: '5%',
-		maxHeight: '48%',
+		maxHeight: '60%',
 	},
 	resourcesContainerWithoutLoadMoreItems: {
         marginTop: '2%',
-        marginBottom: '2%',
-		maxHeight: '52%',
+        marginBottom: '4.9%',
+		maxHeight: '65%',
 	},
 	textSaves : {
 		position: 'relative',
