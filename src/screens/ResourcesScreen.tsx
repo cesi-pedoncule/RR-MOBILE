@@ -3,7 +3,7 @@ import { View, ScrollView } from 'react-native'
 import { Client, Resource } from "rr-apilib";
 
 import NavBar from "../components/NavBar";
-import commonStyles from "../styles/CommonStyles";
+import CommonStyles from "../styles/CommonStyles";
 import ButtonShowMoreItems from "../components/Button/ButtonShowMoreItems";
 import ResourceCard from "../components/Card/ResourceCard";
 import TopBar from "../components/TopBar";
@@ -26,10 +26,10 @@ export default function ResourcesScreen({ route }: any) {
     }
 
     return (
-        <View style={commonStyles.container}>
+        <View style={CommonStyles.container}>
             <TopBar onChangeSearch={handleChangeSearch} />
-            <View style={commonStyles.content}>
-                <ScrollView style={ResourcesStyles.resourcesContainer} contentContainerStyle={commonStyles.scrollViewCenter} >
+            <View style={CommonStyles.content}>
+                <ScrollView style={ResourcesStyles.resourcesContainer} contentContainerStyle={CommonStyles.scrollViewCenter} >
                     {
                         resources.map((resource, i) => {
                             if ((!showMoreItems && i < 6) || showMoreItems) {

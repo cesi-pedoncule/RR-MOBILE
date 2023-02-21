@@ -6,7 +6,7 @@ import InputButton from "../components/Button/InputButton";
 import NavBar from "../components/NavBar";
 import ResourceCard from "../components/Card/ResourceCard";
 import TopBar from "../components/TopBar";
-import commonStyles from "../styles/CommonStyles";
+import CommonStyles from "../styles/CommonStyles";
 import ShareResourceStyles from "../styles/Screen/ShareResourceStyles";
 
 export default function ShareResourceScreen({ route }: any) {
@@ -30,9 +30,9 @@ export default function ShareResourceScreen({ route }: any) {
 	}
 
   return (
-	<View style={commonStyles.container}>
+	<View style={CommonStyles.container}>
 		<TopBar onChangeSearch={handleChangeSearch} />
-		<View style={commonStyles.content}> 
+		<View style={CommonStyles.content}> 
 			<Text style={ShareResourceStyles.textSaves}>Enregitrées</Text>
 			{
 				resources.length === 0 ?
@@ -43,7 +43,7 @@ export default function ShareResourceScreen({ route }: any) {
 						showMoreItems ? ShareResourceStyles.resourcesContainerWithoutLoadMoreItems 
 						: ShareResourceStyles.resourcesContainerWithLoadMoreItems 
 					} 
-					contentContainerStyle={commonStyles.scrollViewCenter}>
+					contentContainerStyle={CommonStyles.scrollViewCenter}>
 				{
 					resources.map((resource, i) => {
 						if ((!showMoreItems && i < 2) || showMoreItems) {

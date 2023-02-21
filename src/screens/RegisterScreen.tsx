@@ -4,7 +4,7 @@ import { Text, View } from "react-native";
 import Header from "../components/Header";
 import InputButton from "../components/Button/InputButton";
 import Link from "../components/Link";
-import commonStyles from "../styles/CommonStyles";
+import CommonStyles from "../styles/CommonStyles";
 import LoginStyles from "../styles/Screen/LoginStyles";
 import RegisterStyles from "../styles/Screen/RegisterStyles";
 import { StackNavigationProp } from "@react-navigation/stack";
@@ -28,9 +28,9 @@ export default function RegisterScreen() {
     }
 
     return (
-        <View style={commonStyles.container}>
+        <View style={CommonStyles.container}>
             <TopBar hideSearchBar={true} />
-            <View style={commonStyles.content}>
+            <View style={CommonStyles.content}>
                 <Header label="Inscription" />
                 <View>
                     <View style={LoginStyles.loginContainer}>

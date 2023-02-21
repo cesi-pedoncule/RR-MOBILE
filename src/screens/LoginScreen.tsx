@@ -4,7 +4,7 @@ import { ActivityIndicator, Text, View } from "react-native";
 import Header from "../components/Header";
 import InputButton from "../components/Button/InputButton";
 import Link from "../components/Link";
-import commonStyles from "../styles/CommonStyles";
+import CommonStyles from "../styles/CommonStyles";
 import LoginStyles from "../styles/Screen/LoginStyles";
 import { StackNavigationProp } from "@react-navigation/stack";
 import InputText from "../components/Input/InputText";
@@ -48,13 +48,13 @@ export default function LoginScreen({ route }: any) {
     }, []);
 
     return (
-        <View style={commonStyles.container}>
+        <View style={CommonStyles.container}>
             <TopBar hideSearchBar={true} />
-            <View style={commonStyles.content}>
+            <View style={CommonStyles.content}>
                 <Header label="Connexion" />
                 <View>
                     {
-                        isLoading ? <ActivityIndicator size="large" color="#0000ff" style={commonStyles.loader} /> : 
+                        isLoading ? <ActivityIndicator size="large" color="#0000ff" style={CommonStyles.loader} /> : 
                         <View>
                             <View style={LoginStyles.loginContainer}>
                                 <InputText placeholder="Email" type='email-address' />

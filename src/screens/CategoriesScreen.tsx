@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { View, ScrollView, Text } from 'react-native'
 import { Category, Client } from "rr-apilib";
 import NavBar from "../components/NavBar";
-import commonStyles from "../styles/CommonStyles";
+import CommonStyles from "../styles/CommonStyles";
 import ButtonShowMoreItems from "../components/Button/ButtonShowMoreItems";
 import TopBar from "../components/TopBar";
 import CategoryCard from "../components/Card/CategoryCard";
@@ -25,10 +25,10 @@ export default function CategoriesScreen({ route }: any) {
     }
   
     return (
-        <View style={commonStyles.container}>
+        <View style={CommonStyles.container}>
             <TopBar onChangeSearch={handleChangeSearch} />
-            <View style={commonStyles.content}> 
-                <ScrollView style={commonStyles.scrollView}>
+            <View style={CommonStyles.content}> 
+                <ScrollView style={CommonStyles.scrollView}>
                     <View style={CategoryStyles.categoriesContainer}>
                         {
                             categories.map((category, i) => {
