@@ -48,7 +48,7 @@ export default function ProfileScreen({route}: any) {
                         <View style={ProfileStyles.profileContainer}>
                             <Text style={ProfileStyles.profileSubTitle}>{user?.resources.size} enregistrement(s)</Text>
                             <Text style={ProfileStyles.profileDescription}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed efficitur risus tempus, eleifend sem in, ornare quam. Integer ultrices</Text>
-                            <Text style={[commonStyles.title, ProfileStyles.profileTitle]}>Statistiques</Text>
+                            <Text style={[commonStyles.title, ProfileStyles.profileTitle]} numberOfLines={1}>Statistiques</Text>
                             <View style={ProfileStyles.statsContainer}>
                                 <StatDashBoard user={user} />
                             </View>
