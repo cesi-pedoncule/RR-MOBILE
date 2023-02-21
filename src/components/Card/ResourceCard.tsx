@@ -1,6 +1,6 @@
 import { Resource } from 'rr-apilib'
 import React, { useState } from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, TouchableHighlight } from 'react-native'
 
 import LikeButton from '../Button/LikeButton'
 import ResourceCardStyles from '../../styles/Component/ResourceCardStyles'
@@ -8,9 +8,10 @@ import CommentButton from '../Button/CommentButton'
 
 interface Props {
     resource: Resource;
+    callBack: () => void;
 }
 
-export default function ResourceCard({ resource }: Props) {
+export default function ResourceCard({ resource, callBack }: Props) {
 
     const [isLikeResource, setIsLikeResource] = useState<boolean>(false);
     const [numberLikeResource, setNumberLikeResource] = useState<number>(0);
@@ -31,17 +32,18 @@ export default function ResourceCard({ resource }: Props) {
 
     return (
         <View style={ResourceCardStyles.cardBackground}>
-            <View>
-                <View style={ResourceCardStyles.lineLikeAndUser}>
-                    <Text style={ResourceCardStyles.cardUser} numberOfLines={1}>{username}</Text>
-                    <View style={ResourceCardStyles.likeBtn}>
-                        <LikeButton callBack={onClickLike} isLike={isLikeResource} likeNumber={numberLikeResource}/>
-                        <CommentButton callBack={onClickComment} commentNumber={numberCommentResource}/>
-                    </View>
+            <TouchableHighlight onPress={callBack} underlayColor={"#FFFFFF"} >
+                <View>
+                    <View style={ResourceCardStyles.lineLikeAndUser}>
+                        <Text style={ResourceCardStyles.cardUser} numberOfLines={1}>{username}</Text>
+                        <View style={ResourceCardStyles.likeBtn}>
+                            <LikeButton callBack={onClickLike} isLike={isLikeResource} likeNumber={numberLikeResource}/>
+                            <CommentButton callBack={onClickComment} commentNumber={numberCommentResource}/>
+                        </View>    
+                        <Text style={ResourceCardStyles.cardTitle} numberOfLines={1}>{resource.title}</Text>
+                    <Text style={ResourceCardStyles.cardText} numberOfLines={3}>{description}</Text>
                 </View>
-                <Text style={ResourceCardStyles.cardTitle} numberOfLines={1}>{resource.title}</Text>
-            </View>
-            <Text style={ResourceCardStyles.cardText} numberOfLines={3}>{description}</Text>
+            </TouchableHighlight>
         </View>
     )
 }
