@@ -27,5 +27,16 @@ export default StyleSheet.create({
         padding: 14,
         backgroundColor: '#F0F0F0',
         borderRadius: 7,
+    },
+    disconnectContainer : {
+        position: 'absolute',
+        padding: 10,
+        justifyContent: 'center',
+        textAlign: 'center',
+        backgroundColor: '#F0F0F0',
+        borderRadius: 7,
+        transition: 0.2,
+        marginHorizontal: "6%",
+        right : 0,
     }
 });

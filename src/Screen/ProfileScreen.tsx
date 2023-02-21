@@ -30,17 +30,13 @@ export default function ProfileScreen({route}: any) {
         }
     }
 
-    const onClickDisconnect = () => {
-        navigation.navigate('Login');
-    }
-
     useEffect(() => {
         checkUserIsConnected();
     }, []);
 
     return (
         <View style={CommonStyles.container}>
-            <TopBar hideSearchBar={true} />
+            <TopBar hideSearchBar={true} hideLogout={false}/>
             {
                 user && ( 
                     <View style={CommonStyles.content}>
@@ -52,9 +48,6 @@ export default function ProfileScreen({route}: any) {
                                 <Text style={[CommonStyles.title, ProfileStyles.profileTitle]} numberOfLines={1}>Statistiques</Text>
                                 <View style={ProfileStyles.statsContainer}>
                                     <StatDashBoard user={user} />
-                                </View>
-                                <View style={ProfileStyles.disconnectContainer}>
-                                    <InputButton label={"Déconnexion"} callBack={onClickDisconnect}/>
                                 </View>
                             </View>
                         </ScrollView>
