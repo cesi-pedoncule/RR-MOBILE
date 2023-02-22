@@ -71,7 +71,6 @@ export default function ResourceDetailsScreen({ route }: any) {
                             </View>
                             <Text style={ResourceDetailsStyles.cardText}>{description}</Text>
                         </View>
-                        <Text style={ResourceDetailsStyles.cardText}>{description}</Text>
                     </View>
                     <Text style={ResourceDetailsStyles.commentTitle}>Commentaires</Text>
                     <View style={ResourceDetailsStyles.commentContainer}>
