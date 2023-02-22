@@ -18,7 +18,7 @@ export default function StatDashBoard({user} : Props) {
         )
     }
 
-    const [resources] = useState<Resource[]>(Array.from(user.resources.values()));
+    const [resources] = useState<Resource[]>(Array.from(user.resources.cache.values()));
 
     let numberResourceFirstMonth:number = 0;
     let numberResourceSecMonth:number = 0;
@@ -59,7 +59,7 @@ export default function StatDashBoard({user} : Props) {
 
     return (
         <View style={StatDashBoardStyles.container}>
-            <BarChart data={data} width={innerWidth} height={300} yAxisLabel="" yAxisSuffix="" fromZero={true} verticalLabelRotation={0} yAxisInterval={1} chartConfig={chartConfig} />
+            <BarChart data={data} width={350} height={300} yAxisLabel="" yAxisSuffix="" fromZero={true} verticalLabelRotation={0} yAxisInterval={1} chartConfig={chartConfig} />
         </View>
         
   )

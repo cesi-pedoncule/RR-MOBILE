@@ -36,7 +36,11 @@ export default function NavBar({client, resourcesIsFocused=false, categoriesIsFo
     }
 
     const onClickShareResourceButton = () => {
-        navigation.navigate('ShareCreate');
+        if (client.auth.me === null) {
+            navigation.navigate('Login');
+        } else {
+            navigation.navigate('ShareCreate');
+        }
     }
 
     const onClickResourcesButton = () => {

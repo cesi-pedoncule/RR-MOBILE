@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import CommentCard from '../Components/Card/CommentCard'
 import LikeButton from '../Components/Button/LikeButton'
 import CommentButton from '../Components/Button/CommentButton'
-import { Category, Client, Comment } from 'rr-apilib'
+import { Category, Client, Comment, Resource } from 'rr-apilib'
 import NavBar from '../Components/NavBar'
 import ResourceDetailsStyles from "../Styles/Screen/ResourceDetailsStyles";
 import TopBar from '../Components/Input/TopBar'
@@ -15,12 +15,12 @@ import CommonStyles from '../Styles/CommonStyles'
 export default function ResourceDetailsScreen({ route }: any) {
 
     const client = route.params as Client;
-    const resource = route.params.resource;
+    const resource = route.params.resource as Resource;
 
     const [isLikeResource, setIsLikeResource] = useState(false);
     const [numberLikeResource, setNumberLikeResource] = useState(0);
-    const [comments, setComments] = useState<Comment[]>(Array.from(resource.comments));
-    const [categories, setCategories] = useState<[string, Category][]>(Array.from(resource.categories));
+    const [comments, setComments] = useState<Comment[]>(Array.from(resource.comments.cache.values()));
+    const [categories, setCategories] = useState<Category[]>(Array.from(resource.categories.cache.values()));
 
     const title = resource.title;
     const username = resource.user ? `${resource.user.name} ${resource.user.firstname}` : "Utilisateur inconnu";
@@ -64,7 +64,7 @@ export default function ResourceDetailsScreen({ route }: any) {
                                 {
                                     categories.map((category, i) => {
                                         return (
-                                            category[1] && <CategoryButton key={i} category={category[1]}></CategoryButton>
+                                            category && <CategoryButton key={i} category={category}></CategoryButton>
                                         )
                                     })
                                 }

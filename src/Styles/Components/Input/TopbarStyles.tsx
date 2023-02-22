@@ -36,7 +36,6 @@ export default StyleSheet.create({
         backgroundColor: '#F0F0F0',
         borderRadius: 7,
         transition: 0.2,
-        marginHorizontal: "6%",
-        right : 0,
+        right : 20,
     }
 });
