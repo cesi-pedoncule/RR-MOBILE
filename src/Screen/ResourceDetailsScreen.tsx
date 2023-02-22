@@ -15,17 +15,18 @@ import CommonStyles from '../Styles/CommonStyles'
 export default function ResourceDetailsScreen({ route }: any) {
 
     const client = route.params as Client;
-    
+    const resource = route.params.resource;
+
     const [isLikeResource, setIsLikeResource] = useState(false);
     const [numberLikeResource, setNumberLikeResource] = useState(0);
-    const [comments, setComments] = useState<Comment[]>(Array.from(route.params.comments));
-    const [categories, setCategories] = useState<Category[]>(Array.from(route.params.categories));
+    const [comments, setComments] = useState<Comment[]>(Array.from(resource.comments));
+    const [categories, setCategories] = useState<[string, Category][]>(Array.from(resource.categories));
 
-    const title = route.params.title;
-    const username = route.params.user ? `${route.params.user.name} ${route.params.user.firstname}` : "Utilisateur inconnu";
+    const title = resource.title;
+    const username = resource.user ? `${resource.user.name} ${resource.user.firstname}` : "Utilisateur inconnu";
     
     // Set the description to "Aucune description fournie" if the description is null or undefined
-    const description = route.params.description ? (route.params.description) : "Aucune description fournie" ;
+    const description = resource.description ? (resource.description) : "Aucune description fournie" ;
 
     const [showMoreItems, setShowMoreItems] = useState(false);
     
@@ -62,7 +63,9 @@ export default function ResourceDetailsScreen({ route }: any) {
                             <View style={ResourceDetailsStyles.categoriesContainer}>
                                 {
                                     categories.map((category, i) => {
-                                        return <CategoryButton key={i} category={category}></CategoryButton>
+                                        return (
+                                            category[1] && <CategoryButton key={i} category={category[1]}></CategoryButton>
+                                        )
                                     })
                                 }
                             </View>

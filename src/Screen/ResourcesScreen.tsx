@@ -13,7 +13,7 @@ import { StackNavigationProp } from "@react-navigation/stack";
 import { useNavigation } from "@react-navigation/native";
 
 type ResourcesStackParamList = {
-    ResourceDetails: Resource;
+    ResourceDetails: {resource: Resource};
 }
 
 export default function ResourcesScreen({ route }: any) {
@@ -54,7 +54,7 @@ export default function ResourcesScreen({ route }: any) {
                         {
                             resources.map((resource, i) => {
                                 if ((!showMoreItems && i < 6) || showMoreItems) {
-                                    return <ResourceCard key={i} resource={resource} callBack={() => navigation.navigate('ResourceDetails', resource)} />
+                                    return <ResourceCard key={i} resource={resource} callBack={() => navigation.navigate('ResourceDetails', {resource: resource})} />
                                 } 
                             })
                         }
