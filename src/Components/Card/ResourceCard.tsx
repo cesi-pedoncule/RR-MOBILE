@@ -55,7 +55,6 @@ export default function ResourceCard({ resource, callBack }: Props) {
         if(timeout) {
             clearTimeout(timeout);
             timeout = null;
-            alert('Double click')
             onClickLike();
             return;
         }

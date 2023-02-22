@@ -17,7 +17,6 @@ export default function LikeButton({ resource, isLiked }: Props) {
 	const onClickLike = async () => {
 		if (resource.client.auth.me) {
 			resource.hasLike() || isLiked ? resource.unlike() : resource.like();
-			alert(resource.hasLike() || isLiked ? "unlike" : "like");
 			setIsLikeResource(resource.hasLike() || isLiked ? false : true)
 			isLiked = false;
 			setNumberLike(isLikeResource ? numberLike - 1 : numberLike + 1);
