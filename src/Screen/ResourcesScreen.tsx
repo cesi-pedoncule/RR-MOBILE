@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, ScrollView, ActivityIndicator } from 'react-native'
+import { View, ScrollView, ActivityIndicator, Text } from 'react-native'
 import { Client, Resource } from "rr-apilib";
 
 import NavBar from "../Components/NavBar";
@@ -22,6 +22,7 @@ export default function ResourcesScreen({ route }: any) {
     const client = route.params as Client;
     const [showMoreItems, setShowMoreItems] = useState<boolean>(false);
     const [resources, setResources] = useState<Resource[]>(Array.from(client.resources.cache.values()));
+    const [noResources, setNoResources] = useState<boolean>(false);
 
     const onClickShowMoreItems = () => {
         setShowMoreItems(true);
@@ -32,6 +33,7 @@ export default function ResourcesScreen({ route }: any) {
             return resource.title.toLowerCase().includes(text.toLowerCase());
         });
         setResources(filteredResources);
+        setNoResources(filteredResources.length == 0);
     }
 
     useEffect(() => {
@@ -49,7 +51,7 @@ export default function ResourcesScreen({ route }: any) {
             <TopBar onChangeSearch={handleChangeSearch} />
             <View style={CommonStyles.content}>
                 {
-                    resources.length === 0 ?  <ActivityIndicator size="large" color="#0000ff" style={CommonStyles.loader} /> :
+                    resources.length === 0 && noResources === false ?  <ActivityIndicator size="large" color="#0000ff" style={CommonStyles.loader} /> :
                     <ScrollView style={ResourcesStyles.resourcesContainer} contentContainerStyle={CommonStyles.scrollViewCenter} >
                         {
                             resources.map((resource, i) => {
@@ -59,7 +61,10 @@ export default function ResourcesScreen({ route }: any) {
                             })
                         }
                         {
-                            !showMoreItems && <ButtonShowMoreItems callBack={onClickShowMoreItems} />
+                            !showMoreItems && resources.length >= 6 && <ButtonShowMoreItems callBack={onClickShowMoreItems} />
+                        }
+                        {
+                            noResources && <Text>Aucune resource n'a été trouvée.</Text>
                         }
                     </ScrollView>
                 }
