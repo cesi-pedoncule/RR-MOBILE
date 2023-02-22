@@ -14,12 +14,15 @@ import { useNavigation } from "@react-navigation/native";
 
 type ShareResourceStackParamList = {
     ResourceDetails: Resource;
+	CreateResourceScreen: undefined;
 }
 
 export default function ShareResourceScreen({ route }: any) {
 	const navigation = useNavigation<StackNavigationProp<ShareResourceStackParamList>>();
 
 	const client = route.params as Client;
+	const user = client.auth.me;
+
   	const [showMoreItems, setShowMoreItems] = useState<boolean>(false);
 	const [resources, setResources] = useState<Resource[]>(Array.from(client.resources.cache.values()));
 
@@ -28,7 +31,7 @@ export default function ShareResourceScreen({ route }: any) {
 	}
 
 	const onClickShareNewItem = () => {
-		alert('TODO: Navigate to ShareNewItemScreen');
+		navigation.navigate('CreateResourceScreen');
 	}
 
 	const handleChangeSearch = (text: string) => {
@@ -60,9 +63,12 @@ export default function ShareResourceScreen({ route }: any) {
 					}
 				</ScrollView>
 			}
-			<View style={ShareResourceStyles.buttonsContainer}>
-				<InputButton label="Nouvelle Ressource" callBack={onClickShareNewItem} style={ShareResourceStyles.addResourceBtn}></InputButton>
-			</View>
+			{
+				 user &&
+				<View style={ShareResourceStyles.buttonsContainer}>
+					<InputButton label="Nouvelle Ressource" callBack={onClickShareNewItem} style={ShareResourceStyles.addResourceBtn}></InputButton>
+				</View>
+			}
 			<NavBar client={client} shareResourceIsFocused={true}/>
 		</View>
 	</View>

@@ -1,5 +1,4 @@
 import { View, Text, TouchableHighlight } from 'react-native'
-import React, { useEffect } from 'react'
 import CategoryButtonStyles from '../../Styles/Components/Button/CategoryButtonStyles'
 import { Category } from 'rr-apilib';
 
@@ -14,10 +13,10 @@ export default function CategoryButton({category}:Props) {
     }
 
     return (
-        <View style={CategoryButtonStyles.btnBackground}>
-            <TouchableHighlight onPress={callBack} underlayColor={"#F0F0F0"}>
+        <TouchableHighlight onPress={callBack} underlayColor={"#F0F0F0"}  style={CategoryButtonStyles.btnBackground}>
+            <View>
                 <Text numberOfLines={1} style={CategoryButtonStyles.btnText}>{category.name}</Text>
-            </TouchableHighlight>
-        </View>
+            </View>
+        </TouchableHighlight>
   )
 }
