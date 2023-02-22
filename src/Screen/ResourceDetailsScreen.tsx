@@ -3,12 +3,13 @@ import React, { useState } from 'react'
 import CommentCard from '../Components/Card/CommentCard'
 import LikeButton from '../Components/Button/LikeButton'
 import CommentButton from '../Components/Button/CommentButton'
-import { Client, Comment } from 'rr-apilib'
+import { Category, Client, Comment } from 'rr-apilib'
 import NavBar from '../Components/NavBar'
 import ResourceDetailsStyles from "../Styles/Screen/ResourceDetailsStyles";
 import TopBar from '../Components/Input/TopBar'
 import ReturnButton from '../Components/Button/ReturnButton'
 import ButtonShowMoreItems from '../Components/Button/ButtonShowMoreItems'
+import CategoryButton from '../Components/Button/CategoryButton'
 
 export default function ResourceDetailsScreen({ route }: any) {
 
@@ -16,7 +17,8 @@ export default function ResourceDetailsScreen({ route }: any) {
     
     const [isLikeResource, setIsLikeResource] = useState(false);
     const [numberLikeResource, setNumberLikeResource] = useState(0);
-    const [comments, setComments] = useState<Comment[]>([]);
+    const [comments, setComments] = useState<Comment[]>(Array.from(route.params.comments));
+    const [categories, setCategories] = useState<Category[]>(Array.from(route.params.categories));
 
     const title = route.params.title;
     const username = route.params.user ? `${route.params.user.name} ${route.params.user.firstname}` : "Utilisateur inconnu";
@@ -54,6 +56,13 @@ export default function ResourceDetailsScreen({ route }: any) {
                             </View>
                         </View>
                         <Text style={ResourceDetailsStyles.cardTitle}>{title}</Text>
+                        <View style={ResourceDetailsStyles.categoriesContainer}>
+                            {
+                                categories.map((category, i) => {
+                                    return <CategoryButton key={i} category={category}></CategoryButton>
+                                })
+                            }
+                        </View>
                         <Text style={ResourceDetailsStyles.cardText}>{description}</Text>
                     </View>
                 </View>
