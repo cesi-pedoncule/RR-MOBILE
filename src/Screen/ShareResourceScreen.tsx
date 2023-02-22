@@ -56,7 +56,7 @@ export default function ShareResourceScreen({ route }: any) {
 						})
 					}
 					{ 
-						!showMoreItems && <ButtonShowMoreItems callBack={onClickShowMoreItems} /> 
+						!showMoreItems && resources.length >= 6 && <ButtonShowMoreItems callBack={onClickShowMoreItems} /> 
 					}
 				</ScrollView>
 			}

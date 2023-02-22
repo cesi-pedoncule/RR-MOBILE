@@ -37,11 +37,16 @@ export default function CategoriesScreen({ route }: any) {
                                 }
                             })
                         }
+                        {
+                            categories.length == 0 && (
+                                <Text>Aucune catégorie n'a été trouvée.</Text>
+                            )
+                        }
                     </View>
                 </ScrollView>
                 <View style={CategoryStyles.showMoreItemsContainer}>
                     {
-                        !showMoreItems && (
+                        !showMoreItems && categories.length >= 6 && (
                             <ButtonShowMoreItems callBack={onClickShowMoreItems} />
                         )
                     }
