@@ -6,21 +6,24 @@ import TopbarStyles from "../../Styles/Components/Input/TopbarStyles";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import HomeButton from "../Button/ResourcesButton";
 import SearchBar from "./SearchBar";
+import { Client } from "rr-apilib";
 
 interface Props {
     onChangeSearch?: (text: string) => void;
     hideSearchBar?: boolean;
     hideLogout?: boolean;
+    client?: Client;
 }
 
 type TopBarStackParamList = {
     Login: undefined;
 };
 
-export default function TopBar({onChangeSearch, hideSearchBar=false, hideLogout=true}: Props) {
+export default function TopBar({onChangeSearch, hideSearchBar=false, hideLogout=true, client}: Props) {
     const navigation = useNavigation<StackNavigationProp<TopBarStackParamList>>();
 
     const onClickDisconnect = () => {
+        client?.auth.logout();
         navigation.navigate('Login');
     }
 

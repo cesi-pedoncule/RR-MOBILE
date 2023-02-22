@@ -36,14 +36,14 @@ export default function ProfileScreen({route}: any) {
 
     return (
         <View style={CommonStyles.container}>
-            <TopBar hideSearchBar={true} hideLogout={false}/>
+            <TopBar hideSearchBar={true} hideLogout={false} client={client} />
             {
                 user && ( 
                     <View style={CommonStyles.content}>
                         <ScrollView style={CommonStyles.scrollView}>
                             <Header label={userProfileName}/>
                             <View style={ProfileStyles.profileContainer}>
-                                <Text style={ProfileStyles.profileSubTitle}>{user?.resources.size} enregistrement(s)</Text>
+                                <Text style={ProfileStyles.profileSubTitle}>{user?.resources.cache.size} enregistrement(s)</Text>
                                 <Text style={ProfileStyles.profileDescription}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed efficitur risus tempus, eleifend sem in, ornare quam. Integer ultrices</Text>
                                 <Text style={[CommonStyles.title, ProfileStyles.profileTitle]} numberOfLines={1}>Statistiques</Text>
                                 <StatDashBoard user={user} />

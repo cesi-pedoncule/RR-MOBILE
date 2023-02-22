@@ -8,7 +8,7 @@ export default StyleSheet.create({
 	resourcesContainer: {
         marginTop: '2%',
         marginBottom: '5%',
-		maxHeight: '65%',
+		maxHeight: '70%',
 	},
 	textSaves : {
 		position: 'relative',
@@ -22,7 +22,6 @@ export default StyleSheet.create({
 		textAlign: 'center',
 		color: '#FFFFFF',
 		marginTop : 5,
-		paddingVertical: 25,
 		width : "40%"
 	},
 	buttonsContainer: {
