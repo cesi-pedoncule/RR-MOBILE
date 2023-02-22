@@ -10,6 +10,7 @@ import { StackNavigationProp } from "@react-navigation/stack";
 import InputText from "../Components/Input/InputText";
 import { Client } from "rr-apilib";
 import TopBar from "../Components/Input/TopBar";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 type LoginStackParamList = {
     Resources: undefined;
@@ -18,7 +19,7 @@ type LoginStackParamList = {
 
 
 export default function LoginScreen({ route }: any) {
-    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [isLoading, setIsLoading] = useState<boolean>(true);
     const client = route.params as Client;
     const navigation = useNavigation<StackNavigationProp<LoginStackParamList>>();
 
@@ -30,6 +31,8 @@ export default function LoginScreen({ route }: any) {
         setIsLoading(true);
         try {
             await client.auth.login('user0@example.com', 'password');
+            await AsyncStorage.setItem('token', client.auth.token+'');
+            await AsyncStorage.setItem('refresh_token', client.auth.refresh_token+'');
             navigation.navigate('Resources');
         } catch (error) {
             alert('Mauvais identifiants');
@@ -37,9 +40,31 @@ export default function LoginScreen({ route }: any) {
         setIsLoading(false);
     }
 
-    const checkIsAuth = () => {
+    const checkIsAuth = async () => {
         if (client.auth.me != null) {
             navigation.navigate('Resources');
+        } else {
+            // Check if token is in storage
+            const token = await AsyncStorage.getItem('token');
+            const refresh_token = await AsyncStorage.getItem('refresh_token');
+
+            if (token != null && refresh_token != null) {
+
+                // Set token and refresh token
+                client.auth.token = token;
+                client.auth.refresh_token = refresh_token;
+
+                // Try to refresh token
+                try {
+                    await client.auth.refresh();
+                    navigation.navigate('Resources');
+                } catch (error) {
+                    await AsyncStorage.removeItem('token');
+                    await AsyncStorage.removeItem('refresh_token');
+                }
+            } 
+
+            setIsLoading(false);
         }
     }
 
