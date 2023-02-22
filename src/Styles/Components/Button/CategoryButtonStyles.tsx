@@ -4,9 +4,8 @@ export default StyleSheet.create({
     btnBackground: {
         width: "auto",
         maxWidth: 120,
-        height: 27,
-        marginLeft: 8,
-        marginRight: 8,
+        marginHorizontal: 8,
+        marginVertical: 4,
         justifyContent: 'center',
         backgroundColor: '#D9D9D9',
         borderRadius: 15,
@@ -14,7 +13,8 @@ export default StyleSheet.create({
     btnText: {
         textAlign: 'center',
         color: '#000000',
-        padding: 8,
+        paddingHorizontal: 8,
+        paddingVertical: 2,
         width: '100%',
     },
 });
