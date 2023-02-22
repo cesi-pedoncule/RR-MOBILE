@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 export default StyleSheet.create({
     cardBackground: {
         width: "90%",
-        height: 170,
+        height: 190,
         backgroundColor: '#F0F0F0',
         borderBottomWidth: 2,
         borderBottomColor: '#EEEEEE',
@@ -12,7 +12,7 @@ export default StyleSheet.create({
         shadowOpacity: 0.25,
         shadowRadius: 4,
         borderRadius: 15,
-        marginBottom: 30,
+        marginBottom: 20,
     },
     cardUser:{
         fontWeight: 'bold',
@@ -24,13 +24,14 @@ export default StyleSheet.create({
         textDecorationLine: 'underline',
         fontSize: 16,
         marginLeft: 20,
+        marginBottom: 10,
     },
     cardText:{
         color: '#ACB3BF',
         fontSize: 13,
         textAlign: 'justify',
-        marginTop: 5,
-        marginBottom: 20,
+        marginTop: 3,
+        marginBottom: 10,
         marginLeft: 20,
         marginRight: 20,
     },
@@ -43,5 +44,10 @@ export default StyleSheet.create({
     },
     likeBtn:{
         marginRight : 20,
-    }
+    },
+    categoriesContainer: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        marginLeft: 10,  
+    },
 });

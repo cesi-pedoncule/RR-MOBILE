@@ -12,5 +12,6 @@ export default StyleSheet.create({
         textAlign: 'center',
         color: '#000000',
         marginVertical: 8,
+        width: '100%',
     },
 });
