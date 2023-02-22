@@ -46,8 +46,9 @@ export default StyleSheet.create({
         marginRight : 20,
     },
     categoriesContainer: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        marginLeft: 10,  
+        display : "flex",
+        flexDirection : "row",
+        overflow:'scroll',
+        marginHorizontal:20,  
     },
 });
