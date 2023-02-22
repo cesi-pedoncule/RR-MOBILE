@@ -83,7 +83,7 @@ export default function ResourceDetailsScreen({ route }: any) {
                             comments.length === 0 && <Text>Aucun commentaire</Text>
                         }
                         {
-                            !showMoreItems && comments.length > 1 && <ButtonShowMoreItems callBack={onClickShowMoreItems} />
+                            !showMoreItems && comments.length >= 6 && <ButtonShowMoreItems callBack={onClickShowMoreItems} />
                         }
                     </View>          
                 </ScrollView>
