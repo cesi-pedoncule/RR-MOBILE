@@ -51,6 +51,7 @@ export default StyleSheet.create({
     },
     scrollViewCenter: {
         alignItems: 'center',
+        justifyContent: 'center',
     },
     scrollView : {
         marginTop : 10,

@@ -60,25 +60,25 @@ export default function ResourceDetailsScreen({ route }: any) {
                             <Text style={ResourceDetailsStyles.cardText}>{description}</Text>
                         </View>
                     </View>
-                </View>
-                <Text style={ResourceDetailsStyles.commentTitle}>Commentaires</Text>
-                <View style={ResourceDetailsStyles.commentContainer}>
-                    {
-                        comments.map((comment, i) => {
-                            if ((!showMoreItems && i < 6) || showMoreItems) {
-                                return <CommentCard key={i} comment={comment}></CommentCard>
-                            }
-                        })
-                    }
-                    {
-                        comments.length === 0 && <Text>Aucun commentaire</Text>
-                    }
-                    {
-                        !showMoreItems && comments.length > 1 && <ButtonShowMoreItems callBack={onClickShowMoreItems} />
-                    }
-                </View>          
-            </ScrollView>
+                    <Text style={ResourceDetailsStyles.commentTitle}>Commentaires</Text>
+                    <View style={ResourceDetailsStyles.commentContainer}>
+                        {
+                            comments.map((comment, i) => {
+                                if ((!showMoreItems && i < 6) || showMoreItems) {
+                                    return <CommentCard key={i} comment={comment}></CommentCard>
+                                }
+                            })
+                        }
+                        {
+                            comments.length === 0 && <Text>Aucun commentaire</Text>
+                        }
+                        {
+                            !showMoreItems && comments.length > 1 && <ButtonShowMoreItems callBack={onClickShowMoreItems} />
+                        }
+                    </View>          
+                </ScrollView>
             <NavBar client={client}/>
+            </View>
         </View>
     )
 }
