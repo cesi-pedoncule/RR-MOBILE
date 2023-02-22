@@ -64,7 +64,7 @@ export default function ResourcesScreen({ route }: any) {
                             !showMoreItems && resources.length >= 6 && <ButtonShowMoreItems callBack={onClickShowMoreItems} />
                         }
                         {
-                            noResources && <Text>Aucune resource n'a été trouvée.</Text>
+                            noResources && <Text>Aucune ressource n'a été trouvée.</Text>
                         }
                     </ScrollView>
                 }
