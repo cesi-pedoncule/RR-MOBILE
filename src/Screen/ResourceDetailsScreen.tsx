@@ -54,7 +54,7 @@ export default function ResourceDetailsScreen({ route }: any) {
                             <View style={ResourceDetailsStyles.lineLikeAndUser}>
                                 <Text style={ResourceDetailsStyles.cardUser}>{username}</Text>
                                 <View style={ResourceDetailsStyles.likeBtn}>
-                                    <LikeButton callBack={onClickLike} isLike={isLikeResource} likeNumber={numberLikeResource}/>
+                                    <LikeButton resource={resource} />
                                     <CommentButton callBack={onClickComment} commentNumber={comments.length}/>
                                 </View>
 

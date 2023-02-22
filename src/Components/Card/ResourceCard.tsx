@@ -28,7 +28,6 @@ export default function ResourceCard({ resource, callBack }: Props) {
     const navigation = useNavigation<StackNavigationProp<ResourceCardParams>>();
 
     const [isLikeResource, setIsLikeResource] = useState<boolean>(false);
-    const [numberLikeResource, setNumberLikeResource] = useState<number>(0);
     const [categories, setCategories] = useState<Category[]>(Array.from(resource.categories.cache.values()));
 
     const username = resource.user ? `${resource.user.name} ${resource.user.firstname}` : "Utilisateur inconnu";
@@ -38,8 +37,8 @@ export default function ResourceCard({ resource, callBack }: Props) {
     const numberCommentResource = resource.comments.cache.size;
 
     const onClickLike = () => {
+        isLikeResource ? resource.like() : resource.unlike();
         setIsLikeResource(!isLikeResource);
-        isLikeResource? setNumberLikeResource(numberLikeResource - 1) : setNumberLikeResource(numberLikeResource + 1);
     }
 
     const onClickComment = () => {
@@ -71,7 +70,7 @@ export default function ResourceCard({ resource, callBack }: Props) {
                 <View style={ResourceCardStyles.lineLikeAndUser}>
                     <Text style={ResourceCardStyles.cardUser} numberOfLines={1}>{username}</Text>
                     <View style={ResourceCardStyles.likeBtn}>
-                        <LikeButton callBack={onClickLike} isLike={isLikeResource} likeNumber={numberLikeResource}/>
+                        <LikeButton resource={resource} />
                         <CommentButton callBack={onClickComment} commentNumber={numberCommentResource}/>
                     </View>    
                 </View>
