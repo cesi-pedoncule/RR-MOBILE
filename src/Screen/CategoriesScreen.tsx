@@ -12,7 +12,6 @@ export default function CategoriesScreen({ route }: any) {
     const client = route.params as Client;
     const [showMoreItems, setShowMoreItems] = useState<boolean>(false);
     const [categories, setCategories] = useState<Category[]>(Array.from(client.categories.cache.values()));
-    const [noCategories, setNoCategories] = useState<boolean>(false);
 
     const onClickShowMoreItems = () => {
         setShowMoreItems(true);
@@ -23,7 +22,6 @@ export default function CategoriesScreen({ route }: any) {
             return category.name.toLowerCase().includes(text.toLowerCase());
         });
         setCategories(filteredCategories);
-        setNoCategories(filteredCategories.length == 0);
     }
   
     return (
@@ -40,7 +38,7 @@ export default function CategoriesScreen({ route }: any) {
                             })
                         }
                         {
-                            noCategories && (
+                            categories.length == 0 && (
                                 <Text>Aucune catégorie n'a été trouvée.</Text>
                             )
                         }
