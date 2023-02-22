@@ -39,6 +39,7 @@ export default function ResourceCard({ resource, callBack }: Props) {
     const onClickLike = () => {
         isLikeResource ? resource.like() : resource.unlike();
         setIsLikeResource(!isLikeResource);
+
     }
 
     const onClickComment = () => {
@@ -54,6 +55,7 @@ export default function ResourceCard({ resource, callBack }: Props) {
         if(timeout) {
             clearTimeout(timeout);
             timeout = null;
+            alert('Double click')
             onClickLike();
             return;
         }
@@ -70,7 +72,7 @@ export default function ResourceCard({ resource, callBack }: Props) {
                 <View style={ResourceCardStyles.lineLikeAndUser}>
                     <Text style={ResourceCardStyles.cardUser} numberOfLines={1}>{username}</Text>
                     <View style={ResourceCardStyles.likeBtn}>
-                        <LikeButton resource={resource} />
+                        <LikeButton resource={resource} isLiked={isLikeResource} />
                         <CommentButton callBack={onClickComment} commentNumber={numberCommentResource}/>
                     </View>    
                 </View>

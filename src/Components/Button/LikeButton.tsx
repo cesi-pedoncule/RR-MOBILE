@@ -6,30 +6,38 @@ import { Resource } from 'rr-apilib';
 
 interface Props {
 	resource: Resource;
+	isLiked ?: boolean;
   }
 
-export default function LikeButton({ resource }: Props) {
+export default function LikeButton({ resource, isLiked }: Props) {
 
-	const [isLikeResource, setIsLikeResource] = React.useState<boolean>(resource.hasLike());
-	const [numberLike, setNumberLike] = React.useState<number>(resource.likes.cache.size);
+	const [isLikeResource, setIsLikeResource] = React.useState<boolean>(resource.hasLike() || isLiked ? true : false);
+	const [numberLike, setNumberLike] = React.useState<number>(isLiked ? resource.likes.cache.size + 1 : resource.likes.cache.size);
 
 	const onClickLike = async () => {
 		if (resource.client.auth.me) {
-			resource.hasLike() ? resource.unlike() : resource.like();
-			setIsLikeResource(!isLikeResource)
-			setNumberLike(resource.hasLike() ? numberLike - 1 : numberLike + 1);
+			resource.hasLike() || isLiked ? resource.unlike() : resource.like();
+			alert(resource.hasLike() || isLiked ? "unlike" : "like");
+			setIsLikeResource(resource.hasLike() || isLiked ? false : true)
+			isLiked = false;
+			setNumberLike(isLikeResource ? numberLike - 1 : numberLike + 1);
 		} else {
 			alert("Vous devez être connecté pour liker une ressource");
 		}
 	}
 
+	useEffect(() => {
+		if (isLiked) {
+			setIsLikeResource(true);
+			isLiked = false;
+		}
+	}, [isLiked]);
+
 	return (
 		<View style={LikeButtonStyles.container}>
-			<Text style={LikeButtonStyles.numberLike}>{ numberLike.toString()}</Text>
+			<Text style={LikeButtonStyles.numberLike}>{ ((isLiked ? 1 : 0) + numberLike).toString()}</Text>
 			<TouchableHighlight style={LikeButtonStyles.likeBtn} onPress={onClickLike} underlayColor={"#F0F0F0"}>
-				{
-					!isLikeResource  ? <MaterialCommunityIcons name="cards-heart-outline" size={24} color="black" /> : <MaterialCommunityIcons name="cards-heart" size={24} color="black" />
-				}
+				<MaterialCommunityIcons name={isLikeResource ? "cards-heart" : "cards-heart-outline" } size={24} color="black" />
 			</TouchableHighlight>
 		</View>
 	);
