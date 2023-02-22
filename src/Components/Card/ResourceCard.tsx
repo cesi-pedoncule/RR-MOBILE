@@ -39,8 +39,8 @@ export default function ResourceCard({ resource, callBack }: Props) {
     }
 
     return (
-        <TouchableHighlight onPress={callBack} underlayColor={"#000000'"} >
-            <View style={ResourceCardStyles.cardBackground}>
+        <TouchableHighlight onPress={callBack} underlayColor={"#000000'"} style={ResourceCardStyles.cardBackground}>
+            <View>
                 <View style={ResourceCardStyles.lineLikeAndUser}>
                     <Text style={ResourceCardStyles.cardUser} numberOfLines={1}>{username}</Text>
                     <View style={ResourceCardStyles.likeBtn}>
