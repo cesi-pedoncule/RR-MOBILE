@@ -76,8 +76,10 @@ export default StyleSheet.create({
         left: '20',
     },
     categoriesContainer: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        margin: 10,
+        display : "flex",
+        flexDirection : "row",
+        overflow:'scroll',
+        marginTop : 10,
+        marginHorizontal:20,  
     },
 });
