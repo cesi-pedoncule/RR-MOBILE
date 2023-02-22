@@ -75,4 +75,9 @@ export default StyleSheet.create({
         position: 'absolute',
         left: '20',
     },
+    categoriesContainer: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        margin: 10,
+    },
 });

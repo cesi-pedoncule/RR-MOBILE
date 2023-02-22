@@ -3,27 +3,30 @@ import React, { useState } from 'react'
 import CommentCard from '../Components/Card/CommentCard'
 import LikeButton from '../Components/Button/LikeButton'
 import CommentButton from '../Components/Button/CommentButton'
-import { Client, Comment } from 'rr-apilib'
+import { Category, Client, Comment } from 'rr-apilib'
 import NavBar from '../Components/NavBar'
 import ResourceDetailsStyles from "../Styles/Screen/ResourceDetailsStyles";
 import TopBar from '../Components/Input/TopBar'
 import ReturnButton from '../Components/Button/ReturnButton'
 import ButtonShowMoreItems from '../Components/Button/ButtonShowMoreItems'
+import CategoryButton from '../Components/Button/CategoryButton'
 import CommonStyles from '../Styles/CommonStyles'
 
 export default function ResourceDetailsScreen({ route }: any) {
 
     const client = route.params as Client;
-    
+    const resource = route.params.resource;
+
     const [isLikeResource, setIsLikeResource] = useState(false);
     const [numberLikeResource, setNumberLikeResource] = useState(0);
-    const [comments, setComments] = useState<Comment[]>([]);
+    const [comments, setComments] = useState<Comment[]>(Array.from(resource.comments));
+    const [categories, setCategories] = useState<[string, Category][]>(Array.from(resource.categories));
 
-    const title = route.params.title;
-    const username = route.params.user ? `${route.params.user.name} ${route.params.user.firstname}` : "Utilisateur inconnu";
+    const title = resource.title;
+    const username = resource.user ? `${resource.user.name} ${resource.user.firstname}` : "Utilisateur inconnu";
     
     // Set the description to "Aucune description fournie" if the description is null or undefined
-    const description = route.params.description ? (route.params.description) : "Aucune description fournie" ;
+    const description = resource.description ? (resource.description) : "Aucune description fournie" ;
 
     const [showMoreItems, setShowMoreItems] = useState(false);
     
@@ -57,6 +60,15 @@ export default function ResourceDetailsScreen({ route }: any) {
 
                             </View>
                             <Text style={ResourceDetailsStyles.cardTitle}>{title}</Text>
+                            <View style={ResourceDetailsStyles.categoriesContainer}>
+                                {
+                                    categories.map((category, i) => {
+                                        return (
+                                            category[1] && <CategoryButton key={i} category={category[1]}></CategoryButton>
+                                        )
+                                    })
+                                }
+                            </View>
                             <Text style={ResourceDetailsStyles.cardText}>{description}</Text>
                         </View>
                     </View>
@@ -73,7 +85,7 @@ export default function ResourceDetailsScreen({ route }: any) {
                             comments.length === 0 && <Text>Aucun commentaire</Text>
                         }
                         {
-                            !showMoreItems && comments.length > 1 && <ButtonShowMoreItems callBack={onClickShowMoreItems} />
+                            !showMoreItems && comments.length >= 6 && <ButtonShowMoreItems callBack={onClickShowMoreItems} />
                         }
                     </View>          
                 </ScrollView>

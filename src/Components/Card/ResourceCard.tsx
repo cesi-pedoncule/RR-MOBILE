@@ -1,4 +1,4 @@
-import { Resource } from 'rr-apilib'
+import { Category, Resource } from 'rr-apilib'
 import React, { useState } from 'react'
 import { View, Text, TouchableHighlight } from 'react-native'
 
@@ -7,6 +7,7 @@ import ResourceCardStyles from '../../Styles/Components/Card/ResourceCardStyles'
 import CommentButton from '../Button/CommentButton'
 import { useNavigation } from '@react-navigation/native'
 import { StackNavigationProp } from '@react-navigation/stack'
+import CategoryButton from '../Button/CategoryButton'
 
 type ResourceCardParams = {
     ResourceDetails: { resource: Resource };
@@ -24,6 +25,7 @@ export default function ResourceCard({ resource, callBack }: Props) {
     const [isLikeResource, setIsLikeResource] = useState<boolean>(false);
     const [numberLikeResource, setNumberLikeResource] = useState<number>(0);
     const [numberCommentResource, setNumberCommentResource] = useState<number>(0);
+    const [categories, setCategories] = useState<[string,Category][]>(Array.from(resource.categories));
 
     const username = resource.user ? `${resource.user.name} ${resource.user.firstname}` : "Utilisateur inconnu";
     // Set the description to "Aucune description fournie" if the description is null or undefined and if the description is longer than 217 characters, cut it and add "..." at the end
@@ -49,6 +51,13 @@ export default function ResourceCard({ resource, callBack }: Props) {
                     </View>    
                 </View>
                 <Text style={ResourceCardStyles.cardTitle} numberOfLines={1}>{resource.title}</Text>
+                <View style={ResourceCardStyles.categoriesContainer}>
+                    {
+                        categories.map((category, i) => {
+                            return <CategoryButton key={i} category={category[1]}></CategoryButton>
+                        })
+                    }
+                </View>
                 <Text style={ResourceCardStyles.cardText} numberOfLines={3}>{description}</Text>
             </View>
         </TouchableHighlight>
