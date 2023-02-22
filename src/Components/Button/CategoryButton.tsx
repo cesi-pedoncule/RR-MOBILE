@@ -1,5 +1,4 @@
 import { View, Text, TouchableHighlight } from 'react-native'
-import React, { useEffect } from 'react'
 import CategoryButtonStyles from '../../Styles/Components/Button/CategoryButtonStyles'
 import { Category } from 'rr-apilib';
 
