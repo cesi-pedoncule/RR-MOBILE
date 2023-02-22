@@ -46,7 +46,7 @@ export default function CategoriesScreen({ route }: any) {
                         )
                     }
                 </View>
-                <NavBar client={client}/>
+                <NavBar client={client} categoriesIsFocused={true}/>
             </View>
         </View>
     )

@@ -54,10 +54,13 @@ export default function StatDashBoard({user} : Props) {
         backgroundGradientTo: "#F0F0F0",
         color: (opacity = 1) => `rgba(3, 152, 158, ${opacity})`,
         labelColor : (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
-        barPercentage: 1.5,
+        barPercentage: 1.3,
     }
 
     return (
-        <BarChart style={StatDashBoardStyles.container} data={data} width={320} height={300} yAxisLabel="" yAxisSuffix="" fromZero={true} verticalLabelRotation={0} yAxisInterval={1} chartConfig={chartConfig} />
+        <View style={StatDashBoardStyles.container}>
+            <BarChart data={data} width={innerWidth} height={300} yAxisLabel="" yAxisSuffix="" fromZero={true} verticalLabelRotation={0} yAxisInterval={1} chartConfig={chartConfig} />
+        </View>
+        
   )
 }

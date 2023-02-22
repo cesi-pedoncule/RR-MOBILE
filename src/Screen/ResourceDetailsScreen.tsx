@@ -10,6 +10,7 @@ import TopBar from '../Components/Input/TopBar'
 import ReturnButton from '../Components/Button/ReturnButton'
 import ButtonShowMoreItems from '../Components/Button/ButtonShowMoreItems'
 import CategoryButton from '../Components/Button/CategoryButton'
+import CommonStyles from '../Styles/CommonStyles'
 
 export default function ResourceDetailsScreen({ route }: any) {
 
@@ -42,48 +43,52 @@ export default function ResourceDetailsScreen({ route }: any) {
     }
 
     return (
-        <View style={ResourceDetailsStyles.container}>
+        <View style={CommonStyles.container}>
             <TopBar hideSearchBar={true}/>
-            <ScrollView style={ResourceDetailsStyles.contentWithTopBar}>
-                <ReturnButton/>
-                <View style={ResourceDetailsStyles.centerContent}>
-                    <View style={ResourceDetailsStyles.cardBackground}>
-                        <View style={ResourceDetailsStyles.lineLikeAndUser}>
-                            <Text style={ResourceDetailsStyles.cardUser}>{username}</Text>
-                            <View style={ResourceDetailsStyles.likeBtn}>
-                                <LikeButton callBack={onClickLike} isLike={isLikeResource} likeNumber={numberLikeResource}/>
-                                <CommentButton callBack={onClickComment} commentNumber={comments.length}/>
+            <View style={CommonStyles.content}>
+                <ScrollView style={CommonStyles.scrollView}>
+                    <ReturnButton/>
+                    <View style={ResourceDetailsStyles.centerContent}>
+                        <View style={ResourceDetailsStyles.cardBackground}>
+                            <View style={ResourceDetailsStyles.lineLikeAndUser}>
+                                <Text style={ResourceDetailsStyles.cardUser}>{username}</Text>
+                                <View style={ResourceDetailsStyles.likeBtn}>
+                                    <LikeButton callBack={onClickLike} isLike={isLikeResource} likeNumber={numberLikeResource}/>
+                                    <CommentButton callBack={onClickComment} commentNumber={comments.length}/>
+                                </View>
+
                             </View>
-                        </View>
-                        <Text style={ResourceDetailsStyles.cardTitle}>{title}</Text>
-                        <View style={ResourceDetailsStyles.categoriesContainer}>
-                            {
-                                categories.map((category, i) => {
-                                    return <CategoryButton key={i} category={category}></CategoryButton>
-                                })
-                            }
+                            <Text style={ResourceDetailsStyles.cardTitle}>{title}</Text>
+                            <View style={ResourceDetailsStyles.categoriesContainer}>
+                                {
+                                    categories.map((category, i) => {
+                                        return <CategoryButton key={i} category={category}></CategoryButton>
+                                    })
+                                }
+                            </View>
+                            <Text style={ResourceDetailsStyles.cardText}>{description}</Text>
                         </View>
                         <Text style={ResourceDetailsStyles.cardText}>{description}</Text>
                     </View>
-                </View>
-                <Text style={ResourceDetailsStyles.commentTitle}>Commentaires</Text>
-                <View style={ResourceDetailsStyles.commentContainer}>
-                    {
-                        comments.map((comment, i) => {
-                            if ((!showMoreItems && i < 6) || showMoreItems) {
-                                return <CommentCard key={i} comment={comment}></CommentCard>
-                            }
-                        })
-                    }
-                    {
-                        comments.length === 0 && <Text>Aucun commentaire</Text>
-                    }
-                    {
-                        !showMoreItems && comments.length > 1 && <ButtonShowMoreItems callBack={onClickShowMoreItems} />
-                    }
-                </View>          
-            </ScrollView>
+                    <Text style={ResourceDetailsStyles.commentTitle}>Commentaires</Text>
+                    <View style={ResourceDetailsStyles.commentContainer}>
+                        {
+                            comments.map((comment, i) => {
+                                if ((!showMoreItems && i < 6) || showMoreItems) {
+                                    return <CommentCard key={i} comment={comment}></CommentCard>
+                                }
+                            })
+                        }
+                        {
+                            comments.length === 0 && <Text>Aucun commentaire</Text>
+                        }
+                        {
+                            !showMoreItems && comments.length > 1 && <ButtonShowMoreItems callBack={onClickShowMoreItems} />
+                        }
+                    </View>          
+                </ScrollView>
             <NavBar client={client}/>
+            </View>
         </View>
     )
 }

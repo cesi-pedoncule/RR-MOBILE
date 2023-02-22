@@ -1,24 +1,6 @@
 import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#03989E',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    contentWithTopBar: {
-        backgroundColor: '#FFFFFF',
-        width: '100%',
-        position: 'absolute',
-        top : 110,
-        bottom: 0,
-        borderTopLeftRadius: 30,
-        borderTopRightRadius: 30,
-        paddingTop: 20,
-        paddingBottom: 50,
-        marginBottom: 50,
-    },
     centerContent: {
         justifyContent: 'center',
         alignItems: 'center',
