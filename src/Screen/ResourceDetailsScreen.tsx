@@ -1,4 +1,4 @@
-import { View, Text, ScrollView } from 'react-native'
+import { View, Text, ScrollView, TouchableOpacity, GestureResponderEvent } from 'react-native'
 import React, { useState } from 'react'
 import CommentCard from '../Components/Card/CommentCard'
 import LikeButton from '../Components/Button/LikeButton'
@@ -11,6 +11,7 @@ import ReturnButton from '../Components/Button/ReturnButton'
 import ButtonShowMoreItems from '../Components/Button/ButtonShowMoreItems'
 import CategoryButton from '../Components/Button/CategoryButton'
 import CommonStyles from '../Styles/CommonStyles'
+import { likeClickHandle } from '../Functions/Utils'
 
 export default function ResourceDetailsScreen({ route }: any) {
 
@@ -29,6 +30,24 @@ export default function ResourceDetailsScreen({ route }: any) {
     const description = resource.description ? (resource.description) : "Aucune description fournie" ;
 
     const [showMoreItems, setShowMoreItems] = useState(false);
+
+    let timeout: NodeJS.Timeout | null = null;
+
+    const onPress = (e: GestureResponderEvent) => {
+
+        e.preventDefault();
+
+        if(timeout) {
+            clearTimeout(timeout);
+            timeout = null;
+            likeClickHandle(resource, isLikeResource, setIsLikeResource, numberLike, setNumberLike);
+            return;
+        }
+
+        timeout = setTimeout(() => {
+            timeout = null;
+        }, 300);
+    }
     
     const onClickComment = () => {
         //NO-OP
@@ -44,41 +63,43 @@ export default function ResourceDetailsScreen({ route }: any) {
             <View style={CommonStyles.content}>
                 <ScrollView style={CommonStyles.scrollView}>
                     <ReturnButton/>
-                    <View style={ResourceDetailsStyles.centerContent}>
-                        <View style={ResourceDetailsStyles.cardBackground}>
-                            <View style={ResourceDetailsStyles.lineLikeAndUser}>
-                                <Text style={ResourceDetailsStyles.cardUser}>{username}</Text>
-                                <View style={ResourceDetailsStyles.likeBtn}>
-                                    <LikeButton
-                                        resource={resource}
-                                        isLikeResource={isLikeResource}
-                                        setIsLikeResource={setIsLikeResource}
-                                        numberLike={numberLike}
-                                        setNumberLike={setNumberLike}
-                                    />
-                                    <CommentButton callBack={onClickComment} commentNumber={comments.length}/>
-                                </View>
+                    <TouchableOpacity onPress={(e) => onPress(e)} activeOpacity={1}>
+                        <View style={ResourceDetailsStyles.centerContent}>
+                            <View style={ResourceDetailsStyles.cardBackground}>
+                                <View style={ResourceDetailsStyles.lineLikeAndUser}>
+                                    <Text style={ResourceDetailsStyles.cardUser}>{username}</Text>
+                                    <View style={ResourceDetailsStyles.likeBtn}>
+                                        <LikeButton
+                                            resource={resource}
+                                            isLikeResource={isLikeResource}
+                                            setIsLikeResource={setIsLikeResource}
+                                            numberLike={numberLike}
+                                            setNumberLike={setNumberLike}
+                                        />
+                                        <CommentButton callBack={onClickComment} commentNumber={comments.length}/>
+                                    </View>
 
+                                </View>
+                                <Text style={ResourceDetailsStyles.cardTitle}>{title}</Text>
+                                <View style={ResourceDetailsStyles.categoriesContainer}>
+                                    {
+                                        categories.map((category, i) => {
+                                            return (
+                                                category && <CategoryButton key={i} category={category}></CategoryButton>
+                                            )
+                                        })
+                                    }
+                                </View>
+                                <Text style={ResourceDetailsStyles.cardText}>{description}</Text>
                             </View>
-                            <Text style={ResourceDetailsStyles.cardTitle}>{title}</Text>
-                            <View style={ResourceDetailsStyles.categoriesContainer}>
-                                {
-                                    categories.map((category, i) => {
-                                        return (
-                                            category && <CategoryButton key={i} category={category}></CategoryButton>
-                                        )
-                                    })
-                                }
-                            </View>
-                            <Text style={ResourceDetailsStyles.cardText}>{description}</Text>
                         </View>
-                    </View>
+                    </TouchableOpacity>
                     <Text style={ResourceDetailsStyles.commentTitle}>Commentaires</Text>
                     <View style={ResourceDetailsStyles.commentContainer}>
                         {
                             comments.map((comment, i) => {
                                 if ((!showMoreItems && i < 6) || showMoreItems) {
-                                    return <CommentCard key={i} comment={comment}></CommentCard>
+                                    return <CommentCard key={i} comment={comment} />
                                 }
                             })
                         }
