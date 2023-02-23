@@ -31,13 +31,11 @@ export default function ResourceCard({ resource, callBack }: Props) {
 
     const [numberLike, setNumberLike] = useState(resource.likes.cache.size);
     const [isLikeResource, setIsLikeResource] = useState<boolean>(resource.isLiked());
+    const numberCommentResource = resource.comments.cache.size;
     const [categories, setCategories] = useState<Category[]>(Array.from(resource.categories.cache.values()));
 
     const username = resource.user ? `${resource.user.name} ${resource.user.firstname}` : "Utilisateur inconnu";
-    // Set the description to "Aucune description fournie" if the description is null or undefined and if the description is longer than 217 characters, cut it and add "..." at the end
     const description = resource.description ?  resource.description : "Aucune description fournie" ;
-    
-    const numberCommentResource = resource.comments.cache.size;
 
     const onClickComment = () => {
         navigation.navigate("ResourceDetails", { resource: resource });

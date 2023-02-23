@@ -6,7 +6,7 @@ export default StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         flexWrap: 'wrap',
-        width: 261,
+        width: "90%",
         height: 55,
         padding: 5,
         backgroundColor: '#FFFFFF',
