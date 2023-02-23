@@ -7,6 +7,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import HomeButton from "../Button/ResourcesButton";
 import SearchBar from "./SearchBar";
 import { Client } from "rr-apilib";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 interface Props {
     onChangeSearch?: (text: string) => void;
@@ -22,8 +23,11 @@ type TopBarStackParamList = {
 export default function TopBar({onChangeSearch, hideSearchBar=false, hideLogout=true, client}: Props) {
     const navigation = useNavigation<StackNavigationProp<TopBarStackParamList>>();
 
-    const onClickDisconnect = () => {
+    const onClickDisconnect = async () => {
         client?.auth.logout();
+        // Remove token and refresh token from storage
+        await AsyncStorage.removeItem('token');
+        await AsyncStorage.removeItem('refresh_token');
         navigation.navigate('Login');
     }
 
