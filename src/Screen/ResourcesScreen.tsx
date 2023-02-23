@@ -52,20 +52,22 @@ export default function ResourcesScreen({ route }: any) {
             <View style={CommonStyles.content}>
                 {
                     resources.length === 0 && noResources === false ?  <ActivityIndicator size="large" color="#0000ff" style={CommonStyles.loader} /> :
-                    <ScrollView style={ResourcesStyles.resourcesContainer} contentContainerStyle={CommonStyles.scrollViewCenter} >
-                        {
-                            resources.map((resource, i) => {
-                                if ((!showMoreItems && i < 6) || showMoreItems) {
-                                    return <ResourceCard key={i} resource={resource} callBack={() => navigation.navigate('ResourceDetails', {resource: resource})} />
-                                } 
-                            })
-                        }
-                        {
-                            !showMoreItems && resources.length >= 6 && <ButtonShowMoreItems callBack={onClickShowMoreItems} />
-                        }
-                        {
-                            noResources && <Text>Aucune ressource n'a été trouvée.</Text>
-                        }
+                    <ScrollView style={CommonStyles.scrollView}>
+                        <View style={ResourcesStyles.resourcesContainer}>
+                            {
+                                resources.map((resource, i) => {
+                                    if ((!showMoreItems && i < 6) || showMoreItems) {
+                                        return <ResourceCard key={i} resource={resource} callBack={() => navigation.navigate('ResourceDetails', {resource: resource})} />
+                                    } 
+                                })
+                            }
+                            {
+                                !showMoreItems && resources.length >= 6 && <ButtonShowMoreItems callBack={onClickShowMoreItems} />
+                            }
+                            {
+                                noResources && <Text>Aucune ressource n'a été trouvée.</Text>
+                            }
+                        </View>
                     </ScrollView>
                 }
             </View>

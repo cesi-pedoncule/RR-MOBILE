@@ -7,6 +7,7 @@ export default StyleSheet.create({
         width : "100%",
         paddingLeft : 10,
         paddingRight : 10,
+        marginTop : 5,
     },
     addNameResource: {
         backgroundColor: "#F0F0F0",

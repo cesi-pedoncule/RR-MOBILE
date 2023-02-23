@@ -62,8 +62,7 @@ export default function ResourceCard({ resource, callBack, inShareResourceScreen
     }
 
     return (
-        <TouchableHighlight onPress={(e) => onPress(e)} underlayColor={"#000000'"} style={ResourceCardStyles.cardBackground}>
-            <View>
+        <TouchableHighlight onPress={(e) => onPress(e)} underlayColor={"#000000'"} style={ResourceCardStyles.container}>
             {
                 !inShareResourceScreens ? 
                 <View>
@@ -95,15 +94,12 @@ export default function ResourceCard({ resource, callBack, inShareResourceScreen
                         }
                     </View>
                     <Text style={ResourceCardStyles.cardText} numberOfLines={3}>{description}</Text>
-                    <View style={ResourceCardStyles.lineButtons}>
-                        <View style={ResourceCardStyles.buttonsContainer}>
-                            <LikeButton resource={resource} isLikeResource={isLikeResource} setIsLikeResource={setIsLikeResource} numberLike={numberLike} setNumberLike={setNumberLike}/>
-                            <CommentButton callBack={onClickComment} commentNumber={numberCommentResource}/>
-                        </View>
+                    <View style={ResourceCardStyles.buttonsContainer}>
+                        <LikeButton resource={resource} isLikeResource={isLikeResource} setIsLikeResource={setIsLikeResource} numberLike={numberLike} setNumberLike={setNumberLike}/>
+                        <CommentButton callBack={onClickComment} commentNumber={numberCommentResource}/>
                     </View>
                 </View>
             }
-            </View>
         </TouchableHighlight>
     )
 }

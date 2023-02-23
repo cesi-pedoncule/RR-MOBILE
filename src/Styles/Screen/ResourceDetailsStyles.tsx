@@ -27,6 +27,7 @@ export default StyleSheet.create({
         shadowOffset: {width: 0, height: 4},
         shadowColor: '#000000',
         shadowOpacity: 0.25,
+        shadowRadius: 4,
         borderRadius: 15,
         marginBottom: 30,
     },
@@ -64,6 +65,12 @@ export default StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         margin: 10,
+    },
+    listComment: {
+        marginTop: 30,
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: "100%"
     },
     commentTitle: {
         fontWeight: 'bold',
