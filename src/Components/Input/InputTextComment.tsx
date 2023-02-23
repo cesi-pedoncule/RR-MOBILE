@@ -1,18 +1,28 @@
 import { View, Text, TouchableHighlight, TextInput } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import InputTextCommentStyles from '../../Styles/Components/Input/InputTextCommentStyles'
+import { CommentBuilder, Resource } from 'rr-apilib';
 
 interface Props {
-    callBack: ()=>void;
+    resource: Resource;
 }
 
-export default function InputTextComment({callBack}:Props) {
+export default function InputTextComment({resource}:Props) {
     
+    const [inputText, setInputText] = useState('');
+
+    const onClickAddComment = () => {
+        const builder = new CommentBuilder()
+            .setComment(inputText)
+            .setRessource(resource);
+        resource.comments.create(builder);
+    }
+
     return (
         <View style={InputTextCommentStyles.txtFieldBackground}>
-            <TextInput style={InputTextCommentStyles.txtFieldInput} multiline={true}/>
-            <TouchableHighlight onPress={callBack} underlayColor={"#FFFFFF"}>
+            <TextInput style={InputTextCommentStyles.txtFieldInput} multiline={true} value={inputText} onChangeText={(newInputText) => setInputText(newInputText)}/>
+            <TouchableHighlight onPress={onClickAddComment} underlayColor={"#FFFFFF"}>
 				{
 					<MaterialCommunityIcons style={InputTextCommentStyles.sendButtonInput} name="comment-arrow-left-outline" size={24} color="black" />
 				}

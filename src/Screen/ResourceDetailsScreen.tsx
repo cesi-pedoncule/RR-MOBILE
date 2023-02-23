@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import CommentCard from '../Components/Card/CommentCard'
 import LikeButton from '../Components/Button/LikeButton'
 import CommentButton from '../Components/Button/CommentButton'
-import { Category, Client, Comment, Resource } from 'rr-apilib'
+import { Category, Client, Comment, CommentBuilder, Resource } from 'rr-apilib'
 import NavBar from '../Components/NavBar'
 import ResourceDetailsStyles from "../Styles/Screen/ResourceDetailsStyles";
 import TopBar from '../Components/Input/TopBar'
@@ -12,6 +12,7 @@ import ButtonShowMoreItems from '../Components/Button/ButtonShowMoreItems'
 import CategoryButton from '../Components/Button/CategoryButton'
 import CommonStyles from '../Styles/CommonStyles'
 import { likeClickHandle } from '../Functions/Utils'
+import InputTextComment from '../Components/Input/InputTextComment'
 
 export default function ResourceDetailsScreen({ route }: any) {
 
@@ -96,6 +97,7 @@ export default function ResourceDetailsScreen({ route }: any) {
                     </TouchableOpacity>
                     <Text style={ResourceDetailsStyles.commentTitle}>Commentaires</Text>
                     <View style={ResourceDetailsStyles.commentContainer}>
+                        <InputTextComment resource={resource}/>
                         {
                             comments.map((comment, i) => {
                                 if ((!showMoreItems && i < 6) || showMoreItems) {
