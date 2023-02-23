@@ -2,21 +2,25 @@ import { View, Text, TouchableHighlight, TextInput } from 'react-native'
 import React, { useState } from 'react'
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import InputTextCommentStyles from '../../Styles/Components/Input/InputTextCommentStyles'
-import { CommentBuilder, Resource } from 'rr-apilib';
+import { Comment, CommentBuilder, Resource } from 'rr-apilib';
 
 interface Props {
     resource: Resource;
+    setComments: React.Dispatch<React.SetStateAction<Comment[]>>;
 }
 
-export default function InputTextComment({resource}:Props) {
+export default function InputTextComment({resource, setComments}:Props) {
     
     const [inputText, setInputText] = useState('');
 
-    const onClickAddComment = () => {
+    const onClickAddComment = async () => {
         const builder = new CommentBuilder()
             .setComment(inputText)
             .setRessource(resource);
-        resource.comments.create(builder);
+
+        const res = await resource.comments.create(builder);
+        setComments(Array.from(res.comments.cache.values()));
+
         setInputText('');
     }
 
