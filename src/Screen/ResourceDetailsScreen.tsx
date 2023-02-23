@@ -18,7 +18,7 @@ export default function ResourceDetailsScreen({ route }: any) {
     const resource = route.params.resource as Resource;
 
     const [isLikeResource, setIsLikeResource] = useState(false);
-    const [numberLikeResource, setNumberLikeResource] = useState(0);
+    const [numberLike, setNumberLike] = useState(resource.likes.cache.size);
     const [comments, setComments] = useState<Comment[]>(Array.from(resource.comments.cache.values()));
     const [categories, setCategories] = useState<Category[]>(Array.from(resource.categories.cache.values()));
 
@@ -29,11 +29,6 @@ export default function ResourceDetailsScreen({ route }: any) {
     const description = resource.description ? (resource.description) : "Aucune description fournie" ;
 
     const [showMoreItems, setShowMoreItems] = useState(false);
-    
-    const onClickLike = () => {
-        setIsLikeResource(!isLikeResource);
-        isLikeResource? setNumberLikeResource(numberLikeResource - 1) : setNumberLikeResource(numberLikeResource + 1);
-    }
     
     const onClickComment = () => {
         //NO-OP
@@ -54,7 +49,13 @@ export default function ResourceDetailsScreen({ route }: any) {
                             <View style={ResourceDetailsStyles.lineLikeAndUser}>
                                 <Text style={ResourceDetailsStyles.cardUser}>{username}</Text>
                                 <View style={ResourceDetailsStyles.likeBtn}>
-                                    <LikeButton resource={resource} />
+                                    <LikeButton
+                                        resource={resource}
+                                        isLikeResource={isLikeResource}
+                                        setIsLikeResource={setIsLikeResource}
+                                        numberLike={numberLike}
+                                        setNumberLike={setNumberLike}
+                                    />
                                     <CommentButton callBack={onClickComment} commentNumber={comments.length}/>
                                 </View>
 
