@@ -17,11 +17,14 @@ type ProfileStackParamList = {
 };
 
 export default function ProfileScreen({route}: any) {
-    
+
     const client = route.params as Client;
     const navigation = useNavigation<StackNavigationProp<ProfileStackParamList>>();
     
     const user = client.auth.me;
+    
+    user?.resources.refresh();
+
     const userProfileName = user?.name + ' ' + user?.firstname;
 
     const checkUserIsConnected = () => {
