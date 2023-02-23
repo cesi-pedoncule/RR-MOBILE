@@ -98,13 +98,15 @@ export default function ResourceDetailsScreen({ route }: any) {
                     <Text style={ResourceDetailsStyles.commentTitle}>Commentaires</Text>
                     <View style={ResourceDetailsStyles.commentContainer}>
                         <InputTextComment resource={resource}/>
-                        {
-                            comments.map((comment, i) => {
-                                if ((!showMoreItems && i < 6) || showMoreItems) {
-                                    return <CommentCard key={i} comment={comment} />
-                                }
-                            })
-                        }
+                        <View style={ResourceDetailsStyles.listComment}> 
+                            {   
+                                comments.map((comment, i) => {
+                                    if ((!showMoreItems && i < 6) || showMoreItems) {
+                                        return <CommentCard key={i} comment={comment} />
+                                    }
+                                })
+                            }          
+                        </View>
                         {
                             comments.length === 0 && <Text>Aucun commentaire</Text>
                         }

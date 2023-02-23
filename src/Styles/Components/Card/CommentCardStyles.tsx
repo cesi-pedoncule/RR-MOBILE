@@ -4,7 +4,7 @@ export default StyleSheet.create({
     cardBackground: {
         width: "90%",
         height: "auto",
-        backgroundColor: '#FFFFFF',
+        backgroundColor: '#F0F0F0',
         borderBottomWidth: 2,
         borderBottomColor: '#EEEEEE',
         shadowOffset: {width: 0, height: 4},
@@ -12,7 +12,7 @@ export default StyleSheet.create({
         shadowOpacity: 0.25,
         shadowRadius: 4,
         borderRadius: 15,
-        margin: 5,
+        margin: 10,
         maxHeight: "50%",
     },
     cardUser:{
