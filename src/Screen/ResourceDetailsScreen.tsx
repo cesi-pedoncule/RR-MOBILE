@@ -97,7 +97,7 @@ export default function ResourceDetailsScreen({ route }: any) {
                     </TouchableOpacity>
                     <Text style={ResourceDetailsStyles.commentTitle}>Commentaires</Text>
                     <View style={ResourceDetailsStyles.commentContainer}>
-                        <InputTextComment resource={resource}/>
+                        <InputTextComment resource={resource} setComments={setComments}/>
                         {
                             comments.map((comment, i) => {
                                 if ((!showMoreItems && i < 6) || showMoreItems) {
