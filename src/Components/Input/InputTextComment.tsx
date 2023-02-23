@@ -17,6 +17,7 @@ export default function InputTextComment({resource}:Props) {
             .setComment(inputText)
             .setRessource(resource);
         resource.comments.create(builder);
+        setInputText('');
     }
 
     return (
