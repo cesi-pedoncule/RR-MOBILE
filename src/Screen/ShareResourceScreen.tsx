@@ -50,17 +50,19 @@ export default function ShareResourceScreen({ route }: any) {
 				resources.length === 0 ?
 				<Text>Aucune ressource enregistrée</Text>
 				:
-				<ScrollView style={ShareResourceStyles.resourcesContainer} contentContainerStyle={CommonStyles.scrollViewCenter}>
-					{
-						resources.map((resource, i) => {
-							if ((!showMoreItems && i < 2) || showMoreItems) {
-								return <ResourceCard key={i} resource={resource} callBack={() => navigation.navigate('ResourceDetails', {resource: resource})} inShareResourceScreens={true}/>
-							}
-						})
-					}
-					{ 
-						!showMoreItems && resources.length >= 6 && <ButtonShowMoreItems callBack={onClickShowMoreItems} /> 
-					}
+				<ScrollView style={ShareResourceStyles.scrollView}>
+					<View style={ShareResourceStyles.resourcesContainer}>
+						{
+							resources.map((resource, i) => {
+								if ((!showMoreItems && i < 2) || showMoreItems) {
+									return <ResourceCard key={i} resource={resource} callBack={() => navigation.navigate('ResourceDetails', {resource: resource})} inShareResourceScreens={true}/>
+								}
+							})
+						}
+						{ 
+							!showMoreItems && resources.length >= 6 && <ButtonShowMoreItems callBack={onClickShowMoreItems} /> 
+						}
+					</View>
 				</ScrollView>
 			}
 			{

@@ -1,14 +1,15 @@
 import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
-	shareResourcesContainer : {
-		marginTop : 20,
-		alignItems : 'center',
-	},
-	resourcesContainer: {
+	scrollView: {
         marginTop: '2%',
         marginBottom: '5%',
 		maxHeight: '70%',
+    },
+	resourcesContainer: {
+		alignItems: 'center',
+        justifyContent: 'center',
+        marginBottom : 30,
 	},
 	textSaves : {
 		position: 'relative',
@@ -21,8 +22,9 @@ export default StyleSheet.create({
 	addResourceBtn :{
 		textAlign: 'center',
 		color: '#FFFFFF',
-		marginTop : 5,
-		width : "40%"
+		marginTop: 5,
+		width: 150,
+		height: 50,
 	},
 	buttonsContainer: {
 		position : 'absolute',
