@@ -1,19 +1,19 @@
 import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
-    moreItemsButton: {
-        paddingHorizontal: 15,
-        height: 34,
-        justifyContent: 'center',
-        backgroundColor: '#F0F0F0',
-        borderRadius: 10,
-        transition: 0.2,
-        textAlign: 'center',
+    container: {
+        backgroundColor: "#F0F0F0",
+        overflow: 'scroll',
+        height: 200,
+        width: "90%",   
         borderBottomWidth: 2,
         borderBottomColor: '#EEEEEE',
         shadowOffset: {width: 0, height: 4},
         shadowColor: '#000000',
         shadowOpacity: 0.25,
         shadowRadius: 4,
+        borderRadius: 15,
+        marginTop: 30,
+        padding:15,
     },
 });

@@ -61,8 +61,8 @@ export default function ResourceDetailsScreen({ route }: any) {
         <View style={CommonStyles.container}>
             <TopBar hideSearchBar={true}/>
             <View style={CommonStyles.content}>
+                <ReturnButton/>
                 <ScrollView style={CommonStyles.scrollView}>
-                    <ReturnButton/>
                     <TouchableOpacity onPress={(e) => onPress(e)} activeOpacity={1}>
                         <View style={ResourceDetailsStyles.centerContent}>
                             <View style={ResourceDetailsStyles.cardBackground}>
@@ -78,7 +78,6 @@ export default function ResourceDetailsScreen({ route }: any) {
                                         />
                                         <CommentButton callBack={onClickComment} commentNumber={comments.length}/>
                                     </View>
-
                                 </View>
                                 <Text style={ResourceDetailsStyles.cardTitle}>{title}</Text>
                                 <View style={ResourceDetailsStyles.categoriesContainer}>

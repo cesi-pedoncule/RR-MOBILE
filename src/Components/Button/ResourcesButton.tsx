@@ -1,5 +1,5 @@
 import React from "react";
-import { TouchableHighlight } from "react-native";
+import { TouchableOpacity } from "react-native";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { StackNavigationProp } from "@react-navigation/stack";
 import { useNavigation } from "@react-navigation/native";
@@ -19,8 +19,8 @@ export default function ResourcesButton({style} : Props) {
     }
 
     return (
-        <TouchableHighlight style={[style]} underlayColor="#FFFFFF" onPress={onPressButton}>
+        <TouchableOpacity style={[style]} onPress={onPressButton}>
             <MaterialCommunityIcons name="bookshelf" size={24} color="black" />
-        </TouchableHighlight>
+        </TouchableOpacity>
     );
 }

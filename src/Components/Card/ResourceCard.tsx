@@ -35,7 +35,7 @@ export default function ResourceCard({ resource, callBack }: Props) {
 
     const username = resource.user ? `${resource.user.name} ${resource.user.firstname}` : "Utilisateur inconnu";
     // Set the description to "Aucune description fournie" if the description is null or undefined and if the description is longer than 217 characters, cut it and add "..." at the end
-    const description = resource.description ? (resource.description?.length > 217 ? resource.description?.substring(0, 217) + "..." : resource.description) : "Aucune description fournie" ;
+    const description = resource.description ?  resource.description : "Aucune description fournie" ;
     
     const numberCommentResource = resource.comments.cache.size;
 

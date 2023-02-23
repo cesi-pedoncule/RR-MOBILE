@@ -1,4 +1,4 @@
-import { TouchableHighlight, Text } from 'react-native'
+import { TouchableOpacity, Text } from 'react-native'
 import React from 'react'
 import InputButtonStyles from '../../Styles/Components/Button/InputButtonStyles';
 
@@ -10,8 +10,8 @@ interface Props {
 
 export default function InputButton({ label, callBack, style}: Props) {
     return (
-        <TouchableHighlight style={[InputButtonStyles.btnBackground, style]} onPress={callBack} underlayColor={"#FFFFFF"}>
+        <TouchableOpacity style={[InputButtonStyles.btnBackground, style]} onPress={callBack}>
             <Text style={InputButtonStyles.btnText}>{label}</Text>
-        </TouchableHighlight>
+        </TouchableOpacity>
     )
 }

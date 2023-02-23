@@ -2,13 +2,14 @@ import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
     returnBtn:{
-        padding: 10,
+        alignItems: 'center',
         justifyContent: 'center',
-        textAlign: 'center',
-        backgroundColor: '#FFFFFF',
+        width: 40,
+        height: 40,
+        padding: 5,
         borderRadius: 7,
         transition: 0.2,
-        marginHorizontal: "6%",
+        marginHorizontal: 15,
+        marginTop: 15,
     },
-
 });

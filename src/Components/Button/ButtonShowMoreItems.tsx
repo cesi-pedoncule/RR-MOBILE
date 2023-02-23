@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, TouchableHighlight } from "react-native";
+import { Text, TouchableOpacity } from "react-native";
 import moreItemsButtonStyles from "../../Styles/Components/Button/ButtonShowMoreItemsStyles";
 
 interface Props {
@@ -8,8 +8,8 @@ interface Props {
 
 export default function ButtonShowMoreItems({callBack}: Props) {
   return (
-    <TouchableHighlight onPress={callBack} style={moreItemsButtonStyles.moreItemsButton} underlayColor={"#FFFFFF"} >
+    <TouchableOpacity onPress={callBack} style={moreItemsButtonStyles.moreItemsButton}>
         <Text>...</Text>
-    </TouchableHighlight>
+    </TouchableOpacity>
   );
 }
