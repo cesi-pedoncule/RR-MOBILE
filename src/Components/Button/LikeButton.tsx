@@ -16,19 +16,6 @@ interface Props {
 
 export default function LikeButton({ resource, isLikeResource, setIsLikeResource, numberLike, setNumberLike }: Props) {
 
-	// const [isLikeResource, setIsLikeResource] = React.useState<boolean>(resource.hasLike());
-	// const [numberLike, setNumberLike] = React.useState<number>(resource.likes.cache.size);
-
-	const onClickLike = async () => {
-		if (resource.client.auth.me) {
-			resource.hasLike() ? resource.unlike() : resource.like();
-			setIsLikeResource(!resource.hasLike());
-			setNumberLike(isLikeResource ? numberLike - 1 : numberLike + 1);
-		} else {
-			alert("Vous devez être connecté pour liker une ressource");
-		}
-	}
-
 	return (
 		<View style={LikeButtonStyles.container}>
 			<Text style={LikeButtonStyles.numberLike}>{(numberLike).toString()}</Text>
