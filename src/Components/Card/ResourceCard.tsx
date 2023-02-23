@@ -1,5 +1,7 @@
-import { Category, Resource } from 'rr-apilib'
 import React, { useState } from 'react'
+import { Category, Resource } from 'rr-apilib'
+import { useNavigation } from '@react-navigation/native'
+import { StackNavigationProp } from '@react-navigation/stack'
 import {
     View,
     Text,
@@ -8,11 +10,11 @@ import {
 } from 'react-native'
 
 import LikeButton from '../Button/LikeButton'
-import ResourceCardStyles from '../../Styles/Components/Card/ResourceCardStyles'
 import CommentButton from '../Button/CommentButton'
-import { useNavigation } from '@react-navigation/native'
-import { StackNavigationProp } from '@react-navigation/stack'
 import CategoryButton from '../Button/CategoryButton'
+import { likeClickHandle } from '../../Functions/Utils'
+
+import ResourceCardStyles from '../../Styles/Components/Card/ResourceCardStyles'
 
 type ResourceCardParams = {
     ResourceDetails: { resource: Resource };
@@ -27,8 +29,8 @@ export default function ResourceCard({ resource, callBack }: Props) {
 
     const navigation = useNavigation<StackNavigationProp<ResourceCardParams>>();
 
-    const [isLikeResource, setIsLikeResource] = useState<boolean>(false);
-    const [numberLikeResource, setNumberLikeResource] = useState<number>(0);
+    const [numberLike, setNumberLike] = useState(resource.likes.cache.size);
+    const [isLikeResource, setIsLikeResource] = useState<boolean>(resource.hasLike());
     const [categories, setCategories] = useState<Category[]>(Array.from(resource.categories.cache.values()));
 
     const username = resource.user ? `${resource.user.name} ${resource.user.firstname}` : "Utilisateur inconnu";
@@ -36,11 +38,6 @@ export default function ResourceCard({ resource, callBack }: Props) {
     const description = resource.description ? (resource.description?.length > 217 ? resource.description?.substring(0, 217) + "..." : resource.description) : "Aucune description fournie" ;
     
     const numberCommentResource = resource.comments.cache.size;
-
-    const onClickLike = () => {
-        setIsLikeResource(!isLikeResource);
-        isLikeResource? setNumberLikeResource(numberLikeResource - 1) : setNumberLikeResource(numberLikeResource + 1);
-    }
 
     const onClickComment = () => {
         navigation.navigate("ResourceDetails", { resource: resource });
@@ -55,7 +52,7 @@ export default function ResourceCard({ resource, callBack }: Props) {
         if(timeout) {
             clearTimeout(timeout);
             timeout = null;
-            onClickLike();
+            likeClickHandle(resource, isLikeResource, setIsLikeResource, numberLike, setNumberLike);
             return;
         }
 
@@ -71,7 +68,13 @@ export default function ResourceCard({ resource, callBack }: Props) {
                 <View style={ResourceCardStyles.lineLikeAndUser}>
                     <Text style={ResourceCardStyles.cardUser} numberOfLines={1}>{username}</Text>
                     <View style={ResourceCardStyles.likeBtn}>
-                        <LikeButton callBack={onClickLike} isLike={isLikeResource} likeNumber={numberLikeResource}/>
+                        <LikeButton
+                            resource={resource}
+                            isLikeResource={isLikeResource}
+                            setIsLikeResource={setIsLikeResource}
+                            numberLike={numberLike}
+                            setNumberLike={setNumberLike}
+                        />
                         <CommentButton callBack={onClickComment} commentNumber={numberCommentResource}/>
                     </View>    
                 </View>
