@@ -17,22 +17,20 @@ type ProfileStackParamList = {
 };
 
 export default function ProfileScreen({route}: any) {
-    
+
     const client = route.params as Client;
     const navigation = useNavigation<StackNavigationProp<ProfileStackParamList>>();
     
     const user = client.auth.me;
-    const userProfileName = user?.name + ' ' + user?.firstname;
 
-    const checkUserIsConnected = () => {
-        if (!user) {
-            navigation.navigate('Resources');
-        }
+    if (user == null) {
+        navigation.navigate('Login');
+        return;
     }
+    
+    user.resources.refresh();
 
-    useEffect(() => {
-        checkUserIsConnected();
-    }, []);
+    const userProfileName = user?.name + ' ' + user?.firstname;
 
     return (
         <View style={CommonStyles.container}>
