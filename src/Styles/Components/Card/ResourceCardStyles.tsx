@@ -35,15 +35,31 @@ export default StyleSheet.create({
         marginLeft: 20,
         marginRight: 20,
     },
-    lineLikeAndUser:{
+    lineButtonsAndUser:{
         marginTop: 10,
         alignItems: 'center',
         justifyContent: 'space-between',
         display:'flex',
         flexDirection : "row",
     },
-    likeBtn:{
+    userAndButtonsContainer:{
         marginRight : 20,
+    },
+    lineButtons: {
+        marginTop: 50,
+    },
+    buttonsContainer: {
+        position: 'absolute',
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        width: "100%",
+        paddingHorizontal: 60,
+        bottom: 0,
+    },
+    withoutUserContainer: {
+        marginTop: 20,
     },
     categoriesContainer: {
         display : "flex",

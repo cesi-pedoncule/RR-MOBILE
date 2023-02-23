@@ -54,7 +54,7 @@ export default function ShareResourceScreen({ route }: any) {
 					{
 						resources.map((resource, i) => {
 							if ((!showMoreItems && i < 2) || showMoreItems) {
-								return <ResourceCard key={i} resource={resource} callBack={() => navigation.navigate('ResourceDetails', {resource: resource})} />
+								return <ResourceCard key={i} resource={resource} callBack={() => navigation.navigate('ResourceDetails', {resource: resource})} inShareResourceScreens={true}/>
 							}
 						})
 					}
