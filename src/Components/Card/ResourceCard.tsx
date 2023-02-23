@@ -30,7 +30,7 @@ export default function ResourceCard({ resource, callBack }: Props) {
     const navigation = useNavigation<StackNavigationProp<ResourceCardParams>>();
 
     const [numberLike, setNumberLike] = useState(resource.likes.cache.size);
-    const [isLikeResource, setIsLikeResource] = useState<boolean>(resource.hasLike());
+    const [isLikeResource, setIsLikeResource] = useState<boolean>(resource.isLiked());
     const [categories, setCategories] = useState<Category[]>(Array.from(resource.categories.cache.values()));
 
     const username = resource.user ? `${resource.user.name} ${resource.user.firstname}` : "Utilisateur inconnu";
