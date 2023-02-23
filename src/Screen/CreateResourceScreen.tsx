@@ -7,17 +7,28 @@ import ReturnButton from '../Components/Button/ReturnButton'
 import CreateResourceStyles from '../Styles/Screen/CreateResourceStyles'
 import InputTextDescription from '../Components/Input/InputTextDescription'
 import InputButton from '../Components/Button/InputButton'
-import { Client } from 'rr-apilib'
+import { Client, ResourceBuilder } from 'rr-apilib'
 import ButtonFile from '../Components/Button/ButtonFile'
+import { StackNavigationProp } from '@react-navigation/stack'
+import { useNavigation } from '@react-navigation/native'
+
+type CreateResourceScreenStackParamList = {
+    ShareCreate: undefined;
+};
 
 export default function CreateResourceScreen({route} : any) {
-    const client = route.params as Client;
+    const navigation = useNavigation<StackNavigationProp<CreateResourceScreenStackParamList>>();
 
-    const [isEnabled, setIsEnabled] = useState(false);
-    const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+    const client = route.params as Client;
+    const [newResource] = useState<ResourceBuilder>(new ResourceBuilder());
+
+    const [isPublic, setIsPublic] = useState(false);
+    const toggleSwitch = () => setIsPublic(previousState => !previousState);
 
     const onClickSend = () => {
-        alert("TODO");
+        newResource.setIsPublic(isPublic);
+        client.resources.create(newResource);
+        navigation.goBack();
     }
 
     const onClickAddCategory = () => {
@@ -35,16 +46,16 @@ export default function CreateResourceScreen({route} : any) {
                 <ReturnButton/>
                 <ScrollView style={CommonStyles.scrollView}>
                     <View style={CreateResourceStyles.container}>
-                        <TextInput style={CreateResourceStyles.addNameResource} placeholder={"Titre de la ressource"}/>
+                        <TextInput style={CreateResourceStyles.addNameResource} placeholder={"Titre de la ressource"} onChangeText={(text) => newResource.setTitle(text)}/>
                         <View style={CreateResourceStyles.categorieList}>
                             <TouchableOpacity onPress={onClickAddCategory} style={CreateResourceStyles.addCategorieContainer}>
                                 <Text style={CreateResourceStyles.addCategorieText}>{'+'}</Text>
                             </TouchableOpacity>
                         </View>
-                        <InputTextDescription/>
+                        <InputTextDescription newResource={newResource}/>
                         <ButtonFile text={'Ajouter un fichier'} callBack={onClickAddFile}/>
                         <View style={CreateResourceStyles.switchContainer}>
-                            <Switch style={CreateResourceStyles.switch} trackColor={{false: '#F0F0F0', true: '#F0F0F0'}} thumbColor={'#03989E'} onValueChange={toggleSwitch} value={isEnabled}/>
+                            <Switch style={CreateResourceStyles.switch} trackColor={{false: '#F0F0F0', true: '#F0F0F0'}} thumbColor={'#03989E'} onValueChange={toggleSwitch} value={isPublic}/>
                             <Text>Privé / Publique</Text>
                         </View>
                         <InputButton label={'Envoyer'} callBack={onClickSend} style={CreateResourceStyles.sendButton}/>
