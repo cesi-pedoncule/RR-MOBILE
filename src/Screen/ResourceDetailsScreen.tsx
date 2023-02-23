@@ -47,8 +47,8 @@ export default function ResourceDetailsScreen({ route }: any) {
         <View style={CommonStyles.container}>
             <TopBar hideSearchBar={true}/>
             <View style={CommonStyles.content}>
+                <ReturnButton/>
                 <ScrollView style={CommonStyles.scrollView}>
-                    <ReturnButton/>
                     <View style={ResourceDetailsStyles.centerContent}>
                         <View style={ResourceDetailsStyles.cardBackground}>
                             <View style={ResourceDetailsStyles.lineLikeAndUser}>

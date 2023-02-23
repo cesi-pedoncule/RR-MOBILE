@@ -14,7 +14,7 @@ export default function ReturnButton() {
 
     return (
         <TouchableHighlight style={ReturnButtonStyles.returnBtn} underlayColor="#FFFFFF" onPress={() => navigation.goBack()}>
-        <MaterialCommunityIcons name="arrow-left-top" size={24} color="black" />
+            <MaterialCommunityIcons name="arrow-left-top" size={24} color="black" />
         </TouchableHighlight>
     )
 }

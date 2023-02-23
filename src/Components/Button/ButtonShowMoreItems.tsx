@@ -8,7 +8,7 @@ interface Props {
 
 export default function ButtonShowMoreItems({callBack}: Props) {
   return (
-    <TouchableHighlight onPress={callBack} style={moreItemsButtonStyles.moreItemsButton} underlayColor={"#FFFFFF"} >
+    <TouchableHighlight onPress={callBack} style={moreItemsButtonStyles.moreItemsButton} underlayColor={"#F0F0F0"} >
         <Text>...</Text>
     </TouchableHighlight>
   );
