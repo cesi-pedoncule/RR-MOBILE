@@ -23,9 +23,10 @@ type ResourceCardParams = {
 interface Props {
     resource: Resource;
     callBack: () => void;
+    inShareResourceScreens?: boolean;
 }
 
-export default function ResourceCard({ resource, callBack }: Props) {
+export default function ResourceCard({ resource, callBack, inShareResourceScreens=false }: Props) {
 
     const navigation = useNavigation<StackNavigationProp<ResourceCardParams>>();
 
@@ -63,28 +64,45 @@ export default function ResourceCard({ resource, callBack }: Props) {
     return (
         <TouchableHighlight onPress={(e) => onPress(e)} underlayColor={"#000000'"} style={ResourceCardStyles.cardBackground}>
             <View>
-                <View style={ResourceCardStyles.lineLikeAndUser}>
-                    <Text style={ResourceCardStyles.cardUser} numberOfLines={1}>{username}</Text>
-                    <View style={ResourceCardStyles.likeBtn}>
-                        <LikeButton
-                            resource={resource}
-                            isLikeResource={isLikeResource}
-                            setIsLikeResource={setIsLikeResource}
-                            numberLike={numberLike}
-                            setNumberLike={setNumberLike}
-                        />
-                        <CommentButton callBack={onClickComment} commentNumber={numberCommentResource}/>
-                    </View>    
+            {
+                !inShareResourceScreens ? 
+                <View>
+                    <View style={ResourceCardStyles.lineButtonsAndUser}>
+                        <Text style={ResourceCardStyles.cardUser} numberOfLines={1}>{username}</Text>
+                        <View style={ResourceCardStyles.userAndButtonsContainer}>
+                            <LikeButton resource={resource} isLikeResource={isLikeResource} setIsLikeResource={setIsLikeResource} numberLike={numberLike} setNumberLike={setNumberLike}/>
+                            <CommentButton callBack={onClickComment} commentNumber={numberCommentResource}/>
+                        </View>    
+                    </View>
+                    <Text style={ResourceCardStyles.cardTitle} numberOfLines={1}>{resource.title}</Text>
+                    <View style={ResourceCardStyles.categoriesContainer}>
+                        {
+                            categories.map((category, i) => {
+                                return <CategoryButton key={i} category={category}></CategoryButton>
+                            })
+                        }
+                    </View>
+                    <Text style={ResourceCardStyles.cardText} numberOfLines={3}>{description}</Text>
                 </View>
-                <Text style={ResourceCardStyles.cardTitle} numberOfLines={1}>{resource.title}</Text>
-                <View style={ResourceCardStyles.categoriesContainer}>
-                    {
-                        categories.map((category, i) => {
-                            return <CategoryButton key={i} category={category}></CategoryButton>
-                        })
-                    }
+                :
+                <View style={ResourceCardStyles.withoutUserContainer}>
+                    <Text style={ResourceCardStyles.cardTitle} numberOfLines={1}>{resource.title}</Text>
+                    <View style={ResourceCardStyles.categoriesContainer}>
+                        {
+                            categories.map((category, i) => {
+                                return <CategoryButton key={i} category={category}></CategoryButton>
+                            })
+                        }
+                    </View>
+                    <Text style={ResourceCardStyles.cardText} numberOfLines={3}>{description}</Text>
+                    <View style={ResourceCardStyles.lineButtons}>
+                        <View style={ResourceCardStyles.buttonsContainer}>
+                            <LikeButton resource={resource} isLikeResource={isLikeResource} setIsLikeResource={setIsLikeResource} numberLike={numberLike} setNumberLike={setNumberLike}/>
+                            <CommentButton callBack={onClickComment} commentNumber={numberCommentResource}/>
+                        </View>
+                    </View>
                 </View>
-                <Text style={ResourceCardStyles.cardText} numberOfLines={3}>{description}</Text>
+            }
             </View>
         </TouchableHighlight>
     )
