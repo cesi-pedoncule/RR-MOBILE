@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, TouchableHighlight } from "react-native";
+import { Text, TouchableOpacity } from "react-native";
 import CommonStyles from "../../Styles/CommonStyles";
 
 interface Props {
@@ -10,8 +10,8 @@ interface Props {
 export default function Link({label, callBack}: Props)
 {
     return (
-        <TouchableHighlight onPress={callBack} underlayColor={"#FFFFFF"}>
+        <TouchableOpacity onPress={callBack}>
             <Text style={CommonStyles.link}>{label}</Text>
-        </TouchableHighlight>
+        </TouchableOpacity>
     )
 }

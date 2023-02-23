@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, TextInput, TouchableHighlight, Switch } from 'react-native'
+import { View, Text, ScrollView, TextInput, Switch, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
 import CommonStyles from '../Styles/CommonStyles'
 import TopBar from '../Components/Input/TopBar'
@@ -37,9 +37,9 @@ export default function CreateResourceScreen({route} : any) {
                     <View style={CreateResourceStyles.container}>
                         <TextInput style={CreateResourceStyles.addNameResource} placeholder={"Titre de la ressource"}/>
                         <View style={CreateResourceStyles.categorieList}>
-                            <TouchableHighlight onPress={onClickAddCategory} underlayColor={"#F0F0F0"}  style={CreateResourceStyles.addCategorieContainer}>
+                            <TouchableOpacity onPress={onClickAddCategory} style={CreateResourceStyles.addCategorieContainer}>
                                 <Text style={CreateResourceStyles.addCategorieText}>{'+'}</Text>
-                            </TouchableHighlight>
+                            </TouchableOpacity>
                         </View>
                         <InputTextDescription/>
                         <ButtonFile text={'Ajouter un fichier'} callBack={onClickAddFile}/>

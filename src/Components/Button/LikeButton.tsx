@@ -1,4 +1,4 @@
-import {Text, TouchableHighlight, View } from 'react-native'
+import {Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import LikeButtonStyles from '../../Styles/Components/Button/LikeButtonStyles';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
@@ -13,11 +13,11 @@ export default function LikeButton({callBack, isLike, likeNumber}:Props) {
 	return (
 		<View style={LikeButtonStyles.container}>
 			<Text style={LikeButtonStyles.numberLike}>{likeNumber.toString()}</Text>
-			<TouchableHighlight style={LikeButtonStyles.likeBtn} onPress={callBack} underlayColor={"#F0F0F0"}>
+			<TouchableOpacity style={LikeButtonStyles.likeBtn} onPress={callBack} >
 				{
 					!isLike? <MaterialCommunityIcons name="cards-heart-outline" size={24} color="black" /> : <MaterialCommunityIcons name="cards-heart" size={24} color="black" />
 				}
-			</TouchableHighlight>
+			</TouchableOpacity>
 		</View>
 	);
 }
