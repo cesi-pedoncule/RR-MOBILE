@@ -22,6 +22,7 @@ export default function ResourceDetailsScreen({ route }: any) {
     const [isLikeResource, setIsLikeResource] = useState(false);
     const [numberLike, setNumberLike] = useState(resource.likes.cache.size);
     const [comments, setComments] = useState<Comment[]>(Array.from(resource.comments.cache.values()));
+    const [numberComment, setNumberComment] = useState(comments.length);
     const [categories, setCategories] = useState<Category[]>(Array.from(resource.categories.cache.values()));
 
     const title = resource.title;
@@ -77,7 +78,7 @@ export default function ResourceDetailsScreen({ route }: any) {
                                             numberLike={numberLike}
                                             setNumberLike={setNumberLike}
                                         />
-                                        <CommentButton callBack={onClickComment} commentNumber={comments.length}/>
+                                        <CommentButton callBack={onClickComment} commentNumber={numberComment}/>
                                     </View>
 
                                 </View>
