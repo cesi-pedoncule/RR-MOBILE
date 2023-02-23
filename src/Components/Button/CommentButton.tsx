@@ -2,7 +2,7 @@ import React from 'react'
 import {
     View,
     Text,
-    TouchableHighlight
+    TouchableOpacity
 } from 'react-native'
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import CommentButtonStyles from '../../Styles/Components/Button/CommentButtonStyles';
@@ -16,11 +16,11 @@ export default function CommentButton({ callBack, commentNumber }: Props) {
     return (
         <View style={CommentButtonStyles.container}>
             <Text style={CommentButtonStyles.numberComment}>{commentNumber.toString()}</Text>
-            <TouchableHighlight style={CommentButtonStyles.commentBtn} onPress={callBack} underlayColor={"#F0F0F0"}>
+            <TouchableOpacity style={CommentButtonStyles.commentBtn} onPress={callBack}>
                 {
                     <MaterialCommunityIcons name="comment-outline" size={24} color="black" />
                 }
-            </TouchableHighlight>
+            </TouchableOpacity>
         </View>
     )
 }

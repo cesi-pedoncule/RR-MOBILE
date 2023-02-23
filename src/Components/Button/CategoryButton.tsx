@@ -1,4 +1,4 @@
-import { View, Text, TouchableHighlight } from 'react-native'
+import { View, Text, TouchableOpacity } from 'react-native'
 import CategoryButtonStyles from '../../Styles/Components/Button/CategoryButtonStyles'
 import { Category } from 'rr-apilib';
 
@@ -13,10 +13,10 @@ export default function CategoryButton({category}:Props) {
     }
 
     return (
-        <TouchableHighlight onPress={callBack} underlayColor={"#F0F0F0"}  style={CategoryButtonStyles.btnBackground}>
+        <TouchableOpacity onPress={callBack} style={CategoryButtonStyles.btnBackground}>
             <View>
                 <Text numberOfLines={1} style={CategoryButtonStyles.btnText}>{category.name}</Text>
             </View>
-        </TouchableHighlight>
+        </TouchableOpacity>
   )
 }

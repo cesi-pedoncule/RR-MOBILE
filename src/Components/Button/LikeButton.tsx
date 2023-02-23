@@ -1,7 +1,7 @@
 import React from 'react'
 import { Resource } from 'rr-apilib'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
-import {GestureResponderEvent, Text, TouchableHighlight, View } from 'react-native'
+import {GestureResponderEvent, Text, TouchableOpacity, View } from 'react-native'
 
 import { likeClickHandle } from '../../Functions/Utils'
 import LikeButtonStyles from '../../Styles/Components/Button/LikeButtonStyles';
@@ -34,10 +34,10 @@ export default function LikeButton({ resource, isLikeResource, setIsLikeResource
 
 	return (
 		<View style={LikeButtonStyles.container}>
-			<Text style={LikeButtonStyles.numberLike}>{(numberLike).toString()}</Text>
-			<TouchableHighlight style={LikeButtonStyles.likeBtn} onPress={(e) => onPress(e)} underlayColor={"#F0F0F0"}>
+			<Text style={LikeButtonStyles.numberLike}>{numberLike.toString()}</Text>
+			<TouchableOpacity style={LikeButtonStyles.likeBtn} onPress={(e) => onPress(e)} >
 				<MaterialCommunityIcons name={isLikeResource ? "cards-heart" : "cards-heart-outline" } size={24} color="black" />
-			</TouchableHighlight>
+			</TouchableOpacity>
 		</View>
 	);
 }

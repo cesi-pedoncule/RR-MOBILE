@@ -1,4 +1,4 @@
-import { Image, TouchableHighlight, View, Text } from 'react-native'
+import { Image, TouchableOpacity, View, Text } from 'react-native'
 import NavBarStyles from '../Styles/Components/NavBarStyles'; 
 import { StackNavigationProp } from '@react-navigation/stack';
 import { useNavigation } from '@react-navigation/native';
@@ -49,7 +49,7 @@ export default function NavBar({client, resourcesIsFocused=false, categoriesIsFo
 
     return (
         <View style={NavBarStyles.container}>
-            <TouchableHighlight onPress={onClickResourcesButton} underlayColor={"#FFF"} style={NavBarStyles.button}>
+            <TouchableOpacity onPress={onClickResourcesButton} style={NavBarStyles.button}>
                 {
                     !resourcesIsFocused ? 
                     <View style={NavBarStyles.buttonContainer}>
@@ -62,8 +62,8 @@ export default function NavBar({client, resourcesIsFocused=false, categoriesIsFo
                         <Text style={NavBarStyles.textFocused}>Ressources</Text>
                     </View> 
                 }
-            </TouchableHighlight>
-            <TouchableHighlight onPress={onClickCategoriesButton} underlayColor={"#FFF"} style={NavBarStyles.button}>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={onClickCategoriesButton} style={NavBarStyles.button}>
                 {
                     !categoriesIsFocused ?
                     <View style={NavBarStyles.buttonContainer}>
@@ -77,8 +77,8 @@ export default function NavBar({client, resourcesIsFocused=false, categoriesIsFo
                     </View>
                 }
                 
-            </TouchableHighlight>
-            <TouchableHighlight onPress={onClickShareResourceButton} underlayColor={"#FFF"} style={NavBarStyles.button}>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={onClickShareResourceButton} style={NavBarStyles.button}>
                 {
                     !shareResourceIsFocused ?
                     <View style={NavBarStyles.buttonContainer}>
@@ -91,8 +91,8 @@ export default function NavBar({client, resourcesIsFocused=false, categoriesIsFo
                         <Text style={NavBarStyles.textFocused}>Partager</Text>
                     </View>
                 }
-            </TouchableHighlight>
-            <TouchableHighlight onPress={onClickProfileButton} underlayColor={"#FFF"} style={NavBarStyles.button}>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={onClickProfileButton} style={NavBarStyles.button}>
                 {
                     !profileIsFocused ?
                     <View style={NavBarStyles.buttonContainer}>
@@ -105,7 +105,7 @@ export default function NavBar({client, resourcesIsFocused=false, categoriesIsFo
                         <Text style={NavBarStyles.textFocused}>Profile</Text>
                     </View>
                 }
-            </TouchableHighlight>
+            </TouchableOpacity>
         </View>
     )
 }
