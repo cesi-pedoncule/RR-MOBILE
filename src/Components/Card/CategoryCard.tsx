@@ -9,6 +9,9 @@ interface Props {
 }
 
 export default function CategoryCard({ category }:Props) {
+
+    category.resources.refresh();
+
     return (
         <View style={CategoryCardStyles.cardBackground}>
             <Text style={CategoryCardStyles.cardTitle} numberOfLines={2}>{category.name}</Text>
