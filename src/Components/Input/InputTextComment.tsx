@@ -16,10 +16,12 @@ export default function InputTextComment({resource, setComments, setNumberCommen
 
     const onClickAddComment = async () => {
         if(inputText != ''){
+            console.log(resource.comments.cache.size)
             const builder = new CommentBuilder()
             .setComment(inputText)
             .setRessource(resource);
             const res = await resource.comments.create(builder);
+            console.log(resource.comments.cache.size)
             const comments = Array.from(res.comments.cache.values());
             setComments(comments.reverse());
             setNumberComment(comments.length);

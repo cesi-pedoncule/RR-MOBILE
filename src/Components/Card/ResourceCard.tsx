@@ -22,19 +22,22 @@ interface Props {
     resource: Resource;
     callBack: () => void;
     inShareResourceScreens?: boolean;
+    numberComment: number;
+    setNumberComment: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export default function ResourceCard({ resource, callBack, inShareResourceScreens=false }: Props) {
+export default function ResourceCard({ resource, callBack, inShareResourceScreens=false, numberComment, setNumberComment }: Props) {
 
     const [numberLike, setNumberLike] = useState(resource.likes.cache.size);
     const [isLikeResource, setIsLikeResource] = useState<boolean>(resource.isLiked());
-    const [numberCommentResource, setNumberCommentResource] = useState(resource.comments.cache.size);
+    // const [numberCommentResource, setNumberCommentResource] = useState(resource.comments.cache.size);
     const [categories, setCategories] = useState<Category[]>(Array.from(resource.categories.cache.values()));
 
     const username = resource.user ? `${resource.user.name} ${resource.user.firstname}` : "Utilisateur inconnu";
     const description = resource.description ?  resource.description : "Aucune description fournie" ;
 
     let timeout: NodeJS.Timeout | null = null;
+
 
     const onPress = (e: GestureResponderEvent) => {
 
@@ -62,7 +65,7 @@ export default function ResourceCard({ resource, callBack, inShareResourceScreen
                         <Text style={ResourceCardStyles.cardUser} numberOfLines={1}>{username}</Text>
                         <View style={ResourceCardStyles.userAndButtonsContainer}>
                             <LikeButton resource={resource} isLikeResource={isLikeResource} setIsLikeResource={setIsLikeResource} numberLike={numberLike} setNumberLike={setNumberLike}/>
-                            <CommentButton commentNumber={numberCommentResource}/>
+                            <CommentButton commentNumber={numberComment}/>
                         </View>    
                     </View>
                     <Text style={ResourceCardStyles.cardTitle} numberOfLines={1}>{resource.title}</Text>
@@ -88,7 +91,7 @@ export default function ResourceCard({ resource, callBack, inShareResourceScreen
                     <Text style={ResourceCardStyles.cardText} numberOfLines={3}>{description}</Text>
                     <View style={ResourceCardStyles.buttonsContainer}>
                         <LikeButton resource={resource} isLikeResource={isLikeResource} setIsLikeResource={setIsLikeResource} numberLike={numberLike} setNumberLike={setNumberLike}/>
-                        <CommentButton commentNumber={numberCommentResource}/>
+                        <CommentButton commentNumber={numberComment}/>
                     </View>
                 </View>
             }

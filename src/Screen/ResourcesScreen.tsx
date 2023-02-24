@@ -42,7 +42,7 @@ export default function ResourcesScreen({ route }: any) {
     useEffect(() => {
         const fetchResources = async () => {
             if (resources.length == 0) {
-                const rTmp = Array.from(await (await client.resources.fetchAll()).values());
+                const rTmp = Array.from((await client.resources.fetchAll()).values());
                 setResources(rTmp);
                 setResourcesFiltered(rTmp.slice(0, 6));
             } 
@@ -64,7 +64,7 @@ export default function ResourcesScreen({ route }: any) {
                                     return <ResourceCard key={i} resource={resource} callBack={() => navigation.navigate('ResourceDetails', {resource: resource})} />
                                 })
                             }
-                            {
+                            {   
                                 resources.length >= 6 && resourcesFiltered.length !== resources.length && <ButtonShowMoreItems callBack={onClickShowMoreItems} />
                             }
                             {
