@@ -21,7 +21,7 @@ export default function InputTextComment({resource, setComments, setNumberCommen
             .setRessource(resource);
             const res = await resource.comments.create(builder);
             const comments = Array.from(res.comments.cache.values());
-            setComments(comments);
+            setComments(comments.reverse());
             setNumberComment(comments.length);
         }
         else{
