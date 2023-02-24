@@ -85,7 +85,7 @@ export default function ResourceDetailsScreen({ route }: any) {
                                             numberLike={numberLike}
                                             setNumberLike={setNumberLike}
                                         />
-                                        <CommentButton callBack={onClickComment} commentNumber={numberComment}/>
+                                        <CommentButton commentNumber={numberComment}/>
                                     </View>
                                 </View>
                                 <Text style={ResourceDetailsStyles.cardTitle}>{title}</Text>
@@ -107,7 +107,7 @@ export default function ResourceDetailsScreen({ route }: any) {
                     </View>
                     <Text style={ResourceDetailsStyles.commentTitle}>Commentaires</Text>
                     <View style={ResourceDetailsStyles.commentContainer}>
-                        <InputTextComment resource={resource} setComments={setComments}/>
+                        <InputTextComment resource={resource} setComments={setComments} setNumberComment={setNumberComment}/>
                         <View style={ResourceDetailsStyles.listComment}> 
                             {   
                                 comments.map((comment, i) => {
