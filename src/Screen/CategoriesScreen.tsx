@@ -33,14 +33,12 @@ export default function CategoriesScreen({ route }: any) {
                         {
                             categories.map((category, i) => {
                                 if ((!showMoreItems && i < 6) || showMoreItems) {
-                                    return <CategoryCard category={category} key={i} ></CategoryCard>
+                                    return <CategoryCard category={category} key={i} />
                                 }
                             })
                         }
                         {
-                            categories.length == 0 && (
-                                <Text>Aucune catégorie n'a été trouvée.</Text>
-                            )
+                            categories.length == 0 && <Text>Aucune catégorie n'a été trouvée.</Text>
                         }
                     </View>
                 </ScrollView>
