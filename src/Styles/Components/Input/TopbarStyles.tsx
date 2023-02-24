@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 export default StyleSheet.create({
     topBarBackground: {
         position: 'absolute',
-        top: 30,
+        top: 50,
         flexDirection: 'row',
         alignItems: 'center',
         width: '100%',
