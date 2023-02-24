@@ -20,12 +20,14 @@ export default function ResourcesScreen({ route }: any) {
     const navigation = useNavigation<StackNavigationProp<ResourcesStackParamList>>();
     
     const client = route.params as Client;
-    const [showMoreItems, setShowMoreItems] = useState<boolean>(false);
+    // const [showMoreItems, setShowMoreItems] = useState<boolean>(false);
     const [resources, setResources] = useState<Resource[]>(Array.from(client.resources.cache.values()));
+    const [resourcesFiltered, setResourcesFiltered] = useState<Resource[]>(Array.from(client.resources.cache.values()).slice(0, 6));
     const [noResources, setNoResources] = useState<boolean>(false);
 
     const onClickShowMoreItems = () => {
-        setShowMoreItems(true);
+        // Append 6 more items in the list
+        setResourcesFiltered(resourcesFiltered.concat(resources.slice(resourcesFiltered.length, resourcesFiltered.length + 6)));
     }
 
     const handleChangeSearch = (text: string) => {
@@ -33,18 +35,21 @@ export default function ResourcesScreen({ route }: any) {
             return resource.title.toLowerCase().includes(text.toLowerCase());
         });
         setResources(filteredResources);
+        setResourcesFiltered(filteredResources.splice(0, 6));
         setNoResources(filteredResources.length == 0);
     }
 
     useEffect(() => {
         const fetchResources = async () => {
             if (resources.length == 0) {
-                setResources(await client.resources.fetchAll());
+                const rTmp = await client.resources.fetchAll();
+                setResources(rTmp);
+                setResourcesFiltered(rTmp.slice(0, 6));
             } 
         }
 
         fetchResources();
-    }, [])
+    }, [resourcesFiltered])
 
     return (
         <View style={CommonStyles.container}>
@@ -55,14 +60,12 @@ export default function ResourcesScreen({ route }: any) {
                     <ScrollView style={CommonStyles.scrollView}>
                         <View style={ResourcesStyles.resourcesContainer}>
                             {
-                                resources.map((resource, i) => {
-                                    if ((!showMoreItems && i < 6) || showMoreItems) {
-                                        return <ResourceCard key={i} resource={resource} callBack={() => navigation.navigate('ResourceDetails', {resource: resource})} />
-                                    } 
+                                resourcesFiltered.map((resource, i) => {
+                                    return <ResourceCard key={i} resource={resource} callBack={() => navigation.navigate('ResourceDetails', {resource: resource})} />
                                 })
                             }
                             {
-                                !showMoreItems && resources.length >= 6 && <ButtonShowMoreItems callBack={onClickShowMoreItems} />
+                                resources.length >= 6 && resourcesFiltered.length !== resources.length && <ButtonShowMoreItems callBack={onClickShowMoreItems} />
                             }
                             {
                                 noResources && <Text>Aucune ressource n'a été trouvée.</Text>
