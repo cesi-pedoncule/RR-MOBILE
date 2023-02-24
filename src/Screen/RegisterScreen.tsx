@@ -41,10 +41,10 @@ export default function RegisterScreen() {
                         <InputText placeholder="Confirmation de mot de passe" type='default' secureTextEntry={true} />
                     </View>
                     <View style={RegisterStyles.registerContainer}>
-                        <Text>
-                            {"Déjà un compte ?"} 
+                        <View style={RegisterStyles.texContainer}>
+                            <Text> Déjà un compte ? </Text>
                             <Link label="Connectez-vous maintenant" callBack={onClickLoginText} />
-                        </Text>
+                        </View>
                         <InputButton label="Valider" callBack={onClickRegisterButton} style={RegisterStyles.registerButton} />
                     </View>
                 </View>
