@@ -3,12 +3,13 @@ import { StyleSheet } from "react-native";
 export default StyleSheet.create({
     txtFieldBackground: {
         display: 'flex',
-        justifyContent: 'center',
+        flexDirection: 'row',
         alignItems: 'center',
-        flexWrap: 'wrap',
+        justifyContent: 'center',
         width: "90%",
         height: 55,
-        padding: 5,
+        padding: 10,
+        paddingTop: 16,
         backgroundColor: '#F0F0F0',
         borderBottomWidth: 2,
         borderColor: '#EEEEEE',
@@ -20,6 +21,7 @@ export default StyleSheet.create({
     },
     txtFieldInput: {
         textAlign: 'left',
+        textAlignVertical: 'center',
         color: '#000000',
         fontSize: 13,
         lineHeight: 23,
