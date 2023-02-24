@@ -63,6 +63,7 @@ export default function ResourceDetailsScreen({ route }: any) {
     }
 
     const onClickShowMoreItems = () => {
+        setComments(comments.reverse());
         setShowMoreItems(true);
     }
 
@@ -110,7 +111,7 @@ export default function ResourceDetailsScreen({ route }: any) {
                         <InputTextComment resource={resource} setComments={setComments} setNumberComment={setNumberComment}/>
                         <View style={ResourceDetailsStyles.listComment}> 
                             {   
-                                comments.map((comment, i) => {
+                                comments.reverse().map((comment, i) => {
                                     if ((!showMoreItems && i < 6) || showMoreItems) {
                                         return <CommentCard key={i} comment={comment} />
                                     }
