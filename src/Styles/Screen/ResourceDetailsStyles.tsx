@@ -29,7 +29,6 @@ export default StyleSheet.create({
         shadowOpacity: 0.25,
         shadowRadius: 4,
         borderRadius: 15,
-        marginBottom: 30,
     },
     cardUser:{
         fontWeight: 'bold',
@@ -88,5 +87,11 @@ export default StyleSheet.create({
         overflow:'scroll',
         marginTop : 10,
         marginHorizontal:20,  
+    },
+    btnFile: {
+        marginBottom: 30,
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: "100%",
     },
 });
