@@ -21,7 +21,7 @@
     "react-native-chart-kit": "^6.12.0",
     "react-native-svg": "13.4.0",
     "react-native-web": "~0.18.9",
-    "rr-apilib": "^0.3.3-alpha",
+    "rr-apilib": "^0.3.5-alpha",
     "sharp-cli": "^4.1.0"
   },
   "devDependencies": {

@@ -29,10 +29,17 @@ export default function LoginScreen({ route }: any) {
 
     const onClickLoginButton = async () => {
         setIsLoading(true);
+
         try {
             await client.auth.login('user0@example.com', 'password');
             await AsyncStorage.setItem('token', client.auth.token+'');
             await AsyncStorage.setItem('refresh_token', client.auth.refresh_token+'');
+
+            await client.users.fetchAll();
+            await client.categories.fetchAll();
+            await client.resources.fetchAll();
+            await client.validations.fetchAll();
+
             navigation.navigate('Resources');
         } catch (error) {
             alert('Mauvais identifiants');
@@ -41,6 +48,12 @@ export default function LoginScreen({ route }: any) {
     }
 
     const checkIsAuth = async () => {
+
+        await client.users.fetchAll();
+        await client.categories.fetchAll();
+        await client.resources.fetchAll();
+        await client.validations.fetchAll();
+        
         if (client.auth.me != null) {
             navigation.navigate('Resources');
         } else {

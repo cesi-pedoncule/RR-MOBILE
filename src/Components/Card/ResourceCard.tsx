@@ -1,11 +1,9 @@
 import React, { useState } from 'react'
-import { Category, Resource, Comment } from 'rr-apilib'
-import { useNavigation } from '@react-navigation/native'
-import { StackNavigationProp } from '@react-navigation/stack'
+import { Category, Resource } from 'rr-apilib'
 import {
     View,
     Text,
-    TouchableHighlight,
+    TouchableOpacity,
     GestureResponderEvent
 } from 'react-native'
 
@@ -27,8 +25,6 @@ interface Props {
 }
 
 export default function ResourceCard({ resource, callBack, inShareResourceScreens=false }: Props) {
-
-    const navigation = useNavigation<StackNavigationProp<ResourceCardParams>>();
 
     const [numberLike, setNumberLike] = useState(resource.likes.cache.size);
     const [isLikeResource, setIsLikeResource] = useState<boolean>(resource.isLiked());
@@ -58,7 +54,7 @@ export default function ResourceCard({ resource, callBack, inShareResourceScreen
     }
 
     return (
-        <TouchableHighlight onPress={(e) => onPress(e)} underlayColor={"#000000'"} style={ResourceCardStyles.container}>
+        <TouchableOpacity onPress={(e) => onPress(e)} style={ResourceCardStyles.container}>
             {
                 !inShareResourceScreens ? 
                 <View>
@@ -73,7 +69,7 @@ export default function ResourceCard({ resource, callBack, inShareResourceScreen
                     <View style={ResourceCardStyles.categoriesContainer}>
                         {
                             categories.map((category, i) => {
-                                return <CategoryButton key={i} category={category}></CategoryButton>
+                                return <CategoryButton key={i} category={category} />
                             })
                         }
                     </View>
@@ -85,7 +81,7 @@ export default function ResourceCard({ resource, callBack, inShareResourceScreen
                     <View style={ResourceCardStyles.categoriesContainer}>
                         {
                             categories.map((category, i) => {
-                                return <CategoryButton key={i} category={category}></CategoryButton>
+                                return <CategoryButton key={i} category={category} />
                             })
                         }
                     </View>
@@ -96,6 +92,6 @@ export default function ResourceCard({ resource, callBack, inShareResourceScreen
                     </View>
                 </View>
             }
-        </TouchableHighlight>
+        </TouchableOpacity>
     )
 }
