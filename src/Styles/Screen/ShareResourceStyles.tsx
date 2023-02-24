@@ -24,7 +24,6 @@ export default StyleSheet.create({
 		color: '#FFFFFF',
 		marginTop: 5,
 		width: 150,
-		height: 50,
 	},
 	buttonsContainer: {
 		position : 'absolute',

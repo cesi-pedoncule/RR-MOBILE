@@ -26,12 +26,8 @@ export default StyleSheet.create({
         color: '#ACB3BF',
         fontSize: 13,
         textAlign: 'justify',
-        marginTop: 5,
-        marginBottom: 20,
+        marginTop: 40,
         marginLeft: 20,
         marginRight: 20,
-        position: 'absolute',
-        left: 0,
-        bottom: 0,
     },
 });
