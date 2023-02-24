@@ -1,6 +1,6 @@
+import { Category } from 'rr-apilib';
 import { View, Text, TouchableOpacity } from 'react-native'
 import CategoryButtonStyles from '../../Styles/Components/Button/CategoryButtonStyles'
-import { Category } from 'rr-apilib';
 
 interface Props {
     category: Category;

@@ -1,9 +1,8 @@
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
-import React, { useEffect } from "react";
+import React from "react";
 import { View, Text, ScrollView } from 'react-native'
 import { Client } from "rr-apilib";
-import InputButton from "../Components/Button/InputButton";
 import Header from "../Components/Header";
 import NavBar from "../Components/NavBar";
 import StatDashBoard from "../Components/StatDashBoard";

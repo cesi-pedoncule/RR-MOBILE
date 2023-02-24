@@ -1,4 +1,4 @@
-import { Text, TouchableOpacity, View } from 'react-native'
+import { Text, TouchableOpacity } from 'react-native'
 import React from 'react'
 import ButtonFileStyles from '../../Styles/Components/Button/ButtonFileStyles'
 import { MaterialCommunityIcons } from '@expo/vector-icons';
