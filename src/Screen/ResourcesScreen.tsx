@@ -42,7 +42,7 @@ export default function ResourcesScreen({ route }: any) {
     useEffect(() => {
         const fetchResources = async () => {
             if (resources.length == 0) {
-                const rTmp = await client.resources.fetchAll();
+                const rTmp = Array.from(await (await client.resources.fetchAll()).values());
                 setResources(rTmp);
                 setResourcesFiltered(rTmp.slice(0, 6));
             } 
