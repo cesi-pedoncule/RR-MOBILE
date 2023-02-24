@@ -53,7 +53,6 @@ export default StyleSheet.create({
         textAlign : 'center',
     },
     switchContainer: {
-        width: "60%",
         display : "flex",
         flexDirection : "row",
         overflow:'scroll',

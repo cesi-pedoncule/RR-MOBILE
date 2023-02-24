@@ -41,6 +41,7 @@ export default StyleSheet.create({
         textAlign: 'center',
     },
     link: {
+        textAlign: 'left',
         color: '#03989E',
         paddingHorizontal: 5,
     },

@@ -86,10 +86,10 @@ export default function LoginScreen({ route }: any) {
                                 <InputText placeholder="Mot de passe" type='default' secureTextEntry={true} />
                             </View>
                             <View style={LoginStyles.registerContainer}>
-                                <Text>
-                                    Pas de compte ? 
-                                    <Link label="Inscrivez-vous maintenant" callBack={onClickRegisterText} />
-                                </Text>
+                                <View style={LoginStyles.texContainer}>
+                                    <Text style={LoginStyles.text}> Pas de compte ? </Text>
+                                    <Link label="Inscrivez-vous maintenant" callBack={onClickRegisterText}/>
+                                </View>
                                 <InputButton label="Se connecter" callBack={onClickLoginButton} style={LoginStyles.loginButton} />
                             </View>
                         </View>
