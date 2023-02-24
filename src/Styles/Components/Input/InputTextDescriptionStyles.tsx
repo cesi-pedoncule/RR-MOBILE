@@ -5,7 +5,8 @@ export default StyleSheet.create({
         backgroundColor: "#F0F0F0",
         overflow: 'scroll',
         height: 200,
-        width: "90%",   
+        width: "90%",
+        textAlignVertical: 'top',   
         borderBottomWidth: 2,
         borderBottomColor: '#EEEEEE',
         shadowOffset: {width: 0, height: 4},
@@ -13,7 +14,7 @@ export default StyleSheet.create({
         shadowOpacity: 0.25,
         shadowRadius: 4,
         borderRadius: 15,
-        marginTop: 30,
+        marginTop: 20,
         padding:15,
     },
 });

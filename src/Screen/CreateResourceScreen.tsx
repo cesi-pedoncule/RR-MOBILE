@@ -55,7 +55,7 @@ export default function CreateResourceScreen({route} : any) {
                         <InputTextDescription newResource={newResource}/>
                         <ButtonFile text={'Ajouter un fichier'} callBack={onClickAddFile}/>
                         <View style={CreateResourceStyles.switchContainer}>
-                            <Switch style={CreateResourceStyles.switch} trackColor={{false: '#F0F0F0', true: '#F0F0F0'}} thumbColor={'#03989E'} onValueChange={toggleSwitch} value={isPublic}/>
+                            <Switch trackColor={{false: '#F0F0F0', true: '#F0F0F0'}} thumbColor={'#03989E'} onValueChange={toggleSwitch} value={isPublic}/>
                             <Text>Privé / Publique</Text>
                         </View>
                         <InputButton label={'Envoyer'} callBack={onClickSend} style={CreateResourceStyles.sendButton}/>

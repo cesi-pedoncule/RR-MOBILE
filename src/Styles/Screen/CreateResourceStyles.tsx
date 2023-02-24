@@ -27,7 +27,7 @@ export default StyleSheet.create({
         height: 45,
         justifyContent: 'center',
         backgroundColor: '#03989E',
-        marginTop:30,
+        marginTop:20,
         borderRadius: 15,
         transition: 0.2,
     },
@@ -37,7 +37,7 @@ export default StyleSheet.create({
         display : "flex",
         flexDirection : "row",
         overflow:'scroll',
-        marginTop:30,
+        marginTop:20,
     },
     addCategorieContainer: {
         marginRight: 5,
@@ -59,10 +59,6 @@ export default StyleSheet.create({
         overflow:'scroll',
         alignItems: 'center',
         justifyContent: 'space-between',
-        marginTop:30,
-    },
-    switch: {
-        height: 30,
-        width: 30,
+        marginTop:20,
     },
 });
