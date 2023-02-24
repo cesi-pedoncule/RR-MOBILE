@@ -2,6 +2,7 @@ import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
     profileContainer: {
+        alignItems: 'center',
         padding: 10,
     },
     profileTitle: {

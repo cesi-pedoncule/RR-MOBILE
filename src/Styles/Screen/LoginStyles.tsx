@@ -23,4 +23,7 @@ export default StyleSheet.create({
         display: 'flex',
         flexDirection: 'row',
     },
+    container: {
+        height: '100%',
+    }
 });
