@@ -2,14 +2,14 @@ import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
 	scrollView: {
-        marginTop: '2%',
-        marginBottom: '5%',
-		maxHeight: '70%',
+        marginTop : 10,
+        marginBottom : 50,
+		maxHeight: '65%',
     },
 	resourcesContainer: {
 		alignItems: 'center',
         justifyContent: 'center',
-        marginBottom : 30,
+        marginBottom : 50,
 	},
 	textSaves : {
 		position: 'relative',

@@ -11,7 +11,7 @@ export default StyleSheet.create({
         backgroundColor: '#FFFFFF',
         width: '100%',
         position: 'absolute',
-        top : 110,
+        top : 130,
         bottom: 0,
         borderTopLeftRadius: 30,
         borderTopRightRadius: 30,
