@@ -13,7 +13,7 @@ export default StyleSheet.create({
         shadowOpacity: 0.25,
         shadowRadius: 4,
         borderRadius: 15,
-        marginTop: 30,
+        marginTop: 20,
         padding:15,
     },
 });
