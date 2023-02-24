@@ -1,4 +1,4 @@
-import { TextInput, View } from 'react-native'
+import { TextInput } from 'react-native'
 import React from 'react'
 import InputTextDescriptionStyles from '../../Styles/Components/Input/InputTextDescriptionStyles'
 import { ResourceBuilder } from 'rr-apilib'

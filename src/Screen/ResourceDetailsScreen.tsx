@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import CommentCard from '../Components/Card/CommentCard'
 import LikeButton from '../Components/Button/LikeButton'
 import CommentButton from '../Components/Button/CommentButton'
-import { Category, Client, Comment, CommentBuilder, Resource } from 'rr-apilib'
+import { Category, Client, Comment, Resource } from 'rr-apilib'
 import NavBar from '../Components/NavBar'
 import ResourceDetailsStyles from "../Styles/Screen/ResourceDetailsStyles";
 import TopBar from '../Components/Input/TopBar'

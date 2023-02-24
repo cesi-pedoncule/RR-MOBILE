@@ -1,4 +1,4 @@
-import { View, Text, TouchableHighlight, TextInput } from 'react-native'
+import { View, TouchableHighlight, TextInput } from 'react-native'
 import React, { useState } from 'react'
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import InputTextCommentStyles from '../../Styles/Components/Input/InputTextCommentStyles'
