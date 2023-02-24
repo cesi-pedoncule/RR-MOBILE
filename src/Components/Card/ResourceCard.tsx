@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Category, Resource } from 'rr-apilib'
+import { Category, Resource, Comment } from 'rr-apilib'
 import { useNavigation } from '@react-navigation/native'
 import { StackNavigationProp } from '@react-navigation/stack'
 import {

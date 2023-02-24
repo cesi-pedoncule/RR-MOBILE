@@ -15,14 +15,18 @@ export default function InputTextComment({resource, setComments, setNumberCommen
     const [inputText, setInputText] = useState('');
 
     const onClickAddComment = async () => {
-        const builder = new CommentBuilder()
+        if(inputText != ''){
+            const builder = new CommentBuilder()
             .setComment(inputText)
             .setRessource(resource);
-
-        const res = await resource.comments.create(builder);
-        const comments = Array.from(res.comments.cache.values());
-        setComments(comments);
-        setNumberComment(comments.length);
+            const res = await resource.comments.create(builder);
+            const comments = Array.from(res.comments.cache.values());
+            setComments(comments);
+            setNumberComment(comments.length);
+        }
+        else{
+            alert("La zone de texte est vide")
+        }
 
         setInputText('');
     }
