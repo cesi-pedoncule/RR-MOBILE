@@ -16,7 +16,6 @@ export default StyleSheet.create({
         maxHeight: "50%",
     },
     cardUser:{
-        height: "5%",
         fontWeight: 'bold',
         fontSize: 20,
         marginLeft: 20,

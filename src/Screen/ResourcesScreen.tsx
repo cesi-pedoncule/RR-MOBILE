@@ -74,7 +74,7 @@ export default function ResourcesScreen({ route }: any) {
                     </ScrollView>
                 }
             </View>
-            <NavBar client={client} resourcesIsFocused={true}/>
+            <NavBar client={client} resourcesIsFocused={true} appIsLoaded={resources.length != 0}/>
         </View>
     )
 }

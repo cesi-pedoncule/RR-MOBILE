@@ -9,7 +9,6 @@ export default StyleSheet.create({
         width: "90%",
         height: 55,
         padding: 10,
-        paddingTop: 16,
         backgroundColor: '#F0F0F0',
         borderBottomWidth: 2,
         borderColor: '#EEEEEE',
@@ -32,8 +31,6 @@ export default StyleSheet.create({
     sendButtonInput: {
         justifyContent: 'center',
         alignItems: 'center',
-        width: '20%',
-        height: '100%',
         padding: 5,
     },
 })
