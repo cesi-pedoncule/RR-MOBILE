@@ -76,11 +76,12 @@ export default function LoginScreen({ route }: any) {
         <View style={CommonStyles.container}>
             <TopBar hideSearchBar={true} />
             <View style={CommonStyles.content}>
-                <Header label="Connexion" />
-                <View>
+                <View style={LoginStyles.container}>
                     {
                         isLoading ? <ActivityIndicator size="large" color="#0000ff" style={CommonStyles.loader} /> : 
                         <View>
+                            
+                            <Header label="Connexion" />
                             <View style={LoginStyles.loginContainer}>
                                 <InputText placeholder="Email" type='email-address' />
                                 <InputText placeholder="Mot de passe" type='default' secureTextEntry={true} />

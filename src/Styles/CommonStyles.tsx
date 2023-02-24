@@ -47,7 +47,7 @@ export default StyleSheet.create({
     },
     loader: {
         position: 'absolute',
-        top: '35%',
+        top: '45%',
         left: '45%',
     },
     scrollView : {

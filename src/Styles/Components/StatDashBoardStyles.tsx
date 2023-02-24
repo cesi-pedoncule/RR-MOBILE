@@ -7,5 +7,6 @@ export default StyleSheet.create({
         overflow : 'hidden',
         borderRadius : 25,
         height : 300,
+        width: 350,
     },
 });
