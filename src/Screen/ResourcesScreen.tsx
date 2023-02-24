@@ -45,11 +45,17 @@ export default function ResourcesScreen({ route }: any) {
                 const rTmp = Array.from((await client.resources.fetchAll()).values());
                 setResources(rTmp);
                 setResourcesFiltered(rTmp.slice(0, 6));
-            } 
+            }
+            else {
+                setResources({...Array.from(client.resources.cache.values())})
+            }
         }
 
         fetchResources();
     }, [resourcesFiltered])
+
+    // Temp test
+    // useEffect(() => setResources({...Array.from(client.resources.cache.values())}), [])
 
     return (
         <View style={CommonStyles.container}>

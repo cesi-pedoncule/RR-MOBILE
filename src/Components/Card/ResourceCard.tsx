@@ -14,23 +14,19 @@ import { likeClickHandle } from '../../Functions/Utils'
 
 import ResourceCardStyles from '../../Styles/Components/Card/ResourceCardStyles'
 
-type ResourceCardParams = {
-    ResourceDetails: { resource: Resource };
-}
-
 interface Props {
     resource: Resource;
     callBack: () => void;
     inShareResourceScreens?: boolean;
-    numberComment: number;
-    setNumberComment: React.Dispatch<React.SetStateAction<number>>;
+    // numberComment: number;
+    // setNumberComment: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export default function ResourceCard({ resource, callBack, inShareResourceScreens=false, numberComment, setNumberComment }: Props) {
+export default function ResourceCard({ resource, callBack, inShareResourceScreens = false }: Props) {
 
     const [numberLike, setNumberLike] = useState(resource.likes.cache.size);
     const [isLikeResource, setIsLikeResource] = useState<boolean>(resource.isLiked());
-    // const [numberCommentResource, setNumberCommentResource] = useState(resource.comments.cache.size);
+    const [numberComment, setNumberComment] = useState(resource.comments.cache.size);
     const [categories, setCategories] = useState<Category[]>(Array.from(resource.categories.cache.values()));
 
     const username = resource.user ? `${resource.user.name} ${resource.user.firstname}` : "Utilisateur inconnu";
