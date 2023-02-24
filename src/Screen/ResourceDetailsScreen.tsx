@@ -13,6 +13,7 @@ import CategoryButton from '../Components/Button/CategoryButton'
 import CommonStyles from '../Styles/CommonStyles'
 import { likeClickHandle } from '../Functions/Utils'
 import InputTextComment from '../Components/Input/InputTextComment'
+import ButtonFile from '../Components/Button/ButtonFile'
 
 export default function ResourceDetailsScreen({ route }: any) {
 
@@ -30,6 +31,8 @@ export default function ResourceDetailsScreen({ route }: any) {
     
     // Set the description to "Aucune description fournie" if the description is null or undefined
     const description = resource.description ? (resource.description) : "Aucune description fournie" ;
+
+    const fileName = "Télécharger les pièces jointes";
 
     const [showMoreItems, setShowMoreItems] = useState(false);
 
@@ -52,6 +55,10 @@ export default function ResourceDetailsScreen({ route }: any) {
     }
     
     const onClickComment = () => {
+        //NO-OP
+    }
+
+    const onClickFile = () => {
         //NO-OP
     }
 
@@ -78,7 +85,7 @@ export default function ResourceDetailsScreen({ route }: any) {
                                             numberLike={numberLike}
                                             setNumberLike={setNumberLike}
                                         />
-                                        <CommentButton callBack={onClickComment} commentNumber={numberComment}/>
+                                        <CommentButton commentNumber={numberComment}/>
                                     </View>
                                 </View>
                                 <Text style={ResourceDetailsStyles.cardTitle}>{title}</Text>
@@ -95,16 +102,21 @@ export default function ResourceDetailsScreen({ route }: any) {
                             </View>
                         </View>
                     </TouchableOpacity>
+                    <View style={ResourceDetailsStyles.btnFile}>
+                        <ButtonFile text={fileName} callBack={onClickFile}/>
+                    </View>
                     <Text style={ResourceDetailsStyles.commentTitle}>Commentaires</Text>
                     <View style={ResourceDetailsStyles.commentContainer}>
-                        <InputTextComment resource={resource} setComments={setComments}/>
-                        {
-                            comments.map((comment, i) => {
-                                if ((!showMoreItems && i < 6) || showMoreItems) {
-                                    return <CommentCard key={i} comment={comment} />
-                                }
-                            })
-                        }
+                        <InputTextComment resource={resource} setComments={setComments} setNumberComment={setNumberComment}/>
+                        <View style={ResourceDetailsStyles.listComment}> 
+                            {   
+                                comments.map((comment, i) => {
+                                    if ((!showMoreItems && i < 6) || showMoreItems) {
+                                        return <CommentCard key={i} comment={comment} />
+                                    }
+                                })
+                            }          
+                        </View>
                         {
                             comments.length === 0 && <Text>Aucun commentaire</Text>
                         }

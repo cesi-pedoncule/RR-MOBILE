@@ -27,8 +27,8 @@ export default StyleSheet.create({
         shadowOffset: {width: 0, height: 4},
         shadowColor: '#000000',
         shadowOpacity: 0.25,
+        shadowRadius: 4,
         borderRadius: 15,
-        marginBottom: 30,
     },
     cardUser:{
         fontWeight: 'bold',
@@ -65,6 +65,12 @@ export default StyleSheet.create({
         alignItems: 'center',
         margin: 10,
     },
+    listComment: {
+        marginTop: 30,
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: "100%"
+    },
     commentTitle: {
         fontWeight: 'bold',
         fontSize: 20,
@@ -81,5 +87,11 @@ export default StyleSheet.create({
         overflow:'scroll',
         marginTop : 10,
         marginHorizontal:20,  
+    },
+    btnFile: {
+        marginBottom: 30,
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: "100%",
     },
 });

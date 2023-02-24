@@ -46,23 +46,27 @@ export default function ShareResourceScreen({ route }: any) {
 		<TopBar onChangeSearch={handleChangeSearch} />
 		<View style={CommonStyles.content}> 
 			<Text style={ShareResourceStyles.textSaves}>Enregitrées</Text>
-			{
-				resources.length === 0 ?
-				<Text>Aucune ressource enregistrée</Text>
-				:
-				<ScrollView style={ShareResourceStyles.resourcesContainer} contentContainerStyle={CommonStyles.scrollViewCenter}>
-					{
-						resources.map((resource, i) => {
-							if ((!showMoreItems && i < 2) || showMoreItems) {
-								return <ResourceCard key={i} resource={resource} callBack={() => navigation.navigate('ResourceDetails', {resource: resource})} inShareResourceScreens={true}/>
-							}
-						})
-					}
-					{ 
-						!showMoreItems && resources.length >= 6 && <ButtonShowMoreItems callBack={onClickShowMoreItems} /> 
-					}
-				</ScrollView>
-			}
+			<ScrollView style={ShareResourceStyles.scrollView}>
+				{
+					resources.length === 0 ?
+					<View style={ShareResourceStyles.resourcesContainer}>
+						<Text>Aucune ressource enregistrée</Text>
+					</View>
+					:
+					<View style={ShareResourceStyles.resourcesContainer}>
+						{
+							resources.map((resource, i) => {
+								if ((!showMoreItems && i < 2) || showMoreItems) {
+									return <ResourceCard key={i} resource={resource} callBack={() => navigation.navigate('ResourceDetails', {resource: resource})} inShareResourceScreens={true}/>
+								}
+							})
+						}
+						{ 
+							!showMoreItems && resources.length >= 6 && <ButtonShowMoreItems callBack={onClickShowMoreItems} /> 
+						}
+					</View>
+				}
+			</ScrollView>
 			{
 				 user &&
 				<View style={ShareResourceStyles.buttonsContainer}>

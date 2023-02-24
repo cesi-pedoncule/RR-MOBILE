@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
-    cardBackground: {
+    container: {
         width: "90%",
         height: 190,
         backgroundColor: '#F0F0F0',
@@ -45,20 +45,18 @@ export default StyleSheet.create({
     userAndButtonsContainer:{
         marginRight : 20,
     },
-    lineButtons: {
-        marginTop: 50,
-    },
     buttonsContainer: {
-        position: 'absolute',
-        display: 'flex',
-        flexDirection: 'row',
+        position:'absolute',
+        display : "flex",
+        flexDirection : "row",
         alignItems: 'center',
         justifyContent: 'space-between',
         width: "100%",
+        bottom: 30,
         paddingHorizontal: 60,
-        bottom: 0,
     },
     withoutUserContainer: {
+        height: "100%",
         marginTop: 20,
     },
     categoriesContainer: {

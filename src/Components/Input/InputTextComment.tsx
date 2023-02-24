@@ -7,9 +7,10 @@ import { Comment, CommentBuilder, Resource } from 'rr-apilib';
 interface Props {
     resource: Resource;
     setComments: React.Dispatch<React.SetStateAction<Comment[]>>;
+    setNumberComment: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export default function InputTextComment({resource, setComments}:Props) {
+export default function InputTextComment({resource, setComments, setNumberComment}:Props) {
     
     const [inputText, setInputText] = useState('');
 
@@ -19,7 +20,9 @@ export default function InputTextComment({resource, setComments}:Props) {
             .setRessource(resource);
 
         const res = await resource.comments.create(builder);
-        setComments(Array.from(res.comments.cache.values()));
+        const comments = Array.from(res.comments.cache.values());
+        setComments(comments);
+        setNumberComment(comments.length);
 
         setInputText('');
     }

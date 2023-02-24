@@ -32,15 +32,11 @@ export default function ResourceCard({ resource, callBack, inShareResourceScreen
 
     const [numberLike, setNumberLike] = useState(resource.likes.cache.size);
     const [isLikeResource, setIsLikeResource] = useState<boolean>(resource.isLiked());
-    const numberCommentResource = resource.comments.cache.size;
+    const [numberCommentResource, setNumberCommentResource] = useState(resource.comments.cache.size);
     const [categories, setCategories] = useState<Category[]>(Array.from(resource.categories.cache.values()));
 
     const username = resource.user ? `${resource.user.name} ${resource.user.firstname}` : "Utilisateur inconnu";
     const description = resource.description ?  resource.description : "Aucune description fournie" ;
-
-    const onClickComment = () => {
-        navigation.navigate("ResourceDetails", { resource: resource });
-    }
 
     let timeout: NodeJS.Timeout | null = null;
 
@@ -62,8 +58,7 @@ export default function ResourceCard({ resource, callBack, inShareResourceScreen
     }
 
     return (
-        <TouchableHighlight onPress={(e) => onPress(e)} underlayColor={"#000000'"} style={ResourceCardStyles.cardBackground}>
-            <View>
+        <TouchableHighlight onPress={(e) => onPress(e)} underlayColor={"#000000'"} style={ResourceCardStyles.container}>
             {
                 !inShareResourceScreens ? 
                 <View>
@@ -71,7 +66,7 @@ export default function ResourceCard({ resource, callBack, inShareResourceScreen
                         <Text style={ResourceCardStyles.cardUser} numberOfLines={1}>{username}</Text>
                         <View style={ResourceCardStyles.userAndButtonsContainer}>
                             <LikeButton resource={resource} isLikeResource={isLikeResource} setIsLikeResource={setIsLikeResource} numberLike={numberLike} setNumberLike={setNumberLike}/>
-                            <CommentButton callBack={onClickComment} commentNumber={numberCommentResource}/>
+                            <CommentButton commentNumber={numberCommentResource}/>
                         </View>    
                     </View>
                     <Text style={ResourceCardStyles.cardTitle} numberOfLines={1}>{resource.title}</Text>
@@ -95,15 +90,12 @@ export default function ResourceCard({ resource, callBack, inShareResourceScreen
                         }
                     </View>
                     <Text style={ResourceCardStyles.cardText} numberOfLines={3}>{description}</Text>
-                    <View style={ResourceCardStyles.lineButtons}>
-                        <View style={ResourceCardStyles.buttonsContainer}>
-                            <LikeButton resource={resource} isLikeResource={isLikeResource} setIsLikeResource={setIsLikeResource} numberLike={numberLike} setNumberLike={setNumberLike}/>
-                            <CommentButton callBack={onClickComment} commentNumber={numberCommentResource}/>
-                        </View>
+                    <View style={ResourceCardStyles.buttonsContainer}>
+                        <LikeButton resource={resource} isLikeResource={isLikeResource} setIsLikeResource={setIsLikeResource} numberLike={numberLike} setNumberLike={setNumberLike}/>
+                        <CommentButton commentNumber={numberCommentResource}/>
                     </View>
                 </View>
             }
-            </View>
         </TouchableHighlight>
     )
 }
