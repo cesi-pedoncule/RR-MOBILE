@@ -7,11 +7,11 @@ interface Props {
     callBack: ()=>void;
     size: number;
     name: any;
-    color: string;
+    color?: string;
     style?: any;
 }
 
-export default function IconButton({callBack, name, size, color, style} : Props) {
+export default function IconButton({callBack, name, size, color='black', style} : Props) {
     return (
         <TouchableOpacity onPress={callBack} style={[deleteButtonStyles.container, style]}>
             <MaterialCommunityIcons name={name} size={size} color={color} />
