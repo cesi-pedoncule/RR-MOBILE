@@ -1,11 +1,12 @@
 import { StyleSheet } from "react-native";
+import { COLORS } from "../../Colors";
 
 export default StyleSheet.create({
     btnBackground: {
         width: 126,
         height: 34,
         justifyContent: 'center',
-        backgroundColor: '#03989E',
+        backgroundColor: COLORS.accentColor,
         borderRadius: 15,
         transition: 0.2,
     },

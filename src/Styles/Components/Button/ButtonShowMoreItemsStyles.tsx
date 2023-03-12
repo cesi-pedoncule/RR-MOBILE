@@ -1,18 +1,19 @@
 import { StyleSheet } from "react-native";
+import { COLORS } from "../../Colors";
 
 export default StyleSheet.create({
     moreItemsButton: {
         paddingHorizontal: 15,
         height: 34,
         justifyContent: 'center',
-        backgroundColor: '#F0F0F0',
+        backgroundColor: COLORS.componentBackground,
         borderRadius: 10,
         transition: 0.2,
         textAlign: 'center',
         borderBottomWidth: 2,
-        borderBottomColor: '#EEEEEE',
+        borderBottomColor: COLORS.borderColor,
         shadowOffset: {width: 0, height: 4},
-        shadowColor: '#000000',
+        shadowColor: COLORS.black,
         shadowOpacity: 0.25,
         shadowRadius: 4,
     },

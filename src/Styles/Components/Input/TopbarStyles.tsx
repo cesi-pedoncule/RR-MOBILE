@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { COLORS } from "../../Colors";
 
 export default StyleSheet.create({
     topBarBackground: {
@@ -14,7 +15,7 @@ export default StyleSheet.create({
         padding: 10,
         justifyContent: 'center',
         textAlign: 'center',
-        backgroundColor: '#F0F0F0',
+        backgroundColor: COLORS.componentBackground,
         borderRadius: 7,
         transition: 0.2,
         marginHorizontal: "6%",
@@ -25,7 +26,7 @@ export default StyleSheet.create({
     searchBar: {
         width: "100%",
         padding: 14,
-        backgroundColor: '#F0F0F0',
+        backgroundColor: COLORS.componentBackground,
         borderRadius: 7,
     },
     disconnectContainer : {
@@ -33,7 +34,7 @@ export default StyleSheet.create({
         padding: 10,
         justifyContent: 'center',
         textAlign: 'center',
-        backgroundColor: '#F0F0F0',
+        backgroundColor: COLORS.componentBackground,
         borderRadius: 7,
         transition: 0.2,
         right : 20,

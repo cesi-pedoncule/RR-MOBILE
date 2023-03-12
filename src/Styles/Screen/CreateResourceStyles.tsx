@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { COLORS } from "../Colors";
 
 export default StyleSheet.create({
     container: {
@@ -10,15 +11,15 @@ export default StyleSheet.create({
         marginTop : 5,
     },
     addNameResource: {
-        backgroundColor: "#F0F0F0",
+        backgroundColor: COLORS.componentBackground,
         textAlign: 'center',
         height: 40,
         width : "90%",
         borderRadius : 10,
         borderBottomWidth: 2,
-        borderBottomColor: '#EEEEEE',
+        borderBottomColor: COLORS.borderColor,
         shadowOffset: {width: 0, height: 4},
-        shadowColor: '#000000',
+        shadowColor: COLORS.borderColor,
         shadowOpacity: 0.25,
         shadowRadius: 4,
     },
@@ -26,7 +27,7 @@ export default StyleSheet.create({
         width: 140,
         height: 45,
         justifyContent: 'center',
-        backgroundColor: '#03989E',
+        backgroundColor: COLORS.accentColor,
         marginTop:20,
         borderRadius: 15,
         transition: 0.2,
@@ -43,8 +44,8 @@ export default StyleSheet.create({
         marginRight: 5,
     },
     addCategorieText: {
-        backgroundColor: '#D9D9D9',
-        color: '#000000',
+        backgroundColor: COLORS.tagColor,
+        color: COLORS.borderColor,
         paddingLeft: 20,
         paddingRight: 20,
         paddingBottom: 4,
