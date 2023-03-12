@@ -25,7 +25,7 @@ export default StyleSheet.create({
         textAlign: 'center',
     },
     textFocused: {
-        color: COLORS.accentColor,
+        color: COLORS.foregroundFocused,
         fontWeight : '700',
         textAlign: 'center',
     },
