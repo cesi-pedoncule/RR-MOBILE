@@ -13,6 +13,7 @@ import CategoryButton from '../Button/CategoryButton'
 import { likeClickHandle } from '../../Functions/Utils'
 
 import ResourceCardStyles from '../../Styles/Components/Card/ResourceCardStyles'
+import IconButton from '../Button/IconButton'
 
 type ResourceCardParams = {
     ResourceDetails: { resource: Resource };
@@ -53,6 +54,14 @@ export default function ResourceCard({ resource, callBack, inShareResourceScreen
         }, 300);
     }
 
+    const onClickDeleteResource = () => {
+        alert('delete resource')
+    }
+
+    const onClickEditResource = () => {
+        alert('edit resource')
+    }
+
     return (
         <TouchableOpacity onPress={(e) => onPress(e)} style={ResourceCardStyles.container}>
             {
@@ -89,6 +98,10 @@ export default function ResourceCard({ resource, callBack, inShareResourceScreen
                     <View style={ResourceCardStyles.buttonsContainer}>
                         <LikeButton resource={resource} isLikeResource={isLikeResource} setIsLikeResource={setIsLikeResource} numberLike={numberLike} setNumberLike={setNumberLike}/>
                         <CommentButton commentNumber={numberCommentResource}/>
+                    </View>
+                    <View style={ResourceCardStyles.buttonsEditContainer}>
+                        <IconButton callBack={onClickDeleteResource} size={24} name={"delete-outline"} color={'black'}/>
+                        <IconButton callBack={onClickEditResource} size={24} name={"square-edit-outline"} color={'black'}/>
                     </View>
                 </View>
             }
