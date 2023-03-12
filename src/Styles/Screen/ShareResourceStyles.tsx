@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { COLORS } from "../Colors";
 
 export default StyleSheet.create({
 	scrollView: {
@@ -21,7 +22,7 @@ export default StyleSheet.create({
 	},
 	addResourceBtn :{
 		textAlign: 'center',
-		color: '#FFFFFF',
+		color: COLORS.white,
 		marginTop: 5,
 		width: 150,
 	},

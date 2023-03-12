@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { COLORS } from "../../Colors";
 
 export default StyleSheet.create({
     txtFieldBackground: {
@@ -6,18 +7,18 @@ export default StyleSheet.create({
         width: 261,
         height: 55,
         margin: 10,
-        backgroundColor: '#F0F0F0',
+        backgroundColor: COLORS.componentBackground,
         borderBottomWidth: 2,
-        borderBottomColor: '#03989E',
+        borderBottomColor: COLORS.accentColor,
         shadowOffset: {width: 0, height: 4},
-        shadowColor: '#000000',
+        shadowColor: COLORS.borderColor,
         shadowOpacity: 0.25,
         shadowRadius: 4,
         borderRadius: 5,
     },
     txtFieldText: {
         textAlign: 'left',
-        color: '#ACB3BF',
+        color: COLORS.foregroundHolder,
         width: '100%',
         height: '30%',
         paddingLeft: 8,
@@ -27,7 +28,7 @@ export default StyleSheet.create({
     },
     txtFieldInput: {
         textAlign: 'left',
-        color: '#000000',
+        color: COLORS.black,
         paddingLeft: 8,
         width: '100%',
         height: '70%',

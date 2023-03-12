@@ -1,8 +1,9 @@
 import { StyleSheet } from "react-native";
+import { COLORS } from "../Colors";
 
 export default StyleSheet.create({
     container: {
-        backgroundColor : "white",
+        backgroundColor : COLORS.white,
         position: 'absolute',
         alignItems : "center",
         justifyContent: 'space-between',
@@ -20,11 +21,11 @@ export default StyleSheet.create({
         width : 50,
     },
     text: {
-        color: "#03989E",
+        color: COLORS.accentColor,
         textAlign: 'center',
     },
     textFocused: {
-        color: "#396a83",
+        color: COLORS.accentColor,
         fontWeight : '700',
         textAlign: 'center',
     },

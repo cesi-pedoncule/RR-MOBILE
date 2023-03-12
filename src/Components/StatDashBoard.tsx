@@ -3,6 +3,7 @@ import StatDashBoardStyles from '../Styles/Components/StatDashBoardStyles'
 import { BarChart } from "react-native-chart-kit";
 import { Resource, User } from 'rr-apilib';
 import { View } from 'react-native';
+import { COLORS } from '../Styles/Colors';
 
 interface Props {
     user: User;
@@ -50,8 +51,8 @@ export default function StatDashBoard({user} : Props) {
     };
 
     const chartConfig = {
-        backgroundGradientFrom: "#F0F0F0",
-        backgroundGradientTo: "#F0F0F0",
+        backgroundGradientFrom: COLORS.componentBackground,
+        backgroundGradientTo: COLORS.componentBackground,
         color: (opacity = 1) => `rgba(3, 152, 158, ${opacity})`,
         labelColor : (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
         barPercentage: 1.3,

@@ -1,14 +1,15 @@
 import { StyleSheet } from "react-native";
+import { COLORS } from "./Colors";
 
 export default StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#03989E',
+        backgroundColor: COLORS.accentColor,
         alignItems: 'center',
         justifyContent: 'center',
     },
     content : {
-        backgroundColor: '#FFFFFF',
+        backgroundColor: COLORS.white,
         width: '100%',
         position: 'absolute',
         top : 130,
@@ -20,14 +21,14 @@ export default StyleSheet.create({
         position : 'absolute',
         left : 20,
         padding : 10,
-        backgroundColor: '#F0F0F0',
+        backgroundColor: COLORS.componentBackground,
         borderRadius: 7,
         transition: 0.2,
     },
     header: {
         fontSize: 32,
         fontWeight: '800',
-        color: '#000000',
+        color: COLORS.black,
         textAlign: 'center',
         flexDirection: 'row',
         justifyContent: 'center',
@@ -37,12 +38,12 @@ export default StyleSheet.create({
     title: {
         fontSize: 32,
         fontWeight: '800',
-        color: '#000000',
+        color: COLORS.black,
         textAlign: 'center',
     },
     link: {
         textAlign: 'left',
-        color: '#03989E',
+        color: COLORS.accentColor,
         paddingHorizontal: 5,
     },
     loader: {
