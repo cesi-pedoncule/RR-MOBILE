@@ -2,23 +2,14 @@ import { View, Text, ScrollView, TextInput, Switch, TouchableOpacity } from 'rea
 import React, { useState } from 'react'
 import CommonStyles from '../Styles/CommonStyles'
 import TopBar from '../Components/Input/TopBar'
-import NavBar from '../Components/NavBar'
 import ReturnButton from '../Components/Button/ReturnButton'
 import CreateResourceStyles from '../Styles/Screen/CreateResourceStyles'
 import InputTextDescription from '../Components/Input/InputTextDescription'
 import InputButton from '../Components/Button/InputButton'
 import { Client, ResourceBuilder } from 'rr-apilib'
 import ButtonFile from '../Components/Button/ButtonFile'
-import { StackNavigationProp } from '@react-navigation/stack'
-import { useNavigation } from '@react-navigation/native'
 
-type CreateResourceScreenStackParamList = {
-    ShareCreate: undefined;
-};
-
-export default function CreateResourceScreen({route} : any) {
-    const navigation = useNavigation<StackNavigationProp<CreateResourceScreenStackParamList>>();
-
+export default function CreateResourceScreen({route, navigation} : any) {
     const client = route.params as Client;
     const [newResource] = useState<ResourceBuilder>(new ResourceBuilder());
 
@@ -41,7 +32,7 @@ export default function CreateResourceScreen({route} : any) {
 
     return (
         <View style={CommonStyles.container}>
-            <TopBar hideSearchBar={true}/>
+            <TopBar hideSearchBar={true} navigation={navigation}/>
             <View style={CommonStyles.content}>
                 <ReturnButton/>
                 <ScrollView style={CommonStyles.scrollView}>
@@ -61,7 +52,6 @@ export default function CreateResourceScreen({route} : any) {
                         <InputButton label={'Envoyer'} callBack={onClickSend} style={CreateResourceStyles.sendButton}/>
                     </View>
                 </ScrollView>
-                <NavBar client={client}/>
             </View>
         </View>
     )

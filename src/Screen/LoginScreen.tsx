@@ -1,4 +1,3 @@
-import { useNavigation } from "@react-navigation/native";
 import React, { useEffect, useState } from "react";
 import { ActivityIndicator, Text, View } from "react-native";
 import Header from "../Components/Header";
@@ -6,22 +5,14 @@ import InputButton from "../Components/Button/InputButton";
 import Link from "../Components/Button/Link";
 import CommonStyles from "../Styles/CommonStyles";
 import LoginStyles from "../Styles/Screen/LoginStyles";
-import { StackNavigationProp } from "@react-navigation/stack";
 import InputText from "../Components/Input/InputText";
 import { Client } from "rr-apilib";
 import TopBar from "../Components/Input/TopBar";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-type LoginStackParamList = {
-    Resources: undefined;
-    Register: undefined;
-};
-
-
-export default function LoginScreen({ route }: any) {
+export default function LoginScreen({ route, navigation }: any) {
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const client = route.params as Client;
-    const navigation = useNavigation<StackNavigationProp<LoginStackParamList>>();
 
     const onClickRegisterText = () => {
         navigation.navigate('Register');
@@ -87,7 +78,7 @@ export default function LoginScreen({ route }: any) {
 
     return (
         <View style={CommonStyles.container}>
-            <TopBar hideSearchBar={true} />
+            <TopBar hideSearchBar={true} navigation={navigation} />
             <View style={CommonStyles.content}>
                 <View style={LoginStyles.container}>
                     {

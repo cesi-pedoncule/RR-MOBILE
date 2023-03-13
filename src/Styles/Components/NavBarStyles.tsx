@@ -3,38 +3,19 @@ import { COLORS } from "../Colors";
 
 export default StyleSheet.create({
     container: {
-        backgroundColor : COLORS.white,
         position: 'absolute',
-        alignItems : "center",
-        justifyContent: 'space-between',
-        display : "flex",
-        flexDirection : "row",
-        bottom:0,
-        left:0,
-        paddingLeft: 5,
-        paddingRight: 5,
-        paddingBottom:5,
-        width : "100%",
+        bottom :3,
+        elevation: 0,
+        borderTopWidth: 0,
+        backgroundColor: COLORS.transparent,
+        borderTopColor: COLORS.transparent,
     },
     logo : {
-        height: 50,
-        width : 50,
+        height: 60,
+        width : 60,
+        marginBottom : 25,
     },
     text: {
-        color: COLORS.accentColor,
-        textAlign: 'center',
+        width:'100%',
     },
-    textFocused: {
-        color: COLORS.foregroundFocused,
-        fontWeight : '700',
-        textAlign: 'center',
-    },
-    buttonContainer: {
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    button : {
-        width : "25%",
-        height: "100%",
-    }
 });
