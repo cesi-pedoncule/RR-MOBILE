@@ -22,11 +22,11 @@ export default StyleSheet.create({
 	},
 	addResourceBtn :{
 		textAlign: 'center',
-		color: COLORS.white,
+		color: COLORS.White,
 		marginTop: 5,
 		height: 50,
 		width: 150,
-		shadowColor: COLORS.black,
+		shadowColor: COLORS.Black,
         shadowOpacity: 0.3,
         shadowOffset: { width: 4, height: 4},
         elevation: 2,

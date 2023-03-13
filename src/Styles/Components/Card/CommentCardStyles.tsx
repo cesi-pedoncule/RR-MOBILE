@@ -5,10 +5,10 @@ export default StyleSheet.create({
     cardBackground: {
         width: "90%",
         height: "auto",
-        backgroundColor: COLORS.componentBackground,
+        backgroundColor: COLORS.ComponentBackground,
         borderRadius: 15,
         margin: 10,
-        shadowColor: COLORS.black,
+        shadowColor: COLORS.Black,
         shadowOpacity: 0.3,
         shadowOffset: { width: 4, height: 4},
         elevation: 2,
@@ -21,7 +21,7 @@ export default StyleSheet.create({
     },
     cardComment:{
         height: "auto",
-        color: COLORS.foregroundHolder,
+        color: COLORS.ForegroundHolder,
         fontSize: 13,
         textAlign: 'justify',
         marginTop: 10,

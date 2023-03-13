@@ -8,7 +8,7 @@ export default StyleSheet.create({
         bottom :0,
         elevation: 0,
         borderTopWidth: 0,
-        backgroundColor: COLORS.white,
+        backgroundColor: COLORS.White,
         borderTopColor: COLORS.transparent,
     },
     logo : {

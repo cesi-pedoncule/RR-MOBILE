@@ -4,12 +4,12 @@ import { COLORS } from "./Colors";
 export default StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: COLORS.accentColor,
+        backgroundColor: COLORS.AccentColor,
         alignItems: 'center',
         justifyContent: 'center',
     },
     content : {
-        backgroundColor: COLORS.white,
+        backgroundColor: COLORS.White,
         width: '100%',
         position: 'absolute',
         top : 130,
@@ -21,14 +21,14 @@ export default StyleSheet.create({
         position : 'absolute',
         left : 20,
         padding : 10,
-        backgroundColor: COLORS.componentBackground,
+        backgroundColor: COLORS.ComponentBackground,
         borderRadius: 7,
         transition: 0.2,
     },
     header: {
         fontSize: 32,
         fontWeight: '800',
-        color: COLORS.black,
+        color: COLORS.Black,
         textAlign: 'center',
         flexDirection: 'row',
         justifyContent: 'center',
@@ -38,12 +38,12 @@ export default StyleSheet.create({
     title: {
         fontSize: 32,
         fontWeight: '800',
-        color: COLORS.black,
+        color: COLORS.Black,
         textAlign: 'center',
     },
     link: {
         textAlign: 'left',
-        color: COLORS.accentColor,
+        color: COLORS.AccentColor,
         paddingHorizontal: 5,
     },
     loader: {

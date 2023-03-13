@@ -6,7 +6,7 @@ export default StyleSheet.create({
         width: 126,
         height: 34,
         justifyContent: 'center',
-        backgroundColor: COLORS.accentColor,
+        backgroundColor: COLORS.AccentColor,
         borderRadius: 15,
         transition: 0.2,
     },

@@ -17,8 +17,8 @@ export default function NavBar({ route }: any) {
         <Tab.Navigator
             initialRouteName="Login"
             screenOptions={{
-                tabBarInactiveTintColor: COLORS.accentColor,
-                tabBarActiveTintColor: COLORS.foregroundFocused,
+                tabBarInactiveTintColor: COLORS.AccentColor,
+                tabBarActiveTintColor: COLORS.ForegroundFocused,
                 tabBarShowLabel: true,
                 tabBarHideOnKeyboard: true,
                 headerShown: false,

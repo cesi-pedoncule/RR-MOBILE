@@ -5,10 +5,10 @@ export default StyleSheet.create({
     container: {
         width: "90%",
         height: 190,
-        backgroundColor: COLORS.componentBackground,
+        backgroundColor: COLORS.ComponentBackground,
         borderRadius: 15,
         marginBottom: 20,
-        shadowColor: COLORS.black,
+        shadowColor: COLORS.Black,
         shadowOpacity: 0.3,
         shadowOffset: { width: 4, height: 4},
         elevation: 2,
@@ -26,7 +26,7 @@ export default StyleSheet.create({
         marginBottom: 10,
     },
     cardText:{
-        color: COLORS.foregroundHolder,
+        color: COLORS.ForegroundHolder,
         fontSize: 13,
         textAlign: 'justify',
         marginTop: 3,
