@@ -6,12 +6,13 @@ import ButtonShowMoreItems from "../Components/Button/ButtonShowMoreItems";
 import ResourceCard from "../Components/Card/ResourceCard";
 import TopBar from "../Components/Input/TopBar";
 import ResourcesStyles from "../Styles/Screen/ResourcesStyles";
+import useResources from "../Hooks/useResources";
 
 export default function ResourcesScreen({ navigation, route } : any) {
     const client = route.params as Client;
-    const [resources, setResources] = useState<Resource[]>(Array.from(client.resources.cache.values()));
-    const [resourcesFiltered, setResourcesFiltered] = useState<Resource[]>(Array.from(client.resources.cache.values()).slice(0, 6));
-    const [noResources, setNoResources] = useState<boolean>(false);
+
+    const { resources, setResources, loading } = useResources({ client });
+    const [ resourcesFiltered, setResourcesFiltered ] = useState<Resource[]>([]);
 
     const onClickShowMoreItems = () => {
         // Append 6 more items in the list
@@ -24,28 +25,21 @@ export default function ResourcesScreen({ navigation, route } : any) {
         });
         setResources(filteredResources);
         setResourcesFiltered(filteredResources.splice(0, 6));
-        setNoResources(filteredResources.length == 0);
     }
 
     useEffect(() => {
-        const fetchResources = async () => {
-            if (resources.length == 0) {
-                const rTmp = Array.from(await (await client.resources.fetchAll()).values());
-                setResources(rTmp);
-                setResourcesFiltered(rTmp.slice(0, 6));
-            } 
+        if (resourcesFiltered.length === 0 && resources.length !== 0 && !loading) {
+            setResourcesFiltered(resources.slice(0, 6));
         }
-
-        fetchResources();
-    }, [resourcesFiltered])
+    }, [resources, loading])
 
     return (
         <View style={CommonStyles.container}>
             <TopBar onChangeSearch={handleChangeSearch} navigation={navigation} />
             <View style={CommonStyles.content}>
                 {
-                    resources.length === 0 && noResources === false ?  <ActivityIndicator size="large" color="#0000ff" style={CommonStyles.loader} /> :
-                    <ScrollView style={CommonStyles.scrollViewWithNavBar}>
+                    loading ?  <ActivityIndicator size="large" color="#0000ff" style={CommonStyles.loader} /> :
+                    <ScrollView style={CommonStyles.scrollView}>
                         <View style={ResourcesStyles.resourcesContainer}>
                             {
                                 resourcesFiltered.map((resource, i) => {
@@ -56,7 +50,7 @@ export default function ResourcesScreen({ navigation, route } : any) {
                                 resources.length >= 6 && resourcesFiltered.length !== resources.length && <ButtonShowMoreItems callBack={onClickShowMoreItems} />
                             }
                             {
-                                noResources && <Text style={CommonStyles.textEmptyResult}>Aucune ressource n'a été trouvée.</Text>
+                                resourcesFiltered.length === 0 && <Text style={CommonStyles.textEmptyResult}>Aucune ressource n'a été trouvée.</Text>
                             }
                         </View>
                     </ScrollView>
