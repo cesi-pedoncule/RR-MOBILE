@@ -13,7 +13,7 @@ export default function ProfileScreen({route, navigation}: any) {
 
     if (user == null) {
         navigation.navigate('Login');
-        return;
+        return <View></View>;
     }
     
     user.resources.refresh();

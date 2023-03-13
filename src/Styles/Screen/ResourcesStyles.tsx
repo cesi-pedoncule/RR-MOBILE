@@ -5,6 +5,6 @@ export default StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         marginTop: 10,
-        marginBottom: 50,
+        marginBottom: 100,
     },
 });

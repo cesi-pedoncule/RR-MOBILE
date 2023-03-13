@@ -15,6 +15,7 @@ export default StyleSheet.create({
     loginButton: {
         textAlign: 'center',
         marginTop: '10%',
+        marginBottom: '5%',
     },
     text: {
         textAlign: 'right',
