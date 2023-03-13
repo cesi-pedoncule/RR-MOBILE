@@ -3,18 +3,25 @@ import { COLORS } from "../../Colors";
 
 export default StyleSheet.create({
     moreItemsButton: {
-        paddingHorizontal: 15,
-        height: 34,
+        width: 45,
+        height: 40,
         justifyContent: 'center',
-        backgroundColor: COLORS.componentBackground,
-        borderRadius: 10,
+        backgroundColor: COLORS.ComponentBackground,
+        borderRadius: 12,
         transition: 0.2,
         textAlign: 'center',
-        borderBottomWidth: 2,
-        borderBottomColor: COLORS.borderColor,
-        shadowOffset: {width: 0, height: 4},
-        shadowColor: COLORS.black,
-        shadowOpacity: 0.25,
-        shadowRadius: 4,
+        shadowColor: COLORS.Black,
+        shadowOpacity: 0.3,
+        shadowOffset: { width: 4, height: 4},
+        elevation: 2,
     },
+    text: {
+        position: 'absolute',
+        bottom: 5,
+        fontSize: 25,
+        fontWeight: '800',
+        width: "100%",
+        textAlign: 'center',
+        alignItems: 'center',
+    }
 });

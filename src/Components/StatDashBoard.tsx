@@ -51,8 +51,8 @@ export default function StatDashBoard({user} : Props) {
     };
 
     const chartConfig = {
-        backgroundGradientFrom: COLORS.componentBackground,
-        backgroundGradientTo: COLORS.componentBackground,
+        backgroundGradientFrom: COLORS.ComponentBackground,
+        backgroundGradientTo: COLORS.ComponentBackground,
         color: (opacity = 1) => `rgba(3, 152, 158, ${opacity})`,
         labelColor : (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
         barPercentage: 1.3,

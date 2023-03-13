@@ -49,7 +49,9 @@ export default function CreateResourceScreen({route, navigation} : any) {
                             <Switch trackColor={{false: '#F0F0F0', true: '#F0F0F0'}} thumbColor={'#03989E'} onValueChange={toggleSwitch} value={isPublic}/>
                             <Text> Privé / Publique </Text>
                         </View>
-                        <InputButton label={'Envoyer'} callBack={onClickSend} style={CreateResourceStyles.sendButton}/>
+                        <View style={CreateResourceStyles.sendButtonContainer}>
+                            <InputButton label={'Envoyer'} callBack={onClickSend} style={CreateResourceStyles.sendButton}/>
+                        </View>
                     </View>
                 </ScrollView>
             </View>

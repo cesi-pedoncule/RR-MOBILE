@@ -6,14 +6,13 @@ export default StyleSheet.create({
         marginRight : 5,
     },
     btnText: {
-        backgroundColor: COLORS.tagColor,
-        color: COLORS.black,
+        backgroundColor: COLORS.TagColor,
+        color: COLORS.Black,
         paddingLeft: 7,
         paddingRight: 7,
         paddingBottom: 4,
         paddingTop: 2,    
         borderRadius : 15,
         textAlign : 'center',
-        
     },
 });

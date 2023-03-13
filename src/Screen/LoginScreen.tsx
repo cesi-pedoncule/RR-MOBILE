@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ActivityIndicator, Text, View } from "react-native";
+import { ActivityIndicator, ScrollView, Text, View } from "react-native";
 import Header from "../Components/Header";
 import InputButton from "../Components/Button/InputButton";
 import Link from "../Components/Button/Link";
@@ -86,17 +86,19 @@ export default function LoginScreen({ route, navigation }: any) {
                         <View>
                             
                             <Header label="Connexion" />
-                            <View style={LoginStyles.loginContainer}>
-                                <InputText placeholder="Email" type='email-address' />
-                                <InputText placeholder="Mot de passe" type='default' secureTextEntry={true} />
-                            </View>
-                            <View style={LoginStyles.registerContainer}>
-                                <View style={LoginStyles.texContainer}>
-                                    <Text style={LoginStyles.text}> Pas de compte ? </Text>
-                                    <Link label="Inscrivez-vous maintenant" callBack={onClickRegisterText}/>
+                            <ScrollView style={CommonStyles.scrollView}>
+                                <View style={LoginStyles.loginContainer}>
+                                    <InputText placeholder="Email" type='email-address' />
+                                    <InputText placeholder="Mot de passe" type='default' secureTextEntry={true} />
                                 </View>
-                                <InputButton label="Se connecter" callBack={onClickLoginButton} style={LoginStyles.loginButton} />
-                            </View>
+                                <View style={LoginStyles.registerContainer}>
+                                    <View style={LoginStyles.texContainer}>
+                                        <Text style={LoginStyles.text}> Pas de compte ? </Text>
+                                        <Link label="Inscrivez-vous maintenant" callBack={onClickRegisterText}/>
+                                    </View>
+                                    <InputButton label="Se connecter" callBack={onClickLoginButton} style={LoginStyles.loginButton} />
+                                </View>
+                            </ScrollView>
                         </View>
                     }
                 </View>

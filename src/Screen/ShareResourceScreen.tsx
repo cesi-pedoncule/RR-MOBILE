@@ -35,7 +35,7 @@ export default function ShareResourceScreen({ route, navigation }: any) {
 		<TopBar onChangeSearch={handleChangeSearch} navigation={navigation} />
 		<View style={CommonStyles.content}> 
 			<Text style={ShareResourceStyles.textSaves}>Enregitrées</Text>
-			<ScrollView style={ShareResourceStyles.scrollView}>
+			<ScrollView style={CommonStyles.scrollViewWithNavBar}>
 				{
 					resources.length === 0 ?
 					<View style={ShareResourceStyles.resourcesContainer}>
@@ -59,7 +59,7 @@ export default function ShareResourceScreen({ route, navigation }: any) {
 			{
 				 user &&
 				<View style={ShareResourceStyles.buttonsContainer}>
-					<InputButton label="Nouvelle Ressource" callBack={onClickShareNewItem} style={ShareResourceStyles.addResourceBtn}></InputButton>
+					<InputButton label="Nouvelle Ressource" callBack={onClickShareNewItem} style={ShareResourceStyles.addResourceBtn}/>
 				</View>
 			}
 		</View>
