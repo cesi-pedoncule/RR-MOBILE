@@ -9,7 +9,7 @@ export default StyleSheet.create({
         elevation: 0,
         borderTopWidth: 0,
         backgroundColor: COLORS.White,
-        borderTopColor: COLORS.transparent,
+        borderTopColor: COLORS.Transparent,
     },
     logo : {
         height: 60,
