@@ -54,5 +54,10 @@ export default StyleSheet.create({
     scrollView : {
         marginTop : 10,
         marginBottom : 80,
+    },  
+    textEmptyResult: {
+        textAlign: 'center',
+        alignItems: 'center',
+        width: "100%",
     }
 });

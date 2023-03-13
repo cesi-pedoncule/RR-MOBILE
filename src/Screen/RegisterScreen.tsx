@@ -1,4 +1,3 @@
-import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { Text, View } from "react-native";
 import Header from "../Components/Header";
@@ -7,18 +6,10 @@ import Link from "../Components/Button/Link";
 import CommonStyles from "../Styles/CommonStyles";
 import LoginStyles from "../Styles/Screen/LoginStyles";
 import RegisterStyles from "../Styles/Screen/RegisterStyles";
-import { StackNavigationProp } from "@react-navigation/stack";
 import InputText from "../Components/Input/InputText";
 import TopBar from "../Components/Input/TopBar";
 
-type RegisterStackParamList = {
-    Resources: undefined;
-    Login: undefined;
-}
-
-export default function RegisterScreen() {
-    const navigation = useNavigation<StackNavigationProp<RegisterStackParamList>>();
-
+export default function RegisterScreen({navigation}: any) {
     const onClickLoginText = () => {
         navigation.navigate('Login');
     }
@@ -29,7 +20,7 @@ export default function RegisterScreen() {
 
     return (
         <View style={CommonStyles.container}>
-            <TopBar hideSearchBar={true} />
+            <TopBar hideSearchBar={true} navigation={navigation} />
             <View style={CommonStyles.content}>
                 <Header label="Inscription" />
                 <View>

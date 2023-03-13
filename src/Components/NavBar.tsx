@@ -1,117 +1,90 @@
-import { Image, TouchableOpacity, View, Text } from 'react-native'
+import { Image } from 'react-native'
 import NavBarStyles from '../Styles/Components/NavBarStyles'; 
-import { StackNavigationProp } from '@react-navigation/stack';
-import { useNavigation } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Client } from 'rr-apilib';
+import { COLORS } from '../Styles/Colors';
+import ResourcesScreen from '../Screen/ResourcesScreen';
+import CategoriesScreen from '../Screen/CategoriesScreen';
+import ShareResourceScreen from '../Screen/ShareResourceScreen';
+import ProfileScreen from '../Screen/ProfileScreen';
 
-type NavBarStackParamList = {
-    Categories: undefined;
-    Profile: undefined;
-    ShareCreate: undefined;
-    Resources: undefined;
-    Login: undefined;
-}
+const Tab = createBottomTabNavigator();
 
-interface Props {
-    client: Client;
-    resourcesIsFocused ?: boolean;
-    categoriesIsFocused ?: boolean;
-    shareResourceIsFocused ?: boolean;
-    profileIsFocused ?: boolean;
-    appIsLoaded ?: boolean;
-}
-
-export default function NavBar({client, resourcesIsFocused=false, categoriesIsFocused = false, shareResourceIsFocused = false, profileIsFocused = false, appIsLoaded = true}: Props) {
-    const navigation = useNavigation<StackNavigationProp<NavBarStackParamList>>();
-
-    const onClickCategoriesButton = () => {
-        navigation.navigate('Categories');
-    }
-
-    const onClickProfileButton = () => {
-        if (client.auth.me === null) {
-            navigation.navigate('Login');
-        } else {
-            navigation.navigate('Profile');
-        }
-    }
-
-    const onClickShareResourceButton = () => {
-        if (client.auth.me === null) {
-            navigation.navigate('Login');
-        } else {
-            navigation.navigate('ShareCreate');
-        }
-    }
-
-    const onClickResourcesButton = () => {
-        navigation.navigate('Resources');
-    }
+export default function NavBar({ route }: any) {
+    const client = route.params as Client;
 
     return (
-        <View style={NavBarStyles.container}>
-            {
-                appIsLoaded &&
-                <View style={NavBarStyles.container}>
-                    <TouchableOpacity onPress={onClickResourcesButton} style={NavBarStyles.button}>
-                        {
-                            !resourcesIsFocused ? 
-                            <View style={NavBarStyles.buttonContainer}>
-                                <Image source={require('../assets/Ressources.png')} style={NavBarStyles.logo}/>
-                                <Text style={NavBarStyles.text}>Ressources</Text>
-                            </View> 
-                            : 
-                            <View style={NavBarStyles.buttonContainer}>
-                                <Image source={require('../assets/RessourcesFocused.png')} style={NavBarStyles.logo}/>
-                                <Text style={NavBarStyles.textFocused}>Ressources</Text>
-                            </View> 
-                        }
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={onClickCategoriesButton} style={NavBarStyles.button}>
-                        {
-                            !categoriesIsFocused ?
-                            <View style={NavBarStyles.buttonContainer}>
-                                <Image source={require('../assets/Catalogue.png')} style={NavBarStyles.logo}/>
-                                <Text style={NavBarStyles.text}>Catégories</Text>
-                            </View>
-                            :
-                            <View style={NavBarStyles.buttonContainer}>
-                                <Image source={require('../assets/CatalogueFocused.png')} style={NavBarStyles.logo}/>
-                                <Text style={NavBarStyles.textFocused}>Catégories</Text>
-                            </View>
-                        }
-                        
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={onClickShareResourceButton} style={NavBarStyles.button}>
-                        {
-                            !shareResourceIsFocused ?
-                            <View style={NavBarStyles.buttonContainer}>
-                                <Image source={require('../assets/Partage.png')} style={NavBarStyles.logo}/>
-                                <Text style={NavBarStyles.text}>Partager</Text>
-                            </View>
-                            :
-                            <View style={NavBarStyles.buttonContainer}>
-                                <Image source={require('../assets/PartageFocused.png')} style={NavBarStyles.logo}/>
-                                <Text style={NavBarStyles.textFocused}>Partager</Text>
-                            </View>
-                        }
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={onClickProfileButton} style={NavBarStyles.button}>
-                        {
-                            !profileIsFocused ?
-                            <View style={NavBarStyles.buttonContainer}>
-                                <Image source={require('../assets/Profile.png')} style={NavBarStyles.logo}/>
-                                <Text style={NavBarStyles.text}>Profile</Text>
-                            </View>
-                            :
-                            <View style={NavBarStyles.buttonContainer}>
-                                <Image source={require('../assets/ProfileFocused.png')} style={NavBarStyles.logo}/>
-                                <Text style={NavBarStyles.textFocused}>Profile</Text>
-                            </View>
-                        }
-                    </TouchableOpacity>
-                </View>
-            }
-        </View>
+        <Tab.Navigator
+            initialRouteName="Login"
+            screenOptions={{
+                tabBarInactiveTintColor: COLORS.accentColor,
+                tabBarActiveTintColor: COLORS.foregroundFocused,
+                tabBarShowLabel: true,
+                tabBarHideOnKeyboard: true,
+                headerShown: false,
+                tabBarStyle: NavBarStyles.container,     
+            }} 
+        >
+            <Tab.Screen
+                name="Resources"
+                component={ResourcesScreen}
+                options={{
+                    tabBarLabel: 'Ressources',
+                    tabBarIcon: ({ focused }) => (
+                        focused ?
+                        <Image source={require('../assets/RessourcesFocused.png')} style={NavBarStyles.logo}/>
+                        :
+                        <Image source={require('../assets/Ressources.png')} style={NavBarStyles.logo}/>
+                    ),
+                    tabBarLabelStyle : NavBarStyles.text
+                }}
+                initialParams={client}
+            />
+            <Tab.Screen
+                name="Catégories"
+                component={CategoriesScreen}
+                options={{
+                    tabBarLabel: 'Catégories',
+                    tabBarIcon: ({ focused }) => (
+                        focused ?
+                        <Image source={require('../assets/CatalogueFocused.png')} style={NavBarStyles.logo}/>
+                        :
+                        <Image source={require('../assets/Catalogue.png')} style={NavBarStyles.logo}/>
+                    ),
+                    tabBarLabelStyle : NavBarStyles.text
+                }}
+                initialParams={client}
+            />
+            <Tab.Screen
+                name="Partager"
+                component={ShareResourceScreen}
+                options={{
+                    tabBarLabel: 'Partager',
+                    tabBarIcon: ({ focused }) => (
+                        focused ?
+                        <Image source={require('../assets/PartageFocused.png')} style={NavBarStyles.logo}/>
+                        :
+                        <Image source={require('../assets/Partage.png')} style={NavBarStyles.logo}/>
+                    ),
+                    tabBarLabelStyle : NavBarStyles.text
+                }}
+                initialParams={client}
+            />
+            <Tab.Screen
+                name="Profile"
+                component={ProfileScreen}
+                options={{
+                    tabBarLabel: 'Profile',
+                    tabBarIcon: ({ focused }) => (
+                        focused ?
+                        <Image source={require('../assets/ProfileFocused.png')} style={NavBarStyles.logo}/>
+                        :
+                        <Image source={require('../assets/Profile.png')} style={NavBarStyles.logo}/>
+                    ),
+                    tabBarLabelStyle : NavBarStyles.text
+                }}
+                initialParams={client}
+            />
+        </Tab.Navigator>
     )
 }

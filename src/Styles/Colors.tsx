@@ -7,4 +7,5 @@ export enum COLORS {
     borderColor = '#EEEEEE',
     tagColor = '#D9D9D9',
     foregroundFocused = '#396a83',
+    transparent = 'transparent',
 }

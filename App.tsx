@@ -3,12 +3,9 @@ import { createStackNavigator } from '@react-navigation/stack';
 import LoginScreen from './src/Screen/LoginScreen';
 import RegisterScreen from './src/Screen/RegisterScreen';
 import { Client } from 'rr-apilib';
-import ResourcesScreen from './src/Screen/ResourcesScreen';
-import ProfileScreen from './src/Screen/ProfileScreen';
-import ShareResourceScreen from './src/Screen/ShareResourceScreen';
-import CategoriesScreen from './src/Screen/CategoriesScreen';
 import ResourceDetailsScreen from './src/Screen/ResourceDetailsScreen';
 import CreateResourceScreen from './src/Screen/CreateResourceScreen';
+import NavBar from './src/Components/NavBar';
 
 const Stack = createStackNavigator();
 const client = new Client();
@@ -22,12 +19,9 @@ export default function App() {
           animationEnabled: false
         }}
       >
+        <Stack.Screen name="NavBar" component={NavBar} options={{ headerShown: false }} initialParams={client}/>
         <Stack.Screen name="Login" component={LoginScreen} initialParams={client} />
         <Stack.Screen name="Register" component={RegisterScreen} initialParams={client} />
-        <Stack.Screen name="Categories" component={CategoriesScreen} initialParams={client} />
-        <Stack.Screen name="Profile" component={ProfileScreen} initialParams={client} />
-        <Stack.Screen name="ShareCreate" component={ShareResourceScreen} initialParams={client} />
-        <Stack.Screen name="Resources" component={ResourcesScreen} initialParams={client} />
         <Stack.Screen name="ResourceDetails" component={ResourceDetailsScreen} initialParams={client} />
         <Stack.Screen name="CreateResourceScreen" component={CreateResourceScreen} initialParams={client} />
       </Stack.Navigator>

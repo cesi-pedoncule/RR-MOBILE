@@ -1,10 +1,8 @@
-import { useNavigation } from "@react-navigation/native";
-import { StackNavigationProp } from "@react-navigation/stack";
 import React from "react";
 import { TouchableHighlight, View } from "react-native";
 import TopbarStyles from "../../Styles/Components/Input/TopbarStyles";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import HomeButton from "../Button/ResourcesButton";
+import ResourcesButton from "../Button/ResourcesButton";
 import SearchBar from "./SearchBar";
 import { Client } from "rr-apilib";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -14,14 +12,11 @@ interface Props {
     hideSearchBar?: boolean;
     hideLogout?: boolean;
     client?: Client;
+    navigation: any;
 }
 
-type TopBarStackParamList = {
-    Login: undefined;
-};
-
-export default function TopBar({onChangeSearch, hideSearchBar=false, hideLogout=true, client}: Props) {
-    const navigation = useNavigation<StackNavigationProp<TopBarStackParamList>>();
+export default function TopBar({onChangeSearch, hideSearchBar=false, hideLogout=true, client, navigation}: Props) {
+    //const navigations = useNavigation<StackNavigationProp<TopBarStackParamList>>();
 
     const onClickDisconnect = async () => {
         client?.auth.logout();
@@ -33,7 +28,7 @@ export default function TopBar({onChangeSearch, hideSearchBar=false, hideLogout=
 
     return (
         <View style={TopbarStyles.topBarBackground}>
-            <HomeButton style={TopbarStyles.btnHomeBackground}/>
+            <ResourcesButton style={TopbarStyles.btnHomeBackground} navigation={navigation}/>
             {
                 !hideSearchBar && onChangeSearch ? <SearchBar onChangeSearch={onChangeSearch} /> : null
             }

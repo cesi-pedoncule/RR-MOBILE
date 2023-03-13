@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import { View, ScrollView, Text } from 'react-native'
 import { Category, Client } from "rr-apilib";
-import NavBar from "../Components/NavBar";
 import CommonStyles from "../Styles/CommonStyles";
 import ButtonShowMoreItems from "../Components/Button/ButtonShowMoreItems";
 import TopBar from "../Components/Input/TopBar";
 import CategoryCard from "../Components/Card/CategoryCard";
 import CategoryStyles from "../Styles/Screen/CategoryStyles";
 
-export default function CategoriesScreen({ route }: any) {
+export default function CategoriesScreen({ route, navigation }: any) {
     const client = route.params as Client;
     const [showMoreItems, setShowMoreItems] = useState<boolean>(false);
     const [categories, setCategories] = useState<Category[]>(Array.from(client.categories.cache.values()));
@@ -26,7 +25,7 @@ export default function CategoriesScreen({ route }: any) {
   
     return (
         <View style={CommonStyles.container}>
-            <TopBar onChangeSearch={handleChangeSearch} />
+            <TopBar onChangeSearch={handleChangeSearch} navigation={navigation} />
             <View style={CommonStyles.content}> 
                 <ScrollView style={CommonStyles.scrollView}>
                     <View style={CategoryStyles.categoriesContainer}>
@@ -38,7 +37,7 @@ export default function CategoriesScreen({ route }: any) {
                             })
                         }
                         {
-                            categories.length == 0 && <Text>Aucune catégorie n'a été trouvée.</Text>
+                            categories.length == 0 && <Text style={CommonStyles.textEmptyResult}> Aucune catégorie n'a été trouvée. </Text>
                         }
                     </View>
                 </ScrollView>
@@ -49,7 +48,6 @@ export default function CategoriesScreen({ route }: any) {
                         )
                     }
                 </View>
-                <NavBar client={client} categoriesIsFocused={true}/>
             </View>
         </View>
     )

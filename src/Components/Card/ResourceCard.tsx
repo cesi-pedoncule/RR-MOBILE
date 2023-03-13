@@ -1,23 +1,12 @@
 import React, { useState } from 'react'
 import { Category, Resource } from 'rr-apilib'
-import {
-    View,
-    Text,
-    TouchableOpacity,
-    GestureResponderEvent
-} from 'react-native'
-
+import { View,Text, TouchableOpacity, GestureResponderEvent } from 'react-native'
 import LikeButton from '../Button/LikeButton'
 import CommentButton from '../Button/CommentButton'
 import CategoryButton from '../Button/CategoryButton'
 import { likeClickHandle } from '../../Functions/Utils'
-
 import ResourceCardStyles from '../../Styles/Components/Card/ResourceCardStyles'
 import IconButton from '../Button/IconButton'
-
-type ResourceCardParams = {
-    ResourceDetails: { resource: Resource };
-}
 
 interface Props {
     resource: Resource;
@@ -26,7 +15,6 @@ interface Props {
 }
 
 export default function ResourceCard({ resource, callBack, inShareResourceScreens=false }: Props) {
-
     const [numberLike, setNumberLike] = useState(resource.likes.cache.size);
     const [isLikeResource, setIsLikeResource] = useState<boolean>(resource.isLiked());
     const [numberCommentResource, setNumberCommentResource] = useState(resource.comments.cache.size);

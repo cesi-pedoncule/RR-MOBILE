@@ -23,7 +23,7 @@ export default StyleSheet.create({
     },
     cardComment:{
         height: "auto",
-        color: COLORS.accentColor,
+        color: COLORS.foregroundHolder,
         fontSize: 13,
         textAlign: 'justify',
         marginTop: 10,

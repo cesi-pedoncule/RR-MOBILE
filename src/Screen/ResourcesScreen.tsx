@@ -1,26 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { View, ScrollView, ActivityIndicator, Text } from 'react-native'
 import { Client, Resource } from "rr-apilib";
-
-import NavBar from "../Components/NavBar";
 import CommonStyles from "../Styles/CommonStyles";
 import ButtonShowMoreItems from "../Components/Button/ButtonShowMoreItems";
 import ResourceCard from "../Components/Card/ResourceCard";
 import TopBar from "../Components/Input/TopBar";
 import ResourcesStyles from "../Styles/Screen/ResourcesStyles";
 
-import { StackNavigationProp } from "@react-navigation/stack";
-import { useNavigation } from "@react-navigation/native";
-
-type ResourcesStackParamList = {
-    ResourceDetails: {resource: Resource};
-}
-
-export default function ResourcesScreen({ route }: any) {
-    const navigation = useNavigation<StackNavigationProp<ResourcesStackParamList>>();
-    
+export default function ResourcesScreen({ navigation, route } : any) {
     const client = route.params as Client;
-    // const [showMoreItems, setShowMoreItems] = useState<boolean>(false);
     const [resources, setResources] = useState<Resource[]>(Array.from(client.resources.cache.values()));
     const [resourcesFiltered, setResourcesFiltered] = useState<Resource[]>(Array.from(client.resources.cache.values()).slice(0, 6));
     const [noResources, setNoResources] = useState<boolean>(false);
@@ -53,7 +41,7 @@ export default function ResourcesScreen({ route }: any) {
 
     return (
         <View style={CommonStyles.container}>
-            <TopBar onChangeSearch={handleChangeSearch} />
+            <TopBar onChangeSearch={handleChangeSearch} navigation={navigation} />
             <View style={CommonStyles.content}>
                 {
                     resources.length === 0 && noResources === false ?  <ActivityIndicator size="large" color="#0000ff" style={CommonStyles.loader} /> :
@@ -68,13 +56,12 @@ export default function ResourcesScreen({ route }: any) {
                                 resources.length >= 6 && resourcesFiltered.length !== resources.length && <ButtonShowMoreItems callBack={onClickShowMoreItems} />
                             }
                             {
-                                noResources && <Text>Aucune ressource n'a été trouvée.</Text>
+                                noResources && <Text style={CommonStyles.textEmptyResult}>Aucune ressource n'a été trouvée.</Text>
                             }
                         </View>
                     </ScrollView>
                 }
             </View>
-            <NavBar client={client} resourcesIsFocused={true} appIsLoaded={resources.length != 0}/>
         </View>
     )
 }

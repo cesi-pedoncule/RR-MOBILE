@@ -4,7 +4,6 @@ import CommentCard from '../Components/Card/CommentCard'
 import LikeButton from '../Components/Button/LikeButton'
 import CommentButton from '../Components/Button/CommentButton'
 import { Category, Client, Comment, Resource } from 'rr-apilib'
-import NavBar from '../Components/NavBar'
 import ResourceDetailsStyles from "../Styles/Screen/ResourceDetailsStyles";
 import TopBar from '../Components/Input/TopBar'
 import ReturnButton from '../Components/Button/ReturnButton'
@@ -15,9 +14,7 @@ import { likeClickHandle } from '../Functions/Utils'
 import InputTextComment from '../Components/Input/InputTextComment'
 import ButtonFile from '../Components/Button/ButtonFile'
 
-export default function ResourceDetailsScreen({ route }: any) {
-
-    const client = route.params as Client;
+export default function ResourceDetailsScreen({ route,navigation }: any) {
     const resource = route.params.resource as Resource;
 
     const [isLikeResource, setIsLikeResource] = useState(resource.isLiked());
@@ -69,7 +66,7 @@ export default function ResourceDetailsScreen({ route }: any) {
 
     return (
         <View style={CommonStyles.container}>
-            <TopBar hideSearchBar={true}/>
+            <TopBar hideSearchBar={true} navigation={navigation}/>
             <View style={CommonStyles.content}>
                 <ReturnButton/>
                 <ScrollView style={CommonStyles.scrollView}>
@@ -126,7 +123,6 @@ export default function ResourceDetailsScreen({ route }: any) {
                         }
                     </View>          
                 </ScrollView>
-            <NavBar client={client}/>
             </View>
         </View>
     )

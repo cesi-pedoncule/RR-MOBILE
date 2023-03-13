@@ -2,24 +2,13 @@ import React, { useState } from "react";
 import { View, Text, ScrollView } from 'react-native'
 import { Client, Resource } from "rr-apilib";
 import ButtonShowMoreItems from "../Components/Button/ButtonShowMoreItems";
-import NavBar from "../Components/NavBar";
 import InputButton from "../Components/Button/InputButton";
 import TopBar from "../Components/Input/TopBar";
 import ResourceCard from "../Components/Card/ResourceCard";
 import CommonStyles from "../Styles/CommonStyles";
 import ShareResourceStyles from "../Styles/Screen/ShareResourceStyles";
-import { StackNavigationProp } from "@react-navigation/stack";
-import { useNavigation } from "@react-navigation/native";
 
-
-type ShareResourceStackParamList = {
-    ResourceDetails: {resource: Resource};
-	CreateResourceScreen: undefined;
-}
-
-export default function ShareResourceScreen({ route }: any) {
-	const navigation = useNavigation<StackNavigationProp<ShareResourceStackParamList>>();
-
+export default function ShareResourceScreen({ route, navigation }: any) {
 	const client = route.params as Client;
 	const user = client.auth.me;
 
@@ -43,14 +32,14 @@ export default function ShareResourceScreen({ route }: any) {
 
   return (
 	<View style={CommonStyles.container}>
-		<TopBar onChangeSearch={handleChangeSearch} />
+		<TopBar onChangeSearch={handleChangeSearch} navigation={navigation} />
 		<View style={CommonStyles.content}> 
 			<Text style={ShareResourceStyles.textSaves}>Enregitrées</Text>
 			<ScrollView style={ShareResourceStyles.scrollView}>
 				{
 					resources.length === 0 ?
 					<View style={ShareResourceStyles.resourcesContainer}>
-						<Text>Aucune ressource enregistrée</Text>
+						<Text style={CommonStyles.textEmptyResult}>Aucune ressource enregistrée</Text>
 					</View>
 					:
 					<View style={ShareResourceStyles.resourcesContainer}>
@@ -73,7 +62,6 @@ export default function ShareResourceScreen({ route }: any) {
 					<InputButton label="Nouvelle Ressource" callBack={onClickShareNewItem} style={ShareResourceStyles.addResourceBtn}></InputButton>
 				</View>
 			}
-			<NavBar client={client} shareResourceIsFocused={true}/>
 		</View>
 	</View>
   )

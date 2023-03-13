@@ -1,25 +1,14 @@
-import { useNavigation } from "@react-navigation/native";
-import { StackNavigationProp } from "@react-navigation/stack";
 import React from "react";
 import { View, Text, ScrollView } from 'react-native'
 import { Client } from "rr-apilib";
 import Header from "../Components/Header";
-import NavBar from "../Components/NavBar";
 import StatDashBoard from "../Components/StatDashBoard";
 import TopBar from "../Components/Input/TopBar";
 import CommonStyles from "../Styles/CommonStyles";
 import ProfileStyles from "../Styles/Screen/ProfileStyles";
 
-type ProfileStackParamList = {
-    Resources: undefined;
-    Login: undefined;
-};
-
-export default function ProfileScreen({route}: any) {
-
+export default function ProfileScreen({route, navigation}: any) {
     const client = route.params as Client;
-    const navigation = useNavigation<StackNavigationProp<ProfileStackParamList>>();
-    
     const user = client.auth.me;
 
     if (user == null) {
@@ -33,7 +22,7 @@ export default function ProfileScreen({route}: any) {
 
     return (
         <View style={CommonStyles.container}>
-            <TopBar hideSearchBar={true} hideLogout={false} client={client} />
+            <TopBar hideSearchBar={true} hideLogout={false} client={client} navigation={navigation} />
             {
                 user && ( 
                     <View style={CommonStyles.content}>
@@ -46,7 +35,6 @@ export default function ProfileScreen({route}: any) {
                                 <StatDashBoard user={user} />
                             </View>
                         </ScrollView>
-                        <NavBar client={client} profileIsFocused={true}/>
                     </View>
                 )
             }
