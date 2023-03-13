@@ -16,12 +16,10 @@ export default StyleSheet.create({
         height: 40,
         width : "90%",
         borderRadius : 10,
-        borderBottomWidth: 2,
-        borderBottomColor: COLORS.borderColor,
-        shadowOffset: {width: 0, height: 4},
-        shadowColor: COLORS.borderColor,
-        shadowOpacity: 0.25,
-        shadowRadius: 4,
+        shadowColor: COLORS.black,
+        shadowOpacity: 0.3,
+        shadowOffset: { width: 4, height: 4},
+        elevation: 2,
     },
     sendButton: {
         width: 140,
@@ -31,6 +29,10 @@ export default StyleSheet.create({
         marginTop:20,
         borderRadius: 15,
         transition: 0.2,
+        shadowColor: COLORS.black,
+        shadowOpacity: 0.3,
+        shadowOffset: { width: 4, height: 4},
+        elevation: 2,
     },
     categorieList: {
         alignItem: 'center',
@@ -45,7 +47,7 @@ export default StyleSheet.create({
     },
     addCategorieText: {
         backgroundColor: COLORS.tagColor,
-        color: COLORS.borderColor,
+        color: COLORS.black,
         paddingLeft: 20,
         paddingRight: 20,
         paddingBottom: 4,
@@ -61,4 +63,7 @@ export default StyleSheet.create({
         justifyContent: 'space-between',
         marginTop:20,
     },
+    sendButtonContainer: {
+        height : 100,
+    }
 });

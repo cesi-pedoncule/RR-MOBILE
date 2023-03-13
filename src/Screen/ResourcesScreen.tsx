@@ -45,7 +45,7 @@ export default function ResourcesScreen({ navigation, route } : any) {
             <View style={CommonStyles.content}>
                 {
                     resources.length === 0 && noResources === false ?  <ActivityIndicator size="large" color="#0000ff" style={CommonStyles.loader} /> :
-                    <ScrollView style={CommonStyles.scrollView}>
+                    <ScrollView style={CommonStyles.scrollViewWithNavBar}>
                         <View style={ResourcesStyles.resourcesContainer}>
                             {
                                 resourcesFiltered.map((resource, i) => {

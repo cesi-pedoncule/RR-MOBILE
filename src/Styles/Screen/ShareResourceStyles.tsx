@@ -24,7 +24,12 @@ export default StyleSheet.create({
 		textAlign: 'center',
 		color: COLORS.white,
 		marginTop: 5,
+		height: 50,
 		width: 150,
+		shadowColor: COLORS.black,
+        shadowOpacity: 0.3,
+        shadowOffset: { width: 4, height: 4},
+        elevation: 2,
 	},
 	buttonsContainer: {
 		position : 'absolute',

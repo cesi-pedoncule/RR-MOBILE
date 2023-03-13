@@ -14,6 +14,5 @@ export default StyleSheet.create({
         paddingTop: 2,    
         borderRadius : 15,
         textAlign : 'center',
-        
     },
 });

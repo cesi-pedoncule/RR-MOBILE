@@ -27,7 +27,7 @@ export default function CategoriesScreen({ route, navigation }: any) {
         <View style={CommonStyles.container}>
             <TopBar onChangeSearch={handleChangeSearch} navigation={navigation} />
             <View style={CommonStyles.content}> 
-                <ScrollView style={CommonStyles.scrollView}>
+                <ScrollView style={CommonStyles.scrollViewWithNavBar}>
                     <View style={CategoryStyles.categoriesContainer}>
                         {
                             categories.map((category, i) => {
@@ -40,14 +40,14 @@ export default function CategoriesScreen({ route, navigation }: any) {
                             categories.length == 0 && <Text style={CommonStyles.textEmptyResult}> Aucune catégorie n'a été trouvée. </Text>
                         }
                     </View>
-                </ScrollView>
-                <View style={CategoryStyles.showMoreItemsContainer}>
+                    <View style={CategoryStyles.showMoreItemsContainer}>
                     {
                         !showMoreItems && categories.length >= 6 && (
                             <ButtonShowMoreItems callBack={onClickShowMoreItems} />
                         )
                     }
-                </View>
+                    </View>
+                </ScrollView>
             </View>
         </View>
     )

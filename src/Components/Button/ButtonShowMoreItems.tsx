@@ -9,7 +9,7 @@ interface Props {
 export default function ButtonShowMoreItems({callBack}: Props) {
   return (
     <TouchableOpacity onPress={callBack} style={moreItemsButtonStyles.moreItemsButton}>
-        <Text>...</Text>
+        <Text style={moreItemsButtonStyles.text}>...</Text>
     </TouchableOpacity>
   );
 }

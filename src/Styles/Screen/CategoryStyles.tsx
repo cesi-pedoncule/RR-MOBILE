@@ -5,8 +5,8 @@ export default StyleSheet.create({
         position : 'absolute',
 		justifyContent: 'center',
 		alignItems: 'center',
-		bottom: "18%",
 		width : "100%",
+        bottom: 5,
     },
     categoriesContainer: {
         justifyContent: 'center',

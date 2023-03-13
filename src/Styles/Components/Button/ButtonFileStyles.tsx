@@ -12,5 +12,9 @@ export default StyleSheet.create({
         justifyContent: 'space-between',
         borderRadius: 15,
         padding: 15,
+        shadowColor: COLORS.black,
+        shadowOpacity: 0.3,
+        shadowOffset: { width: 4, height: 4},
+        elevation: 2,
     },
 });
