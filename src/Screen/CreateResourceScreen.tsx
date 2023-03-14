@@ -6,15 +6,11 @@ import ReturnButton from '../Components/Button/ReturnButton'
 import CreateResourceStyles from '../Styles/Screen/CreateResourceStyles'
 import InputTextDescription from '../Components/Input/InputTextDescription'
 import InputButton from '../Components/Button/InputButton'
-import { ResourceBuilder } from 'rr-apilib'
+import { Client, ResourceBuilder } from 'rr-apilib'
 import ButtonFile from '../Components/Button/ButtonFile'
-import { NavigationParamList } from '../Types/navigation'
-import { NativeStackScreenProps } from '@react-navigation/native-stack'
 
-type Props = NativeStackScreenProps<NavigationParamList, 'CreateResourceScreen'>;
-
-export default function CreateResourceScreen({ route, navigation }: Props) {
-    const client = route.params.client;
+export default function CreateResourceScreen({route, navigation} : any) {
+    const client = route.params as Client;
     const [newResource] = useState<ResourceBuilder>(new ResourceBuilder());
 
     const [isPublic, setIsPublic] = useState(false);

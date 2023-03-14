@@ -1,20 +1,15 @@
 import React from "react";
-import { Client } from "rr-apilib";
+import { TouchableOpacity } from "react-native";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { StyleProp, TouchableOpacity, ViewStyle } from "react-native";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-
-import { NavigationParamList } from "../../Types/navigation";
 
 interface Props {
-    client: Client;
-    style?: StyleProp<ViewStyle>;
-    navigation: NativeStackNavigationProp<NavigationParamList>;
+    style?: any;
+    navigation:any;
 }
 
-export default function ResourcesButton({ style, navigation, client }: Props) {
+export default function ResourcesButton({style, navigation} : Props) {
     const onPressButton = () => {
-        navigation.navigate('Resources', { client });
+        navigation.navigate('Resources');
     }
 
     return (

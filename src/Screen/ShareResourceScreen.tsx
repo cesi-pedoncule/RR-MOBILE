@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, ScrollView, ActivityIndicator } from 'react-native'
-import { Resource } from "rr-apilib";
+import { Client, Resource } from "rr-apilib";
 import ButtonShowMoreItems from "../Components/Button/ButtonShowMoreItems";
 import InputButton from "../Components/Button/InputButton";
 import TopBar from "../Components/Input/TopBar";
@@ -9,14 +9,9 @@ import CommonStyles from "../Styles/CommonStyles";
 import ShareResourceStyles from "../Styles/Screen/ShareResourceStyles";
 import useResources from "../Hooks/useResources";
 import { COLORS } from "../Styles/Colors";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { NavigationParamList } from "../Types/navigation";
 
-type Props = NativeStackScreenProps<NavigationParamList, 'ShareResource'>;
-
-export default function ShareResourceScreen({ route, navigation }: Props) {
-	
-	const client = route.params.client;
+export default function ShareResourceScreen({ route, navigation }: any) {
+	const client = route.params as Client;
 	const user = client.auth.me;
 
 	const {resources, setResources, loading} = useResources({ client });
@@ -27,7 +22,7 @@ export default function ShareResourceScreen({ route, navigation }: Props) {
 		//setResources(Array.from(user.resources.cache.values()));
 	} 
 	else{
-		navigation.navigate("Login", { client });
+		navigation.navigate("Login");
 	}
 
 	const onClickShowMoreItems = () => {
@@ -35,7 +30,7 @@ export default function ShareResourceScreen({ route, navigation }: Props) {
 	}
 
 	const onClickShareNewItem = () => {
-		// navigation.navigate('CreateResourceScreen');
+		navigation.navigate('CreateResourceScreen');
 	}
 
 	const handleChangeSearch = (text: string) => {

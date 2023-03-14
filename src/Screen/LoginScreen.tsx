@@ -6,21 +6,17 @@ import Link from "../Components/Button/Link";
 import CommonStyles from "../Styles/CommonStyles";
 import LoginStyles from "../Styles/Screen/LoginStyles";
 import InputText from "../Components/Input/InputText";
+import { Client } from "rr-apilib";
 import TopBar from "../Components/Input/TopBar";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { COLORS } from "../Styles/Colors";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { NavigationParamList } from "../Types/navigation";
 
-type Props = NativeStackScreenProps<NavigationParamList, 'Login'>
-
-export default function LoginScreen({ route, navigation }: Props) {
-    
+export default function LoginScreen({ route, navigation }: any) {
     const [isLoading, setIsLoading] = useState<boolean>(true);
-    const client = route.params.client;
+    const client = route.params as Client;
 
     const onClickRegisterText = () => {
-        navigation.navigate('Register', { client });
+        navigation.navigate('Register');
     }
 
     const onClickLoginButton = async () => {
@@ -36,8 +32,7 @@ export default function LoginScreen({ route, navigation }: Props) {
             await client.resources.fetchAll();
             await client.validations.fetchAll();
 
-            navigation.navigate('Resources', { client });
-
+            navigation.navigate('Resources');
         } catch (error) {
             alert('Mauvais identifiants');
         }
@@ -52,9 +47,8 @@ export default function LoginScreen({ route, navigation }: Props) {
         await client.validations.fetchAll();
         
         if (client.auth.me != null) {
-            navigation.navigate('Resources', { client });
-        }
-        else {
+            navigation.navigate('Resources');
+        } else {
             // Check if token is in storage
             const token = await AsyncStorage.getItem('token');
             const refresh_token = await AsyncStorage.getItem('refresh_token');
@@ -68,7 +62,7 @@ export default function LoginScreen({ route, navigation }: Props) {
                 // Try to refresh token
                 try {
                     await client.auth.refresh();
-                    // navigation.navigate('');
+                    navigation.navigate('Resources');
                 } catch (error) {
                     await AsyncStorage.removeItem('token');
                     await AsyncStorage.removeItem('refresh_token');

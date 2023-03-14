@@ -1,22 +1,17 @@
 import { Image } from 'react-native'
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-
 import NavBarStyles from '../Styles/Components/NavBarStyles'; 
-
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Client } from 'rr-apilib';
 import { COLORS } from '../Styles/Colors';
-import ProfileScreen from '../Screen/ProfileScreen';
-import { NavigationParamList } from '../Types/navigation';
 import ResourcesScreen from '../Screen/ResourcesScreen';
 import CategoriesScreen from '../Screen/CategoriesScreen';
 import ShareResourceScreen from '../Screen/ShareResourceScreen';
+import ProfileScreen from '../Screen/ProfileScreen';
 
-type Props = NativeStackScreenProps<NavigationParamList, 'NavBar'>;
-const Tab = createBottomTabNavigator<NavigationParamList>();
+const Tab = createBottomTabNavigator();
 
-export default function NavBar({ route }: Props) {
-    
-    const client = route.params.client;
+export default function NavBar({ route }: any) {
+    const client = route.params as Client;
 
     return (
         <Tab.Navigator
@@ -43,10 +38,10 @@ export default function NavBar({ route }: Props) {
                     ),
                     tabBarLabelStyle : NavBarStyles.text
                 }}
-                initialParams={{ client }}
+                initialParams={client}
             />
             <Tab.Screen
-                name="Categories"
+                name="Catégories"
                 component={CategoriesScreen}
                 options={{
                     tabBarLabel: 'Catégories',
@@ -58,10 +53,10 @@ export default function NavBar({ route }: Props) {
                     ),
                     tabBarLabelStyle : NavBarStyles.text
                 }}
-                initialParams={{ client }}
+                initialParams={client}
             />
             <Tab.Screen
-                name="ShareResource"
+                name="Partager"
                 component={ShareResourceScreen}
                 options={{
                     tabBarLabel: 'Partager',
@@ -73,7 +68,7 @@ export default function NavBar({ route }: Props) {
                     ),
                     tabBarLabelStyle : NavBarStyles.text
                 }}
-                initialParams={{ client }}
+                initialParams={client}
             />
             <Tab.Screen
                 name="Profile"
@@ -88,7 +83,7 @@ export default function NavBar({ route }: Props) {
                     ),
                     tabBarLabelStyle : NavBarStyles.text
                 }}
-                initialParams={{ client }}
+                initialParams={client}
             />
         </Tab.Navigator>
     )

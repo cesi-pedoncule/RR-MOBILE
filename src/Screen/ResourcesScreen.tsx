@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { View, ScrollView, ActivityIndicator, Text } from 'react-native'
-import { Resource } from "rr-apilib";
+import { Client, Resource } from "rr-apilib";
 import CommonStyles from "../Styles/CommonStyles";
 import ButtonShowMoreItems from "../Components/Button/ButtonShowMoreItems";
 import ResourceCard from "../Components/Card/ResourceCard";
@@ -8,14 +8,9 @@ import TopBar from "../Components/Input/TopBar";
 import ResourcesStyles from "../Styles/Screen/ResourcesStyles";
 import useResources from "../Hooks/useResources";
 import { COLORS } from "../Styles/Colors";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { NavigationParamList } from "../Types/navigation";
 
-type Props = NativeStackScreenProps<NavigationParamList, 'Resources'>;
-
-export default function ResourcesScreen({ navigation, route } : Props) {
-    
-    const client = route.params.client;
+export default function ResourcesScreen({ navigation, route } : any) {
+    const client = route.params as Client;
 
     const { resources, setResources, loading } = useResources({ client });
     const [ resourcesFiltered, setResourcesFiltered ] = useState<Resource[]>([]);

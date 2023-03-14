@@ -1,9 +1,7 @@
 import { View, Text } from 'react-native'
-import React, { useState, useEffect } from 'react'
-import { Client, Comment, Resource } from 'rr-apilib';
-
+import React, { useEffect, useState } from 'react'
 import CommentCardStyles from '../../Styles/Components/Card/CommentCardStyles';
-
+import { Client, Comment, Resource } from 'rr-apilib';
 import IconButton from '../Button/IconButton';
 
 interface Props {

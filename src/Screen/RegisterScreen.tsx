@@ -8,20 +8,14 @@ import LoginStyles from "../Styles/Screen/LoginStyles";
 import RegisterStyles from "../Styles/Screen/RegisterStyles";
 import InputText from "../Components/Input/InputText";
 import TopBar from "../Components/Input/TopBar";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { NavigationParamList } from "../Types/navigation";
 
-type Props = NativeStackScreenProps<NavigationParamList, 'Register'>;
-
-export default function RegisterScreen({ route, navigation }: Props) {
-
-    const client = route.params.client;
+export default function RegisterScreen({navigation}: any) {
     const onClickLoginText = () => {
-        navigation.navigate('Login', { client });
+        navigation.navigate('Login');
     }
 
     const onClickRegisterButton = () => {
-        navigation.navigate('Register', { client });
+        navigation.navigate('Resources');
     }
 
     return (

@@ -1,24 +1,24 @@
 import { useState } from "react";
-import { Resource } from "rr-apilib";
 import { Text, View } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
-
-import CommonStyles from "../Styles/CommonStyles";
-import CategoryDetailsStyles from "../Styles/Screen/CategoryDetailsStyles";
-
+import { Category, Resource } from "rr-apilib";
+import ButtonShowMoreItems from "../Components/Button/ButtonShowMoreItems";
+import ReturnButton from "../Components/Button/ReturnButton";
+import ResourceCard from "../Components/Card/ResourceCard";
 import Header from "../Components/Header";
 import TopBar from "../Components/Input/TopBar";
-import { NavigationParamList } from "../Types/navigation";
-import ResourceCard from "../Components/Card/ResourceCard";
-import ReturnButton from "../Components/Button/ReturnButton";
-import ButtonShowMoreItems from "../Components/Button/ButtonShowMoreItems";
+import CommonStyles from "../Styles/CommonStyles";
+import CategoryDetailsStyles from "../Styles/Screen/CategoryDetailsStyles";
+import ResourcesStyles from "../Styles/Screen/ResourcesStyles";
 
-type Props = NativeStackScreenProps<NavigationParamList, 'CategoryDetails'>;
+interface Props {
+    navigation: any;
+    route: any;
+}
 
 export default function CategoryDetailsScreen ({ navigation, route }: Props) {
 
-    const category = route.params.category;
+    const category = route.params.category as Category;
     const [ resources, setResources ] = useState<Resource[]>(Array.from(category.resources.cache.values()));
     const [ resourcesFiltered, setResourcesFiltered ] = useState<Resource[]>(Array.from(category.resources.cache.values()));
 

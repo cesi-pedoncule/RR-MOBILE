@@ -1,21 +1,18 @@
 import React from "react";
 import { View, Text, ScrollView } from 'react-native'
+import { Client } from "rr-apilib";
 import Header from "../Components/Header";
 import StatDashBoard from "../Components/StatDashBoard";
 import TopBar from "../Components/Input/TopBar";
 import CommonStyles from "../Styles/CommonStyles";
 import ProfileStyles from "../Styles/Screen/ProfileStyles";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { NavigationParamList } from "../Types/navigation";
 
-type Props = NativeStackScreenProps<NavigationParamList, 'Profile'>;
-
-export default function ProfileScreen({ route, navigation }: Props) {
-    const client = route.params.client;
+export default function ProfileScreen({route, navigation}: any) {
+    const client = route.params as Client;
     const user = client.auth.me;
 
     if (user == null) {
-        navigation.navigate('Login', { client });
+        navigation.navigate('Login');
         return <View></View>;
     }
     

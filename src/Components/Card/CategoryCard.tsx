@@ -1,13 +1,10 @@
 import React from 'react'
-import { Category } from 'rr-apilib';
-import { Text, TouchableOpacity } from 'react-native'
-import { NavigationParamList } from '../../Types/navigation';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-
+import { View, Text, TouchableOpacity } from 'react-native'
 import CategoryCardStyles from '../../Styles/Components/Card/CategoryCardStyles';
+import { Category } from 'rr-apilib';
 
 interface Props {
-    navigation: NativeStackNavigationProp<NavigationParamList>;
+    navigation: any;
     category: Category;
 }
 
@@ -18,7 +15,7 @@ export default function CategoryCard({ navigation, category }:Props) {
         if (category.resources.cache.size === 0) {
             alert("Cette catégorie ne contient aucune ressource.")
         } else {
-            navigation.navigate('CategoryDetails', { category: category, client: category.client })
+            navigation.navigate('CategoryDetails', { category: category })
         }
     }
     
