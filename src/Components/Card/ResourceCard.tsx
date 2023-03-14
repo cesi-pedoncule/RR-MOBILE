@@ -10,8 +10,8 @@ import IconButton from '../Button/IconButton'
 
 interface Props {
     resource: Resource;
-    callBack: () => void;
     inShareResourceScreens?: boolean;
+    navigation: any;
     client?: Client;
     setResources: React.Dispatch<React.SetStateAction<Resource[]>>;
 }
@@ -40,7 +40,7 @@ export default function ResourceCard({ resource, callBack, inShareResourceScreen
 
         timeout = setTimeout(() => {
             timeout = null;
-            callBack();
+            onClickDetailResource();
         }, 300);
     }
 
@@ -53,7 +53,11 @@ export default function ResourceCard({ resource, callBack, inShareResourceScreen
     }
 
     const onClickEditResource = () => {
-        alert('edit resource')
+        navigation.navigate('EditResourceScreen',  {resource: resource});
+    }
+
+    const onClickDetailResource = () => {
+        navigation.navigate('ResourceDetails', {resource: resource});
     }
 
     return (
