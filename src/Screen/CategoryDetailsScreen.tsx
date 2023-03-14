@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Text, View } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
-import { Category, Client, Resource } from "rr-apilib";
+import { Category, Resource } from "rr-apilib";
 import ButtonShowMoreItems from "../Components/Button/ButtonShowMoreItems";
 import ReturnButton from "../Components/Button/ReturnButton";
 import ResourceCard from "../Components/Card/ResourceCard";
