@@ -15,7 +15,7 @@ export default function ShareResourceScreen({ route, navigation }: any) {
 	const user = client.auth.me;
 
 	const {resources, setResources, loading} = useResources({ client });
-	const [ resourcesFiltered, setResourcesFiltered ] = useState<Resource[]>([]);
+	const [ resourcesFiltered, setResourcesFiltered ] = useState<Resource[]>(resources);
 
 	if(user != null){
 		//user.resources.refresh();
