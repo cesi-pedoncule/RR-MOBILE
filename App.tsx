@@ -7,6 +7,7 @@ import ResourceDetailsScreen from './src/Screen/ResourceDetailsScreen';
 import CreateResourceScreen from './src/Screen/CreateResourceScreen';
 import NavBar from './src/Components/NavBar';
 import EditResourceScreen from './src/Screen/EditResourceScreen';
+import CategoryDetailsScreen from './src/Screen/CategoryDetailsScreen';
 
 const Stack = createStackNavigator();
 const client = new Client();
@@ -24,6 +25,7 @@ export default function App() {
         <Stack.Screen name="Login" component={LoginScreen} initialParams={client} />
         <Stack.Screen name="Register" component={RegisterScreen} initialParams={client} />
         <Stack.Screen name="ResourceDetails" component={ResourceDetailsScreen} initialParams={client} />
+        <Stack.Screen name="CategoryDetails" component={CategoryDetailsScreen} initialParams={client} />
         <Stack.Screen name="CreateResourceScreen" component={CreateResourceScreen} initialParams={client} />
         <Stack.Screen name="EditResourceScreen" component={EditResourceScreen} initialParams={client} />
       </Stack.Navigator>

@@ -3,13 +3,14 @@ import { View, Text, TouchableOpacity } from 'react-native'
 import CategoryButtonStyles from '../../Styles/Components/Button/CategoryButtonStyles'
 
 interface Props {
+    navigation: any;
     category: Category;
 }
 
-export default function CategoryButton({category}:Props) {
+export default function CategoryButton({ navigation, category }:Props) {
   
     const callBack = () => {
-        alert('TODO: Category Reference Search Resource');
+        navigation.navigate('CategoryDetails', { category: category })
     }
 
     return (

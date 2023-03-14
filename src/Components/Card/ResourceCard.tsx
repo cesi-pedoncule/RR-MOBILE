@@ -78,7 +78,7 @@ export default function ResourceCard({ resource, inShareResourceScreens=false, c
                     <View style={ResourceCardStyles.categoriesContainer}>
                         {
                             categories.map((category, i) => {
-                                return <CategoryButton key={i} category={category} />
+                                return <CategoryButton key={i} navigation={navigation} category={category} />
                             })
                         }
                     </View>
@@ -90,7 +90,7 @@ export default function ResourceCard({ resource, inShareResourceScreens=false, c
                     <View style={ResourceCardStyles.categoriesContainer}>
                         {
                             categories.map((category, i) => {
-                                return <CategoryButton key={i} category={category} />
+                                return <CategoryButton key={i} navigation={navigation} category={category} />
                             })
                         }
                     </View>

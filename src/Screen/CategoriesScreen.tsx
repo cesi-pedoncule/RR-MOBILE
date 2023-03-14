@@ -31,13 +31,13 @@ export default function CategoriesScreen({ route, navigation }: any) {
             <TopBar onChangeSearch={handleChangeSearch} navigation={navigation} />
             <View style={CommonStyles.content}>
                 {
-                    loading ?  <ActivityIndicator size="large" color={COLORS.AccentColor} style={CommonStyles.loader} /> :
+                    loading ? <ActivityIndicator size="large" color={COLORS.AccentColor} style={CommonStyles.loader} /> :
                     <ScrollView style={CommonStyles.scrollView}>
                         <View style={CategoryStyles.categoriesContainer}>
                             {
                                 categories.map((category, i) => {
                                     if ((!showMoreItems && i < 6) || showMoreItems) {
-                                        return <CategoryCard category={category} key={i} />
+                                        return <CategoryCard category={category} navigation={navigation} key={i} />
                                     }
                                 })
                             }
