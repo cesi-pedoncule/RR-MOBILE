@@ -5,8 +5,10 @@ import { Category, Resource } from "rr-apilib";
 import ButtonShowMoreItems from "../Components/Button/ButtonShowMoreItems";
 import ReturnButton from "../Components/Button/ReturnButton";
 import ResourceCard from "../Components/Card/ResourceCard";
+import Header from "../Components/Header";
 import TopBar from "../Components/Input/TopBar";
 import CommonStyles from "../Styles/CommonStyles";
+import CategoryDetailsStyles from "../Styles/Screen/CategoryDetailsStyles";
 import ResourcesStyles from "../Styles/Screen/ResourcesStyles";
 
 interface Props {
@@ -38,8 +40,11 @@ export default function CategoryDetailsScreen ({ navigation, route }: Props) {
             <TopBar onChangeSearch={handleChangeSearch} navigation={navigation} />
             <View style={CommonStyles.content}>
                 <ReturnButton />
+                <View style={CategoryDetailsStyles.headerContainer}>
+                    <Header label={category.name}/>
+                </View>            
                 <ScrollView style={CommonStyles.scrollView}>
-                    <View style={ResourcesStyles.resourcesContainer}>
+                    <View style={CategoryDetailsStyles.resourcesContainer}>
                         {
                             resourcesFiltered.map((resource, i) => {
                                 return <ResourceCard key={i} resource={resource} setResources={setResources} navigation={navigation} />

@@ -10,7 +10,7 @@ export default function Header({ label}: Props) {
 
     return (
         <View style={CommonStyles.header}>
-            <Text numberOfLines={1} style={CommonStyles.title}>
+            <Text numberOfLines={2} style={CommonStyles.title}>
                 { label }
             </Text>
         </View>
