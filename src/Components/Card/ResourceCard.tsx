@@ -16,7 +16,7 @@ interface Props {
     setResources: React.Dispatch<React.SetStateAction<Resource[]>>;
 }
 
-export default function ResourceCard({ resource, callBack, inShareResourceScreens=false, client, setResources}: Props) {
+export default function ResourceCard({ resource, inShareResourceScreens=false, client, setResources, navigation}: Props) {
     const [numberLike, setNumberLike] = useState(resource.likes.cache.size);
     const [isLikeResource, setIsLikeResource] = useState<boolean>(resource.isLiked());
     const [numberCommentResource, setNumberCommentResource] = useState(resource.comments.cache.size);
