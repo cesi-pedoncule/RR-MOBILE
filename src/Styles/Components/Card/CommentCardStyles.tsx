@@ -19,13 +19,6 @@ export default StyleSheet.create({
     infoContainer: {
         width: "85%",
     },
-    userDateContainer: {
-        display: 'flex',
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent:'space-between',
-        width: '100%',
-    },
     cardDate: {
         position: 'absolute',
         top:15,
