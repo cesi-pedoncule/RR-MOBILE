@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, ScrollView, ActivityIndicator } from 'react-native'
-import { Client } from "rr-apilib";
+import { Client, Resource } from "rr-apilib";
 import ButtonShowMoreItems from "../Components/Button/ButtonShowMoreItems";
 import InputButton from "../Components/Button/InputButton";
 import TopBar from "../Components/Input/TopBar";
@@ -14,9 +14,8 @@ export default function ShareResourceScreen({ route, navigation }: any) {
 	const client = route.params as Client;
 	const user = client.auth.me;
 
-  	const [showMoreItems, setShowMoreItems] = useState<boolean>(false);
 	const {resources, setResources, loading} = useResources({ client });
-
+	const [ resourcesFiltered, setResourcesFiltered ] = useState<Resource[]>([]);
 
 	if(user != null){
 		//user.resources.refresh();
@@ -26,9 +25,8 @@ export default function ShareResourceScreen({ route, navigation }: any) {
 		navigation.navigate("Login");
 	}
 
-
 	const onClickShowMoreItems = () => {
-		setShowMoreItems(true);
+		setResourcesFiltered(resourcesFiltered.concat(resources.slice(resourcesFiltered.length, resourcesFiltered.length + 6)));
 	}
 
 	const onClickShareNewItem = () => {
@@ -40,11 +38,12 @@ export default function ShareResourceScreen({ route, navigation }: any) {
 			return resource.title.toLowerCase().includes(text.toLowerCase());
 		});
 		setResources(filteredResources);
+		setResourcesFiltered(filteredResources.splice(0, 6));
 	}
 
 	useEffect(() => {
-        if (resources.length === 0 && !loading) {
-            setResources(resources.slice(0, 6));
+        if (resourcesFiltered.length === 0 && resources.length !== 0 && !loading) {
+            setResourcesFiltered(resources.slice(0, 6));
         }
     }, [resources, loading])
 
@@ -56,25 +55,19 @@ export default function ShareResourceScreen({ route, navigation }: any) {
 				{
 					loading ?  <ActivityIndicator size="large" color={COLORS.AccentColor} style={CommonStyles.loader} /> :
 					<ScrollView style={CommonStyles.scrollView}>
-						{
-							resources.length === 0 ?
-							<View style={ShareResourceStyles.resourcesContainer}>
-								<Text style={CommonStyles.textEmptyResult}>Aucune ressource enregistrée</Text>
-							</View>
-							:
-							<View style={ShareResourceStyles.resourcesContainer}>
-								{
-									resources.map((resource, i) => {
-										if ((!showMoreItems && i < 2) || showMoreItems) {
-											return <ResourceCard key={i} resource={resource} navigation={navigation} inShareResourceScreens={true} client={client} setResources={setResources}/>
-										}
-									})
-								}
-								{ 
-									!showMoreItems && resources.length >= 6 && <ButtonShowMoreItems callBack={onClickShowMoreItems} /> 
-								}
-							</View>
-						}
+						<View style={ShareResourceStyles.resourcesContainer}>
+							{
+								resourcesFiltered.map((resource, i) => {
+									return <ResourceCard key={i} resource={resource} navigation={navigation} setResources={setResources} setResourcesFiltered={setResourcesFiltered} client={client} inShareResourceScreens={true}/>
+								})
+							}
+							{
+								resources.length >= 6 && resourcesFiltered.length !== resources.length && <ButtonShowMoreItems callBack={onClickShowMoreItems} />
+							}
+							{
+								resourcesFiltered.length === 0 && <Text style={CommonStyles.textEmptyResult}>Aucune ressource n'a été trouvée.</Text>
+							}
+						</View>
 					</ScrollView>
 				}
 				{
