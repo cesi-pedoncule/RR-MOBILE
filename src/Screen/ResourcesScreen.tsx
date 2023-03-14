@@ -43,7 +43,7 @@ export default function ResourcesScreen({ navigation, route } : any) {
                         <View style={ResourcesStyles.resourcesContainer}>
                             {
                                 resourcesFiltered.map((resource, i) => {
-                                    return <ResourceCard key={i} resource={resource} callBack={() => navigation.navigate('ResourceDetails', {resource: resource})} />
+                                    return <ResourceCard key={i} resource={resource} navigation={navigation} />
                                 })
                             }
                             {

@@ -10,11 +10,11 @@ import IconButton from '../Button/IconButton'
 
 interface Props {
     resource: Resource;
-    callBack: () => void;
     inShareResourceScreens?: boolean;
+    navigation: any;
 }
 
-export default function ResourceCard({ resource, callBack, inShareResourceScreens=false }: Props) {
+export default function ResourceCard({ resource, inShareResourceScreens=false, navigation }: Props) {
     const [numberLike, setNumberLike] = useState(resource.likes.cache.size);
     const [isLikeResource, setIsLikeResource] = useState<boolean>(resource.isLiked());
     const [numberCommentResource, setNumberCommentResource] = useState(resource.comments.cache.size);
@@ -38,7 +38,7 @@ export default function ResourceCard({ resource, callBack, inShareResourceScreen
 
         timeout = setTimeout(() => {
             timeout = null;
-            callBack();
+            onClickDetailResource();
         }, 300);
     }
 
@@ -47,7 +47,11 @@ export default function ResourceCard({ resource, callBack, inShareResourceScreen
     }
 
     const onClickEditResource = () => {
-        alert('edit resource')
+        navigation.navigate('EditResourceScreen',  {resource: resource});
+    }
+
+    const onClickDetailResource = () => {
+        navigation.navigate('ResourceDetails', {resource: resource});
     }
 
     return (
