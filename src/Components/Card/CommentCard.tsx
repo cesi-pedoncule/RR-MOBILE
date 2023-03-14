@@ -24,7 +24,7 @@ export default function CommentCard({comment, client, setComments, setNumberComm
     };
 
     useEffect(() => {
-        comment.user?.id == user?.id ? setIsDeleted(true) : setIsDeleted(false);
+        setIsDeleted(comment.user?.id == user?.id);
     })
 
     return (
