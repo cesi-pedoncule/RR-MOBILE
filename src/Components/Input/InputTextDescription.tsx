@@ -4,10 +4,11 @@ import InputTextDescriptionStyles from '../../Styles/Components/Input/InputTextD
 
 interface Props {
     onChangeText: (text:string) => void;
+    defaultValue: string | any;
 }
 
-export default function InputTextDescription({onChangeText} : Props) {
+export default function InputTextDescription({onChangeText, defaultValue} : Props) {
     return (
-        <TextInput multiline={true} style={InputTextDescriptionStyles.container} placeholder={"Description de la ressource"} onChangeText={onChangeText}/>
+        <TextInput multiline={true} style={InputTextDescriptionStyles.container} placeholder={"Description de la ressource"} defaultValue={defaultValue} onChangeText={onChangeText}/>
     )
 }
