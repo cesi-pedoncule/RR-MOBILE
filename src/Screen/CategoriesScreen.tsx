@@ -7,6 +7,7 @@ import TopBar from "../Components/Input/TopBar";
 import CategoryCard from "../Components/Card/CategoryCard";
 import CategoryStyles from "../Styles/Screen/CategoryStyles";
 import useCategories from "../Hooks/useCategories";
+import { COLORS } from "../Styles/Colors";
 
 export default function CategoriesScreen({ route, navigation }: any) {
     const client = route.params as Client;
@@ -30,8 +31,8 @@ export default function CategoriesScreen({ route, navigation }: any) {
             <TopBar onChangeSearch={handleChangeSearch} navigation={navigation} />
             <View style={CommonStyles.content}>
                 {
-                    loading ?  <ActivityIndicator size="large" color="#0000ff" style={CommonStyles.loader} /> :
-                    <ScrollView style={CommonStyles.scrollViewWithNavBar}>
+                    loading ?  <ActivityIndicator size="large" color={COLORS.AccentColor} style={CommonStyles.loader} /> :
+                    <ScrollView style={CommonStyles.scrollView}>
                         <View style={CategoryStyles.categoriesContainer}>
                             {
                                 categories.map((category, i) => {

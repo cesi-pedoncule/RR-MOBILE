@@ -51,10 +51,6 @@ export default StyleSheet.create({
         top: '45%',
         left: '45%',
     },
-    scrollViewWithNavBar : {
-        marginTop : 10,
-        marginBottom : 80,
-    },
     scrollView : {
         marginVertical : 10,
     },  

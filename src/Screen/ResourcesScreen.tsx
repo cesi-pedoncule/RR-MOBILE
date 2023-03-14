@@ -7,6 +7,7 @@ import ResourceCard from "../Components/Card/ResourceCard";
 import TopBar from "../Components/Input/TopBar";
 import ResourcesStyles from "../Styles/Screen/ResourcesStyles";
 import useResources from "../Hooks/useResources";
+import { COLORS } from "../Styles/Colors";
 
 export default function ResourcesScreen({ navigation, route } : any) {
     const client = route.params as Client;
@@ -38,12 +39,12 @@ export default function ResourcesScreen({ navigation, route } : any) {
             <TopBar onChangeSearch={handleChangeSearch} navigation={navigation} />
             <View style={CommonStyles.content}>
                 {
-                    loading ?  <ActivityIndicator size="large" color="#0000ff" style={CommonStyles.loader} /> :
+                    loading ?  <ActivityIndicator size="large" color={COLORS.AccentColor} style={CommonStyles.loader} /> :
                     <ScrollView style={CommonStyles.scrollView}>
                         <View style={ResourcesStyles.resourcesContainer}>
                             {
                                 resourcesFiltered.map((resource, i) => {
-                                    return <ResourceCard key={i} resource={resource} navigation={navigation} />
+                                    return <ResourceCard key={i} resource={resource} navigation={navigation} setResources={setResourcesFiltered}/>
                                 })
                             }
                             {

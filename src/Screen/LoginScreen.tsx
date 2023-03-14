@@ -9,6 +9,7 @@ import InputText from "../Components/Input/InputText";
 import { Client } from "rr-apilib";
 import TopBar from "../Components/Input/TopBar";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { COLORS } from "../Styles/Colors";
 
 export default function LoginScreen({ route, navigation }: any) {
     const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -82,7 +83,7 @@ export default function LoginScreen({ route, navigation }: any) {
             <View style={CommonStyles.content}>
                 <View style={LoginStyles.container}>
                     {
-                        isLoading ? <ActivityIndicator size="large" color="#0000ff" style={CommonStyles.loader} /> : 
+                        isLoading ? <ActivityIndicator size="large" color={COLORS.AccentColor} style={CommonStyles.loader} /> : 
                         <View>
                             
                             <Header label="Connexion" />

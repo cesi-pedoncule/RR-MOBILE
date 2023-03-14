@@ -10,7 +10,7 @@ export default StyleSheet.create({
 	resourcesContainer: {
 		alignItems: 'center',
         justifyContent: 'center',
-        marginBottom : 50,
+        marginBottom : 150,
 	},
 	textSaves : {
 		position: 'relative',
