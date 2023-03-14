@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { View, ScrollView, Text, ActivityIndicator } from 'react-native'
-import { Client } from "rr-apilib";
+
 import CommonStyles from "../Styles/CommonStyles";
+
 import ButtonShowMoreItems from "../Components/Button/ButtonShowMoreItems";
 import TopBar from "../Components/Input/TopBar";
 import CategoryCard from "../Components/Card/CategoryCard";
@@ -9,8 +10,14 @@ import CategoryStyles from "../Styles/Screen/CategoryStyles";
 import useCategories from "../Hooks/useCategories";
 import { COLORS } from "../Styles/Colors";
 
-export default function CategoriesScreen({ route, navigation }: any) {
-    const client = route.params as Client;
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { NavigationParamList } from "../Types/navigation";
+
+type Props = NativeStackScreenProps<NavigationParamList, 'Categories'>;
+
+export default function CategoriesScreen({ route, navigation }: Props) {
+
+    const client = route.params.client;
 
     const { categories, setCategories, loading } = useCategories({ client });
     const [ showMoreItems, setShowMoreItems ] = useState<boolean>(false);

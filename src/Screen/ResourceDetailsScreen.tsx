@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import CommentCard from '../Components/Card/CommentCard'
 import LikeButton from '../Components/Button/LikeButton'
 import CommentButton from '../Components/Button/CommentButton'
-import { Category, Comment, Resource } from 'rr-apilib'
+import { Category, Comment } from 'rr-apilib'
 import ResourceDetailsStyles from "../Styles/Screen/ResourceDetailsStyles";
 import TopBar from '../Components/Input/TopBar'
 import ReturnButton from '../Components/Button/ReturnButton'
@@ -13,9 +13,14 @@ import CommonStyles from '../Styles/CommonStyles'
 import { likeClickHandle } from '../Functions/Utils'
 import InputTextComment from '../Components/Input/InputTextComment'
 import ButtonFile from '../Components/Button/ButtonFile'
+import { NativeStackScreenProps } from '@react-navigation/native-stack'
+import { NavigationParamList } from '../Types/navigation'
 
-export default function ResourceDetailsScreen({ route,navigation }: any) {
-    const resource = route.params.resource as Resource;
+type Props = NativeStackScreenProps<NavigationParamList, 'ResourceDetails'>;
+
+export default function ResourceDetailsScreen({ route, navigation }: Props) {
+    
+    const resource = route.params.resource;
 
     const [isLikeResource, setIsLikeResource] = useState(resource.isLiked());
     const [numberLike, setNumberLike] = useState(resource.likes.cache.size);

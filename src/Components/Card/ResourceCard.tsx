@@ -1,17 +1,26 @@
 import React, { useState } from 'react'
 import { Category, Client, Resource } from 'rr-apilib'
-import { View,Text, TouchableOpacity, GestureResponderEvent } from 'react-native'
+import { NavigationParamList } from '../../Types/navigation'
+import { NativeStackNavigationProp } from '@react-navigation/native-stack'
+import {
+    View,
+    Text,
+    TouchableOpacity,
+    GestureResponderEvent
+} from 'react-native'
+
+import ResourceCardStyles from '../../Styles/Components/Card/ResourceCardStyles'
+
+import IconButton from '../Button/IconButton'
 import LikeButton from '../Button/LikeButton'
 import CommentButton from '../Button/CommentButton'
 import CategoryButton from '../Button/CategoryButton'
 import { likeClickHandle } from '../../Functions/Utils'
-import ResourceCardStyles from '../../Styles/Components/Card/ResourceCardStyles'
-import IconButton from '../Button/IconButton'
 
 interface Props {
     resource: Resource;
     inShareResourceScreens?: boolean;
-    navigation: any;
+    navigation: NativeStackNavigationProp<NavigationParamList>;
     client?: Client;
     setResources?: React.Dispatch<React.SetStateAction<Resource[]>>;
     setResourcesFiltered?: React.Dispatch<React.SetStateAction<Resource[]>>;
@@ -55,11 +64,17 @@ export default function ResourceCard({ resource, inShareResourceScreens=false, c
     }
 
     const onClickEditResource = () => {
-        navigation.navigate('EditResourceScreen',  {resource: resource});
+        navigation.navigate('EditResourceScreen',  {
+            resource: resource,
+            client: resource.client,
+        });
     }
 
     const onClickDetailResource = () => {
-        navigation.navigate('ResourceDetails', {resource: resource});
+        navigation.navigate('ResourceDetails', {
+            resource: resource,
+            client: resource.client,
+        });
     }
 
     return (

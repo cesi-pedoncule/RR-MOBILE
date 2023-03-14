@@ -7,13 +7,16 @@ import ReturnButton from '../Components/Button/ReturnButton'
 import InputButton from '../Components/Button/InputButton'
 import InputTextDescription from '../Components/Input/InputTextDescription'
 import ButtonFile from '../Components/Button/ButtonFile'
-import { Client, Resource } from 'rr-apilib'
 import { COLORS } from '../Styles/Colors'
+import { NavigationParamList } from '../Types/navigation'
+import { NativeStackScreenProps } from '@react-navigation/native-stack'
 
-export default function EditResourceScreen({route, navigation} : any) {
+type Props = NativeStackScreenProps<NavigationParamList, 'EditResourceScreen'>;
 
-    const client = route.params as Client;
-    const resource = route.params.resource as Resource;
+export default function EditResourceScreen({ route, navigation }: Props) {
+
+    const client = route.params.client;
+    const resource = route.params.resource;
 
     const [isPublic, setIsPublic] = useState(resource.isPublic);
     

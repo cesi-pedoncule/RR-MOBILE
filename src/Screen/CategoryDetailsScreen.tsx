@@ -1,22 +1,23 @@
 import { useState } from "react";
+import { Resource } from "rr-apilib";
 import { Text, View } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
-import { Category, Resource } from "rr-apilib";
-import ButtonShowMoreItems from "../Components/Button/ButtonShowMoreItems";
-import ReturnButton from "../Components/Button/ReturnButton";
-import ResourceCard from "../Components/Card/ResourceCard";
-import TopBar from "../Components/Input/TopBar";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+
 import CommonStyles from "../Styles/CommonStyles";
 import ResourcesStyles from "../Styles/Screen/ResourcesStyles";
 
-interface Props {
-    navigation: any;
-    route: any;
-}
+import TopBar from "../Components/Input/TopBar";
+import { NavigationParamList } from "../Types/navigation";
+import ResourceCard from "../Components/Card/ResourceCard";
+import ReturnButton from "../Components/Button/ReturnButton";
+import ButtonShowMoreItems from "../Components/Button/ButtonShowMoreItems";
+
+type Props = NativeStackScreenProps<NavigationParamList, 'CategoryDetails'>;
 
 export default function CategoryDetailsScreen ({ navigation, route }: Props) {
 
-    const category = route.params.category as Category;
+    const category = route.params.category;
     const [ resources, setResources ] = useState<Resource[]>(Array.from(category.resources.cache.values()));
     const [ resourcesFiltered, setResourcesFiltered ] = useState<Resource[]>(Array.from(category.resources.cache.values()));
 
