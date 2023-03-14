@@ -43,7 +43,7 @@ export default function CreateResourceScreen({route, navigation} : any) {
                                 <Text style={CreateResourceStyles.addCategorieText}>{'+'}</Text>
                             </TouchableOpacity>
                         </View>
-                        <InputTextDescription onChangeText={(text) => newResource.setDescription(text)}/>
+                        <InputTextDescription onChangeText={(text) => newResource.setDescription(text)} defaultValue={""}/>
                         <ButtonFile text={'Ajouter un fichier'} callBack={onClickAddFile}/>
                         <View style={CreateResourceStyles.switchContainer}>
                             <Switch trackColor={{false: '#F0F0F0', true: '#F0F0F0'}} thumbColor={'#03989E'} onValueChange={toggleSwitch} value={isPublic}/>

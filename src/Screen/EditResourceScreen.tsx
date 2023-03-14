@@ -39,13 +39,13 @@ export default function EditResourceScreen({route, navigation} : any) {
                 <ReturnButton/>
                 <ScrollView style={CommonStyles.scrollView}>
                     <View style={EditResourceStyles.container}>
-                        <TextInput style={EditResourceStyles.addNameResource} placeholder={"Titre de la ressource"} onChangeText={(text) => resource.title=text}></TextInput>
+                        <TextInput style={EditResourceStyles.addNameResource} placeholder={"Titre de la ressource"} defaultValue={resource.title} onChangeText={(text) => resource.title=text}></TextInput>
                         <View style={EditResourceStyles.categorieList}>
                             <TouchableOpacity onPress={onClickAddCategory} style={EditResourceStyles.addCategorieContainer}>
                                 <Text style={EditResourceStyles.addCategorieText}>{'+'}</Text>
                             </TouchableOpacity>
                         </View>
-                        <InputTextDescription onChangeText={(text) => resource.description=text}></InputTextDescription>
+                        <InputTextDescription defaultValue={resource.description} onChangeText={(text) => resource.description=text}></InputTextDescription>
                         <ButtonFile text={'Ajouter un fichier'} callBack={onClickAddFile}/>
                         <View style={EditResourceStyles.switchContainer}>
                             <Switch trackColor={{false: COLORS.ComponentBackground, true: COLORS.ComponentBackground}} thumbColor={COLORS.AccentColor} onValueChange={toggleSwitch} value={isPublic}/>
