@@ -19,7 +19,8 @@ export default function ShareResourceScreen({ route, navigation }: any) {
 
 
 	if(user != null){
-		//TODO
+		//user.resources.refresh();
+		//setResources(Array.from(user.resources.cache.values()));
 	} 
 	else{
 		navigation.navigate("Login");
