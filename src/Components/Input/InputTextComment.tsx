@@ -1,4 +1,4 @@
-import { View, TouchableHighlight, TextInput } from 'react-native'
+import { View, TextInput, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import InputTextCommentStyles from '../../Styles/Components/Input/InputTextCommentStyles'
@@ -34,11 +34,11 @@ export default function InputTextComment({resource, setComments, setNumberCommen
     return (
         <View style={InputTextCommentStyles.txtFieldBackground}>
             <TextInput style={InputTextCommentStyles.txtFieldInput} multiline={true} value={inputText} onChangeText={(newInputText) => setInputText(newInputText)}/>
-            <TouchableHighlight onPress={onClickAddComment} underlayColor={"#FFFFFF"}>
+            <TouchableOpacity onPress={onClickAddComment}>
 				{
 					<MaterialCommunityIcons style={InputTextCommentStyles.sendButtonInput} name="comment-arrow-left-outline" size={24} color="black" />
 				}
-			</TouchableHighlight>
+			</TouchableOpacity>
         </View>
     )
 }

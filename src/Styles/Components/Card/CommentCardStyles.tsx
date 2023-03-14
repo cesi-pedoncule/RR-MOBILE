@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 import { COLORS } from "../../Colors";
 
 export default StyleSheet.create({
-    cardBackground: {
+    container: {
         display: "flex",
         flexDirection: "row",
         alignItems: "center",
@@ -15,6 +15,21 @@ export default StyleSheet.create({
         shadowOpacity: 0.3,
         shadowOffset: { width: 4, height: 4},
         elevation: 2,
+    },
+    infoContainer: {
+        width: "85%",
+    },
+    userDateContainer: {
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent:'space-between',
+        width: '100%',
+    },
+    cardDate: {
+        position: 'absolute',
+        top:15,
+        right:25,
     },
     cardUser:{
         fontWeight: 'bold',
@@ -35,6 +50,7 @@ export default StyleSheet.create({
     },
     deleteCommentButton: {
         position: 'absolute',
+        bottom: 2,
         right: 0,
     }
 });

@@ -5,6 +5,7 @@ import { Client, Comment, Resource } from 'rr-apilib';
 import CommentCardStyles from '../../Styles/Components/Card/CommentCardStyles';
 
 import IconButton from '../Button/IconButton';
+import moment from 'moment';
 
 interface Props {
     comment: Comment;
@@ -21,7 +22,7 @@ export default function CommentCard({comment, client, setComments, setNumberComm
     const onClickDeleteComment = async () => {
         const res = await resource.comments.delete(comment);
         const newComments:Comment[] = Array.from(res.comments.cache.values());
-        setComments(newComments);
+        setComments(newComments.reverse());
         setNumberComment(newComments.length)
     };
 
@@ -30,11 +31,12 @@ export default function CommentCard({comment, client, setComments, setNumberComm
     })
 
     return (
-        <View style={CommentCardStyles.cardBackground}>
-            <View>
+        <View style={CommentCardStyles.container}>
+            <View style={CommentCardStyles.infoContainer}>
                 <Text style={CommentCardStyles.cardUser}>{comment.user ? `${comment.user.name} ${comment.user.firstname}` : "Utilisateur inconnu"}</Text>
                 <Text style={CommentCardStyles.cardComment}>{comment.comment}</Text>
             </View>
+            <Text style={CommentCardStyles.cardDate}>{moment().date(comment.createdAt.getUTCDate()).format("DD/MM/yy")}</Text>
             {
                 isDeleted && 
                 <View style={CommentCardStyles.deleteCommentButton}>
