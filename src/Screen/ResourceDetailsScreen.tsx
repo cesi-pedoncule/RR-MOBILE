@@ -91,7 +91,7 @@ export default function ResourceDetailsScreen({ route,navigation }: any) {
                                     {
                                         categories.map((category, i) => {
                                             return (
-                                                category && <CategoryButton key={i} category={category}></CategoryButton>
+                                                category && <CategoryButton key={i} navigation={navigation} category={category}></CategoryButton>
                                             )
                                         })
                                     }
