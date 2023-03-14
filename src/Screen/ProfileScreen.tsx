@@ -26,7 +26,7 @@ export default function ProfileScreen({route, navigation}: any) {
             {
                 user && ( 
                     <View style={CommonStyles.content}>
-                        <ScrollView style={CommonStyles.scrollViewWithNavBar}>
+                        <ScrollView style={CommonStyles.scrollView}>
                             <Header label={userProfileName}/>
                             <View style={ProfileStyles.profileContainer}>
                                 <Text style={ProfileStyles.profileSubTitle}>{user?.resources.cache.size} enregistrement(s)</Text>
