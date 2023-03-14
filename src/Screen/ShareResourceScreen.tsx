@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, ScrollView, ActivityIndicator } from 'react-native'
-import { Client, Resource } from "rr-apilib";
+import { Client } from "rr-apilib";
 import ButtonShowMoreItems from "../Components/Button/ButtonShowMoreItems";
 import InputButton from "../Components/Button/InputButton";
 import TopBar from "../Components/Input/TopBar";
