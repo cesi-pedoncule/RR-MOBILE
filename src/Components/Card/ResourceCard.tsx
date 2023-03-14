@@ -13,10 +13,11 @@ interface Props {
     inShareResourceScreens?: boolean;
     navigation: any;
     client?: Client;
-    setResources: React.Dispatch<React.SetStateAction<Resource[]>>;
+    setResources?: React.Dispatch<React.SetStateAction<Resource[]>>;
+    setResourcesFiltered?: React.Dispatch<React.SetStateAction<Resource[]>>;
 }
 
-export default function ResourceCard({ resource, inShareResourceScreens=false, client, setResources, navigation}: Props) {
+export default function ResourceCard({ resource, inShareResourceScreens=false, client, setResources, setResourcesFiltered, navigation}: Props) {
     const [numberLike, setNumberLike] = useState(resource.likes.cache.size);
     const [isLikeResource, setIsLikeResource] = useState<boolean>(resource.isLiked());
     const [numberCommentResource, setNumberCommentResource] = useState(resource.comments.cache.size);
@@ -45,10 +46,11 @@ export default function ResourceCard({ resource, inShareResourceScreens=false, c
     }
 
     const onClickDeleteResource = () => {
-        if(client != null){
+        if(client != null && setResources != null && setResourcesFiltered != null){
             client.resources.cache.delete(resource.id);
             const newResources = Array.from(client.resources.cache.values());
             setResources(newResources);
+            setResourcesFiltered(newResources);
         }
     }
 
