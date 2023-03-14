@@ -14,6 +14,6 @@ export default StyleSheet.create({
         height : "100%",
         flexDirection: 'row',
         flexWrap: 'wrap',
-        marginBottom: 50,
+        marginBottom: 100,
     },
 });

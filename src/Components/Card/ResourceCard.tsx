@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Category, Resource } from 'rr-apilib'
+import { Category, Client, Resource } from 'rr-apilib'
 import { View,Text, TouchableOpacity, GestureResponderEvent } from 'react-native'
 import LikeButton from '../Button/LikeButton'
 import CommentButton from '../Button/CommentButton'
@@ -12,9 +12,11 @@ interface Props {
     resource: Resource;
     callBack: () => void;
     inShareResourceScreens?: boolean;
+    client?: Client;
+    setResources: React.Dispatch<React.SetStateAction<Resource[]>>;
 }
 
-export default function ResourceCard({ resource, callBack, inShareResourceScreens=false }: Props) {
+export default function ResourceCard({ resource, callBack, inShareResourceScreens=false, client, setResources}: Props) {
     const [numberLike, setNumberLike] = useState(resource.likes.cache.size);
     const [isLikeResource, setIsLikeResource] = useState<boolean>(resource.isLiked());
     const [numberCommentResource, setNumberCommentResource] = useState(resource.comments.cache.size);
@@ -43,7 +45,11 @@ export default function ResourceCard({ resource, callBack, inShareResourceScreen
     }
 
     const onClickDeleteResource = () => {
-        alert('delete resource')
+        if(client != null){
+            client.resources.cache.delete(resource.id);
+            const newResources = Array.from(client.resources.cache.values());
+            setResources(newResources);
+        }
     }
 
     const onClickEditResource = () => {
