@@ -5,8 +5,9 @@ import { ScrollView } from "react-native-gesture-handler";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 import CommonStyles from "../Styles/CommonStyles";
-import ResourcesStyles from "../Styles/Screen/ResourcesStyles";
+import CategoryDetailsStyles from "../Styles/Screen/CategoryDetailsStyles";
 
+import Header from "../Components/Header";
 import TopBar from "../Components/Input/TopBar";
 import { NavigationParamList } from "../Types/navigation";
 import ResourceCard from "../Components/Card/ResourceCard";
@@ -39,8 +40,11 @@ export default function CategoryDetailsScreen ({ navigation, route }: Props) {
             <TopBar onChangeSearch={handleChangeSearch} navigation={navigation} />
             <View style={CommonStyles.content}>
                 <ReturnButton />
+                <View style={CategoryDetailsStyles.headerContainer}>
+                    <Header label={category.name}/>
+                </View>            
                 <ScrollView style={CommonStyles.scrollView}>
-                    <View style={ResourcesStyles.resourcesContainer}>
+                    <View style={CategoryDetailsStyles.resourcesContainer}>
                         {
                             resourcesFiltered.map((resource, i) => {
                                 return <ResourceCard key={i} resource={resource} setResources={setResources} navigation={navigation} />

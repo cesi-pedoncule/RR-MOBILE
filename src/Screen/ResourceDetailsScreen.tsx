@@ -121,7 +121,7 @@ export default function ResourceDetailsScreen({ route, navigation }: Props) {
                             }          
                         </View>
                         {
-                            comments.length === 0 && <Text>Aucun commentaire</Text>
+                            comments.length === 0 && <Text style={CommonStyles.textEmptyResult}>Aucun commentaire</Text>
                         }
                         {
                             !showMoreItems && comments.length >= 6 && <ButtonShowMoreItems callBack={onClickShowMoreItems} />

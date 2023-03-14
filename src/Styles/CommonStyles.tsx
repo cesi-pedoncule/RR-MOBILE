@@ -33,7 +33,7 @@ export default StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: '6%',
+        marginTop: '4%',
     },
     title: {
         fontSize: 32,
