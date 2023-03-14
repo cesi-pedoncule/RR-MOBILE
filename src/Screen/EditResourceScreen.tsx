@@ -18,11 +18,16 @@ export default function EditResourceScreen({ route, navigation }: Props) {
     const client = route.params.client;
     const resource = route.params.resource;
 
+    var title = resource.title;
+    var description = resource.description;
+
     const [isPublic, setIsPublic] = useState(resource.isPublic);
     
     const toggleSwitch = () => setIsPublic(previousState => !previousState);
 
     const onClickSend = () => {
+        resource.title = title;
+        resource.description = description;
         client.resources.edit(resource);
         navigation.goBack();
     }
@@ -42,19 +47,19 @@ export default function EditResourceScreen({ route, navigation }: Props) {
                 <ReturnButton/>
                 <ScrollView style={CommonStyles.scrollView}>
                     <View style={EditResourceStyles.container}>
-                        <TextInput style={EditResourceStyles.addNameResource} placeholder={"Titre de la ressource"} onChangeText={(text) => resource.title=text}></TextInput>
+                        <TextInput style={EditResourceStyles.addNameResource} placeholder={"Titre de la ressource"} defaultValue={title} onChangeText={(text) => title=text}></TextInput>
                         <View style={EditResourceStyles.categorieList}>
                             <TouchableOpacity onPress={onClickAddCategory} style={EditResourceStyles.addCategorieContainer}>
                                 <Text style={EditResourceStyles.addCategorieText}>{'+'}</Text>
                             </TouchableOpacity>
                         </View>
-                        <InputTextDescription onChangeText={(text) => resource.description=text}></InputTextDescription>
+                        <InputTextDescription defaultValue={description} onChangeText={(text) => description=text}></InputTextDescription>
                         <ButtonFile text={'Ajouter un fichier'} callBack={onClickAddFile}/>
                         <View style={EditResourceStyles.switchContainer}>
                             <Switch trackColor={{false: COLORS.ComponentBackground, true: COLORS.ComponentBackground}} thumbColor={COLORS.AccentColor} onValueChange={toggleSwitch} value={isPublic}/>
                             <Text> Privé / Publique </Text>
                         </View>
-                        <InputButton label={'Envoyer'} callBack={onClickSend} style={EditResourceStyles.sendButton}/>
+                        <InputButton label={'Modifier'} callBack={onClickSend} style={EditResourceStyles.sendButton}/>
                     </View>
                 </ScrollView>
             </View>

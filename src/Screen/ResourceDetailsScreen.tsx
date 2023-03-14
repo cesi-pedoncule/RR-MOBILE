@@ -115,7 +115,7 @@ export default function ResourceDetailsScreen({ route, navigation }: Props) {
                             {   
                                 comments.reverse().map((comment, i) => {
                                     if ((!showMoreItems && i < 6) || showMoreItems) {
-                                        return <CommentCard key={i} comment={comment} />
+                                        return <CommentCard key={i} comment={comment} client={resource.client} setComments={setComments} setNumberComment={setNumberComment} resource={resource}/>
                                     }
                                 })
                             }          
