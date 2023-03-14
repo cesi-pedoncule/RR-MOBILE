@@ -1,9 +1,15 @@
 import React from 'react'
 import { Resource } from 'rr-apilib'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
-import { GestureResponderEvent, Text, TouchableOpacity, View } from 'react-native'
+import {
+	GestureResponderEvent,
+	Text,
+	TouchableOpacity,
+	View
+} from 'react-native'
 
 import { likeClickHandle } from '../../Functions/Utils'
+
 import LikeButtonStyles from '../../Styles/Components/Button/LikeButtonStyles';
 
 interface Props {

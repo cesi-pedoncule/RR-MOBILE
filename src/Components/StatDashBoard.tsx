@@ -1,17 +1,19 @@
-import React, { useState } from 'react'
-import StatDashBoardStyles from '../Styles/Components/StatDashBoardStyles'
-import { BarChart } from "react-native-chart-kit";
-import { Resource, User } from 'rr-apilib';
 import { View } from 'react-native';
+import React, { useState } from 'react'
+import { Resource, User } from 'rr-apilib';
+import { BarChart } from "react-native-chart-kit";
+
+import StatDashBoardStyles from '../Styles/Components/StatDashBoardStyles'
+
 import { COLORS } from '../Styles/Colors';
 
 interface Props {
     user: User;
 }
 
-export default function StatDashBoard({user} : Props) {
-    const date:Date = new Date();
-    const month:string[] = ["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Aout","Septembre","Octobre","Novembre","Décembre"];
+export default function StatDashBoard({ user } : Props) {
+    const date: Date = new Date();
+    const month: string[] = ["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Aout","Septembre","Octobre","Novembre","Décembre"];
 
     if(!user) {
         return (
@@ -21,13 +23,13 @@ export default function StatDashBoard({user} : Props) {
 
     const [resources] = useState<Resource[]>(Array.from(user.resources.cache.values()));
 
-    let numberResourceFirstMonth:number = 0;
-    let numberResourceSecMonth:number = 0;
-    let numberResourceThirdMonth:number = 0;
+    let numberResourceFirstMonth: number = 0;
+    let numberResourceSecMonth: number = 0;
+    let numberResourceThirdMonth: number = 0;
 
-    const firstMonth:number = date.getMonth()-2 < 0 ? date.getMonth()-2+12 : date.getMonth()-2;
-    const secMonth:number = date.getMonth()-1 < 0 ? date.getMonth()-1+12 : date.getMonth()-1;
-    const thirdMonth:number = date.getMonth();
+    const firstMonth: number = date.getMonth()-2 < 0 ? date.getMonth()-2+12 : date.getMonth()-2;
+    const secMonth: number = date.getMonth()-1 < 0 ? date.getMonth()-1+12 : date.getMonth()-1;
+    const thirdMonth: number = date.getMonth();
 
     resources.map((resource) => {
         if(resource.createdAt.getMonth() == firstMonth){

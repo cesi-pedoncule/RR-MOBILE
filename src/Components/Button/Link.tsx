@@ -1,5 +1,6 @@
 import React from "react";
 import { Text, TouchableOpacity } from "react-native";
+
 import CommonStyles from "../../Styles/CommonStyles";
 
 interface Props {
@@ -7,7 +8,7 @@ interface Props {
     callBack: () => void;
 }
 
-export default function Link({label, callBack}: Props)
+export default function Link({ label, callBack }: Props)
 {
     return (
         <TouchableOpacity onPress={callBack}>
