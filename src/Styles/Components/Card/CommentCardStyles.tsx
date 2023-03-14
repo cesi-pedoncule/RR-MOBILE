@@ -3,6 +3,9 @@ import { COLORS } from "../../Colors";
 
 export default StyleSheet.create({
     cardBackground: {
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
         width: "90%",
         height: "auto",
         backgroundColor: COLORS.ComponentBackground,
@@ -28,7 +31,10 @@ export default StyleSheet.create({
         marginBottom: 10,
         marginLeft: 20,
         marginRight: 20,
-        minHeight: "15%",
         overflow: "scroll",
     },
+    deleteCommentButton: {
+        position: 'absolute',
+        right: 0,
+    }
 });

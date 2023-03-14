@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import CommentCard from '../Components/Card/CommentCard'
 import LikeButton from '../Components/Button/LikeButton'
 import CommentButton from '../Components/Button/CommentButton'
-import { Category, Comment, Resource } from 'rr-apilib'
+import { Category, Client, Comment, Resource } from 'rr-apilib'
 import ResourceDetailsStyles from "../Styles/Screen/ResourceDetailsStyles";
 import TopBar from '../Components/Input/TopBar'
 import ReturnButton from '../Components/Button/ReturnButton'
@@ -14,8 +14,9 @@ import { likeClickHandle } from '../Functions/Utils'
 import InputTextComment from '../Components/Input/InputTextComment'
 import ButtonFile from '../Components/Button/ButtonFile'
 
-export default function ResourceDetailsScreen({ route,navigation }: any) {
+export default function ResourceDetailsScreen({ route, navigation }: any) {
     const resource = route.params.resource as Resource;
+    const client = route.params as Client;
 
     const [isLikeResource, setIsLikeResource] = useState(resource.isLiked());
     const [numberLike, setNumberLike] = useState(resource.likes.cache.size);
@@ -110,7 +111,7 @@ export default function ResourceDetailsScreen({ route,navigation }: any) {
                             {   
                                 comments.reverse().map((comment, i) => {
                                     if ((!showMoreItems && i < 6) || showMoreItems) {
-                                        return <CommentCard key={i} comment={comment} />
+                                        return <CommentCard key={i} comment={comment} client={client} setComments={setComments} setNumberComment={setNumberComment} resource={resource}/>
                                     }
                                 })
                             }          
