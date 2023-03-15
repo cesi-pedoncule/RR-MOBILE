@@ -1,9 +1,7 @@
 import { View, Text } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { Client, Comment, Resource } from 'rr-apilib';
-
 import CommentCardStyles from '../../Styles/Components/Card/CommentCardStyles';
-
 import IconButton from '../Button/IconButton';
 
 interface Props {
@@ -21,7 +19,7 @@ export default function CommentCard({comment, client, setComments, setNumberComm
     const onClickDeleteComment = async () => {
         const res = await resource.comments.delete(comment);
         const newComments:Comment[] = Array.from(res.comments.cache.values());
-        setComments(newComments);
+        setComments(newComments.reverse());
         setNumberComment(newComments.length)
     };
 
@@ -30,11 +28,12 @@ export default function CommentCard({comment, client, setComments, setNumberComm
     })
 
     return (
-        <View style={CommentCardStyles.cardBackground}>
-            <View>
+        <View style={CommentCardStyles.container}>
+            <View style={CommentCardStyles.infoContainer}>
                 <Text style={CommentCardStyles.cardUser}>{comment.user ? `${comment.user.name} ${comment.user.firstname}` : "Utilisateur inconnu"}</Text>
                 <Text style={CommentCardStyles.cardComment}>{comment.comment}</Text>
             </View>
+            <Text style={CommentCardStyles.cardDate}>{comment.createdAt.toLocaleDateString("fr-FR")}</Text>
             {
                 isDeleted && 
                 <View style={CommentCardStyles.deleteCommentButton}>

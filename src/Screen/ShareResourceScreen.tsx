@@ -35,7 +35,7 @@ export default function ShareResourceScreen({ route, navigation }: Props) {
 	}
 
 	const onClickShareNewItem = () => {
-		// navigation.navigate('CreateResourceScreen');
+		navigation.navigate("CreateResourceScreen", { client });
 	}
 
 	const handleChangeSearch = (text: string) => {
