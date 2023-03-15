@@ -36,7 +36,7 @@ export default function CommentCard({comment, client, setComments, setNumberComm
                 <Text style={CommentCardStyles.cardUser}>{comment.user ? `${comment.user.name} ${comment.user.firstname}` : "Utilisateur inconnu"}</Text>
                 <Text style={CommentCardStyles.cardComment}>{comment.comment}</Text>
             </View>
-            <Text style={CommentCardStyles.cardDate}>{moment().date(comment.createdAt.getUTCDate()).format("DD/MM/yy")}</Text>
+            <Text style={CommentCardStyles.cardDate}>{comment.createdAt.toLocaleDateString("fr-FR")}</Text>
             {
                 isDeleted && 
                 <View style={CommentCardStyles.deleteCommentButton}>
