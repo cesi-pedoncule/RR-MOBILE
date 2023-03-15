@@ -22,11 +22,11 @@ export default function ResourceDetailsScreen({ route, navigation }: Props) {
     
     const resource = route.params.resource;
 
-    const [isLikeResource, setIsLikeResource] = useState(resource.isLiked());
-    const [numberLike, setNumberLike] = useState(resource.likes.cache.size);
-    const [comments, setComments] = useState<Comment[]>(Array.from(resource.comments.cache.values()));
-    const [numberComment, setNumberComment] = useState(comments.length);
-    const [categories] = useState<Category[]>(Array.from(resource.categories.cache.values()));
+    const [ isLikeResource, setIsLikeResource ] = useState<boolean>(resource.isLiked());
+    const [ numberLike, setNumberLike ] = useState<number>(resource.likes.cache.size);
+    const [ comments, setComments ] = useState<Comment[]>(Array.from(resource.comments.cache.values()));
+    const [ numberComment, setNumberComment ] = useState<number>(comments.length);
+    const [ categories ] =  useState<Category[]>(Array.from(resource.categories.cache.values()));
 
     const title = resource.title;
     const username = resource.user ? `${resource.user.name} ${resource.user.firstname}` : "Utilisateur inconnu";
@@ -36,7 +36,7 @@ export default function ResourceDetailsScreen({ route, navigation }: Props) {
 
     const fileName = "Télécharger les pièces jointes";
 
-    const [showMoreItems, setShowMoreItems] = useState(false);
+    const [ showMoreItems, setShowMoreItems ] = useState<boolean>(false);
 
     let timeout: NodeJS.Timeout | null = null;
 
@@ -54,10 +54,6 @@ export default function ResourceDetailsScreen({ route, navigation }: Props) {
         timeout = setTimeout(() => {
             timeout = null;
         }, 300);
-    }
-    
-    const onClickComment = () => {
-        //NO-OP
     }
 
     const onClickFile = () => {
@@ -94,11 +90,9 @@ export default function ResourceDetailsScreen({ route, navigation }: Props) {
                                 <Text style={ResourceDetailsStyles.cardTitle}>{title}</Text>
                                 <View style={ResourceDetailsStyles.categoriesContainer}>
                                     {
-                                        categories.map((category, i) => {
-                                            return (
-                                                category && <CategoryButton key={i} navigation={navigation} category={category}></CategoryButton>
-                                            )
-                                        })
+                                        categories.map((category, i) =>
+                                            category && <CategoryButton key={i} navigation={navigation} category={category} />
+                                        )
                                     }
                                 </View>
                                 <Text style={ResourceDetailsStyles.cardText}>{description}</Text>
@@ -110,7 +104,7 @@ export default function ResourceDetailsScreen({ route, navigation }: Props) {
                     </View>
                     <Text style={ResourceDetailsStyles.commentTitle}>Commentaires</Text>
                     <View style={ResourceDetailsStyles.commentContainer}>
-                        <InputTextComment resource={resource} setComments={setComments} setNumberComment={setNumberComment}/>
+                        <InputTextComment resource={resource} setComments={setComments} setNumberComment={setNumberComment} />
                         <View style={ResourceDetailsStyles.listComment}> 
                             {   
                                 comments.reverse().map((comment, i) => {
