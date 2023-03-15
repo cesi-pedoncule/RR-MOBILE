@@ -10,11 +10,22 @@ import NavBar from './src/Components/NavBar';
 import EditResourceScreen from './src/Screen/EditResourceScreen';
 import CategoryDetailsScreen from './src/Screen/CategoryDetailsScreen';
 import { NavigationParamList } from './src/Types/navigation';
+import { useEffect, useState } from 'react';
 
 const Stack = createStackNavigator<NavigationParamList>();
 const client = new Client();
 
 export default function App() {
+
+    const [ isLoad, setIsLoad ] = useState<boolean>(false);
+
+    const loadClient = async () => {
+        await client.fetch();
+        setIsLoad(true);
+    }
+
+    loadClient();
+
     return (
         <NavigationContainer>
             <Stack.Navigator 
