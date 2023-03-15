@@ -31,11 +31,6 @@ export default function LoginScreen({ route, navigation }: Props) {
             await AsyncStorage.setItem('token', client.auth.token+'');
             await AsyncStorage.setItem('refresh_token', client.auth.refresh_token+'');
 
-            await client.users.fetchAll();
-            await client.categories.fetchAll();
-            await client.resources.fetchAll();
-            await client.validations.fetchAll();
-
             navigation.navigate('Resources', { client });
 
         } catch (error) {
