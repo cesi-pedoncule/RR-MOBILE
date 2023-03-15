@@ -21,6 +21,7 @@ type Props = NativeStackScreenProps<NavigationParamList, 'ResourceDetails'>;
 export default function ResourceDetailsScreen({ route, navigation }: Props) {
     
     const resource = route.params.resource;
+    const client = route.params.client;
 
     const [ isLikeResource, setIsLikeResource ] = useState<boolean>(resource.isLiked());
     const [ numberLike, setNumberLike ] = useState<number>(resource.likes.cache.size);
@@ -104,7 +105,9 @@ export default function ResourceDetailsScreen({ route, navigation }: Props) {
                     </View>
                     <Text style={ResourceDetailsStyles.commentTitle}>Commentaires</Text>
                     <View style={ResourceDetailsStyles.commentContainer}>
-                        <InputTextComment resource={resource} setComments={setComments} setNumberComment={setNumberComment} />
+                        {
+                            client.auth.me && <InputTextComment resource={resource} setComments={setComments} setNumberComment={setNumberComment}/>
+                        }
                         <View style={ResourceDetailsStyles.listComment}> 
                             {   
                                 comments.reverse().map((comment, i) => {
