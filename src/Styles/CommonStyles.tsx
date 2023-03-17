@@ -55,6 +55,7 @@ export default StyleSheet.create({
         marginVertical : 10,
     },  
     textEmptyResult: {
+        color: COLORS.Black,
         textAlign: 'center',
         alignItems: 'center',
         width: "100%",

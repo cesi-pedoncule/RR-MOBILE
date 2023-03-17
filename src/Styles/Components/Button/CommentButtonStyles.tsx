@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { COLORS } from "../../Colors";
 
 export default StyleSheet.create({
     commentBtn:{
@@ -11,6 +12,7 @@ export default StyleSheet.create({
         flexDirection : "row",
     },
     numberComment:{
+        color: COLORS.Black,
         marginRight:5,
     },
 });

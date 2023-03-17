@@ -33,12 +33,17 @@ export default StyleSheet.create({
         transition: 0.2,
     },
     categorieList: {
+        marginRight: 10,
+        width: "70%",
+        display : "flex",
+        flexDirection : "row",
+    },
+    categorieContainer: {
+        marginTop:20,
         alignItem: 'center',
         width: "90%",
         display : "flex",
         flexDirection : "row",
-        overflow:'scroll',
-        marginTop:20,
     },
     addCategorieContainer: {
         marginRight: 5,

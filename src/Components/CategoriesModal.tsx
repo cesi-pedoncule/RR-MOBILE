@@ -17,9 +17,6 @@ interface Props {
 export default function CategoriesModal({client, categories, setCategories, showSelectCategories, setShowSelectCategories}: Props) {
     const items = client.categories.cache.toJSON();
     const [selectedItems, setSelectedItems] = useState<string[]>();
-    const cat:Category[] = categories;
-
-    console.log(selectedItems)
 
     const onSelectedItemsChange = (selectedItems:string[]) => {
         const newCategories: Category[]= [];

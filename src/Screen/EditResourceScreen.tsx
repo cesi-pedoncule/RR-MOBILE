@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, Switch, TouchableOpacity, TextInput } from 'react-native'
+import { View, Text, ScrollView, Switch, TouchableOpacity, TextInput, FlatList } from 'react-native'
 import React, { useState } from 'react'
 import CommonStyles from '../Styles/CommonStyles'
 import EditResourceStyles from '../Styles/Screen/EditResourceStyles'
@@ -52,17 +52,17 @@ export default function EditResourceScreen({ route, navigation }: Props) {
                 <ScrollView style={CommonStyles.scrollView}>
                     <View style={EditResourceStyles.container}>
                         <TextInput style={EditResourceStyles.addNameResource} placeholder={"Titre de la ressource"} defaultValue={title} onChangeText={(text) => title=text}></TextInput>
-                        <ScrollView showsHorizontalScrollIndicator={false} horizontal style={EditResourceStyles.categorieList}>
-                            {
-                                categories.map((category, id) => 
-                                    <CategoryButton key={id} navigation={navigation} category={category}/>
-                                )
-                            }
+                        <View style={EditResourceStyles.categorieContainer}>
+                            <FlatList showsHorizontalScrollIndicator={false} horizontal style={EditResourceStyles.categorieList} 
+                                data={categories}
+                                renderItem={({item}) => <CategoryButton navigation={navigation} category={item}/>}
+                                keyExtractor={item => item.id}
+                            />
                             <TouchableOpacity onPress={onClickAddCategory} style={EditResourceStyles.addCategorieContainer}>
                                 <Text style={EditResourceStyles.addCategorieText}>{'+'}</Text>
                             </TouchableOpacity>
                             <CategoriesModal client={client} showSelectCategories={showSelectCategories} setShowSelectCategories={setShowSelectCategories} categories={categories} setCategories={setCategories}/>
-                        </ScrollView>
+                        </View>
                         <InputTextDescription defaultValue={description} onChangeText={(text) => description=text}></InputTextDescription>
                         <ButtonFile text={'Ajouter un fichier'} callBack={onClickAddFile}/>
                         <View style={EditResourceStyles.switchContainer}>

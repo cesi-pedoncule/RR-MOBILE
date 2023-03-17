@@ -13,7 +13,7 @@ interface Props {
 export default function ButtonFile({ text, callBack } : Props) {
     return (
         <TouchableOpacity style={ButtonFileStyles.container} onPress={callBack}>
-            <Text>{text}</Text>
+            <Text style={{color: COLORS.Black}}>{text}</Text>
             <MaterialCommunityIcons name="arrow-down" size={24} color={COLORS.Black}/>
         </TouchableOpacity>
     )

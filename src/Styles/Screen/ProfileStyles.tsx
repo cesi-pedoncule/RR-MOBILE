@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { COLORS } from "../Colors";
 
 export default StyleSheet.create({
     profileContainer: {
@@ -18,6 +19,7 @@ export default StyleSheet.create({
         marginVertical: 10,
     },
     profileDescription: {
+        color: COLORS.Black,
         fontSize: 12,
         width: '100%',
         marginVertical: 10,

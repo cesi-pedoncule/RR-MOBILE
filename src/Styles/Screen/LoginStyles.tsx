@@ -19,6 +19,7 @@ export default StyleSheet.create({
         marginBottom: '5%',
     },
     text: {
+        color: COLORS.Black,
         textAlign: 'right',
     },
     texContainer: {
