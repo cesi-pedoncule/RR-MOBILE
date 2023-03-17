@@ -13,6 +13,7 @@ export default StyleSheet.create({
         marginBottom : 150,
 	},
 	textSaves : {
+		color: COLORS.Black,
 		position: 'relative',
 		textAlign : "center",
 		fontSize : 16,
