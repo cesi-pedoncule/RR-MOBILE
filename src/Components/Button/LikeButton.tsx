@@ -11,6 +11,7 @@ import {
 import { likeClickHandle } from '../../Functions/Utils'
 
 import LikeButtonStyles from '../../Styles/Components/Button/LikeButtonStyles';
+import { COLORS } from '../../Styles/Colors'
 
 interface Props {
 	resource: Resource;
@@ -42,7 +43,7 @@ export default function LikeButton({ resource, isLikeResource, setIsLikeResource
 		<View style={LikeButtonStyles.container}>
 			<Text style={LikeButtonStyles.numberLike}>{numberLike.toString()}</Text>
 			<TouchableOpacity style={LikeButtonStyles.likeBtn} onPress={(e) => onPress(e)} >
-				<MaterialCommunityIcons name={isLikeResource ? "cards-heart" : "cards-heart-outline" } size={24} color="black" />
+				<MaterialCommunityIcons name={isLikeResource ? "cards-heart" : "cards-heart-outline" } size={24} color={COLORS.Black} />
 			</TouchableOpacity>
 		</View>
 	);

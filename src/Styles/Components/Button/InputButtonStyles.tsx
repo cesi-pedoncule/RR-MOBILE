@@ -16,7 +16,7 @@ export default StyleSheet.create({
     },
     btnText: {
         textAlign: 'center',
-        color: '#FFFFFF',
+        color: COLORS.LightBackgroundColor,
         marginVertical: 8,
     },
 });

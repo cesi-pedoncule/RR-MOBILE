@@ -10,6 +10,9 @@ import ButtonFile from '../Components/Button/ButtonFile'
 import { COLORS } from '../Styles/Colors'
 import { NavigationParamList } from '../Types/navigation'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
+import CategoriesModal from '../Components/CategoriesModal'
+import CategoryButton from '../Components/Button/CategoryButton'
+import { Category } from 'rr-apilib'
 
 type Props = NativeStackScreenProps<NavigationParamList, 'EditResourceScreen'>;
 
@@ -21,8 +24,9 @@ export default function EditResourceScreen({ route, navigation }: Props) {
     var title = resource.title;
     var description = resource.description;
 
+    const [categories, setCategories] = useState<Category[]>(Array.from(resource.categories.cache.values()));
+    const [showSelectCategories, setShowSelectCategories] = useState<boolean>(false);
     const [isPublic, setIsPublic] = useState(resource.isPublic);
-    
     const toggleSwitch = () => setIsPublic(previousState => !previousState);
 
     const onClickSend = () => {
@@ -33,7 +37,7 @@ export default function EditResourceScreen({ route, navigation }: Props) {
     }
 
     const onClickAddCategory = () => {
-        alert("TODO");
+        setShowSelectCategories(true);
     }
 
     const onClickAddFile = () => {
@@ -48,11 +52,17 @@ export default function EditResourceScreen({ route, navigation }: Props) {
                 <ScrollView style={CommonStyles.scrollView}>
                     <View style={EditResourceStyles.container}>
                         <TextInput style={EditResourceStyles.addNameResource} placeholder={"Titre de la ressource"} defaultValue={title} onChangeText={(text) => title=text}></TextInput>
-                        <View style={EditResourceStyles.categorieList}>
+                        <ScrollView showsHorizontalScrollIndicator={false} horizontal style={EditResourceStyles.categorieList}>
+                            {
+                                categories.map((category, id) => 
+                                    <CategoryButton key={id} navigation={navigation} category={category}/>
+                                )
+                            }
                             <TouchableOpacity onPress={onClickAddCategory} style={EditResourceStyles.addCategorieContainer}>
                                 <Text style={EditResourceStyles.addCategorieText}>{'+'}</Text>
                             </TouchableOpacity>
-                        </View>
+                            <CategoriesModal client={client} showSelectCategories={showSelectCategories} setShowSelectCategories={setShowSelectCategories} categories={categories} setCategories={setCategories}/>
+                        </ScrollView>
                         <InputTextDescription defaultValue={description} onChangeText={(text) => description=text}></InputTextDescription>
                         <ButtonFile text={'Ajouter un fichier'} callBack={onClickAddFile}/>
                         <View style={EditResourceStyles.switchContainer}>

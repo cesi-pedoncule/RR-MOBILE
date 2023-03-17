@@ -22,7 +22,7 @@ export default StyleSheet.create({
 	},
 	addResourceBtn :{
 		textAlign: 'center',
-		color: COLORS.White,
+		color: COLORS.LightBackgroundColor,
 		marginTop: 5,
 		height: 50,
 		width: 150,

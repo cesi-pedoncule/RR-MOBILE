@@ -60,7 +60,7 @@ export default StyleSheet.create({
         flexDirection : "row",
         alignItems: 'center',
         justifyContent: 'space-between',
-        width: 150,
+        width: 165,
         bottom: 23,
         right: 0,
     },

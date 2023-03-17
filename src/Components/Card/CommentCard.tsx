@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 import { Client, Comment, Resource } from 'rr-apilib';
 import CommentCardStyles from '../../Styles/Components/Card/CommentCardStyles';
 import IconButton from '../Button/IconButton';
+import { COLORS } from '../../Styles/Colors';
 
 interface Props {
     comment: Comment;
@@ -37,7 +38,7 @@ export default function CommentCard({comment, client, setComments, setNumberComm
             {
                 isDeleted && 
                 <View style={CommentCardStyles.deleteCommentButton}>
-                    <IconButton callBack={onClickDeleteComment} size={24} name={"delete-outline"} color={'black'}/>
+                    <IconButton callBack={onClickDeleteComment} size={24} name={"delete-outline"} color={COLORS.Black}/>
                 </View>
             }
         </View>

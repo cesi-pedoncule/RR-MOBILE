@@ -92,7 +92,7 @@ export default function ResourceDetailsScreen({ route, navigation }: Props) {
                                     </View>
                                 </View>
                                 <Text style={ResourceDetailsStyles.cardTitle}>{title}</Text>
-                                <View style={ResourceDetailsStyles.categoriesContainer}>
+                                <ScrollView showsHorizontalScrollIndicator={false} horizontal  style={ResourceDetailsStyles.categoriesContainer}>
                                     {
                                         categories.map((category, i) => {
                                             return (
@@ -100,7 +100,7 @@ export default function ResourceDetailsScreen({ route, navigation }: Props) {
                                             )
                                         })
                                     }
-                                </View>
+                                </ScrollView>
                                 <Text style={ResourceDetailsStyles.cardText}>{description}</Text>
                             </View>
                         </View>

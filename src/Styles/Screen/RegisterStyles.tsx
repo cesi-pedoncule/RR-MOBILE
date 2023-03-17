@@ -9,7 +9,7 @@ export default StyleSheet.create({
     },
     loginContainer: {
         marginTop: '5%',
-        backgroundColor: COLORS.White,
+        backgroundColor: COLORS.LightBackgroundColor,
         alignItems: 'center',
     },
     registerButton: {

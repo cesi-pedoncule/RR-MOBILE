@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { COLORS } from "../Colors";
 
 export default StyleSheet.create({
     registerContainer: {
@@ -8,7 +9,7 @@ export default StyleSheet.create({
     },
     loginContainer: {
         marginTop: '20%',
-        backgroundColor: '#FFFFFF',
+        backgroundColor: COLORS.LightBackgroundColor,
         alignItems: 'center',
         justifyContent: 'center',
     },

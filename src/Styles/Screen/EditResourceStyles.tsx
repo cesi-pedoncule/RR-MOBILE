@@ -45,7 +45,7 @@ export default StyleSheet.create({
     },
     addCategorieText: {
         backgroundColor: COLORS.TagColor,
-        color: COLORS.BorderColor,
+        color: COLORS.Black,
         paddingLeft: 20,
         paddingRight: 20,
         paddingBottom: 4,

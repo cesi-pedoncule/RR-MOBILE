@@ -9,7 +9,7 @@ export default StyleSheet.create({
         justifyContent: 'center',
     },
     content : {
-        backgroundColor: COLORS.White,
+        backgroundColor: COLORS.LightBackgroundColor,
         width: '100%',
         position: 'absolute',
         top : 130,
