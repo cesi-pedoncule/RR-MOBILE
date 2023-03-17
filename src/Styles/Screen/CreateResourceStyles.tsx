@@ -11,6 +11,7 @@ export default StyleSheet.create({
         marginTop : 5,
     },
     addNameResource: {
+        color: COLORS.Black,
         backgroundColor: COLORS.ComponentBackground,
         textAlign: 'center',
         height: 40,

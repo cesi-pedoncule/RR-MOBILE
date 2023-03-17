@@ -67,7 +67,7 @@ export default function EditResourceScreen({ route, navigation }: Props) {
                         <ButtonFile text={'Ajouter un fichier'} callBack={onClickAddFile}/>
                         <View style={EditResourceStyles.switchContainer}>
                             <Switch trackColor={{false: COLORS.ComponentBackground, true: COLORS.ComponentBackground}} thumbColor={COLORS.AccentColor} onValueChange={toggleSwitch} value={isPublic}/>
-                            <Text> Privé / Publique </Text>
+                            <Text style={{color: COLORS.Black}}> Privé / Publique </Text>
                         </View>
                         <InputButton label={'Modifier'} callBack={onClickSend} style={EditResourceStyles.sendButton}/>
                     </View>

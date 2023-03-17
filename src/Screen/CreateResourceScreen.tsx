@@ -63,7 +63,7 @@ export default function CreateResourceScreen({ route, navigation }: Props) {
                         <ButtonFile text={'Ajouter un fichier'} callBack={onClickAddFile}/>
                         <View style={CreateResourceStyles.switchContainer}>
                             <Switch trackColor={{false: COLORS.ComponentBackground, true: COLORS.ComponentBackground}} thumbColor={COLORS.AccentColor} onValueChange={toggleSwitch} value={isPublic}/>
-                            <Text> Privé / Publique </Text>
+                            <Text style={{color: COLORS.Black}}> Privé / Publique </Text>
                         </View>
                         <View style={CreateResourceStyles.sendButtonContainer}>
                             <InputButton label={'Envoyer'} callBack={onClickSend} style={CreateResourceStyles.sendButton}/>
