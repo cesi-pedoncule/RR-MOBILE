@@ -1,21 +1,15 @@
 import React, { useState } from 'react'
-import { Category, Client, Resource } from 'rr-apilib'
+import { Client, Resource } from 'rr-apilib'
 import { NavigationParamList } from '../../Types/navigation'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
-import {
-    View,
-    Text,
-    TouchableOpacity,
-    GestureResponderEvent
-} from 'react-native'
-
+import { View, Text, TouchableOpacity, GestureResponderEvent, ScrollView, FlatList } from 'react-native'
 import ResourceCardStyles from '../../Styles/Components/Card/ResourceCardStyles'
-
 import IconButton from '../Button/IconButton'
 import LikeButton from '../Button/LikeButton'
 import CommentButton from '../Button/CommentButton'
 import CategoryButton from '../Button/CategoryButton'
 import { likeClickHandle } from '../../Functions/Utils'
+import { COLORS } from '../../Styles/Colors'
 
 interface Props {
     resource: Resource;
@@ -29,8 +23,8 @@ interface Props {
 export default function ResourceCard({ resource, inShareResourceScreens=false, client, setResources, setResourcesFiltered, navigation}: Props) {
     const [numberLike, setNumberLike] = useState(resource.likes.cache.size);
     const [isLikeResource, setIsLikeResource] = useState<boolean>(resource.isLiked());
-    const [numberCommentResource, setNumberCommentResource] = useState(resource.comments.cache.size);
-    const [categories, setCategories] = useState<Category[]>(Array.from(resource.categories.cache.values()));
+    const numberCommentResource = resource.comments.cache.size;
+    const categories = Array.from(resource.categories.cache.values());
 
     const username = resource.user ? `${resource.user.name} ${resource.user.firstname}` : "Utilisateur inconnu";
     const description = resource.description ?  resource.description : "Aucune description fournie" ;
@@ -90,24 +84,22 @@ export default function ResourceCard({ resource, inShareResourceScreens=false, c
                         </View>    
                     </View>
                     <Text style={ResourceCardStyles.cardTitle} numberOfLines={1}>{resource.title}</Text>
-                    <View style={ResourceCardStyles.categoriesContainer}>
-                        {
-                            categories.map((category, i) => {
-                                return <CategoryButton key={i} navigation={navigation} category={category} />
-                            })
-                        }
-                    </View>
+                    <FlatList horizontal style={ResourceCardStyles.categoriesContainer} 
+                        data={categories}
+                        renderItem={({item}) => <CategoryButton navigation={navigation} category={item}/>}
+                        keyExtractor={item => item.id}
+                     />
                     <Text style={ResourceCardStyles.cardText} numberOfLines={3}>{description}</Text>
                 </View>
                 :
                 <View style={ResourceCardStyles.withoutUserContainer}>
                     <Text style={ResourceCardStyles.cardTitle} numberOfLines={1}>{resource.title}</Text>
-                    <View style={ResourceCardStyles.categoriesContainer}>
-                        {
-                            categories.map((category, i) => {
-                                return <CategoryButton key={i} navigation={navigation} category={category} />
-                            })
-                        }
+                    <View>
+                        <FlatList showsHorizontalScrollIndicator={false} horizontal style={ResourceCardStyles.categoriesContainer} 
+                            data={categories}
+                            renderItem={({item}) => <CategoryButton navigation={navigation} category={item}/>}
+                            keyExtractor={item => item.id}
+                        />
                     </View>
                     <Text style={ResourceCardStyles.cardText} numberOfLines={3}>{description}</Text>
                     <View style={ResourceCardStyles.buttonsContainer}>
@@ -115,8 +107,8 @@ export default function ResourceCard({ resource, inShareResourceScreens=false, c
                         <CommentButton commentNumber={numberCommentResource}/>
                     </View>
                     <View style={ResourceCardStyles.buttonsEditContainer}>
-                        <IconButton callBack={onClickDeleteResource} size={24} name={"delete-outline"} color={'black'}/>
-                        <IconButton callBack={onClickEditResource} size={24} name={"square-edit-outline"} color={'black'}/>
+                        <IconButton callBack={onClickDeleteResource} size={24} name={"delete-outline"} color={COLORS.Black}/>
+                        <IconButton callBack={onClickEditResource} size={24} name={"square-edit-outline"} color={COLORS.Black}/>
                     </View>
                 </View>
             }

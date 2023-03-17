@@ -3,6 +3,7 @@ import { Text, TouchableOpacity } from 'react-native'
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import ButtonFileStyles from '../../Styles/Components/Button/ButtonFileStyles'
+import { COLORS } from '../../Styles/Colors';
 
 interface Props {
     text: string;
@@ -12,8 +13,8 @@ interface Props {
 export default function ButtonFile({ text, callBack } : Props) {
     return (
         <TouchableOpacity style={ButtonFileStyles.container} onPress={callBack}>
-            <Text>{text}</Text>
-            <MaterialCommunityIcons name="arrow-down" size={24} color="black"/>
+            <Text style={{color: COLORS.Black}}>{text}</Text>
+            <MaterialCommunityIcons name="arrow-down" size={24} color={COLORS.Black}/>
         </TouchableOpacity>
     )
 }

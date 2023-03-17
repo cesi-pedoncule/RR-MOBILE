@@ -16,6 +16,7 @@ export default StyleSheet.create({
         elevation: 2,
     },
     cardTitle:{
+        color: COLORS.Black,
         fontWeight: 'bold',
         fontSize: 20,
         marginLeft: 20,

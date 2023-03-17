@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import InputTextCommentStyles from '../../Styles/Components/Input/InputTextCommentStyles'
 import { Comment, CommentBuilder, Resource } from 'rr-apilib';
+import { COLORS } from '../../Styles/Colors';
 
 interface Props {
     resource: Resource;
@@ -36,7 +37,7 @@ export default function InputTextComment({resource, setComments, setNumberCommen
             <TextInput style={InputTextCommentStyles.txtFieldInput} multiline={true} value={inputText} onChangeText={(newInputText) => setInputText(newInputText)}/>
             <TouchableOpacity onPress={onClickAddComment}>
 				{
-					<MaterialCommunityIcons style={InputTextCommentStyles.sendButtonInput} name="comment-arrow-left-outline" size={24} color="black" />
+					<MaterialCommunityIcons style={InputTextCommentStyles.sendButtonInput} name="comment-arrow-left-outline" size={24} color={COLORS.Black} />
 				}
 			</TouchableOpacity>
         </View>

@@ -10,6 +10,7 @@ import InputText from "../Components/Input/InputText";
 import TopBar from "../Components/Input/TopBar";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { NavigationParamList } from "../Types/navigation";
+import { COLORS } from "../Styles/Colors";
 
 type Props = NativeStackScreenProps<NavigationParamList, 'Register'>;
 
@@ -40,7 +41,7 @@ export default function RegisterScreen({ route, navigation }: Props) {
                         </View>
                         <View style={RegisterStyles.registerContainer}>
                             <View style={RegisterStyles.texContainer}>
-                                <Text> Déjà un compte ? </Text>
+                                <Text style={{color: COLORS.Black,}}> Déjà un compte ? </Text>
                                 <Link label="Connectez-vous maintenant" callBack={onClickLoginText} />
                             </View>
                             <InputButton label="Valider" callBack={onClickRegisterButton} style={RegisterStyles.registerButton} />

@@ -11,6 +11,7 @@ export default StyleSheet.create({
         marginTop : 5,
     },
     addNameResource: {
+        color: COLORS.Black,
         backgroundColor: COLORS.ComponentBackground,
         textAlign: 'center',
         height: 40,
@@ -33,19 +34,24 @@ export default StyleSheet.create({
         transition: 0.2,
     },
     categorieList: {
+        marginRight: 10,
+        width: "70%",
+        display : "flex",
+        flexDirection : "row",
+    },
+    categorieContainer: {
+        marginTop:20,
         alignItem: 'center',
         width: "90%",
         display : "flex",
         flexDirection : "row",
-        overflow:'scroll',
-        marginTop:20,
     },
     addCategorieContainer: {
         marginRight: 5,
     },
     addCategorieText: {
         backgroundColor: COLORS.TagColor,
-        color: COLORS.BorderColor,
+        color: COLORS.Black,
         paddingLeft: 20,
         paddingRight: 20,
         paddingBottom: 4,

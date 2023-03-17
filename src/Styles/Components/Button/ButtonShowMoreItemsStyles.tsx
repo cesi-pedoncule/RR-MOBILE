@@ -16,6 +16,7 @@ export default StyleSheet.create({
         elevation: 2,
     },
     text: {
+        color: COLORS.Black,
         position: 'absolute',
         bottom: 5,
         fontSize: 25,

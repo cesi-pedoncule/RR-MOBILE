@@ -13,6 +13,7 @@ export default StyleSheet.create({
         marginBottom : 150,
 	},
 	textSaves : {
+		color: COLORS.Black,
 		position: 'relative',
 		textAlign : "center",
 		fontSize : 16,
@@ -22,7 +23,7 @@ export default StyleSheet.create({
 	},
 	addResourceBtn :{
 		textAlign: 'center',
-		color: COLORS.White,
+		color: COLORS.LightBackgroundColor,
 		marginTop: 5,
 		height: 50,
 		width: 150,

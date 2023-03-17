@@ -25,6 +25,7 @@ export default StyleSheet.create({
         right:25,
     },
     cardUser:{
+        color: COLORS.Black,
         fontWeight: 'bold',
         fontSize: 20,
         marginLeft: 20,

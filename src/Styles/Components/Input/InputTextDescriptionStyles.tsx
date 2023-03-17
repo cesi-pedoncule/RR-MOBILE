@@ -3,6 +3,7 @@ import { COLORS } from "../../Colors";
 
 export default StyleSheet.create({
     container: {
+        color: COLORS.Black,
         backgroundColor: COLORS.ComponentBackground,
         overflow: 'scroll',
         height: 200,

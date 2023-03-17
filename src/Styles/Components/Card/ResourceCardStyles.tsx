@@ -14,11 +14,13 @@ export default StyleSheet.create({
         elevation: 2,
     },
     cardUser:{
+        color: COLORS.Black,
         fontWeight: 'bold',
         fontSize: 20,
         marginLeft: 20,
     },
     cardTitle:{
+        color: COLORS.Black,
         textDecorationStyle: 'solid',
         textDecorationLine: 'underline',
         fontSize: 16,
@@ -60,7 +62,7 @@ export default StyleSheet.create({
         flexDirection : "row",
         alignItems: 'center',
         justifyContent: 'space-between',
-        width: 150,
+        width: 165,
         bottom: 23,
         right: 0,
     },
