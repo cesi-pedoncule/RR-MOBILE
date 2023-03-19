@@ -40,16 +40,10 @@ export default function LoginScreen({ route, navigation }: Props) {
     }
 
     const checkIsAuth = async () => {
-
-        await client.users.fetchAll();
-        await client.categories.fetchAll();
-        await client.resources.fetchAll();
-        await client.validations.fetchAll();
         
         if (client.auth.me != null) {
             navigation.navigate('Resources', { client });
-        }
-        else {
+        } else {
             // Check if token is in storage
             const token = await AsyncStorage.getItem('token');
             const refresh_token = await AsyncStorage.getItem('refresh_token');
@@ -67,6 +61,8 @@ export default function LoginScreen({ route, navigation }: Props) {
                 } catch (error) {
                     await AsyncStorage.removeItem('token');
                     await AsyncStorage.removeItem('refresh_token');
+
+                    await client.refresh();
                 }
             } 
 
