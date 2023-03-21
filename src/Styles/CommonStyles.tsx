@@ -47,9 +47,8 @@ export default StyleSheet.create({
         paddingHorizontal: 5,
     },
     loader: {
-        position: 'absolute',
         top: '45%',
-        left: '45%',
+        alignItems: 'center',
     },
     scrollView : {
         marginVertical : 10,
@@ -59,5 +58,11 @@ export default StyleSheet.create({
         textAlign: 'center',
         alignItems: 'center',
         width: "100%",
+    },
+    listHeaderComponent: {
+        marginBottom: "4%",
+    },
+    loadMoreContent: {
+        alignItems: 'center',
     }
 });
