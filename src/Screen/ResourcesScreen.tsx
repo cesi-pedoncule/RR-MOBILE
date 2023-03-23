@@ -63,7 +63,7 @@ export default function ResourcesScreen({ navigation, route } : Props) {
             <View style={CommonStyles.content}>
                 {
                     loading ?  <ActivityIndicator size="large" color={COLORS.AccentColor} style={CommonStyles.loader} /> :
-                    <FlatList style={CommonStyles.scrollView} 
+                    <FlatList style={CommonStyles.itemsContainer} 
                         ListEmptyComponent={<Text style={CommonStyles.textEmptyResult}>Aucune ressource n'a été trouvée.</Text>}
                         contentContainerStyle = {ResourcesStyles.resourcesContainer}
                         data={resourcesFiltered}

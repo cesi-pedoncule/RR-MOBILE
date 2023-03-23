@@ -84,7 +84,7 @@ export default function LoginScreen({ route, navigation }: Props) {
                         <View>
                             
                             <Header label="Connexion" />
-                            <ScrollView style={CommonStyles.scrollView}>
+                            <ScrollView style={CommonStyles.itemsContainer}>
                                 <View style={LoginStyles.loginContainer}>
                                     <InputText placeholder="Email" type='email-address' />
                                     <InputText placeholder="Mot de passe" type='default' secureTextEntry={true} />

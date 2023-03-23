@@ -49,7 +49,7 @@ export default function EditResourceScreen({ route, navigation }: Props) {
             <TopBar hideSearchBar={true} navigation={navigation}/>
             <View style={CommonStyles.content}>
                 <ReturnButton/>
-                <ScrollView style={CommonStyles.scrollView}>
+                <ScrollView style={CommonStyles.itemsContainer}>
                     <View style={EditResourceStyles.container}>
                         <TextInput style={EditResourceStyles.addNameResource} placeholder={"Titre de la ressource"} defaultValue={title} onChangeText={(text) => title=text}></TextInput>
                         <View style={EditResourceStyles.categorieContainer}>

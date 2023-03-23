@@ -33,7 +33,6 @@ export default StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: '4%',
     },
     title: {
         fontSize: 32,
@@ -50,8 +49,8 @@ export default StyleSheet.create({
         top: '45%',
         alignItems: 'center',
     },
-    scrollView : {
-        marginVertical : 10,
+    itemsContainer : {
+        marginVertical : 20,
     },  
     textEmptyResult: {
         color: COLORS.Black,
@@ -60,7 +59,7 @@ export default StyleSheet.create({
         width: "100%",
     },
     listHeaderComponent: {
-        marginBottom: "4%",
+        marginBottom: 20,
     },
     loadMoreContent: {
         alignItems: 'center',

@@ -3,10 +3,10 @@ import { COLORS } from "../../Colors";
 
 export default StyleSheet.create({
     container: {
-        width: "90%",
+        width: "100%",
         height: 190,
         backgroundColor: COLORS.ComponentBackground,
-        borderRadius: 15,
+        borderRadius: 20,
         marginBottom: 20,
         shadowColor: COLORS.Black,
         shadowOpacity: 0.3,

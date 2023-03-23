@@ -3,11 +3,11 @@ import { COLORS } from "../../Colors";
 
 export default StyleSheet.create({
     cardBackground: {
-        width: "45%",
-        height: 130,
+        width: "100%",
+        aspectRatio: 1,
         backgroundColor: COLORS.ComponentBackground,
-        borderRadius: 15,
-        margin: 5,
+        borderRadius: 20,
+        marginBottom: 20,
         alignSelf: 'flex-end',
         paddingRight:20,
         shadowColor: COLORS.Black,
@@ -20,13 +20,15 @@ export default StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 20,
         marginLeft: 20,
-        marginTop: 5,
+        marginTop: 15,
     },
     cardText:{
+        width:"100%",
+        position: 'absolute',
         color: COLORS.ForegroundHolder,
         fontSize: 13,
         textAlign: 'justify',
-        marginTop: 40,
+        bottom: 20,
         marginLeft: 20,
         marginRight: 20,
     },
