@@ -33,7 +33,6 @@ export default StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: '4%',
     },
     title: {
         fontSize: 32,
@@ -47,17 +46,22 @@ export default StyleSheet.create({
         paddingHorizontal: 5,
     },
     loader: {
-        position: 'absolute',
         top: '45%',
-        left: '45%',
+        alignItems: 'center',
     },
-    scrollView : {
-        marginVertical : 10,
+    itemsContainer : {
+        marginVertical : 20,
     },  
     textEmptyResult: {
         color: COLORS.Black,
         textAlign: 'center',
         alignItems: 'center',
         width: "100%",
+    },
+    listHeaderComponent: {
+        marginBottom: 20,
+    },
+    loadMoreContent: {
+        alignItems: 'center',
     }
 });

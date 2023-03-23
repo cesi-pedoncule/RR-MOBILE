@@ -30,7 +30,7 @@ export default function RegisterScreen({ route, navigation }: Props) {
             <TopBar hideSearchBar={true} navigation={navigation} />
             <View style={CommonStyles.content}>
                 <Header label="Inscription" />
-                <ScrollView style={CommonStyles.scrollView}>
+                <ScrollView style={CommonStyles.itemsContainer}>
                     <View>
                         <View style={LoginStyles.loginContainer}>
                             <InputText placeholder="Nom" type='default' />

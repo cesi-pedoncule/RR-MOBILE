@@ -2,15 +2,10 @@ import { StyleSheet } from "react-native";
 import { COLORS } from "../Colors";
 
 export default StyleSheet.create({
-	scrollView: {
-        marginTop : 10,
-        marginBottom : 50,
-		maxHeight: '65%',
-    },
 	resourcesContainer: {
-		alignItems: 'center',
+		marginHorizontal: 20,
         justifyContent: 'center',
-        marginBottom : 150,
+		paddingBottom: 150,
 	},
 	textSaves : {
 		color: COLORS.Black,
@@ -38,5 +33,5 @@ export default StyleSheet.create({
 		alignItems: 'center',
 		bottom: 90,
 		width: "100%",
-	}
+	},
 });

@@ -29,7 +29,7 @@ export default function ProfileScreen({ route, navigation }: Props) {
             {
                 user && ( 
                     <View style={CommonStyles.content}>
-                        <ScrollView style={CommonStyles.scrollView}>
+                        <ScrollView style={CommonStyles.itemsContainer}>
                             <Header label={userProfileName}/>
                             <View style={ProfileStyles.profileContainer}>
                                 <Text style={ProfileStyles.profileSubTitle}>{user?.resources.cache.size} enregistrement(s)</Text>

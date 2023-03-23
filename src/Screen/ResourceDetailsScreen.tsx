@@ -71,7 +71,7 @@ export default function ResourceDetailsScreen({ route, navigation }: Props) {
             <TopBar hideSearchBar={true} navigation={navigation}/>
             <View style={CommonStyles.content}>
                 <ReturnButton/>
-                <ScrollView style={CommonStyles.scrollView}>
+                <ScrollView style={CommonStyles.itemsContainer}>
                     <TouchableOpacity onPress={(e) => onPress(e)} activeOpacity={1}>
                         <View style={ResourceDetailsStyles.centerContent}>
                             <View style={ResourceDetailsStyles.cardBackground}>
