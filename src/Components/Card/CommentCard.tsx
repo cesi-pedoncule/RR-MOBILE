@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native'
+import { View, Text, ScrollView } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { Client, Comment, Resource } from 'rr-apilib';
 import CommentCardStyles from '../../Styles/Components/Card/CommentCardStyles';
@@ -28,13 +28,25 @@ export default function CommentCard({comment, client, setComments, setNumberComm
         setIsDeleted(comment.user?.id == user?.id);
     })
 
+    const getDateCreation = () => {
+        let localDateString:string;
+        if(comment.createdAt.toLocaleDateString("fr-FR") == new Date().toLocaleDateString("fr-FR")){
+            localDateString = "Aujourd'hui";
+        }
+        else {
+            localDateString = comment.createdAt.toLocaleDateString("fr-FR");
+        }
+
+        return localDateString+"     "+comment.createdAt.getHours()+":"+comment.createdAt.getMinutes();
+    }
+
     return (
         <View style={CommentCardStyles.container}>
             <View style={CommentCardStyles.infoContainer}>
-                <Text style={CommentCardStyles.cardUser}>{comment.user ? `${comment.user.name} ${comment.user.firstname}` : "Utilisateur inconnu"}</Text>
+                <ScrollView style={CommentCardStyles.cardUser} horizontal><Text style={CommentCardStyles.textCardUser}>{comment.user ? `${comment.user.name} ${comment.user.firstname}` : "Utilisateur inconnu"}</Text></ScrollView>
                 <Text style={CommentCardStyles.cardComment}>{comment.comment}</Text>
             </View>
-            <Text style={CommentCardStyles.cardDate}>{comment.createdAt.toLocaleDateString("fr-FR")}</Text>
+            <Text style={CommentCardStyles.cardDate}>{getDateCreation()}</Text>
             {
                 isDeleted && 
                 <View style={CommentCardStyles.deleteCommentButton}>

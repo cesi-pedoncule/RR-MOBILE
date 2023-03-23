@@ -20,16 +20,21 @@ export default StyleSheet.create({
         width: "85%",
     },
     cardDate: {
+        textAlign: 'right',
         position: 'absolute',
+        width: "37%",
         top:15,
         right:25,
     },
     cardUser:{
+        width: "55%",
+        marginLeft: 20,
+        marginTop: 10,
+    },
+    textCardUser:{
         color: COLORS.Black,
         fontWeight: 'bold',
         fontSize: 20,
-        marginLeft: 20,
-        marginTop: 10,
     },
     cardComment:{
         height: "auto",
