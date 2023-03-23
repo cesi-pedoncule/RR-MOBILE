@@ -82,9 +82,8 @@ export default function LoginScreen({ route, navigation }: Props) {
                     {
                         isLoading ? <ActivityIndicator size="large" color={COLORS.AccentColor} style={CommonStyles.loader} /> : 
                         <View>
-                            
-                            <Header label="Connexion" />
                             <ScrollView style={CommonStyles.itemsContainer}>
+                                <Header label="Connexion" />
                                 <View style={LoginStyles.loginContainer}>
                                     <InputText placeholder="Email" type='email-address' />
                                     <InputText placeholder="Mot de passe" type='default' secureTextEntry={true} />

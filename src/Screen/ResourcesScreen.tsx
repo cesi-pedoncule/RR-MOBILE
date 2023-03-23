@@ -5,7 +5,7 @@ import CommonStyles from "../Styles/CommonStyles";
 import ResourceCard from "../Components/Card/ResourceCard";
 import TopBar from "../Components/Input/TopBar";
 import ResourcesStyles from "../Styles/Screen/ResourcesStyles";
-import useResources from "../Hooks/useResources";
+import usePublicResources from "../Hooks/usePublicResources";
 import { COLORS } from "../Styles/Colors";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { NavigationParamList } from "../Types/navigation";
@@ -17,11 +17,11 @@ export default function ResourcesScreen({ navigation, route } : Props) {
     
     const client = route.params.client;
 
-    const { resources, setResources, loading } = useResources({ client });
+    const { resources, setResources, loading } = usePublicResources({ client });
     const [ resourcesFiltered, setResourcesFiltered ] = useState<Resource[]>([]);
 
     const handleChangeSearch = (text: string) => {
-        const filteredResources = Array.from(client.resources.cache.values()).filter((resource) => {
+        const filteredResources = Array.from(client.resources.cache.filter(resource => resource.isPublic == true).values()).filter((resource) => {
             return resource.title.toLowerCase().includes(text.toLowerCase());
         });
         setResources(filteredResources);
