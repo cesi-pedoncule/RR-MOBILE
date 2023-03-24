@@ -30,20 +30,23 @@ export default function CommentCard({comment, client, setComments, setNumberComm
 
     const getDateCreation = () => {
         let localDateString:string;
+        const hourDateString:string = comment.createdAt.getHours()<10 ? "0"+comment.createdAt.getHours() : comment.createdAt.getHours().toString();
+        const minuteDateString:string = comment.createdAt.getMinutes()<10 ? "0"+comment.createdAt.getMinutes() : comment.createdAt.getMinutes().toString();
         if(comment.createdAt.toLocaleDateString("fr-FR") == new Date().toLocaleDateString("fr-FR")){
             localDateString = "Aujourd'hui";
         }
         else {
             localDateString = comment.createdAt.toLocaleDateString("fr-FR");
         }
+        
 
-        return localDateString+"     "+comment.createdAt.getHours()+":"+comment.createdAt.getMinutes();
+        return localDateString+"     "+hourDateString+":"+minuteDateString;
     }
 
     return (
         <View style={CommentCardStyles.container}>
             <View style={CommentCardStyles.infoContainer}>
-                <ScrollView style={CommentCardStyles.cardUser} horizontal><Text style={CommentCardStyles.textCardUser}>{comment.user ? `${comment.user.name} ${comment.user.firstname}` : "Utilisateur inconnu"}</Text></ScrollView>
+                <ScrollView style={CommentCardStyles.cardUser} horizontal showsHorizontalScrollIndicator={false}><Text style={CommentCardStyles.textCardUser}>{comment.user ? `${comment.user.name} ${comment.user.firstname}` : "Utilisateur inconnu"}</Text></ScrollView>
                 <Text style={CommentCardStyles.cardComment}>{comment.comment}</Text>
             </View>
             <Text style={CommentCardStyles.cardDate}>{getDateCreation()}</Text>
