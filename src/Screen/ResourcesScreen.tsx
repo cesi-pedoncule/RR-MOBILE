@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { View, ActivityIndicator, Text, FlatList } from 'react-native'
 import { Resource } from "rr-apilib";
 import CommonStyles from "../Styles/CommonStyles";
-import ResourceCard from "../Components/Card/ResourceCard";
+import ResourceCardWithUser from "../Components/Card/ResourceCardWithUser";
 import TopBar from "../Components/Input/TopBar";
 import ResourcesStyles from "../Styles/Screen/ResourcesStyles";
 import usePublicResources from "../Hooks/usePublicResources";
@@ -21,8 +21,8 @@ export default function ResourcesScreen({ navigation, route } : Props) {
     const [ resourcesFiltered, setResourcesFiltered ] = useState<Resource[]>([]);
 
     const handleChangeSearch = (text: string) => {
-        const filteredResources = Array.from(client.resources.cache.filter(resource => resource.isPublic == true).values()).filter((resource) => {
-            return resource.title.toLowerCase().includes(text.toLowerCase());
+        const filteredResources = Array.from(client.resources.cache.values()).filter((resource) => {
+            return resource.title.toLowerCase().includes(text.toLowerCase()) && resource.isPublic == true;
         });
         setResources(filteredResources);
         setResourcesFiltered(filteredResources.splice(0, 6));
@@ -67,7 +67,7 @@ export default function ResourcesScreen({ navigation, route } : Props) {
                         ListEmptyComponent={<Text style={CommonStyles.textEmptyResult}>Aucune ressource n'a été trouvée.</Text>}
                         contentContainerStyle = {ResourcesStyles.resourcesContainer}
                         data={resourcesFiltered}
-                        renderItem={({item}) => <ResourceCard resource={item} navigation={navigation} setResources={setResources} setResourcesFiltered={setResourcesFiltered} client={client}/>}
+                        renderItem={({item}) => <ResourceCardWithUser resource={item} navigation={navigation}/>}
                         keyExtractor={item => item.id}
                         ListHeaderComponent={renderHeader}
                         ListFooterComponent={renderFooter}

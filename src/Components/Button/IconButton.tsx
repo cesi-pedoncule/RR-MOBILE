@@ -1,8 +1,6 @@
 import React from 'react'
 import { TouchableOpacity } from 'react-native'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
-
-import deleteButtonStyles from '../../Styles/Components/Button/IconButtonStyles'
 import { COLORS } from '../../Styles/Colors';
 
 interface Props {
@@ -15,7 +13,7 @@ interface Props {
 
 export default function IconButton({ callBack, name, size, color=COLORS.Black, style }: Props) {
     return (
-        <TouchableOpacity onPress={callBack} style={[deleteButtonStyles.container, style]}>
+        <TouchableOpacity onPress={callBack} style={style}>
             <MaterialCommunityIcons name={name} size={size} color={color} />
         </TouchableOpacity>
     )

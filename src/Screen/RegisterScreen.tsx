@@ -40,10 +40,8 @@ export default function RegisterScreen({ route, navigation }: Props) {
                             <InputText placeholder="Confirmation de mot de passe" type='default' secureTextEntry={true} />
                         </View>
                         <View style={RegisterStyles.registerContainer}>
-                            <View style={RegisterStyles.texContainer}>
-                                <Text style={{color: COLORS.Black,}}> Déjà un compte ? </Text>
-                                <Link label="Connectez-vous maintenant" callBack={onClickLoginText} />
-                            </View>
+                            <Text style={{color: COLORS.Black,}}> Déjà un compte ? </Text>
+                            <Link label="Connectez-vous maintenant" callBack={onClickLoginText} />
                             <InputButton label="Valider" callBack={onClickRegisterButton} style={RegisterStyles.registerButton} />
                         </View>
                     </View>

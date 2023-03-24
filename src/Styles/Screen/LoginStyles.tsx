@@ -20,11 +20,6 @@ export default StyleSheet.create({
     },
     text: {
         color: COLORS.Black,
-        textAlign: 'right',
-    },
-    texContainer: {
-        display: 'flex',
-        flexDirection: 'row',
     },
     container: {
         height: '100%',

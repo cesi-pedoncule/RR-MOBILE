@@ -16,8 +16,4 @@ export default StyleSheet.create({
         marginTop: '5%',
         marginBottom: '5%',
     },
-    texContainer: {
-        display: 'flex',
-        flexDirection: 'row',
-    }
 });

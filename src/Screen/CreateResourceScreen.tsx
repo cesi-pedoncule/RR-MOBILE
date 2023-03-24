@@ -2,7 +2,6 @@ import { View, Text, ScrollView, TextInput, Switch, TouchableOpacity, FlatList} 
 import React, { useState } from 'react'
 import CommonStyles from '../Styles/CommonStyles'
 import TopBar from '../Components/Input/TopBar'
-import ReturnButton from '../Components/Button/ReturnButton'
 import CreateResourceStyles from '../Styles/Screen/CreateResourceStyles'
 import InputTextDescription from '../Components/Input/InputTextDescription'
 import InputButton from '../Components/Button/InputButton'
@@ -13,6 +12,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import CategoriesModal from '../Components/CategoriesModal'
 import CategoryButton from '../Components/Button/CategoryButton'
 import { COLORS } from '../Styles/Colors'
+import IconButton from '../Components/Button/IconButton'
 
 type Props = NativeStackScreenProps<NavigationParamList, 'CreateResourceScreen'>;
 
@@ -44,7 +44,7 @@ export default function CreateResourceScreen({ route, navigation }: Props) {
         <View style={CommonStyles.container}>
             <TopBar hideSearchBar={true} navigation={navigation}/>
             <View style={CommonStyles.content}>
-                <ReturnButton/>
+                <IconButton style={CommonStyles.returnBtn} callBack={() => navigation.goBack()} size={24} name={"arrow-left-top"}/>  
                 <ScrollView style={CommonStyles.itemsContainer}>
                     <View style={CreateResourceStyles.container}>
                         <TextInput style={CreateResourceStyles.addNameResource} placeholder={"Titre de la ressource"} onChangeText={(text) => newResource.setTitle(text)}/>

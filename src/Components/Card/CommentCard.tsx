@@ -4,18 +4,18 @@ import { Client, Comment, Resource } from 'rr-apilib';
 import CommentCardStyles from '../../Styles/Components/Card/CommentCardStyles';
 import IconButton from '../Button/IconButton';
 import { COLORS } from '../../Styles/Colors';
+import CommonStyles from '../../Styles/CommonStyles';
 
 interface Props {
     comment: Comment;
     setComments: React.Dispatch<React.SetStateAction<Comment[]>>;
     setNumberComment: React.Dispatch<React.SetStateAction<number>>;
-    client: Client;
     resource: Resource;
 }
 
-export default function CommentCard({comment, client, setComments, setNumberComment, resource}:Props) {
+export default function CommentCard({comment, setComments, setNumberComment, resource}:Props) {
     const [isDeleted, setIsDeleted] = useState<boolean>(false);
-    const user = client.auth.me;
+    const user = resource.client.auth.me;
 
     const onClickDeleteComment = async () => {
         const res = await resource.comments.delete(comment);
@@ -53,7 +53,7 @@ export default function CommentCard({comment, client, setComments, setNumberComm
             {
                 isDeleted && 
                 <View style={CommentCardStyles.deleteCommentButton}>
-                    <IconButton callBack={onClickDeleteComment} size={24} name={"delete-outline"} color={COLORS.Black}/>
+                    <IconButton callBack={onClickDeleteComment} size={24} style={CommonStyles.buttonsEditionResource} name={"delete-outline"} color={COLORS.Black}/>
                 </View>
             }
         </View>

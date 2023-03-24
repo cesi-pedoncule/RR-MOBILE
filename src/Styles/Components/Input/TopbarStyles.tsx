@@ -37,7 +37,7 @@ export default StyleSheet.create({
         backgroundColor: COLORS.ComponentBackground,
         borderRadius: 7,
         transition: 0.2,
-        right : 20,
+        right : "6%",
         shadowColor: COLORS.Black,
         shadowOpacity: 0.3,
         shadowOffset: { width: 4, height: 4},
