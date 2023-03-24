@@ -68,7 +68,7 @@ export default function CategoryDetailsScreen ({ navigation, route }: Props) {
                     ListEmptyComponent={<Text style={CommonStyles.textEmptyResult}>Aucune ressource n'a été trouvée.</Text>}
                     contentContainerStyle = {CategoryDetailsStyles.resourcesContainer}
                     data={resourcesFiltered}
-                    renderItem={({item}) => <ResourceCard resource={item} navigation={navigation} setResources={setResources} setResourcesFiltered={setResourcesFiltered} client={client} inShareResourceScreens={true}/>}
+                    renderItem={({item}) => <ResourceCard resource={item} navigation={navigation} setResources={setResources} setResourcesFiltered={setResourcesFiltered} client={client}/>}
                     keyExtractor={item => item.id}
                     ListHeaderComponent={renderHeader}
                     ListFooterComponent={renderFooter}
