@@ -40,11 +40,6 @@ export default StyleSheet.create({
         color: COLORS.Black,
         textAlign: 'center',
     },
-    link: {
-        textAlign: 'left',
-        color: COLORS.AccentColor,
-        paddingHorizontal: 5,
-    },
     loader: {
         top: '45%',
         alignItems: 'center',
@@ -63,5 +58,26 @@ export default StyleSheet.create({
     },
     loadMoreContent: {
         alignItems: 'center',
-    }
+    },
+    returnBtn:{
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: 40,
+        height: 40,
+        padding: 5,
+        borderRadius: 7,
+        transition: 0.2,
+        marginHorizontal: 15,
+        marginTop: 15,
+    },
+    buttonsEditionResource: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: 40,
+        height: 40,
+        padding: 5,
+        borderRadius: 7,
+        transition: 0.2,
+        marginHorizontal: 15,
+    },
 });

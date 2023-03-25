@@ -89,10 +89,8 @@ export default function LoginScreen({ route, navigation }: Props) {
                                     <InputText placeholder="Mot de passe" type='default' secureTextEntry={true} />
                                 </View>
                                 <View style={LoginStyles.registerContainer}>
-                                    <View style={LoginStyles.texContainer}>
-                                        <Text style={LoginStyles.text}> Pas de compte ? </Text>
-                                        <Link label="Inscrivez-vous maintenant" callBack={onClickRegisterText}/>
-                                    </View>
+                                    <Text style={LoginStyles.text}> Pas de compte ? </Text>
+                                    <Link label="Inscrivez-vous maintenant" callBack={onClickRegisterText}/>
                                     <InputButton label="Se connecter" callBack={onClickLoginButton} style={LoginStyles.loginButton} />
                                 </View>
                             </ScrollView>

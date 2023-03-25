@@ -1,12 +1,10 @@
 import React from "react";
-import { TouchableHighlight, TouchableOpacity, View } from "react-native";
+import { View } from "react-native";
 import TopbarStyles from "../../Styles/Components/Input/TopbarStyles";
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import ResourcesButton from "../Button/ResourcesButton";
 import SearchBar from "./SearchBar";
 import { Client } from "rr-apilib";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { COLORS } from "../../Styles/Colors";
+import IconButton from "../Button/IconButton";
 
 interface Props {
     onChangeSearch?: (text: string) => void;
@@ -27,17 +25,19 @@ export default function TopBar({onChangeSearch, hideSearchBar=false, hideLogout=
         navigation.navigate('Login');
     }
 
+    const onPressButton = () => {
+        navigation.navigate('Resources', { client });
+    }
+
     return (
         <View style={TopbarStyles.topBarBackground}>
-            <ResourcesButton style={TopbarStyles.btnHomeBackground} navigation={navigation}/>
+            <IconButton style={TopbarStyles.btnHomeBackground} callBack={onPressButton} size={24} name={"bookshelf"}/>
             {
                 !hideSearchBar && onChangeSearch ? <SearchBar onChangeSearch={onChangeSearch} /> : null
             }
             {
                 !hideLogout && (
-                    <TouchableOpacity style={TopbarStyles.disconnectContainer} onPress={onClickDisconnect}>
-                        <MaterialCommunityIcons name="logout" size={24} color={COLORS.Black} />
-                    </TouchableOpacity>
+                    <IconButton style={TopbarStyles.disconnectContainer} callBack={onClickDisconnect} size={24} name={"logout"}/>
                 )
             }
         </View>

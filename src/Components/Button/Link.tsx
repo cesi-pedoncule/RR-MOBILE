@@ -2,6 +2,7 @@ import React from "react";
 import { Text, TouchableOpacity } from "react-native";
 
 import CommonStyles from "../../Styles/CommonStyles";
+import LinkStyles from "../../Styles/Components/Button/LinkStyles";
 
 interface Props {
     label: string;
@@ -11,8 +12,8 @@ interface Props {
 export default function Link({ label, callBack }: Props)
 {
     return (
-        <TouchableOpacity onPress={callBack}>
-            <Text style={CommonStyles.link}>{label}</Text>
+        <TouchableOpacity onPress={callBack} style={LinkStyles.btnBackground}>
+            <Text style={LinkStyles.link}>{label}</Text>
         </TouchableOpacity>
     )
 }

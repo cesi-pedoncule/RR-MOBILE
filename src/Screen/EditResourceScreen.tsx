@@ -3,7 +3,6 @@ import React, { useState } from 'react'
 import CommonStyles from '../Styles/CommonStyles'
 import EditResourceStyles from '../Styles/Screen/EditResourceStyles'
 import TopBar from '../Components/Input/TopBar'
-import ReturnButton from '../Components/Button/ReturnButton'
 import InputButton from '../Components/Button/InputButton'
 import InputTextDescription from '../Components/Input/InputTextDescription'
 import ButtonFile from '../Components/Button/ButtonFile'
@@ -13,6 +12,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import CategoriesModal from '../Components/CategoriesModal'
 import CategoryButton from '../Components/Button/CategoryButton'
 import { Category } from 'rr-apilib'
+import IconButton from '../Components/Button/IconButton'
 
 type Props = NativeStackScreenProps<NavigationParamList, 'EditResourceScreen'>;
 
@@ -48,7 +48,7 @@ export default function EditResourceScreen({ route, navigation }: Props) {
         <View style={CommonStyles.container}>
             <TopBar hideSearchBar={true} navigation={navigation}/>
             <View style={CommonStyles.content}>
-                <ReturnButton/>
+                <IconButton style={CommonStyles.returnBtn} callBack={() => navigation.goBack()} size={24} name={"arrow-left-top"}/>  
                 <ScrollView style={CommonStyles.itemsContainer}>
                     <View style={EditResourceStyles.container}>
                         <TextInput style={EditResourceStyles.addNameResource} placeholder={"Titre de la ressource"} defaultValue={title} onChangeText={(text) => title=text}></TextInput>

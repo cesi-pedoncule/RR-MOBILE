@@ -1,18 +1,16 @@
 import { useEffect, useState } from "react";
 import { Resource } from "rr-apilib";
 import { ActivityIndicator, FlatList, Text, View } from "react-native";
-import { ScrollView } from "react-native-gesture-handler";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import CommonStyles from "../Styles/CommonStyles";
 import CategoryDetailsStyles from "../Styles/Screen/CategoryDetailsStyles";
 import Header from "../Components/Header";
 import TopBar from "../Components/Input/TopBar";
 import { NavigationParamList } from "../Types/navigation";
-import ResourceCard from "../Components/Card/ResourceCard";
+import ResourceCardWithUser from "../Components/Card/ResourceCardWithUser";
 import ReturnButton from "../Components/Button/ReturnButton";
-import ButtonShowMoreItems from "../Components/Button/ButtonShowMoreItems";
-import useResources from "../Hooks/useResources";
 import { COLORS } from "../Styles/Colors";
+import IconButton from "../Components/Button/IconButton";
 
 type Props = NativeStackScreenProps<NavigationParamList, 'CategoryDetails'>;
 
@@ -63,12 +61,12 @@ export default function CategoryDetailsScreen ({ navigation, route }: Props) {
         <View style={CommonStyles.container}>
             <TopBar onChangeSearch={handleChangeSearch} navigation={navigation} />
             <View style={CommonStyles.content}>
-                <ReturnButton />         
+                <IconButton style={CommonStyles.returnBtn} callBack={() => navigation.goBack()} size={24} name={"arrow-left-top"}/>    
                 <FlatList
                     ListEmptyComponent={<Text style={CommonStyles.textEmptyResult}>Aucune ressource n'a été trouvée.</Text>}
                     contentContainerStyle = {CategoryDetailsStyles.resourcesContainer}
                     data={resourcesFiltered}
-                    renderItem={({item}) => <ResourceCard resource={item} navigation={navigation} setResources={setResources} setResourcesFiltered={setResourcesFiltered} client={client}/>}
+                    renderItem={({item}) => <ResourceCardWithUser resource={item} navigation={navigation}/>}
                     keyExtractor={item => item.id}
                     ListHeaderComponent={renderHeader}
                     ListFooterComponent={renderFooter}

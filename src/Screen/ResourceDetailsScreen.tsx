@@ -6,7 +6,6 @@ import CommentButton from '../Components/Button/CommentButton'
 import { Category, Comment } from 'rr-apilib'
 import ResourceDetailsStyles from "../Styles/Screen/ResourceDetailsStyles";
 import TopBar from '../Components/Input/TopBar'
-import ReturnButton from '../Components/Button/ReturnButton'
 import ButtonShowMoreItems from '../Components/Button/ButtonShowMoreItems'
 import CategoryButton from '../Components/Button/CategoryButton'
 import CommonStyles from '../Styles/CommonStyles'
@@ -15,6 +14,7 @@ import InputTextComment from '../Components/Input/InputTextComment'
 import ButtonFile from '../Components/Button/ButtonFile'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { NavigationParamList } from '../Types/navigation'
+import IconButton from '../Components/Button/IconButton'
 
 type Props = NativeStackScreenProps<NavigationParamList, 'ResourceDetails'>;
 
@@ -70,7 +70,7 @@ export default function ResourceDetailsScreen({ route, navigation }: Props) {
         <View style={CommonStyles.container}>
             <TopBar hideSearchBar={true} navigation={navigation}/>
             <View style={CommonStyles.content}>
-                <ReturnButton/>
+                <IconButton style={CommonStyles.returnBtn} callBack={() => navigation.goBack()} size={24} name={"arrow-left-top"}/>  
                 <ScrollView style={CommonStyles.itemsContainer}>
                     <TouchableOpacity onPress={(e) => onPress(e)} activeOpacity={1}>
                         <View style={ResourceDetailsStyles.centerContent}>
@@ -112,7 +112,7 @@ export default function ResourceDetailsScreen({ route, navigation }: Props) {
                             {   
                                 comments.reverse().map((comment, i) => {
                                     if ((!showMoreItems && i < 6) || showMoreItems) {
-                                        return <CommentCard key={i} comment={comment} client={resource.client} setComments={setComments} setNumberComment={setNumberComment} resource={resource}/>
+                                        return <CommentCard key={i} comment={comment} setComments={setComments} setNumberComment={setNumberComment} resource={resource}/>
                                     }
                                 })
                             }          

@@ -3,7 +3,7 @@ import { View, Text, ActivityIndicator, FlatList } from 'react-native'
 import { Resource } from "rr-apilib";
 import InputButton from "../Components/Button/InputButton";
 import TopBar from "../Components/Input/TopBar";
-import ResourceCard from "../Components/Card/ResourceCard";
+import ResourceCardWithoutUser from "../Components/Card/ResourceCardWithoutUser";
 import CommonStyles from "../Styles/CommonStyles";
 import ShareResourceStyles from "../Styles/Screen/ShareResourceStyles";
 import useResources from "../Hooks/useResources";
@@ -81,7 +81,7 @@ export default function ShareResourceScreen({ route, navigation }: Props) {
 						ListEmptyComponent={<Text style={CommonStyles.textEmptyResult}>Aucune ressource n'a été trouvée.</Text>}
 						contentContainerStyle = {ShareResourceStyles.resourcesContainer}
 						data={resourcesFiltered}
-						renderItem={({item}) => <ResourceCard resource={item} navigation={navigation} setResources={setResources} setResourcesFiltered={setResourcesFiltered} client={client} inShareResourceScreens={true}/>}
+						renderItem={({item}) => <ResourceCardWithoutUser resource={item} navigation={navigation} setResources={setResources} setResourcesFiltered={setResourcesFiltered}/>}
 						keyExtractor={item => item.id}
 						ListHeaderComponent={renderHeader}
 						ListFooterComponent={renderFooter}
