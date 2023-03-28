@@ -42,7 +42,7 @@ export default function ResourceDetailsScreen({ route, navigation }: Props) {
     const renderHeader = () => {
 		return (
 			<View>
-                <IconButton style={CommonStyles.returnBtn} callBack={() => navigation.goBack()} size={24} name={"arrow-left-top"}/>  
+                <IconButton style={CommonStyles.returnBtnInFlatList} callBack={() => navigation.goBack()} size={24} name={"arrow-left-top"}/>  
                 <View style={CommonStyles.itemsContainer}>
                     <ResourceCardWithUser resource={resource} navigation={navigation} styleContainer={ResourceDetailsStyles.cardBackground}/>
                     <View style={ResourceDetailsStyles.btnFile}>
@@ -51,7 +51,7 @@ export default function ResourceDetailsScreen({ route, navigation }: Props) {
                     <Text style={ResourceDetailsStyles.commentTitle}>Commentaires</Text>
                     <View style={ResourceDetailsStyles.commentContainer}>
                         {
-                            client.auth.me && <InputTextComment resource={resource} setComments={setComments}/>
+                            client.auth.me && <InputTextComment resource={resource} setComments={setComments} setCommentsSlice={setCommentsSlice}/>
                         }
                     </View>          
                 </View>
@@ -78,7 +78,7 @@ export default function ResourceDetailsScreen({ route, navigation }: Props) {
                     ListEmptyComponent={<Text style={CommonStyles.textEmptyResult}>Aucun commentaire n'a été posté.</Text>}
                     contentContainerStyle = {ResourceDetailsStyles.resourceContainer}
                     data={commentsSlice}
-                    renderItem={({item}) => <CommentCard comment={item} setComments={setComments} resource={resource}/>}
+                    renderItem={({item}) => <CommentCard comment={item} setComments={setComments} setCommentsSlice={setCommentsSlice} resource={resource}/>}
                     keyExtractor={item => item.id}
                     ListHeaderComponent={renderHeader}
                     ListFooterComponent={renderFooter}

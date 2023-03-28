@@ -8,9 +8,10 @@ import { COLORS } from '../../Styles/Colors';
 interface Props {
     resource: Resource;
     setComments: React.Dispatch<React.SetStateAction<Comment[]>>;
+    setCommentsSlice: React.Dispatch<React.SetStateAction<Comment[]>>;
 }
 
-export default function InputTextComment({resource, setComments}:Props) {
+export default function InputTextComment({resource, setComments, setCommentsSlice}:Props) {
     
     const [inputText, setInputText] = useState('');
 
@@ -21,7 +22,8 @@ export default function InputTextComment({resource, setComments}:Props) {
             .setRessource(resource);
             const res = await resource.comments.create(builder);
             const comments = Array.from(res.comments.cache.values());
-            setComments(comments.reverse());
+            setComments(comments);
+            setCommentsSlice(comments.reverse());
         }
         else{
             alert("La zone de texte est vide")

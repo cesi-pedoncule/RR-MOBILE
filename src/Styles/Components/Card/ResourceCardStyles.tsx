@@ -44,6 +44,7 @@ export default StyleSheet.create({
         flexDirection : "row",
     },
     userAndButtonsContainer:{
+        alignItems: 'flex-end',
         marginRight : 20,
     },
     buttonsContainer: {
