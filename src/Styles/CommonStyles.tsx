@@ -46,7 +46,7 @@ export default StyleSheet.create({
     },
     itemsContainer : {
         marginVertical : 20,
-    },  
+    },   
     textEmptyResult: {
         color: COLORS.Black,
         textAlign: 'center',
@@ -68,7 +68,6 @@ export default StyleSheet.create({
         borderRadius: 7,
         transition: 0.2,
         marginHorizontal: 15,
-        marginTop: 15,
     },
     buttonsEditionResource: {
         alignItems: 'center',

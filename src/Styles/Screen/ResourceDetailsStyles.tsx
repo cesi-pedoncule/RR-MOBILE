@@ -19,11 +19,16 @@ export default StyleSheet.create({
         shadowRadius: 4,
         borderRadius: 15,
     },
+    resourceContainer: {
+        marginHorizontal: 20,
+        justifyContent: 'center',
+    },
     cardBackground: {
-        width: "90%",
+        width: "100%",
         height: "auto",
         backgroundColor: COLORS.ComponentBackground,
-        borderRadius: 15,
+        borderRadius: 20,
+        marginBottom: 20,
         shadowColor: COLORS.Black,
         shadowOpacity: 0.3,
         shadowOffset: { width: 4, height: 4},
@@ -61,14 +66,7 @@ export default StyleSheet.create({
     },
     commentContainer: {
         justifyContent: 'center',
-        alignItems: 'center',
         margin: 10,
-    },
-    listComment: {
-        marginTop: 30,
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: "100%"
     },
     commentTitle: {
         fontWeight: 'bold',

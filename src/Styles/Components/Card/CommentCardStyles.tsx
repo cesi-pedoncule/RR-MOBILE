@@ -3,10 +3,6 @@ import { COLORS } from "../../Colors";
 
 export default StyleSheet.create({
     container: {
-        display: "flex",
-        flexDirection: "row",
-        alignItems: "center",
-        width: "90%",
         height: "auto",
         backgroundColor: COLORS.ComponentBackground,
         borderRadius: 15,
