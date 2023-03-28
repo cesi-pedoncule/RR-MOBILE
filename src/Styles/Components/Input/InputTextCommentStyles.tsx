@@ -7,7 +7,6 @@ export default StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        width: "90%",
         height: 55,
         padding: 10,
         backgroundColor: COLORS.ComponentBackground,

@@ -1,6 +1,6 @@
 import { View, Text, ScrollView } from 'react-native'
 import React, { useState, useEffect } from 'react'
-import { Client, Comment, Resource } from 'rr-apilib';
+import { Comment, Resource } from 'rr-apilib';
 import CommentCardStyles from '../../Styles/Components/Card/CommentCardStyles';
 import IconButton from '../Button/IconButton';
 import { COLORS } from '../../Styles/Colors';
@@ -9,11 +9,10 @@ import CommonStyles from '../../Styles/CommonStyles';
 interface Props {
     comment: Comment;
     setComments: React.Dispatch<React.SetStateAction<Comment[]>>;
-    setNumberComment: React.Dispatch<React.SetStateAction<number>>;
     resource: Resource;
 }
 
-export default function CommentCard({comment, setComments, setNumberComment, resource}:Props) {
+export default function CommentCard({comment, setComments, resource}:Props) {
     const [isDeleted, setIsDeleted] = useState<boolean>(false);
     const user = resource.client.auth.me;
 
@@ -21,7 +20,6 @@ export default function CommentCard({comment, setComments, setNumberComment, res
         const res = await resource.comments.delete(comment);
         const newComments:Comment[] = Array.from(res.comments.cache.values());
         setComments(newComments.reverse());
-        setNumberComment(newComments.length)
     };
 
     useEffect(() => {

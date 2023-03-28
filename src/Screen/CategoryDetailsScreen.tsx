@@ -8,7 +8,6 @@ import Header from "../Components/Header";
 import TopBar from "../Components/Input/TopBar";
 import { NavigationParamList } from "../Types/navigation";
 import ResourceCardWithUser from "../Components/Card/ResourceCardWithUser";
-import ReturnButton from "../Components/Button/ReturnButton";
 import { COLORS } from "../Styles/Colors";
 import IconButton from "../Components/Button/IconButton";
 

@@ -12,9 +12,10 @@ import { likeClickHandle } from '../../Functions/Utils'
 interface Props {
     resource: Resource;
     navigation: NativeStackNavigationProp<NavigationParamList>;
+    styleContainer?: any;
 }
 
-export default function ResourceCardWithUser({ resource, navigation}: Props) {
+export default function ResourceCardWithUser({ resource, navigation, styleContainer}: Props) {
     const [numberLike, setNumberLike] = useState(resource.likes.cache.size);
     const [isLikeResource, setIsLikeResource] = useState<boolean>(resource.isLiked());
     const numberCommentResource = resource.comments.cache.size;
@@ -50,7 +51,7 @@ export default function ResourceCardWithUser({ resource, navigation}: Props) {
     }
 
     return (
-        <TouchableOpacity onPress={(e) => onPress(e)} style={ResourceCardStyles.container}>
+        <TouchableOpacity onPress={(e) => onPress(e)} style={[ResourceCardStyles.container, styleContainer]}>
             <View>
                 <View style={ResourceCardStyles.lineButtonsAndUser}>
                     <Text style={ResourceCardStyles.cardUser} numberOfLines={1}>{username}</Text>
@@ -66,7 +67,12 @@ export default function ResourceCardWithUser({ resource, navigation}: Props) {
                     keyExtractor={item => item.id}
                     showsHorizontalScrollIndicator={false}
                     />
-                <Text style={ResourceCardStyles.cardText} numberOfLines={3}>{description}</Text>
+                    {
+                        styleContainer == null ? 
+                        <Text style={ResourceCardStyles.cardText} numberOfLines={3}>{description}</Text>
+                        :
+                        <Text style={ResourceCardStyles.cardText}>{description}</Text>
+                    }
             </View>
         </TouchableOpacity>
     )
