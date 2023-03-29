@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
     categoriesContainer: {
-		paddingBottom: 100,
+		  paddingBottom: 80,
     },
     columnWrapperStyle: {
         marginHorizontal: 20,
