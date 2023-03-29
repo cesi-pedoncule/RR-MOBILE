@@ -46,6 +46,7 @@ export default function CategoryDetailsScreen ({ navigation, route }: Props) {
 	const renderHeader = () => {
 		return (
 			<View style={CommonStyles.listHeaderComponent}>
+                <IconButton style={CommonStyles.returnBtnInFlatList} callBack={() => navigation.goBack()} size={24} name={"arrow-left-top"}/>  
 				<Header label={category.name}/>
 			</View>
 		)
@@ -59,8 +60,7 @@ export default function CategoryDetailsScreen ({ navigation, route }: Props) {
         <View style={CommonStyles.container}>
             <TopBar onChangeSearch={handleChangeSearch} navigation={navigation} />
             <View style={CommonStyles.content}>
-                <IconButton style={CommonStyles.returnBtn} callBack={() => navigation.goBack()} size={24} name={"arrow-left-top"}/>    
-                <FlatList
+                <FlatList style={CommonStyles.itemsContainer} 
                     ListEmptyComponent={<Text style={CommonStyles.textEmptyResult}>Aucune ressource n'a été trouvée.</Text>}
                     contentContainerStyle = {CategoryDetailsStyles.resourcesContainer}
                     data={resourcesFiltered}

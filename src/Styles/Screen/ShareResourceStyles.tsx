@@ -5,7 +5,7 @@ export default StyleSheet.create({
 	resourcesContainer: {
 		marginHorizontal: 20,
         justifyContent: 'center',
-		paddingBottom: 150,
+		paddingBottom: 130,
 	},
 	textSaves : {
 		color: COLORS.Black,
@@ -31,7 +31,7 @@ export default StyleSheet.create({
 		position : 'absolute',
 		justifyContent: 'center',
 		alignItems: 'center',
-		bottom: 90,
+		bottom: 100,
 		width: "100%",
 	},
 });

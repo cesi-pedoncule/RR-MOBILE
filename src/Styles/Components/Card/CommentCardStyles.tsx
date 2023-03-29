@@ -6,7 +6,7 @@ export default StyleSheet.create({
         height: "auto",
         backgroundColor: COLORS.ComponentBackground,
         borderRadius: 15,
-        margin: 10,
+        marginVertical: 10,
         shadowColor: COLORS.Black,
         shadowOpacity: 0.3,
         shadowOffset: { width: 4, height: 4},

@@ -66,12 +66,11 @@ export default StyleSheet.create({
     },
     commentContainer: {
         justifyContent: 'center',
-        margin: 10,
+        marginVertical: 10,
     },
     commentTitle: {
         fontWeight: 'bold',
         fontSize: 20,
-        marginLeft: 20,
         textDecorationLine: 'underline',
     },
     noComment: {

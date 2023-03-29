@@ -4,6 +4,5 @@ export default StyleSheet.create({
     resourcesContainer: {
         marginHorizontal: 20,
         justifyContent: 'center',
-		paddingBottom: 100,
     },
 });
