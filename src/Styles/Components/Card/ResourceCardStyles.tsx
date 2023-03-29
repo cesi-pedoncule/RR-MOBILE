@@ -24,7 +24,7 @@ export default StyleSheet.create({
         textDecorationStyle: 'solid',
         textDecorationLine: 'underline',
         fontSize: 16,
-        marginLeft: 20,
+        marginHorizontal:20,  
         marginBottom: 10,
     },
     cardText:{

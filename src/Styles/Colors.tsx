@@ -3,7 +3,7 @@ export enum COLORS {
     ForegroundHolder = '#9ca6a9',
     ComponentBackground = "#eaf0f0",
     LightBackgroundColor = '#f6fafb',
-    White = '#FFFFFF',
+    White = '#f7fbfc',
     AccentColor = '#03989E',
     BorderColor = '#EEEEEE',
     TagColor = '#cad5d5',

@@ -14,13 +14,12 @@ import IconButton from "../Components/Button/IconButton";
 type Props = NativeStackScreenProps<NavigationParamList, 'CategoryDetails'>;
 
 export default function CategoryDetailsScreen ({ navigation, route }: Props) {
-    const client = route.params.client;
     const category = route.params.category;
     const [ resources, setResources ] = useState<Resource[]>(Array.from(category.resources.cache.values()));
     const [ resourcesFiltered, setResourcesFiltered ] = useState<Resource[]>([]);
 
     const handleChangeSearch = (text: string) => {
-		const filteredResources = Array.from(client.resources.cache.values()).filter((resource) => {
+		const filteredResources = Array.from(category.resources.cache.values()).filter((resource) => {
 			return resource.title.toLowerCase().includes(text.toLowerCase());
 		});
 		setResources(filteredResources);
