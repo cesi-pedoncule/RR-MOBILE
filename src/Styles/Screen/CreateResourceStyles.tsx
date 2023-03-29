@@ -16,6 +16,7 @@ export default StyleSheet.create({
         textAlign: 'center',
         height: 40,
         width : "90%",
+        paddingHorizontal: 10,
         borderRadius : 10,
         shadowColor: COLORS.Black,
         shadowOpacity: 0.3,
