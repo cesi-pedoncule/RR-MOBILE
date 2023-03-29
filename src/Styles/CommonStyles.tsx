@@ -46,7 +46,7 @@ export default StyleSheet.create({
     },
     itemsContainer : {
         marginVertical : 20,
-    },   
+    },  
     textEmptyResult: {
         color: COLORS.Black,
         textAlign: 'center',
@@ -67,7 +67,17 @@ export default StyleSheet.create({
         padding: 5,
         borderRadius: 7,
         transition: 0.2,
-        marginHorizontal: 15,
+        marginHorizontal: 20,
+        marginTop: 20,
+    },
+    returnBtnInFlatList:{
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: 40,
+        height: 40,
+        padding: 5,
+        borderRadius: 7,
+        transition: 0.2,
     },
     buttonsEditionResource: {
         alignItems: 'center',

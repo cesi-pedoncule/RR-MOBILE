@@ -9,17 +9,19 @@ import CommonStyles from '../../Styles/CommonStyles';
 interface Props {
     comment: Comment;
     setComments: React.Dispatch<React.SetStateAction<Comment[]>>;
+    setCommentsSlice: React.Dispatch<React.SetStateAction<Comment[]>>;
     resource: Resource;
 }
 
-export default function CommentCard({comment, setComments, resource}:Props) {
+export default function CommentCard({comment, setComments, setCommentsSlice, resource}:Props) {
     const [isDeleted, setIsDeleted] = useState<boolean>(false);
     const user = resource.client.auth.me;
 
     const onClickDeleteComment = async () => {
         const res = await resource.comments.delete(comment);
         const newComments:Comment[] = Array.from(res.comments.cache.values());
-        setComments(newComments.reverse());
+        setComments(newComments);
+        setCommentsSlice(newComments.reverse());
     };
 
     useEffect(() => {
