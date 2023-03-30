@@ -18,14 +18,15 @@ export default function InputTextComment({resource, setComments, setCommentsSlic
     const onClickAddComment = async () => {
         if(inputText != ''){
             const builder = new CommentBuilder()
-            .setComment(inputText)
-            .setRessource(resource);
+                .setComment(inputText)
+                .setRessource(resource);
+
             const res = await resource.comments.create(builder);
             const comments = Array.from(res.comments.cache.values());
+
             setComments(comments);
             setCommentsSlice(comments.reverse());
-        }
-        else{
+        } else {
             alert("La zone de texte est vide")
         }
 
