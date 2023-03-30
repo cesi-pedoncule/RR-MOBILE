@@ -53,7 +53,7 @@ export default function CommentCard({comment, setComments, setCommentsSlice, res
             {
                 isDeleted && 
                 <View style={CommentCardStyles.deleteCommentButton}>
-                    <IconButton callBack={onClickDeleteComment} size={24} style={CommonStyles.buttonsEditionResource} name={"delete-outline"} color={COLORS.Black}/>
+                    <IconButton iconCallBack={onClickDeleteComment} iconSize={24} iconStyle={CommonStyles.buttonsEditionResource} iconName={"delete-outline"} iconColor={COLORS.Black}/>
                 </View>
             }
         </View>

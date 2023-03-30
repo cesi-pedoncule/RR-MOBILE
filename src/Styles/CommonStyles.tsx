@@ -62,6 +62,7 @@ export default StyleSheet.create({
     returnBtn:{
         alignItems: 'center',
         justifyContent: 'center',
+        backgroundColor: COLORS.LightBackgroundColor,
         width: 40,
         height: 40,
         padding: 5,
@@ -73,6 +74,7 @@ export default StyleSheet.create({
     returnBtnInFlatList:{
         alignItems: 'center',
         justifyContent: 'center',
+        backgroundColor: COLORS.LightBackgroundColor,
         width: 40,
         height: 40,
         padding: 5,

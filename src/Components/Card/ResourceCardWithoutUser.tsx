@@ -86,8 +86,8 @@ export default function ResourceCardWithoutUser({ resource, setResources, setRes
                     <CommentButton commentNumber={numberCommentResource}/>
                 </View>
                 <View style={ResourceCardStyles.buttonsEditContainer}>
-                    <IconButton callBack={onClickDeleteResource} style={CommonStyles.buttonsEditionResource} size={24} name={"delete-outline"} color={COLORS.Black}/>
-                    <IconButton callBack={onClickEditResource} style={CommonStyles.buttonsEditionResource} size={24} name={"square-edit-outline"} color={COLORS.Black}/>
+                    <IconButton iconCallBack={onClickDeleteResource} iconStyle={CommonStyles.buttonsEditionResource} iconSize={24} iconName={"delete-outline"} iconColor={COLORS.Black}/>
+                    <IconButton iconCallBack={onClickEditResource} iconStyle={CommonStyles.buttonsEditionResource} iconSize={24} iconName={"square-edit-outline"} iconColor={COLORS.Black}/>
                 </View>
             </View>
         </TouchableOpacity>
