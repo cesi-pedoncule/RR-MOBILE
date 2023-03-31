@@ -31,13 +31,13 @@ export default function TopBar({onChangeSearch, hideSearchBar=false, hideLogout=
 
     return (
         <View style={TopbarStyles.topBarBackground}>
-            <IconButton style={TopbarStyles.btnHomeBackground} callBack={onPressButton} size={24} name={"bookshelf"}/>
+            <IconButton iconStyle={TopbarStyles.btnHomeBackground} callBack={onPressButton} iconSize={24} iconName={"bookshelf"}/>
             {
                 !hideSearchBar && onChangeSearch ? <SearchBar onChangeSearch={onChangeSearch} /> : null
             }
             {
                 !hideLogout && (
-                    <IconButton style={TopbarStyles.disconnectContainer} callBack={onClickDisconnect} size={24} name={"logout"}/>
+                    <IconButton iconStyle={TopbarStyles.disconnectContainer} callBack={onClickDisconnect} iconSize={24} iconName={"logout"}/>
                 )
             }
         </View>

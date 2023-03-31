@@ -42,7 +42,7 @@ export default function ResourceDetailsScreen({ route, navigation }: Props) {
     const renderHeader = () => {
 		return (
 			<View>
-                <IconButton style={CommonStyles.returnBtnInFlatList} callBack={() => navigation.goBack()} size={24} name={"arrow-left-top"}/>  
+                <IconButton iconStyle={CommonStyles.returnBtnInFlatList} callBack={() => navigation.goBack()} iconSize={24} iconName={"arrow-left-top"}/>  
                 <View style={CommonStyles.itemsContainer}>
                     <ResourceCardWithUser resource={resource} navigation={navigation} styleContainer={ResourceDetailsStyles.cardBackground}/>
                     <View style={ResourceDetailsStyles.btnFile}>
