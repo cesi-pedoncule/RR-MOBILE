@@ -46,7 +46,7 @@ export default function CategoryDetailsScreen ({ navigation, route }: Props) {
 	const renderHeader = () => {
 		return (
 			<View style={CommonStyles.listHeaderComponent}>
-                <IconButton iconStyle={CommonStyles.returnBtnInFlatList} iconCallBack={() => navigation.goBack()} iconSize={24} iconName={"arrow-left-top"}/>  
+                <IconButton iconStyle={CommonStyles.returnBtnInFlatList} callBack={() => navigation.goBack()} iconSize={24} iconName={"arrow-left-top"}/>  
 				<Header label={category.name}/>
 			</View>
 		)
