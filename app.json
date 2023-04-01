@@ -25,7 +25,7 @@
         "foregroundImage": "./src/assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.aymericcucherousset.rrmobile"
+      "package": "social.ressourcesrelationnelles.rrmobile"
     },
     "web": {
       "favicon": "./src/assets/favicon.png"
