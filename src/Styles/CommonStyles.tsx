@@ -12,7 +12,7 @@ export default StyleSheet.create({
         backgroundColor: COLORS.LightBackgroundColor,
         width: '100%',
         position: 'absolute',
-        top : 130,
+        top : 95,
         bottom: 0,
         borderTopLeftRadius: 30,
         borderTopRightRadius: 30,

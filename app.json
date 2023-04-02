@@ -35,6 +35,10 @@
         "projectId": "2fcb82b1-99e2-459a-a6f8-f200dd19d4d5"
       }
     },
+    "androidStatusBar": {
+      "backgroundColor": "#03989E",
+      "translucent": false
+    },
     "owner": "cesi_pedoncule"
   }
 }
