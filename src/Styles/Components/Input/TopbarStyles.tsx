@@ -4,7 +4,7 @@ import { COLORS } from "../../Colors";
 export default StyleSheet.create({
     topBarBackground: {
         position: 'absolute',
-        top: 50,
+        top: 12,
         flexDirection: 'row',
         alignItems: 'center',
         width: '100%',
