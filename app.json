@@ -32,8 +32,9 @@
     },
     "extra": {
       "eas": {
-        "projectId": "2869d2b0-4a57-460e-bd31-5c2a8df7cb51"
+        "projectId": "2fcb82b1-99e2-459a-a6f8-f200dd19d4d5"
       }
-    }
+    },
+    "owner": "cesi_pedoncule"
   }
 }
