@@ -32,7 +32,7 @@ export default function App() {
     if(!isLoad) {
         return (
             <View style={CommonStyles.container}>
-                    <ActivityIndicator size="large" color={COLORS.LightBackgroundColor}/>
+                <ActivityIndicator size="large" color={COLORS.LightBackgroundColor}/>
             </View>
         )
     }
