@@ -11,6 +11,9 @@ import EditResourceScreen from './src/Screen/EditResourceScreen';
 import CategoryDetailsScreen from './src/Screen/CategoryDetailsScreen';
 import { NavigationParamList } from './src/Types/navigation';
 import { useState } from 'react';
+import { ActivityIndicator, View } from 'react-native';
+import CommonStyles from './src/Styles/CommonStyles';
+import { COLORS } from './src/Styles/Colors';
 
 const Stack = createStackNavigator<NavigationParamList>();
 const client = new Client();
@@ -25,6 +28,16 @@ export default function App() {
     }
 
     loadClient();
+
+    if(!isLoad) {
+        return (
+            <View style={CommonStyles.container}>
+			    <View style={CommonStyles.content}> 
+                    <ActivityIndicator size="large" color={COLORS.AccentColor} style={CommonStyles.loader} />
+                </View>
+            </View>
+        )
+    }
 
     return (
         <NavigationContainer>

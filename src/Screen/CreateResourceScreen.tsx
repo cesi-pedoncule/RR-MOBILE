@@ -18,6 +18,7 @@ type Props = NativeStackScreenProps<NavigationParamList, 'CreateResourceScreen'>
 
 export default function CreateResourceScreen({ route, navigation }: Props) {
     const client = route.params.client;
+    const user = client.auth.me;
 
     const [newResource] = useState<ResourceBuilder>(new ResourceBuilder());
     const [showSelectCategories, setShowSelectCategories] = useState<boolean>(false);
@@ -25,10 +26,12 @@ export default function CreateResourceScreen({ route, navigation }: Props) {
     const [categories, setCategories] = useState<Category[]>([]);
     const toggleSwitch = () => setIsPublic(previousState => !previousState);
 
-    const onClickSend = () => {
+    const onClickSend = async () => {
         newResource.setIsPublic(isPublic);
         newResource.setCategories(categories);
-        client.resources.create(newResource);
+        if(user){
+            await user.resources.create(newResource);
+        }
         navigation.goBack();
     }
 

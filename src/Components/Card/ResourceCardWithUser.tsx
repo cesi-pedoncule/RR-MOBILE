@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Resource } from 'rr-apilib'
 import { NavigationParamList } from '../../Types/navigation'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
@@ -10,14 +10,13 @@ import CategoryButton from '../Button/CategoryButton'
 import { likeClickHandle } from '../../Functions/Utils'
 
 interface Props {
-    resource: Resource;
+    resourceData: Resource;
     navigation: NativeStackNavigationProp<NavigationParamList>;
     styleContainer?: any;
 }
 
-export default function ResourceCardWithUser({ resource, navigation, styleContainer}: Props) {
-    const [numberLike, setNumberLike] = useState(resource.likes.cache.size);
-    const [isLikeResource, setIsLikeResource] = useState<boolean>(resource.isLiked());
+export default function ResourceCardWithUser({ resourceData, navigation, styleContainer}: Props) {
+    const [resource, setResource] = useState<Resource>(resourceData);
     const numberCommentResource = resource.comments.cache.size;
     const categories = Array.from(resource.categories.cache.values());
 
@@ -33,7 +32,7 @@ export default function ResourceCardWithUser({ resource, navigation, styleContai
         if(timeout) {
             clearTimeout(timeout);
             timeout = null;
-            likeClickHandle(resource, isLikeResource, setIsLikeResource, numberLike, setNumberLike);
+            likeClickHandle(resource, setResource);
             return;
         }
 
@@ -49,14 +48,14 @@ export default function ResourceCardWithUser({ resource, navigation, styleContai
             client: resource.client,
         });
     }
-
+    
     return (
         <TouchableOpacity onPress={(e) => onPress(e)} style={[ResourceCardStyles.container, styleContainer]}>
             <View>
                 <View style={ResourceCardStyles.lineButtonsAndUser}>
                     <Text style={ResourceCardStyles.cardUser} numberOfLines={1}>{username}</Text>
                     <View style={ResourceCardStyles.userAndButtonsContainer}>
-                        <LikeButton resource={resource} isLikeResource={isLikeResource} setIsLikeResource={setIsLikeResource} numberLike={numberLike} setNumberLike={setNumberLike}/>
+                        <LikeButton resource={resource} setResource={setResource}/>
                         <CommentButton commentNumber={numberCommentResource}/>
                     </View>    
                 </View>

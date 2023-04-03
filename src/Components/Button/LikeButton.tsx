@@ -15,10 +15,7 @@ import { COLORS } from '../../Styles/Colors'
 
 interface Props {
 	resource: Resource;
-	isLikeResource: boolean;
-	setIsLikeResource: React.Dispatch<React.SetStateAction<boolean>>;
-	numberLike: number;
-	setNumberLike: React.Dispatch<React.SetStateAction<number>>
+	setResource: React.Dispatch<React.SetStateAction<Resource>>;
 }
 /**
  * Global bc each render
@@ -26,7 +23,7 @@ interface Props {
  */
 let waitStatus = true;
 
-export default function LikeButton({ resource, isLikeResource, setIsLikeResource, numberLike, setNumberLike }: Props) {
+export default function LikeButton({ resource, setResource}: Props) {
 
 	const onPress = (e: GestureResponderEvent) => {
 		
@@ -35,15 +32,15 @@ export default function LikeButton({ resource, isLikeResource, setIsLikeResource
 		if(waitStatus) {
 			waitStatus = false;
 			setTimeout(() => waitStatus = true, 1e3);
-			likeClickHandle(resource, isLikeResource, setIsLikeResource, numberLike, setNumberLike);
+			likeClickHandle(resource, setResource);
 		}
 	}
 
 	return (
 		<View style={LikeButtonStyles.container}>
-			<Text style={LikeButtonStyles.numberLike}>{numberLike.toString()}</Text>
+			<Text style={LikeButtonStyles.numberLike}>{resource.likes.cache.size.toString()}</Text>
 			<TouchableOpacity style={LikeButtonStyles.likeBtn} onPress={(e) => onPress(e)} >
-				<MaterialCommunityIcons name={isLikeResource ? "cards-heart" : "cards-heart-outline" } size={24} color={COLORS.Black} />
+				<MaterialCommunityIcons name={resource.isLiked() ? "cards-heart" : "cards-heart-outline" } size={24} color={COLORS.Black} />
 			</TouchableOpacity>
 		</View>
 	);

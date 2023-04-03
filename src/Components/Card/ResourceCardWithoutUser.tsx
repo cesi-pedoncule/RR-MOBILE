@@ -13,19 +13,19 @@ import { COLORS } from '../../Styles/Colors'
 import CommonStyles from '../../Styles/CommonStyles'
 
 interface Props {
-    resource: Resource;
+    resourceData: Resource;
     navigation: NativeStackNavigationProp<NavigationParamList>;
     setResources?: React.Dispatch<React.SetStateAction<Resource[]>>;
     setResourcesFiltered?: React.Dispatch<React.SetStateAction<Resource[]>>;
 }
 
-export default function ResourceCardWithoutUser({ resource, setResources, setResourcesFiltered, navigation}: Props) {
-    const [numberLike, setNumberLike] = useState(resource.likes.cache.size);
-    const [isLikeResource, setIsLikeResource] = useState<boolean>(resource.isLiked());
+export default function ResourceCardWithoutUser({ resourceData, setResources, setResourcesFiltered, navigation}: Props) {
+    const [resource, setResource] = useState<Resource>(resourceData);
     const numberCommentResource = resource.comments.cache.size;
     const categories = Array.from(resource.categories.cache.values());
     
     const description = resource.description ?  resource.description : "Aucune description fournie" ;
+    const user = resource.client.auth.me;
 
     let timeout: NodeJS.Timeout | null = null;
 
@@ -36,7 +36,7 @@ export default function ResourceCardWithoutUser({ resource, setResources, setRes
         if(timeout) {
             clearTimeout(timeout);
             timeout = null;
-            likeClickHandle(resource, isLikeResource, setIsLikeResource, numberLike, setNumberLike);
+            likeClickHandle(resource, setResource);
             return;
         }
 
@@ -46,10 +46,10 @@ export default function ResourceCardWithoutUser({ resource, setResources, setRes
         }, 300);
     }
 
-    const onClickDeleteResource = () => {
-        if(resource.client != null && setResources != null && setResourcesFiltered != null){
-            resource.client.resources.cache.delete(resource.id);
-            const newResources = Array.from(resource.client.resources.cache.values());
+    const onClickDeleteResource = async () => {
+        if(user != null && setResources != null && setResourcesFiltered != null){
+            await user.resources.delete(resource);
+            const newResources = Array.from(user.resources.cache.values());
             setResources(newResources);
             setResourcesFiltered(newResources);
         }
@@ -82,7 +82,7 @@ export default function ResourceCardWithoutUser({ resource, setResources, setRes
                 </View>
                 <Text style={ResourceCardStyles.cardText} numberOfLines={3}>{description}</Text>
                 <View style={ResourceCardStyles.buttonsContainer}>
-                    <LikeButton resource={resource} isLikeResource={isLikeResource} setIsLikeResource={setIsLikeResource} numberLike={numberLike} setNumberLike={setNumberLike}/>
+                    <LikeButton resource={resource} setResource={setResource}/>
                     <CommentButton commentNumber={numberCommentResource}/>
                 </View>
                 <View style={ResourceCardStyles.buttonsEditContainer}>

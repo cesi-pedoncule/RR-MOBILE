@@ -1,9 +1,7 @@
 import { Image } from 'react-native'
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-
 import NavBarStyles from '../Styles/Components/NavBarStyles'; 
-
 import { COLORS } from '../Styles/Colors';
 import ProfileScreen from '../Screen/ProfileScreen';
 import { NavigationParamList } from '../Types/navigation';

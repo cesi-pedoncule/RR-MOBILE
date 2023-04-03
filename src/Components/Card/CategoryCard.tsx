@@ -1,5 +1,5 @@
 import React from 'react'
-import { Category } from 'rr-apilib';
+import { Category, Resource } from 'rr-apilib';
 import { Text, TouchableOpacity } from 'react-native'
 import { NavigationParamList } from '../../Types/navigation';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -9,9 +9,10 @@ import CategoryCardStyles from '../../Styles/Components/Card/CategoryCardStyles'
 interface Props {
     navigation: NativeStackNavigationProp<NavigationParamList>;
     category: Category;
+    resources:  Resource[]
 }
 
-export default function CategoryCard({ navigation, category }:Props) {
+export default function CategoryCard({ navigation, category, resources }:Props) {
     
     const handleOnPress = () => {
 
@@ -25,7 +26,7 @@ export default function CategoryCard({ navigation, category }:Props) {
     return (
         <TouchableOpacity style={CategoryCardStyles.cardBackground} onPress={handleOnPress}>
             <Text style={CategoryCardStyles.cardTitle} numberOfLines={2}>{category.name}</Text>
-            <Text style={CategoryCardStyles.cardText}>{category.resources.cache.size.toString() + " Ressource(s)"}</Text>
+            <Text style={CategoryCardStyles.cardText}>{resources.length.toString() + " Ressource(s)"}</Text>
         </TouchableOpacity>
     )
 }
