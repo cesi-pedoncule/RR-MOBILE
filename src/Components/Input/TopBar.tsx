@@ -15,7 +15,6 @@ interface Props {
 }
 
 export default function TopBar({onChangeSearch, hideSearchBar=false, hideLogout=true, client, navigation}: Props) {
-    //const navigations = useNavigation<StackNavigationProp<TopBarStackParamList>>();
 
     const onClickDisconnect = async () => {
         client?.auth.logout();

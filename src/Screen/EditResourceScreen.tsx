@@ -29,10 +29,10 @@ export default function EditResourceScreen({ route, navigation }: Props) {
     const [isPublic, setIsPublic] = useState(resource.isPublic);
     const toggleSwitch = () => setIsPublic(previousState => !previousState);
 
-    const onClickSend = () => {
+    const onClickSend = async () => {
         resource.title = title;
         resource.description = description;
-        client.resources.edit(resource);
+        await client.resources.edit(resource);
         navigation.goBack();
     }
 

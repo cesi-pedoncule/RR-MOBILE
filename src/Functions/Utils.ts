@@ -1,11 +1,15 @@
 import React from "react";
 import { Resource } from "rr-apilib";
 
-export function likeClickHandle(resource: Resource, isLikeResource: boolean, setIsLikeResource: React.Dispatch<React.SetStateAction<boolean>>, numberLike: number, setNumberLike: React.Dispatch<React.SetStateAction<number>>) {
+export async function likeClickHandle(resource: Resource, setResource: React.Dispatch<React.SetStateAction<Resource>>) {
     if (resource.client.auth.me) {
-        isLikeResource ? resource.unlike() : resource.like();
-        setIsLikeResource(!isLikeResource);
-        setNumberLike(isLikeResource ? numberLike - 1 : numberLike + 1);
+        if(resource.isLiked()){
+            const newResource= await resource.unlike();
+            newResource && setResource(resource);
+        } else {
+            const newResource= await resource.like();
+            newResource && setResource(resource);
+        }     
     } else {
         alert("Vous devez être connecté pour liker une ressource");
     }

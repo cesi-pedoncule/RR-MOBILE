@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Resource } from "rr-apilib";
-import { ActivityIndicator, FlatList, Text, View } from "react-native";
+import { ActivityIndicator, FlatList, RefreshControl, Text, View } from "react-native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import CommonStyles from "../Styles/CommonStyles";
 import CategoryDetailsStyles from "../Styles/Screen/CategoryDetailsStyles";
@@ -15,28 +15,42 @@ type Props = NativeStackScreenProps<NavigationParamList, 'CategoryDetails'>;
 
 export default function CategoryDetailsScreen ({ navigation, route }: Props) {
     const category = route.params.category;
-    const [ resources, setResources ] = useState<Resource[]>(Array.from(category.resources.cache.values()));
+    const client = route.params.client;
+    const [ resources, setResources ] = useState<Resource[]>([]);
     const [ resourcesFiltered, setResourcesFiltered ] = useState<Resource[]>([]);
+    const [refreshing, setRefreshing] = useState(false);
 
     const handleChangeSearch = (text: string) => {
-		const filteredResources = Array.from(category.resources.cache.values()).filter((resource) => {
+		const filteredResources = resources.filter((resource) => {
 			return resource.title.toLowerCase().includes(text.toLowerCase());
 		});
-		setResources(filteredResources);
 		setResourcesFiltered(filteredResources.splice(0, 6));
 	}
 
     useEffect(() => {
         if (resourcesFiltered.length === 0 && resources.length !== 0) {
-            setResourcesFiltered(resources.slice(0, 6));
+            setResourcesFiltered([...resources.slice(0, 6)]);
         }
-    }, [resources])
+        navigation.addListener('focus', () => {
+            onRefresh();
+        });
+    }, [resources, navigation]);
+
+    const onRefresh = useCallback(async () => {
+        const newCategorie = client.categories.cache.get(category.id);
+        if(newCategorie){
+            const refreshResources:Resource[] = Array.from(newCategorie.resources.cache.values());
+            setResources([...refreshResources]);
+            setResourcesFiltered([...refreshResources.slice(0, 6)]);
+            setRefreshing(false)
+        }
+    }, []);
 
     const renderFooter = () => {
 		return (
 			<View>
 				{
-					resources.length >= 6 && resourcesFiltered.length !== resources.length &&
+					resources.length >= 6 && resourcesFiltered.length !== resources.length && resourcesFiltered.length !=0 &&
 					<ActivityIndicator size="large" color={COLORS.AccentColor} style={CommonStyles.loadMoreContent} />
 				}	
 			</View>
@@ -64,8 +78,9 @@ export default function CategoryDetailsScreen ({ navigation, route }: Props) {
                     ListEmptyComponent={<Text style={CommonStyles.textEmptyResult}>Aucune ressource n'a été trouvée.</Text>}
                     contentContainerStyle = {CategoryDetailsStyles.resourcesContainer}
                     data={resourcesFiltered}
-                    renderItem={({item}) => <ResourceCardWithUser resource={item} navigation={navigation}/>}
+                    renderItem={({item}) => <ResourceCardWithUser resourceData={item} navigation={navigation}/>}
                     keyExtractor={item => item.id}
+                    refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
                     ListHeaderComponent={renderHeader}
                     ListFooterComponent={renderFooter}
                     onEndReached={onShowMoreItems}
