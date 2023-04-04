@@ -21,7 +21,7 @@ export default function InputTextComment({resource, setComments}:Props) {
                 .setRessource(resource);
 
             const res = await resource.comments.create(builder);
-            const comments = Array.from(res.comments.cache.values());
+            const comments = Array.from(res.comments.sort().values());
 
             setComments(comments);
         } else {

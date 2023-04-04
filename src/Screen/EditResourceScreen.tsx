@@ -32,6 +32,14 @@ export default function EditResourceScreen({ route, navigation }: Props) {
     const onClickSend = async () => {
         resource.title = title;
         resource.description = description;
+        
+        resource.categories.cache.map((category) => {
+            resource.categories.remove(category);
+        });
+        categories.map((category) => {
+            resource.categories.add(category);
+        })
+        
         await client.resources.edit(resource);
         navigation.goBack();
     }

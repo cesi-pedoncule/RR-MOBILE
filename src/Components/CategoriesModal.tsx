@@ -29,7 +29,7 @@ export default function CategoriesModal({client, categories, setCategories, show
                 newCategories.push(categorie)
             }
         })
-        setCategories(newCategories);
+        setCategories([...newCategories]);
     }
 
     return (
