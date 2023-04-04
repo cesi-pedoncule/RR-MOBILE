@@ -1,5 +1,5 @@
 import { View, Text, ScrollView, TextInput, Switch, TouchableOpacity, FlatList} from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import CommonStyles from '../Styles/CommonStyles'
 import TopBar from '../Components/Input/TopBar'
 import CreateResourceStyles from '../Styles/Screen/CreateResourceStyles'
@@ -11,15 +11,18 @@ import { NavigationParamList } from '../Types/navigation'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import CategoriesModal from '../Components/CategoriesModal'
 import CategoryButton from '../Components/Button/CategoryButton'
-import { COLORS } from '../Styles/Colors'
-import IconButton from '../Components/Button/IconButton'
-import * as DocumentPicker from 'expo-document-picker'
+import { COLORS } from '../Styles/Colors';
+import IconButton from '../Components/Button/IconButton';
+import * as DocumentPicker from 'expo-document-picker';
+import MediaButton from '../Styles/Components/Button/MediaButton';
 
 type Props = NativeStackScreenProps<NavigationParamList, 'CreateResourceScreen'>;
 
 export default function CreateResourceScreen({ route, navigation }: Props) {
     const client = route.params.client;
     const user = client.auth.me;
+
+    const [ attachments, setAttachments ] = useState<AttachmentBuilder[]>([]);
 
     const [ newResource ] = useState<ResourceBuilder>(new ResourceBuilder());
     const [ showSelectCategories, setShowSelectCategories ] = useState<boolean>(false);
@@ -30,6 +33,9 @@ export default function CreateResourceScreen({ route, navigation }: Props) {
     const onClickSend = async () => {
         newResource.setIsPublic(isPublic);
         newResource.setCategories(categories);
+
+        newResource.setAttachments(attachments);
+
         if(user){
             await user.resources.create(newResource);
         }
@@ -41,15 +47,31 @@ export default function CreateResourceScreen({ route, navigation }: Props) {
     }
 
     const onClickAddFile = () => {
-        DocumentPicker.getDocumentAsync().then((file: DocumentPicker.DocumentResult) => {
+        console.log('upload')
+        DocumentPicker.getDocumentAsync({copyToCacheDirectory: false}).then((file) => {
+            console.log(file)
             if(file.type === "success"){
-                if (file.file) {
-                    const attachment = new AttachmentBuilder().setFile(file.file);
-                    newResource.addAttachment(attachment);
-                }
+                const attachment = new AttachmentBuilder().setFile(file);
+                attachments.push(attachment);
+                setAttachments([...attachments ]);
+                // if (file.file) {
+                //     // Web version
+                //     const attachment = new AttachmentBuilder().setFile(file.file);
+                //     attachments.push(attachment);
+                //     setAttachments([...attachments ]);
+                // } else {
+                //     // Mobile version
+                //     const attachment = new AttachmentBuilder().setFile(file);
+                //     attachments.push(attachment);
+                //     setAttachments([...attachments ]);
+                // }
             }
         })
     }
+
+    useEffect(() => {
+        console.log('refresh')
+    }, [newResource, attachments])
 
     return (
         <View style={CommonStyles.container}>
@@ -73,12 +95,14 @@ export default function CreateResourceScreen({ route, navigation }: Props) {
                         <InputTextDescription onChangeText={(text) => newResource.setDescription(text)} defaultValue={""}/>
                         <ButtonFile text={'Ajouter un fichier'} callBack={onClickAddFile}/>
                         {
-                            newResource.attachments.map((attachment, index) => {
-                                return (
-                                    <View key={index}>
-                                        <Text>{attachment.file?.name}</Text>
-                                    </View>
-                                )
+                            attachments.map((attachment, index) => {
+
+                                // return <Text>{ attachment.file?.name }</Text>
+
+                                if (attachment.file) {
+                                    return <MediaButton attachment={attachment.file!} key={index} />
+                                }
+                                return <Text>Test file</Text>
                             })
                         }
                         <View style={CreateResourceStyles.switchContainer}>

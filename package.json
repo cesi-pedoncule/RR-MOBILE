@@ -18,6 +18,7 @@
     "@react-navigation/stack": "^6.3.11",
     "deprecated-react-native-prop-types": "^4.0.0",
     "expo": "~47.0.12",
+    "expo-document-picker": "~11.0.1",
     "expo-status-bar": "~1.4.2",
     "jest": "^26.6.3",
     "jest-expo": "^48.0.2",
@@ -32,10 +33,10 @@
     "react-native-screens": "~3.18.0",
     "react-native-svg": "13.4.0",
     "react-native-web": "~0.18.9",
-    "rr-apilib": "^0.5.3-alpha",
     "react-test-renderer": "18.1.0",
+    "rr-apilib": "^0.5.5-alpha",
     "sharp-cli": "^4.1.0",
-    "expo-document-picker": "~11.0.1"
+    "expo-file-system": "~15.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

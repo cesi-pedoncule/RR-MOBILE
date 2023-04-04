@@ -13,6 +13,8 @@ import CategoriesModal from '../Components/CategoriesModal'
 import CategoryButton from '../Components/Button/CategoryButton'
 import { Category } from 'rr-apilib'
 import IconButton from '../Components/Button/IconButton'
+import * as DocumentPicker from 'expo-document-picker'
+import MediaButton from '../Styles/Components/Button/MediaButton'
 
 type Props = NativeStackScreenProps<NavigationParamList, 'EditResourceScreen'>;
 
@@ -42,6 +44,14 @@ export default function EditResourceScreen({ route, navigation }: Props) {
 
     const onClickAddFile = () => {
         alert("TODO");
+        // DocumentPicker.getDocumentAsync().then((file: DocumentPicker.DocumentResult) => {
+        //     if(file.type === "success"){
+        //         if (file.file) {
+        //             const attachment = new AttachmentBuilder().setFile(file.file);
+        //             resource.addAttachments(attachment);
+        //         }
+        //     }
+        // })
     }
 
     return (

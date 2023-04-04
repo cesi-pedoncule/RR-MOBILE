@@ -1,7 +1,7 @@
 import { View, Text, FlatList } from 'react-native'
 import React, { useState } from 'react'
 import CommentCard from '../Components/Card/CommentCard'
-import { Comment } from 'rr-apilib'
+import { Attachment, Comment } from 'rr-apilib'
 import ResourceDetailsStyles from "../Styles/Screen/ResourceDetailsStyles";
 import TopBar from '../Components/Input/TopBar'
 import CommonStyles from '../Styles/CommonStyles'
@@ -11,6 +11,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { NavigationParamList } from '../Types/navigation'
 import IconButton from '../Components/Button/IconButton'
 import ResourceCardWithUser from '../Components/Card/ResourceCardWithUser'
+import MediaButton from '../Styles/Components/Button/MediaButton';
 
 type Props = NativeStackScreenProps<NavigationParamList, 'ResourceDetails'>;
 
@@ -35,6 +36,12 @@ export default function ResourceDetailsScreen({ route, navigation }: Props) {
                     <ResourceCardWithUser resourceData={resource} navigation={navigation} styleContainer={ResourceDetailsStyles.cardBackground}/>
                     <View style={ResourceDetailsStyles.btnFile}>
                         <ButtonFile text={fileName} callBack={onClickFile}/>
+                        {
+                            Array.from(resource.attachments.cache.values()).map((attachment: Attachment, index: number) => (
+                                    <MediaButton attachment={attachment} key={index}/>
+                                )
+                            )
+                        }
                     </View>
                     <Text style={ResourceDetailsStyles.commentTitle}>Commentaires</Text>
                     <View style={ResourceDetailsStyles.commentContainer}>
