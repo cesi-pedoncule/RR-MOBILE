@@ -11,12 +11,16 @@ import EditResourceScreen from './src/Screen/EditResourceScreen';
 import CategoryDetailsScreen from './src/Screen/CategoryDetailsScreen';
 import { NavigationParamList } from './src/Types/navigation';
 import { useState } from 'react';
-import { ActivityIndicator, Image, View } from 'react-native';
+import { ActivityIndicator, Image, LogBox, View } from 'react-native';
 import CommonStyles from './src/Styles/CommonStyles';
 import { COLORS } from './src/Styles/Colors';
 
 const Stack = createStackNavigator<NavigationParamList>();
 const client = new Client();
+
+LogBox.ignoreLogs([
+    'Non-serializable values were found in the navigation state',
+]);
 
 export default function App() {
 
@@ -32,7 +36,8 @@ export default function App() {
     if(!isLoad) {
         return (
             <View style={CommonStyles.container}>
-                <ActivityIndicator size="large" color={COLORS.LightBackgroundColor}/>
+                <ActivityIndicator style={CommonStyles.firstLoader} size="large" color={COLORS.LightBackgroundColor}/>
+                <Image style={CommonStyles.image} source={require("./src/assets/splash.png")}/>
             </View>
         )
     }
