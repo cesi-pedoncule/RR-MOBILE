@@ -54,17 +54,6 @@ export default function CreateResourceScreen({ route, navigation }: Props) {
                 const attachment = new AttachmentBuilder().setFile(file);
                 attachments.push(attachment);
                 setAttachments([...attachments ]);
-                // if (file.file) {
-                //     // Web version
-                //     const attachment = new AttachmentBuilder().setFile(file.file);
-                //     attachments.push(attachment);
-                //     setAttachments([...attachments ]);
-                // } else {
-                //     // Mobile version
-                //     const attachment = new AttachmentBuilder().setFile(file);
-                //     attachments.push(attachment);
-                //     setAttachments([...attachments ]);
-                // }
             }
         })
     }
