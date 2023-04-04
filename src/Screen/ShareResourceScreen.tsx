@@ -81,24 +81,29 @@ export default function ShareResourceScreen({ route, navigation }: Props) {
 
   	return (
 		<View style={CommonStyles.container}>
-			<TopBar onChangeSearch={handleChangeSearch} navigation={navigation} />
-			<View style={CommonStyles.content}> 
-				<FlatList style={CommonStyles.itemsContainer} 
-					ListEmptyComponent={<Text style={CommonStyles.textEmptyResult}>Aucune ressource n'a été trouvée.</Text>}
-					contentContainerStyle = {ShareResourceStyles.resourcesContainer}
-					data={resourcesFiltered}
-					renderItem={({item}) => <ResourceCardWithoutUser resourceData={item} navigation={navigation} setResources={setResources} setResourcesFiltered={setResourcesFiltered}/>}
-					keyExtractor={item => item.id}
-					refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
-					ListHeaderComponent={renderHeader}
-					ListFooterComponent={renderFooter}
-					onEndReached={onShowMoreItems}
-					onEndReachedThreshold={0}
-				/>
-				<View style={ShareResourceStyles.buttonsContainer}>
-					<InputButton label="Nouvelle Ressource" callBack={onClickShareNewItem} style={ShareResourceStyles.addResourceBtn}/>
+			{
+				client.auth.me != null && 
+				<View style={CommonStyles.container}>
+					<TopBar onChangeSearch={handleChangeSearch} navigation={navigation} />
+					<View style={CommonStyles.content}> 
+						<FlatList style={CommonStyles.itemsContainer} 
+							ListEmptyComponent={<Text style={CommonStyles.textEmptyResult}>Aucune ressource n'a été trouvée.</Text>}
+							contentContainerStyle = {ShareResourceStyles.resourcesContainer}
+							data={resourcesFiltered}
+							renderItem={({item}) => <ResourceCardWithoutUser resourceData={item} navigation={navigation} setResources={setResources} setResourcesFiltered={setResourcesFiltered}/>}
+							keyExtractor={item => item.id}
+							refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
+							ListHeaderComponent={renderHeader}
+							ListFooterComponent={renderFooter}
+							onEndReached={onShowMoreItems}
+							onEndReachedThreshold={0}
+						/>
+						<View style={ShareResourceStyles.buttonsContainer}>
+							<InputButton label="Nouvelle Ressource" callBack={onClickShareNewItem} style={ShareResourceStyles.addResourceBtn}/>
+						</View>
+					</View>
 				</View>
-			</View>
+			}
 		</View>
   	)
 }

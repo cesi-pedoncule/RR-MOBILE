@@ -37,7 +37,8 @@ export default function ResourcesScreen({ navigation, route } : Props) {
     }, [resources, navigation]);
 
     const onRefresh = useCallback(async () => {
-        const refreshResources:Resource[] = Array.from(client.resources.cache.filter(resource => resource.isPublic == true).values());
+        console.log(client.resources)
+        const refreshResources:Resource[] = Array.from(client.resources.getValidateResources().filter(resource => resource.isPublic == true).values());
         setResources([...refreshResources]);
         setResourcesFiltered([...refreshResources.slice(0, 6)]);
         setRefreshing(false)
