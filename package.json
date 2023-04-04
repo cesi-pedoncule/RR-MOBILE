@@ -34,7 +34,8 @@
     "react-native-web": "~0.18.9",
     "rr-apilib": "^0.5.3-alpha",
     "react-test-renderer": "18.1.0",
-    "sharp-cli": "^4.1.0"
+    "sharp-cli": "^4.1.0",
+    "expo-document-picker": "~11.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
