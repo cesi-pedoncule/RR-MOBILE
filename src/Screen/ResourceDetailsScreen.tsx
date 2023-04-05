@@ -19,7 +19,7 @@ export default function ResourceDetailsScreen({ route, navigation }: Props) {
     const resource = route.params.resource;
     const client = route.params.client;
 
-    const [ comments, setComments ] = useState<Comment[]>(Array.from(resource.comments.cache.values()));
+    const [ comments, setComments ] = useState<Comment[]>(Array.from(resource.comments.sort().values()));
 
     const fileName = "Télécharger les pièces jointes";
 

@@ -81,7 +81,9 @@ export default function ShareResourceScreen({ route, navigation }: Props) {
 
   	return (
 		<View style={CommonStyles.container}>
-			<TopBar onChangeSearch={handleChangeSearch} navigation={navigation} />
+			{
+				client.auth.me != null && <TopBar onChangeSearch={handleChangeSearch} navigation={navigation} />
+			}
 			<View style={CommonStyles.content}> 
 				<FlatList style={CommonStyles.itemsContainer} 
 					ListEmptyComponent={<Text style={CommonStyles.textEmptyResult}>Aucune ressource n'a été trouvée.</Text>}
