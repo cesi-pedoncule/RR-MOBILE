@@ -11,7 +11,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { NavigationParamList } from '../Types/navigation'
 import IconButton from '../Components/Button/IconButton'
 import ResourceCardWithUser from '../Components/Card/ResourceCardWithUser'
-import MediaButton from '../Styles/Components/Button/MediaButton';
+import MediaButton from '../Components/Button/MediaButton';
 
 type Props = NativeStackScreenProps<NavigationParamList, 'ResourceDetails'>;
 
@@ -28,6 +28,9 @@ export default function ResourceDetailsScreen({ route, navigation }: Props) {
         //NO-OP
     }
 
+    console.log(Array.from(resource.attachments.cache.values()))
+    console.log(resource.attachments.cache.values())
+
     const renderHeader = () => {
 		return (
 			<View>
@@ -37,8 +40,8 @@ export default function ResourceDetailsScreen({ route, navigation }: Props) {
                     <View style={ResourceDetailsStyles.btnFile}>
                         <ButtonFile text={fileName} callBack={onClickFile}/>
                         {
-                            Array.from(resource.attachments.cache.values()).map((attachment: Attachment, index: number) => (
-                                    <MediaButton attachment={attachment} key={index}/>
+                            Array.from(resource.attachments.cache.values()).map((attachment, index) => (
+                                    <MediaButton attachment={attachment} client={client} key={index}/>
                                 )
                             )
                         }

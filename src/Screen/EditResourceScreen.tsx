@@ -14,7 +14,7 @@ import CategoryButton from '../Components/Button/CategoryButton'
 import { Category } from 'rr-apilib'
 import IconButton from '../Components/Button/IconButton'
 import * as DocumentPicker from 'expo-document-picker'
-import MediaButton from '../Styles/Components/Button/MediaButton'
+import MediaButton from '../Components/Button/MediaButton'
 
 type Props = NativeStackScreenProps<NavigationParamList, 'EditResourceScreen'>;
 

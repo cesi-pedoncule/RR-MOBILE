@@ -1,19 +1,21 @@
 import { Text, TouchableOpacity } from "react-native"
-import { COLORS } from "../../Colors"
-import ButtonFileStyles from "./ButtonFileStyles"
+import { COLORS } from "../../Styles/Colors"
+import ButtonFileStyles from "../../Styles/Components/Button/ButtonFileStyles"
 import { MaterialCommunityIcons } from '@expo/vector-icons'
-import { Attachment } from "rr-apilib";
+import { Attachment, Client } from "rr-apilib";
 
 interface Props {
+    client: Client;
     attachment: Attachment|File;
 }
 
-export default function MediaButton ({ attachment }: Props) {
+export default function MediaButton ({ client, attachment }: Props) {
 
     const fileName = attachment instanceof File ? attachment.name : attachment.fileName;
 
     const handleDownloadFile = () => {
         console.log("Download file ", fileName);
+        console.log('attachment', attachment, typeof attachment)
     }
 
     return (
