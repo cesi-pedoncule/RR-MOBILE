@@ -1,12 +1,11 @@
 import { View, Text, FlatList } from 'react-native'
 import React, { useState } from 'react'
 import CommentCard from '../Components/Card/CommentCard'
-import { Attachment, Comment } from 'rr-apilib'
+import { Comment } from 'rr-apilib'
 import ResourceDetailsStyles from "../Styles/Screen/ResourceDetailsStyles";
 import TopBar from '../Components/Input/TopBar'
 import CommonStyles from '../Styles/CommonStyles'
 import InputTextComment from '../Components/Input/InputTextComment'
-import ButtonFile from '../Components/Button/ButtonFile'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { NavigationParamList } from '../Types/navigation'
 import IconButton from '../Components/Button/IconButton'
@@ -22,16 +21,6 @@ export default function ResourceDetailsScreen({ route, navigation }: Props) {
 
     const [ comments, setComments ] = useState<Comment[]>(Array.from(resource.comments.cache.values()));
 
-    const fileName = "Télécharger les pièces jointes";
-
-    const onClickFile = () => {
-        //NO-OP
-    }
-
-    console.log(Array.from(resource.attachments.cache.values()))
-    console.log(resource.attachments.resource)
-    console.log(resource.attachments.cache.values())
-
     const renderHeader = () => {
 		return (
 			<View>
@@ -39,10 +28,9 @@ export default function ResourceDetailsScreen({ route, navigation }: Props) {
                 <View style={CommonStyles.itemsContainer}>
                     <ResourceCardWithUser resourceData={resource} navigation={navigation} styleContainer={ResourceDetailsStyles.cardBackground}/>
                     <View style={ResourceDetailsStyles.btnFile}>
-                        <ButtonFile text={fileName} callBack={onClickFile}/>
                         {
-                            Array.from(resource.attachments.resource.attachments.cache.values()).map((attachment, index) => (
-                                    <MediaButton attachment={attachment} client={client} key={index}/>
+                            Array.from(resource.attachments.cache.values()).map((attachment, index) => (
+                                    <MediaButton attachment={attachment} key={index}/>
                                 )
                             )
                         }
