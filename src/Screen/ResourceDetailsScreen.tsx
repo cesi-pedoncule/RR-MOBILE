@@ -29,6 +29,7 @@ export default function ResourceDetailsScreen({ route, navigation }: Props) {
     }
 
     console.log(Array.from(resource.attachments.cache.values()))
+    console.log(resource.attachments.resource)
     console.log(resource.attachments.cache.values())
 
     const renderHeader = () => {
@@ -40,7 +41,7 @@ export default function ResourceDetailsScreen({ route, navigation }: Props) {
                     <View style={ResourceDetailsStyles.btnFile}>
                         <ButtonFile text={fileName} callBack={onClickFile}/>
                         {
-                            Array.from(resource.attachments.cache.values()).map((attachment, index) => (
+                            Array.from(resource.attachments.resource.attachments.cache.values()).map((attachment, index) => (
                                     <MediaButton attachment={attachment} client={client} key={index}/>
                                 )
                             )

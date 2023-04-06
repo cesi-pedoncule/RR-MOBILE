@@ -47,9 +47,7 @@ export default function CreateResourceScreen({ route, navigation }: Props) {
     }
 
     const onClickAddFile = () => {
-        console.log('upload')
         DocumentPicker.getDocumentAsync({copyToCacheDirectory: false}).then((file) => {
-            console.log(file)
             if(file.type === "success"){
                 const attachment = new AttachmentBuilder().setFile(file);
                 attachments.push(attachment);
