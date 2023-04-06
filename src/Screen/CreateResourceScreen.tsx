@@ -56,10 +56,6 @@ export default function CreateResourceScreen({ route, navigation }: Props) {
         })
     }
 
-    useEffect(() => {
-        console.log('refresh')
-    }, [newResource, attachments])
-
     return (
         <View style={CommonStyles.container}>
             <TopBar hideSearchBar={true} navigation={navigation}/>
@@ -87,7 +83,7 @@ export default function CreateResourceScreen({ route, navigation }: Props) {
                                 if (attachment.file) {
                                     return <MediaButton attachment={attachment.file!} key={index} />
                                 }
-                                
+
                                 return <Text>Test file</Text>
                             })
                         }
