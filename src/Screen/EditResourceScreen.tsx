@@ -11,8 +11,10 @@ import { NavigationParamList } from '../Types/navigation'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import CategoriesModal from '../Components/CategoriesModal'
 import CategoryButton from '../Components/Button/CategoryButton'
-import { Category } from 'rr-apilib'
+import { Attachment, AttachmentBuilder, Category } from 'rr-apilib'
 import IconButton from '../Components/Button/IconButton'
+import * as DocumentPicker from 'expo-document-picker'
+import MediaButton from '../Components/Button/MediaButton'
 
 type Props = NativeStackScreenProps<NavigationParamList, 'EditResourceScreen'>;
 
@@ -43,7 +45,12 @@ export default function EditResourceScreen({ route, navigation }: Props) {
     }
 
     const onClickAddFile = () => {
-        alert("TODO");
+        DocumentPicker.getDocumentAsync({copyToCacheDirectory: false}).then(async (file) => {
+            if(file.type === "success"){
+                const attachment = new AttachmentBuilder().setFile(file);
+                await resource.attachments.create(attachment)
+            }
+        })
     }
 
     return (
@@ -67,6 +74,11 @@ export default function EditResourceScreen({ route, navigation }: Props) {
                         </View>
                         <InputTextDescription defaultValue={description} onChangeText={(text) => setDescription(text)}></InputTextDescription>
                         <ButtonFile text={'Ajouter un fichier'} callBack={onClickAddFile}/>
+                        {
+                            Array.from(resource.attachments.cache.values()).map((attachment, index) => 
+                                <MediaButton key={index} attachment={attachment}/>
+                            )
+                        }
                         <View style={EditResourceStyles.switchContainer}>
                             <Switch trackColor={{false: COLORS.ComponentBackground, true: COLORS.ComponentBackground}} thumbColor={COLORS.AccentColor} onValueChange={toggleSwitch} value={isPublic}/>
                             <Text style={{color: COLORS.Black}}> Privé / Publique </Text>

@@ -6,11 +6,11 @@ import ResourceDetailsStyles from "../Styles/Screen/ResourceDetailsStyles";
 import TopBar from '../Components/Input/TopBar'
 import CommonStyles from '../Styles/CommonStyles'
 import InputTextComment from '../Components/Input/InputTextComment'
-import ButtonFile from '../Components/Button/ButtonFile'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { NavigationParamList } from '../Types/navigation'
 import IconButton from '../Components/Button/IconButton'
 import ResourceCardWithUser from '../Components/Card/ResourceCardWithUser'
+import MediaButton from '../Components/Button/MediaButton';
 
 type Props = NativeStackScreenProps<NavigationParamList, 'ResourceDetails'>;
 
@@ -20,12 +20,6 @@ export default function ResourceDetailsScreen({ route, navigation }: Props) {
     const [ resource, setResource ] = useState<Resource|undefined>(route.params.resource);
     const [ comments, setComments ] = useState<Comment[]>(Array.from(resource ? resource.comments.sort().values() : []));
     const [refreshing, setRefreshing] = useState(false);
-
-    const fileName = "Télécharger les pièces jointes";
-
-    const onClickFile = () => {
-        //NO-OP
-    }
 
     const onRefresh = useCallback(async () => {
         if(!resource){
@@ -44,7 +38,12 @@ export default function ResourceDetailsScreen({ route, navigation }: Props) {
                 <View style={CommonStyles.itemsContainer}>
                     <ResourceCardWithUser resourceData={resource} navigation={navigation} styleContainer={ResourceDetailsStyles.cardBackground} onDoubleClick={onRefresh}/>
                     <View style={ResourceDetailsStyles.btnFile}>
-                        <ButtonFile text={fileName} callBack={onClickFile}/>
+                        {
+                            Array.from(resource.attachments.cache.values()).map((attachment, index) => (
+                                    <MediaButton attachment={attachment} key={index}/>
+                                )
+                            )
+                        }
                     </View>
                     <Text style={ResourceDetailsStyles.commentTitle}>Commentaires</Text>
                     <View style={ResourceDetailsStyles.commentContainer}>
