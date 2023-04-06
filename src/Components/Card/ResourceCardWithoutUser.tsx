@@ -83,7 +83,7 @@ export default function ResourceCardWithoutUser({ resourceData, setResources, se
                 </View>
                 <Text style={ResourceCardStyles.cardText} numberOfLines={3}>{description}</Text>
                 <View style={ResourceCardStyles.buttonsContainer}>
-                    <LikeButton resource={resource} setResource={setResource}/>
+                    <LikeButton resource={resource} setResource={setResource} onClick={onDoubleClick}/>
                     <CommentButton commentNumber={numberCommentResource}/>
                 </View>
                 <View style={ResourceCardStyles.buttonsEditContainer}>

@@ -56,7 +56,7 @@ export default function ResourceCardWithUser({ resourceData, navigation, styleCo
                 <View style={ResourceCardStyles.lineButtonsAndUser}>
                     <Text style={ResourceCardStyles.cardUser} numberOfLines={1}>{username}</Text>
                     <View style={ResourceCardStyles.userAndButtonsContainer}>
-                        <LikeButton resource={resource} setResource={setResource}/>
+                        <LikeButton resource={resource} setResource={setResource} onClick={onDoubleClick}/>
                         <CommentButton commentNumber={numberCommentResource}/>
                     </View>    
                 </View>
