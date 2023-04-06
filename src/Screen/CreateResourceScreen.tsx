@@ -84,11 +84,10 @@ export default function CreateResourceScreen({ route, navigation }: Props) {
                         {
                             attachments.map((attachment, index) => {
 
-                                // return <Text>{ attachment.file?.name }</Text>
-
                                 if (attachment.file) {
                                     return <MediaButton attachment={attachment.file!} key={index} />
                                 }
+                                
                                 return <Text>Test file</Text>
                             })
                         }
