@@ -13,9 +13,10 @@ interface Props {
     resourceData: Resource;
     navigation: NativeStackNavigationProp<NavigationParamList>;
     styleContainer?: any;
+    onDoubleClick: () => void;
 }
 
-export default function ResourceCardWithUser({ resourceData, navigation, styleContainer}: Props) {
+export default function ResourceCardWithUser({ resourceData, navigation, styleContainer, onDoubleClick}: Props) {
     const [resource, setResource] = useState<Resource>(resourceData);
     const numberCommentResource = resource.comments.cache.size;
     const categories = Array.from(resource.categories.cache.values());
@@ -25,15 +26,15 @@ export default function ResourceCardWithUser({ resourceData, navigation, styleCo
 
     let timeout: NodeJS.Timeout | null = null;
 
-    const onPress = (e: GestureResponderEvent) => {
+    const onPress = async (e: GestureResponderEvent) => {
 
         e.preventDefault();
 
         if(timeout) {
             clearTimeout(timeout);
             timeout = null;
-            likeClickHandle(resource, setResource);
-            return;
+            await likeClickHandle(resource, setResource);
+            return onDoubleClick();
         }
 
         timeout = setTimeout(() => {

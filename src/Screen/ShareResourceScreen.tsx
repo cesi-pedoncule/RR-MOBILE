@@ -89,7 +89,7 @@ export default function ShareResourceScreen({ route, navigation }: Props) {
 					ListEmptyComponent={<Text style={CommonStyles.textEmptyResult}>Aucune ressource n'a été trouvée.</Text>}
 					contentContainerStyle = {ShareResourceStyles.resourcesContainer}
 					data={resourcesFiltered}
-					renderItem={({item}) => <ResourceCardWithoutUser resourceData={item} navigation={navigation} setResources={setResources} setResourcesFiltered={setResourcesFiltered}/>}
+					renderItem={({item}) => <ResourceCardWithoutUser resourceData={item} navigation={navigation} setResources={setResources} setResourcesFiltered={setResourcesFiltered}  onDoubleClick={onRefresh}/>}
 					keyExtractor={item => item.id}
 					refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
 					ListHeaderComponent={renderHeader}

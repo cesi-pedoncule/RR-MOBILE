@@ -17,9 +17,10 @@ interface Props {
     navigation: NativeStackNavigationProp<NavigationParamList>;
     setResources?: React.Dispatch<React.SetStateAction<Resource[]>>;
     setResourcesFiltered?: React.Dispatch<React.SetStateAction<Resource[]>>;
+    onDoubleClick: () => void;
 }
 
-export default function ResourceCardWithoutUser({ resourceData, setResources, setResourcesFiltered, navigation}: Props) {
+export default function ResourceCardWithoutUser({ resourceData, setResources, setResourcesFiltered, navigation, onDoubleClick}: Props) {
     const [resource, setResource] = useState<Resource>(resourceData);
     const numberCommentResource = resource.comments.cache.size;
     const categories = Array.from(resource.categories.cache.values());
@@ -29,15 +30,15 @@ export default function ResourceCardWithoutUser({ resourceData, setResources, se
 
     let timeout: NodeJS.Timeout | null = null;
 
-    const onPress = (e: GestureResponderEvent) => {
+    const onPress = async (e: GestureResponderEvent) => {
 
         e.preventDefault();
 
         if(timeout) {
             clearTimeout(timeout);
             timeout = null;
-            likeClickHandle(resource, setResource);
-            return;
+            await likeClickHandle(resource, setResource);
+            return onDoubleClick();
         }
 
         timeout = setTimeout(() => {
