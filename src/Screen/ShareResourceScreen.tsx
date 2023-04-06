@@ -32,9 +32,9 @@ export default function ShareResourceScreen({ route, navigation }: Props) {
 	}
 
 	const handleChangeSearch = (text: string) => {
-		const filteredResources = resources.filter((resource) => {
-			return resource.title.toLowerCase().includes(text.toLowerCase());
-		});
+		const filteredResources = resources.filter((resource) => 
+			resource.title.toLowerCase().includes(text.toLowerCase())
+		);
 		setResourcesFiltered([...filteredResources.splice(0, 6)]);
 	}
 
@@ -81,13 +81,15 @@ export default function ShareResourceScreen({ route, navigation }: Props) {
 
   	return (
 		<View style={CommonStyles.container}>
-			<TopBar onChangeSearch={handleChangeSearch} navigation={navigation} />
+			{
+				client.auth.me != null && <TopBar onChangeSearch={handleChangeSearch} navigation={navigation} />
+			}
 			<View style={CommonStyles.content}> 
 				<FlatList style={CommonStyles.itemsContainer} 
 					ListEmptyComponent={<Text style={CommonStyles.textEmptyResult}>Aucune ressource n'a été trouvée.</Text>}
 					contentContainerStyle = {ShareResourceStyles.resourcesContainer}
 					data={resourcesFiltered}
-					renderItem={({item}) => <ResourceCardWithoutUser resourceData={item} navigation={navigation} setResources={setResources} setResourcesFiltered={setResourcesFiltered}/>}
+					renderItem={({item}) => <ResourceCardWithoutUser resourceData={item} navigation={navigation} setResources={setResources} setResourcesFiltered={setResourcesFiltered}  onDoubleClick={onRefresh}/>}
 					keyExtractor={item => item.id}
 					refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
 					ListHeaderComponent={renderHeader}

@@ -78,7 +78,7 @@ export default function CategoryDetailsScreen ({ navigation, route }: Props) {
                     ListEmptyComponent={<Text style={CommonStyles.textEmptyResult}>Aucune ressource n'a été trouvée.</Text>}
                     contentContainerStyle = {CategoryDetailsStyles.resourcesContainer}
                     data={resourcesFiltered}
-                    renderItem={({item}) => <ResourceCardWithUser resourceData={item} navigation={navigation}/>}
+                    renderItem={({item}) => <ResourceCardWithUser resourceData={item} navigation={navigation} onDoubleClick={onRefresh}/>}
                     keyExtractor={item => item.id}
                     refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
                     ListHeaderComponent={renderHeader}

@@ -91,4 +91,12 @@ export default StyleSheet.create({
         transition: 0.2,
         marginHorizontal: 15,
     },
+    image: {
+        resizeMode: "contain",
+        width: "100%",
+    },
+    firstLoader: {
+        position: 'absolute',
+        bottom: "40%",
+    },
 });

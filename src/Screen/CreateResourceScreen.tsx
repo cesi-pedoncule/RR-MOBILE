@@ -77,7 +77,7 @@ export default function CreateResourceScreen({ route, navigation }: Props) {
                             <TouchableOpacity onPress={onClickAddCategory} style={CreateResourceStyles.addCategorieContainer}>
                                 <Text style={CreateResourceStyles.addCategorieText}>{'+'}</Text>
                             </TouchableOpacity>
-                            <CategoriesModal client={client} showSelectCategories={showSelectCategories} setShowSelectCategories={setShowSelectCategories} categories={categories} setCategories={setCategories}/>
+                            <CategoriesModal client={client} showSelectCategories={showSelectCategories} setShowSelectCategories={setShowSelectCategories} setCategories={setCategories}/>
                         </View>
                         <InputTextDescription onChangeText={(text) => newResource.setDescription(text)} defaultValue={""}/>
                         <ButtonFile text={'Ajouter un fichier'} callBack={onClickAddFile}/>

@@ -77,7 +77,7 @@ export default function NavBar({ route }: Props) {
                 name="Profile"
                 component={ProfileScreen}
                 options={{
-                    tabBarLabel: 'Profile',
+                    tabBarLabel: 'Profil',
                     tabBarIcon: ({ focused }) => (
                         focused ?
                         <Image source={require('../assets/ProfileFocused.png')} style={NavBarStyles.logo}/>

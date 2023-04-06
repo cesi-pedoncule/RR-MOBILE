@@ -1,7 +1,6 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Client } from 'rr-apilib';
-
 import LoginScreen from './src/Screen/LoginScreen';
 import RegisterScreen from './src/Screen/RegisterScreen';
 import ResourceDetailsScreen from './src/Screen/ResourceDetailsScreen';
@@ -11,12 +10,16 @@ import EditResourceScreen from './src/Screen/EditResourceScreen';
 import CategoryDetailsScreen from './src/Screen/CategoryDetailsScreen';
 import { NavigationParamList } from './src/Types/navigation';
 import { useState } from 'react';
-import { ActivityIndicator, View } from 'react-native';
+import { ActivityIndicator, Image, LogBox, View } from 'react-native';
 import CommonStyles from './src/Styles/CommonStyles';
 import { COLORS } from './src/Styles/Colors';
 
 const Stack = createStackNavigator<NavigationParamList>();
 const client = new Client();
+
+LogBox.ignoreLogs([
+    'Non-serializable values were found in the navigation state',
+]);
 
 export default function App() {
 
@@ -32,9 +35,8 @@ export default function App() {
     if(!isLoad) {
         return (
             <View style={CommonStyles.container}>
-			    <View style={CommonStyles.content}> 
-                    <ActivityIndicator size="large" color={COLORS.AccentColor} style={CommonStyles.loader} />
-                </View>
+                <ActivityIndicator style={CommonStyles.firstLoader} size="large" color={COLORS.LightBackgroundColor}/>
+                <Image style={CommonStyles.image} source={require("./src/assets/splash.png")}/>
             </View>
         )
     }

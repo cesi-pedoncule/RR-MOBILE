@@ -16,6 +16,7 @@ import { COLORS } from '../../Styles/Colors'
 interface Props {
 	resource: Resource;
 	setResource: React.Dispatch<React.SetStateAction<Resource>>;
+	onClick: () => void;
 }
 /**
  * Global bc each render
@@ -23,16 +24,17 @@ interface Props {
  */
 let waitStatus = true;
 
-export default function LikeButton({ resource, setResource}: Props) {
+export default function LikeButton({ resource, setResource, onClick}: Props) {
 
-	const onPress = (e: GestureResponderEvent) => {
+	const onPress = async (e: GestureResponderEvent) => {
 		
 		e.preventDefault();
 
 		if(waitStatus) {
 			waitStatus = false;
 			setTimeout(() => waitStatus = true, 1e3);
-			likeClickHandle(resource, setResource);
+			await likeClickHandle(resource, setResource);
+			onClick()
 		}
 	}
 

@@ -21,10 +21,10 @@ export default function CategoriesScreen({ route, navigation }: Props) {
     const [refreshing, setRefreshing] = useState(false);
 
     const handleChangeSearch = (text: string) => {
-        const filteredCategories = categories.filter((category) => {
-            category.name.toLowerCase().includes(text.toLowerCase());
-        });
-        setCategoriesFiltered([...filteredCategories.splice(0, 8)])
+        const filteredCategories = categories.filter((category) => 
+            category.name.toLowerCase().includes(text.toLowerCase())
+        );
+        setCategoriesFiltered([...filteredCategories.slice(0, 8)])
     }
   
     useEffect(() => {
@@ -80,7 +80,7 @@ export default function CategoriesScreen({ route, navigation }: Props) {
                         data={categoriesFiltered}
                         renderItem={({item, index}) => 
                             <View style={{flex: 1,marginLeft: index % 2 !== 0 ? 20 : 0}}>
-                                <CategoryCard category={item} navigation={navigation} resources={Array.from(item.resources.cache.values())}/>
+                                <CategoryCard category={item} navigation={navigation} resources={Array.from(item.resources.getValidateResources().values())}/>
                             </View>
                         }
                         keyExtractor={item => item.id}
