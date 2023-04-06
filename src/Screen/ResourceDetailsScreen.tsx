@@ -1,5 +1,5 @@
 import { View, Text, FlatList, RefreshControl } from 'react-native'
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import CommentCard from '../Components/Card/CommentCard'
 import { Comment, Resource } from 'rr-apilib'
 import ResourceDetailsStyles from "../Styles/Screen/ResourceDetailsStyles";
@@ -35,7 +35,7 @@ export default function ResourceDetailsScreen({ route, navigation }: Props) {
         setResource(undefined)
         refreshResource && setResource(refreshResource);
         setRefreshing(false)
-    }, [refreshing]);
+    }, []);
 
     const renderHeader = () => {
 		return resource ? (

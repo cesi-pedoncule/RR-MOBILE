@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Resource } from 'rr-apilib'
 import { NavigationParamList } from '../../Types/navigation'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'

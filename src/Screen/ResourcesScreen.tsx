@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { View, ActivityIndicator, Text, FlatList, RefreshControl, ToastAndroid } from 'react-native'
+import { View, ActivityIndicator, Text, FlatList, RefreshControl } from 'react-native'
 import { Resource } from "rr-apilib";
 import CommonStyles from "../Styles/CommonStyles";
 import ResourceCardWithUser from "../Components/Card/ResourceCardWithUser";
@@ -41,7 +41,7 @@ export default function ResourcesScreen({ navigation, route } : Props) {
         setResources([...refreshResources]);
         setResourcesFiltered([...refreshResources.slice(0, 6)]);
         setRefreshing(false)
-      }, [refreshing]);
+      }, []);
 
     const renderFooter = () => {
 		return (
