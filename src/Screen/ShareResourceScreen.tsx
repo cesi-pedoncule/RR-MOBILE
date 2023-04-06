@@ -32,9 +32,9 @@ export default function ShareResourceScreen({ route, navigation }: Props) {
 	}
 
 	const handleChangeSearch = (text: string) => {
-		const filteredResources = resources.filter((resource) => {
-			return resource.title.toLowerCase().includes(text.toLowerCase());
-		});
+		const filteredResources = resources.filter((resource) => 
+			resource.title.toLowerCase().includes(text.toLowerCase())
+		);
 		setResourcesFiltered([...filteredResources.splice(0, 6)]);
 	}
 
