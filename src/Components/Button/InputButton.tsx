@@ -7,11 +7,16 @@ interface Props {
     label: string;
     callBack: () => void;
     style?: any;
+    isDisabled?: boolean;
 }
 
-export default function InputButton({ label, callBack, style }: Props) {
+export default function InputButton({ label, callBack, style, isDisabled = false }: Props) {
     return (
-        <TouchableOpacity style={[InputButtonStyles.btnBackground, style]} onPress={callBack}>
+        <TouchableOpacity 
+            style={[InputButtonStyles.btnBackground, style]} 
+            onPress={callBack}
+            disabled={isDisabled}
+        >
             <Text style={InputButtonStyles.btnText}>{label}</Text>
         </TouchableOpacity>
     )

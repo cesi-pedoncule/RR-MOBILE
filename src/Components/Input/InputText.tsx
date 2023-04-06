@@ -5,14 +5,15 @@ import inputTextStyles from '../../Styles/Components/Input/InputTextStyles';
 interface Props {
   placeholder: string;
   type: KeyboardType;
-  secureTextEntry?: boolean
+  secureTextEntry?: boolean;
+  onChangeText?: (value: string) => void;
 }
 
-export default function InputText({placeholder, type, secureTextEntry=false} : Props) {
+export default function InputText({placeholder, type, secureTextEntry=false, onChangeText = (text: string) => {} } : Props) {
   return (
     <View style={inputTextStyles.txtFieldBackground}>
       <Text style={inputTextStyles.txtFieldText}>{placeholder}</Text>
-      <TextInput style={inputTextStyles.txtFieldInput} keyboardType={type} secureTextEntry={secureTextEntry} />
+      <TextInput style={inputTextStyles.txtFieldInput} keyboardType={type} secureTextEntry={secureTextEntry} onChangeText={(text) => {onChangeText(text)}} />
     </View>
   )
 }
