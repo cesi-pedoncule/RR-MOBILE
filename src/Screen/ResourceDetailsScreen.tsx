@@ -1,7 +1,7 @@
-import { View, Text, FlatList } from 'react-native'
-import React, { useState } from 'react'
+import { View, Text, FlatList, RefreshControl } from 'react-native'
+import React, { useCallback, useState } from 'react'
 import CommentCard from '../Components/Card/CommentCard'
-import { Comment } from 'rr-apilib'
+import { Comment, Resource } from 'rr-apilib'
 import ResourceDetailsStyles from "../Styles/Screen/ResourceDetailsStyles";
 import TopBar from '../Components/Input/TopBar'
 import CommonStyles from '../Styles/CommonStyles'
@@ -15,11 +15,11 @@ import ResourceCardWithUser from '../Components/Card/ResourceCardWithUser'
 type Props = NativeStackScreenProps<NavigationParamList, 'ResourceDetails'>;
 
 export default function ResourceDetailsScreen({ route, navigation }: Props) {
-    
-    const resource = route.params.resource;
     const client = route.params.client;
 
-    const [ comments, setComments ] = useState<Comment[]>(Array.from(resource.comments.cache.values()));
+    const [ resource, setResource ] = useState<Resource|undefined>(route.params.resource);
+    const [ comments, setComments ] = useState<Comment[]>(Array.from(resource ? resource.comments.sort().values() : []));
+    const [refreshing, setRefreshing] = useState(false);
 
     const fileName = "Télécharger les pièces jointes";
 
@@ -27,12 +27,22 @@ export default function ResourceDetailsScreen({ route, navigation }: Props) {
         //NO-OP
     }
 
+    const onRefresh = useCallback(async () => {
+        if(!resource){
+            return
+        } 
+        const refreshResource = client.resources.cache.get(resource.id);
+        setResource(undefined)
+        refreshResource && setResource(refreshResource);
+        setRefreshing(false)
+    }, []);
+
     const renderHeader = () => {
-		return (
+		return resource ? (
 			<View>
                 <IconButton iconStyle={CommonStyles.returnBtnInFlatList} callBack={() => navigation.goBack()} iconSize={24} iconName={"arrow-left-top"}/>  
                 <View style={CommonStyles.itemsContainer}>
-                    <ResourceCardWithUser resourceData={resource} navigation={navigation} styleContainer={ResourceDetailsStyles.cardBackground}/>
+                    <ResourceCardWithUser resourceData={resource} navigation={navigation} styleContainer={ResourceDetailsStyles.cardBackground} onDoubleClick={onRefresh}/>
                     <View style={ResourceDetailsStyles.btnFile}>
                         <ButtonFile text={fileName} callBack={onClickFile}/>
                     </View>
@@ -44,10 +54,12 @@ export default function ResourceDetailsScreen({ route, navigation }: Props) {
                     </View>          
                 </View>
             </View>
-		)
+		) 
+        :
+        <View></View>
 	}
 
-    return (
+    return resource ? (
         <View style={CommonStyles.container}>
             <TopBar hideSearchBar={true} navigation={navigation}/>
             <View style={CommonStyles.content}>
@@ -56,6 +68,7 @@ export default function ResourceDetailsScreen({ route, navigation }: Props) {
                     contentContainerStyle = {ResourceDetailsStyles.resourceContainer}
                     data={comments}
                     renderItem={({item}) => <CommentCard comment={item} setComments={setComments} resource={resource}/>}
+                    refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
                     keyExtractor={item => item.id}
                     ListHeaderComponent={renderHeader}
                     onEndReachedThreshold={0}
@@ -63,4 +76,6 @@ export default function ResourceDetailsScreen({ route, navigation }: Props) {
             </View>
         </View>
     )
+    :
+    <View></View>
 }

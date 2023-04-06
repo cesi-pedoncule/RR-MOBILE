@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { View, ActivityIndicator, Text, FlatList, RefreshControl, ToastAndroid } from 'react-native'
+import { View, ActivityIndicator, Text, FlatList, RefreshControl } from 'react-native'
 import { Resource } from "rr-apilib";
 import CommonStyles from "../Styles/CommonStyles";
 import ResourceCardWithUser from "../Components/Card/ResourceCardWithUser";
@@ -21,9 +21,9 @@ export default function ResourcesScreen({ navigation, route } : Props) {
     const [refreshing, setRefreshing] = useState(false);
 
     const handleChangeSearch = (text: string) => {
-        const filteredResources = resources.filter((resource) => {
-            return resource.title.toLowerCase().includes(text.toLowerCase()) && resource.isPublic == true;
-        });
+        const filteredResources = resources.filter((resource) =>
+            resource.title.toLowerCase().includes(text.toLowerCase()) && resource.isPublic == true
+        );
         setResourcesFiltered([...filteredResources.splice(0, 6)]);
     }
 
@@ -37,11 +37,11 @@ export default function ResourcesScreen({ navigation, route } : Props) {
     }, [resources, navigation]);
 
     const onRefresh = useCallback(async () => {
-        const refreshResources:Resource[] = Array.from(client.resources.cache.filter(resource => resource.isPublic == true).values());
+        const refreshResources:Resource[] = Array.from(client.resources.getValidateResources().filter(resource => resource.isPublic == true).values());
         setResources([...refreshResources]);
         setResourcesFiltered([...refreshResources.slice(0, 6)]);
         setRefreshing(false)
-      }, [refreshing]);
+      }, []);
 
     const renderFooter = () => {
 		return (
@@ -75,7 +75,7 @@ export default function ResourcesScreen({ navigation, route } : Props) {
                         ListEmptyComponent={<Text style={CommonStyles.textEmptyResult}>Aucune ressource n'a été trouvée.</Text>}
                         contentContainerStyle = {ResourcesStyles.resourcesContainer}
                         data={resourcesFiltered}
-                        renderItem={({item}) => <ResourceCardWithUser resourceData={item} navigation={navigation}/>}
+                        renderItem={({item}) => <ResourceCardWithUser resourceData={item} navigation={navigation} onDoubleClick={onRefresh}/>}
                         keyExtractor={item => item.id}
                         refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
                         ListHeaderComponent={renderHeader}

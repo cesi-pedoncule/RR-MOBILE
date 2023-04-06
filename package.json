@@ -32,8 +32,8 @@
     "react-native-screens": "~3.18.0",
     "react-native-svg": "13.4.0",
     "react-native-web": "~0.18.9",
+    "rr-apilib": "^0.7.0-alpha",
     "react-test-renderer": "18.1.0",
-    "rr-apilib": "^0.6.0-alpha",
     "sharp-cli": "^4.1.0"
   },
   "devDependencies": {

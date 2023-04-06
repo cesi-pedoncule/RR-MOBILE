@@ -21,9 +21,8 @@ export default function EditResourceScreen({ route, navigation }: Props) {
     const client = route.params.client;
     const resource = route.params.resource;
 
-    var title = resource.title;
-    var description = resource.description;
-
+    const [ title, setTitle ] = useState<string>(resource.title);
+    const [ description, setDescription ] = useState(resource.description);
     const [categories, setCategories] = useState<Category[]>(Array.from(resource.categories.cache.values()));
     const [showSelectCategories, setShowSelectCategories] = useState<boolean>(false);
     const [isPublic, setIsPublic] = useState(resource.isPublic);
@@ -32,7 +31,10 @@ export default function EditResourceScreen({ route, navigation }: Props) {
     const onClickSend = async () => {
         resource.title = title;
         resource.description = description;
+        await resource.categories.set(categories);
+        
         await client.resources.edit(resource);
+
         navigation.goBack();
     }
 
@@ -51,7 +53,7 @@ export default function EditResourceScreen({ route, navigation }: Props) {
                 <IconButton iconStyle={CommonStyles.returnBtn} callBack={() => navigation.goBack()} iconSize={24} iconName={"arrow-left-top"}/>  
                 <ScrollView style={CommonStyles.itemsContainer}>
                     <View style={EditResourceStyles.container}>
-                        <TextInput style={EditResourceStyles.addNameResource} placeholder={"Titre de la ressource"} defaultValue={title} onChangeText={(text) => title=text}></TextInput>
+                        <TextInput style={EditResourceStyles.addNameResource} placeholder={"Titre de la ressource"} defaultValue={title} onChangeText={(text) => setTitle(text)}></TextInput>
                         <View style={EditResourceStyles.categorieContainer}>
                             <FlatList showsHorizontalScrollIndicator={false} horizontal style={EditResourceStyles.categorieList} 
                                 data={categories}
@@ -61,9 +63,9 @@ export default function EditResourceScreen({ route, navigation }: Props) {
                             <TouchableOpacity onPress={onClickAddCategory} style={EditResourceStyles.addCategorieContainer}>
                                 <Text style={EditResourceStyles.addCategorieText}>{'+'}</Text>
                             </TouchableOpacity>
-                            <CategoriesModal client={client} showSelectCategories={showSelectCategories} setShowSelectCategories={setShowSelectCategories} categories={categories} setCategories={setCategories}/>
+                            <CategoriesModal client={client} showSelectCategories={showSelectCategories} setShowSelectCategories={setShowSelectCategories} setCategories={setCategories}/>
                         </View>
-                        <InputTextDescription defaultValue={description} onChangeText={(text) => description=text}></InputTextDescription>
+                        <InputTextDescription defaultValue={description} onChangeText={(text) => setDescription(text)}></InputTextDescription>
                         <ButtonFile text={'Ajouter un fichier'} callBack={onClickAddFile}/>
                         <View style={EditResourceStyles.switchContainer}>
                             <Switch trackColor={{false: COLORS.ComponentBackground, true: COLORS.ComponentBackground}} thumbColor={COLORS.AccentColor} onValueChange={toggleSwitch} value={isPublic}/>
