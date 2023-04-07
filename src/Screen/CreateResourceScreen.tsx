@@ -1,16 +1,16 @@
-import { View, Text, ScrollView, TextInput, Switch, TouchableOpacity, FlatList} from 'react-native'
-import React, { useEffect, useState } from 'react'
-import CommonStyles from '../Styles/CommonStyles'
-import TopBar from '../Components/Input/TopBar'
-import CreateResourceStyles from '../Styles/Screen/CreateResourceStyles'
-import InputTextDescription from '../Components/Input/InputTextDescription'
-import InputButton from '../Components/Button/InputButton'
-import { AttachmentBuilder, Category, ResourceBuilder } from 'rr-apilib'
-import ButtonFile from '../Components/Button/ButtonFile'
-import { NavigationParamList } from '../Types/navigation'
-import { NativeStackScreenProps } from '@react-navigation/native-stack'
-import CategoriesModal from '../Components/CategoriesModal'
-import CategoryButton from '../Components/Button/CategoryButton'
+import { View, Text, ScrollView, TextInput, Switch, TouchableOpacity, FlatList} from 'react-native';
+import React, { useState } from 'react';
+import CommonStyles from '../Styles/CommonStyles';
+import TopBar from '../Components/Input/TopBar';
+import CreateResourceStyles from '../Styles/Screen/CreateResourceStyles';
+import InputTextDescription from '../Components/Input/InputTextDescription';
+import InputButton from '../Components/Button/InputButton';
+import { AttachmentBuilder, Category, ResourceBuilder } from 'rr-apilib';
+import ButtonFile from '../Components/Button/ButtonFile';
+import { NavigationParamList } from '../Types/navigation';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import CategoriesModal from '../Components/CategoriesModal';
+import CategoryButton from '../Components/Button/CategoryButton';
 import { COLORS } from '../Styles/Colors';
 import IconButton from '../Components/Button/IconButton';
 import * as DocumentPicker from 'expo-document-picker';
@@ -79,12 +79,7 @@ export default function CreateResourceScreen({ route, navigation }: Props) {
                         <ButtonFile text={'Ajouter un fichier'} callBack={onClickAddFile}/>
                         {
                             attachments.map((attachment, index) => {
-
-                                if (attachment.file) {
-                                    return <MediaButton attachment={attachment.file!} key={index} />
-                                }
-
-                                return <Text>Test file</Text>
+                                return attachment.file ? <MediaButton attachment={attachment.file!} key={index} /> : <Text>Test file</Text>
                             })
                         }
                         <View style={CreateResourceStyles.switchContainer}>
