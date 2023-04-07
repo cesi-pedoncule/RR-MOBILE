@@ -1,21 +1,22 @@
 import { Modal, TouchableOpacity, View, Text } from 'react-native'
 import React, { useState } from 'react'
 import MultiSelect from 'react-native-multiple-select'
-import { Category, Client } from 'rr-apilib'
+import { Category, Client, Resource } from 'rr-apilib'
 import CategoriesModalStyles from '../Styles/Components/CategoriesModalStyles';
 import { COLORS } from '../Styles/Colors';
 import Header from './Header';
 
 interface Props {
     client: Client;
-    setCategories: React.Dispatch<React.SetStateAction<Category[]>>
+    resource: Resource
     showSelectCategories: boolean;
     setShowSelectCategories: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function CategoriesModal({client, setCategories, showSelectCategories, setShowSelectCategories}: Props) {
+export default function CategoriesModal({client, resource, showSelectCategories, setShowSelectCategories}: Props) {
     const items = client.categories.cache.toJSON();
     const [selectedItems, setSelectedItems] = useState<string[]>();
+    const [categories, setCategories] = useState<Category[]>([]);
 
     const onSelectedItemsChange = (selectedItems:string[]) => {
         const newCategories: Category[]= [];
@@ -29,6 +30,7 @@ export default function CategoriesModal({client, setCategories, showSelectCatego
             }
         })
         setCategories([...newCategories]);
+        resource.categories.set([...newCategories]);
     }
 
     return (
