@@ -27,7 +27,7 @@
     "prop-types": "^15.8.1",
     "react": "18.1.0",
     "react-dom": "18.1.0",
-    "react-native": "0.70.5",
+    "react-native": "0.70.8",
     "react-native-chart-kit": "^6.12.0",
     "react-native-gesture-handler": "~2.8.0",
     "react-native-multiple-select": "^0.5.12",
@@ -36,7 +36,7 @@
     "react-native-svg": "13.4.0",
     "react-native-web": "~0.18.9",
     "react-test-renderer": "18.1.0",
-    "rr-apilib": "^0.8.0-alpha",
+    "rr-apilib": "^0.8.2-alpha",
     "sharp-cli": "^4.1.0"
   },
   "devDependencies": {

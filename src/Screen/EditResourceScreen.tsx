@@ -11,7 +11,7 @@ import { NavigationParamList } from '../Types/navigation'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import CategoriesModal from '../Components/CategoriesModal'
 import CategoryButton from '../Components/Button/CategoryButton'
-import { AttachmentBuilder, Resource, Category } from 'rr-apilib'
+import { AttachmentBuilder, Resource } from 'rr-apilib'
 import IconButton from '../Components/Button/IconButton'
 import * as DocumentPicker from 'expo-document-picker'
 import MediaButton from '../Components/Button/MediaButton'
@@ -22,17 +22,15 @@ export default function EditResourceScreen({ route, navigation }: Props) {
 
     const client = route.params.client;
 
-    const [ resource, setResource ] = useState<Resource>(route.params.resource);
-    const [ newResource ] = useState<Resource>(route.params.resource);
+    const [ resource, setResource ] = useState<Resource|undefined>(route.params.resource);
     const [ showSelectCategories, setShowSelectCategories ] = useState<boolean>(false);
-    const [ isPublic, setIsPublic ] = useState(resource.isPublic);
+    const [ isPublic, setIsPublic ] = useState(resource ? resource.isPublic : false);
     
     const toggleSwitch = () => setIsPublic(previousState => !previousState);
 
     const onClickSend = async () => {
-        setResource(newResource);
-        await resource.categories.set(Array.from(newResource.categories.cache.values()));
-        await client.resources.edit(resource);
+        resource &&
+            await client.resources.edit(resource);
 
         navigation.goBack();
     }
@@ -43,10 +41,11 @@ export default function EditResourceScreen({ route, navigation }: Props) {
 
     const onClickAddFile = () => {
         DocumentPicker.getDocumentAsync({copyToCacheDirectory: false}).then(async (file) => {
-            if(file.type === "success"){
+            if(file.type === "success" && resource){
                 const attachment = new AttachmentBuilder().setFile(file).setRessource(resource);
-                await resource.attachments.create(attachment)
-                console.log(resource.attachments);
+                await resource.attachments.create(attachment);
+                setResource(undefined);
+                setResource(resource);
             }
         })
     }
@@ -54,11 +53,13 @@ export default function EditResourceScreen({ route, navigation }: Props) {
     return (
         <View style={CommonStyles.container}>
             <TopBar hideSearchBar={true} navigation={navigation}/>
-            <View style={CommonStyles.content}>
+            {
+                resource && 
+                <View style={CommonStyles.content}>
                 <IconButton iconStyle={CommonStyles.returnBtn} callBack={() => navigation.goBack()} iconSize={24} iconName={"arrow-left-top"}/>  
                 <ScrollView style={CommonStyles.itemsContainer}>
                     <View style={EditResourceStyles.container}>
-                        <TextInput style={EditResourceStyles.addNameResource} placeholder={"Titre de la ressource"} defaultValue={resource.title} onChangeText={(text) => newResource.title = text}></TextInput>
+                        <TextInput style={EditResourceStyles.addNameResource} placeholder={"Titre de la ressource"} defaultValue={resource.title} onChangeText={(text) => resource.title = text}></TextInput>
                         <View style={EditResourceStyles.categorieContainer}>
                             <FlatList showsHorizontalScrollIndicator={false} horizontal style={EditResourceStyles.categorieList} 
                                 data={Array.from(resource.categories.cache.values())}
@@ -70,7 +71,7 @@ export default function EditResourceScreen({ route, navigation }: Props) {
                             </TouchableOpacity>
                             <CategoriesModal client={client} showSelectCategories={showSelectCategories} setShowSelectCategories={setShowSelectCategories} resource={resource}/>
                         </View>
-                        <InputTextDescription defaultValue={resource.description} onChangeText={(text) => newResource.description = text}/>
+                        <InputTextDescription defaultValue={resource.description} onChangeText={(text) => resource.description = text}/>
                         <ButtonFile text={'Ajouter un fichier'} callBack={onClickAddFile}/>
                         {
                             Array.from(resource.attachments.cache.values()).map((attachment, index) => 
@@ -85,6 +86,7 @@ export default function EditResourceScreen({ route, navigation }: Props) {
                     </View>
                 </ScrollView>
             </View>
+            }
         </View>
     )
 }

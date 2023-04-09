@@ -42,7 +42,7 @@ export default function LikeButton({ resource, setResource, onClick}: Props) {
 		<View style={LikeButtonStyles.container}>
 			<Text style={LikeButtonStyles.numberLike}>{resource.likes.cache.size.toString()}</Text>
 			<TouchableOpacity style={LikeButtonStyles.likeBtn} onPress={(e) => onPress(e)} >
-				<MaterialCommunityIcons name={resource.isLiked() ? "cards-heart" : "cards-heart-outline" } size={24} color={COLORS.Black} />
+				<MaterialCommunityIcons name={resource.isLiked ? "cards-heart" : "cards-heart-outline" } size={24} color={COLORS.Black} />
 			</TouchableOpacity>
 		</View>
 	);

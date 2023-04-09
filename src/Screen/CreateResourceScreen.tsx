@@ -79,7 +79,7 @@ export default function CreateResourceScreen({ route, navigation }: Props) {
                         <ButtonFile text={'Ajouter un fichier'} callBack={onClickAddFile}/>
                         {
                             attachments.map((attachment, index) => {
-                                return attachment.file ? <MediaButton attachment={attachment.file!} key={index} /> : <Text>Test file</Text>
+                                return attachment.file ? <MediaButton attachment={attachment.file!} key={index} /> : <Text style={CommonStyles.textEmptyResult}>Test file</Text>
                             })
                         }
                         <View style={CreateResourceStyles.switchContainer}>

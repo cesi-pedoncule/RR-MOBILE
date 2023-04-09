@@ -17,4 +17,7 @@ export default StyleSheet.create({
         shadowOffset: { width: 4, height: 4},
         elevation: 2,
     },
+    text: {
+        width : "85%",
+    }
 });

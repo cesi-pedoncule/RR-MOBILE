@@ -10,4 +10,6 @@ export enum COLORS {
     TagColor = '#cad5d5',
     ForegroundFocused = '#396a83',
     Transparent = 'transparent',
+    Red = '#cc3b3b',
+    Orange = '#cc973b',
 }

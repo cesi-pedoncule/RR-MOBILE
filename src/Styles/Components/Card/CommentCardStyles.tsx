@@ -47,5 +47,14 @@ export default StyleSheet.create({
         position: 'absolute',
         bottom: 2,
         right: 0,
-    }
+    },
+    buttonsDeleteResource: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: 40,
+        height: 40,
+        padding: 5,
+        borderRadius: 7,
+        marginHorizontal: 15,
+    },
 });
