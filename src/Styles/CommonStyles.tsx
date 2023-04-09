@@ -81,16 +81,6 @@ export default StyleSheet.create({
         borderRadius: 7,
         transition: 0.2,
     },
-    buttonsEditionResource: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        width: 40,
-        height: 40,
-        padding: 5,
-        borderRadius: 7,
-        transition: 0.2,
-        marginHorizontal: 15,
-    },
     image: {
         resizeMode: "contain",
         width: "100%",

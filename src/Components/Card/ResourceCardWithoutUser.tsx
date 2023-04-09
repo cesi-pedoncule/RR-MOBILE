@@ -10,6 +10,7 @@ import CommentButton from '../Button/CommentButton'
 import CategoryButton from '../Button/CategoryButton'
 import { likeClickHandle } from '../../Functions/Utils'
 import { COLORS } from '../../Styles/Colors'
+import StateButton from '../Button/StateButton'
 import CommonStyles from '../../Styles/CommonStyles'
 
 interface Props {
@@ -85,10 +86,11 @@ export default function ResourceCardWithoutUser({ resourceData, setResources, se
                 <View style={ResourceCardStyles.buttonsContainer}>
                     <LikeButton resource={resource} setResource={setResource} onClick={onDoubleClick}/>
                     <CommentButton commentNumber={numberCommentResource}/>
+                    <IconButton callBack={onClickDeleteResource} iconStyle={ResourceCardStyles.buttonsEditionResource} iconSize={24} iconName={"delete-outline"} iconColor={COLORS.Black}/>
+                    <IconButton callBack={onClickEditResource} iconStyle={ResourceCardStyles.buttonsEditionResource} iconSize={24} iconName={"square-edit-outline"} iconColor={COLORS.Black}/>
+                    <StateButton resource={resource}/>
                 </View>
-                <View style={ResourceCardStyles.buttonsEditContainer}>
-                    <IconButton callBack={onClickDeleteResource} iconStyle={CommonStyles.buttonsEditionResource} iconSize={24} iconName={"delete-outline"} iconColor={COLORS.Black}/>
-                    <IconButton callBack={onClickEditResource} iconStyle={CommonStyles.buttonsEditionResource} iconSize={24} iconName={"square-edit-outline"} iconColor={COLORS.Black}/>
+                <View>
                 </View>
             </View>
         </TouchableOpacity>

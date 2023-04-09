@@ -21,7 +21,7 @@ export default function ResourceCardWithUser({ resourceData, navigation, styleCo
     const numberCommentResource = resource.comments.cache.size;
     const categories = Array.from(resource.categories.cache.values());
 
-    const username = resource.user ? `${resource.user.name} ${resource.user.firstname}` : "Utilisateur inconnu";
+    const username = resource.creator ? `${resource.creator.name} ${resource.creator.firstname}` : "Utilisateur inconnu";
     const description = resource.description ?  resource.description : "Aucune description fournie" ;
 
     let timeout: NodeJS.Timeout | null = null;

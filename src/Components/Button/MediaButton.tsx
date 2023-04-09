@@ -1,9 +1,10 @@
-import { Text, TouchableOpacity } from "react-native"
+import { Text, TouchableOpacity, View } from "react-native"
 import { COLORS } from "../../Styles/Colors"
 import ButtonFileStyles from "../../Styles/Components/Button/ButtonFileStyles"
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import { Attachment } from "rr-apilib";
 import * as Linking from 'expo-linking';
+import CommonStyles from "../../Styles/CommonStyles";
 
 interface Props {
     attachment: Attachment|File;
@@ -24,7 +25,9 @@ export default function MediaButton ({ attachment }: Props) {
     return (
         <TouchableOpacity style={ButtonFileStyles.container} onPress={handleDownloadFile}>
             <MaterialCommunityIcons name="arrow-down" size={24} color={ COLORS.Black }/>
-            <Text style={{ color: COLORS.Black }}>{ fileName }</Text>
+            <View style={ButtonFileStyles.text}>
+                <Text style={CommonStyles.textEmptyResult}>{ fileName }</Text>
+            </View>
         </TouchableOpacity>
     );
 }

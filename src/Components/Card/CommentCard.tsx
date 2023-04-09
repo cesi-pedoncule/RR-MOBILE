@@ -4,7 +4,6 @@ import { Comment, Resource } from 'rr-apilib';
 import CommentCardStyles from '../../Styles/Components/Card/CommentCardStyles';
 import IconButton from '../Button/IconButton';
 import { COLORS } from '../../Styles/Colors';
-import CommonStyles from '../../Styles/CommonStyles';
 
 interface Props {
     comment: Comment;
@@ -51,7 +50,7 @@ export default function CommentCard({comment, setComments, resource}:Props) {
             {
                 isDeleted && 
                 <View style={CommentCardStyles.deleteCommentButton}>
-                    <IconButton callBack={onClickDeleteComment} iconSize={24} iconStyle={CommonStyles.buttonsEditionResource} iconName={"delete-outline"} iconColor={COLORS.Black}/>
+                    <IconButton callBack={onClickDeleteComment} iconSize={24} iconStyle={CommentCardStyles.buttonsDeleteResource} iconName={"delete-outline"} iconColor={COLORS.Black}/>
                 </View>
             }
         </View>

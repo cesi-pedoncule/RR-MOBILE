@@ -8,20 +8,20 @@ import Header from './Header';
 
 interface Props {
     client: Client;
-    resource: Resource
+    resource?: Resource;
+    setCategories ?: React.Dispatch<React.SetStateAction<Category[]>>;
     showSelectCategories: boolean;
     setShowSelectCategories: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function CategoriesModal({client, resource, showSelectCategories, setShowSelectCategories}: Props) {
+export default function CategoriesModal({client, resource, setCategories, showSelectCategories, setShowSelectCategories}: Props) {
     const items = client.categories.cache.toJSON();
     const [selectedItems, setSelectedItems] = useState<string[]>();
-    const [categories, setCategories] = useState<Category[]>([]);
 
     const onSelectedItemsChange = (selectedItems:string[]) => {
         const newCategories: Category[]= [];
         setSelectedItems(selectedItems);
-        setCategories([]); 
+       
         selectedItems.map((selectItem) => {
             const categorie = client.categories.cache.get(selectItem);
 
@@ -29,8 +29,12 @@ export default function CategoriesModal({client, resource, showSelectCategories,
                 newCategories.push(categorie)
             }
         })
-        setCategories([...newCategories]);
-        resource.categories.set([...newCategories]);
+        
+        setCategories &&
+            setCategories([...newCategories]);
+
+        resource &&
+            resource.categories.set([...newCategories]);
     }
 
     return (
