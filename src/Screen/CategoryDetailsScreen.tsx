@@ -39,7 +39,7 @@ export default function CategoryDetailsScreen ({ navigation, route }: Props) {
     const onRefresh = useCallback(async () => {
         const newCategorie = client.categories.cache.get(category.id);
         if(newCategorie){
-            const refreshResources:Resource[] = Array.from(newCategorie.resources.cache.values());
+            const refreshResources:Resource[] = Array.from(newCategorie.resources.getValidateResources().values());
             setResources([...refreshResources]);
             setResourcesFiltered([...refreshResources.slice(0, 6)]);
             setRefreshing(false)
