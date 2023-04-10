@@ -16,4 +16,14 @@ export default StyleSheet.create({
         marginTop: '5%',
         marginBottom: '5%',
     },
+    rulesContainer: {
+        width: "70%",
+    },
+    rulesText: {
+        fontSize: 10,
+        color: COLORS.ForegroundHolder,
+        textAlign: 'left',
+        alignItems: 'center',
+        width: "100%",
+    }
 });

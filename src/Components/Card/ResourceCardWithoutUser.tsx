@@ -11,7 +11,6 @@ import CategoryButton from '../Button/CategoryButton'
 import { likeClickHandle } from '../../Functions/Utils'
 import { COLORS } from '../../Styles/Colors'
 import StateButton from '../Button/StateButton'
-import CommonStyles from '../../Styles/CommonStyles'
 
 interface Props {
     resourceData: Resource;

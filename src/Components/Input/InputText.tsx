@@ -7,13 +7,15 @@ interface Props {
   type: KeyboardType;
   secureTextEntry?: boolean;
   onChangeText?: (value: string) => void;
+  onBlur?: () => void;
+  isValid?: boolean,
 }
 
-export default function InputText({placeholder, type, secureTextEntry=false, onChangeText = (text: string) => {} } : Props) {
+export default function InputText({placeholder, type, secureTextEntry=false, onChangeText = (text: string) => {} , onBlur = () => {}, isValid = true} : Props) {
   return (
-    <View style={inputTextStyles.txtFieldBackground}>
+    <View style={isValid ? inputTextStyles.txtFieldBackground : inputTextStyles.txtFieldBackgroundNotValid}>
       <Text style={inputTextStyles.txtFieldText}>{placeholder}</Text>
-      <TextInput style={inputTextStyles.txtFieldInput} keyboardType={type} secureTextEntry={secureTextEntry} onChangeText={(text) => {onChangeText(text)}} />
+      <TextInput style={inputTextStyles.txtFieldInput} keyboardType={type} secureTextEntry={secureTextEntry} onChangeText={(text) => {onChangeText(text)}} onBlur={onBlur}/>
     </View>
   )
 }

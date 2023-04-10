@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ActivityIndicator, ScrollView, Text, View } from "react-native";
+import { ActivityIndicator, ScrollView, Text, ToastAndroid, View } from "react-native";
 import Header from "../Components/Header";
 import InputButton from "../Components/Button/InputButton";
 import Link from "../Components/Button/Link";
@@ -16,7 +16,9 @@ type Props = NativeStackScreenProps<NavigationParamList, 'Login'>
 
 export default function LoginScreen({ route, navigation }: Props) {
     
-    const [isLoading, setIsLoading] = useState<boolean>(true);
+    const [ isLoading, setIsLoading ] = useState<boolean>(true);
+    const [ email, setEmail ] = useState<string>('');
+    const [ password, setPassword ] = useState<string>('');
     const client = route.params.client;
 
     const onClickRegisterText = () => {
@@ -28,13 +30,14 @@ export default function LoginScreen({ route, navigation }: Props) {
 
         try {
             await client.login('user0@example.com', 'password');
+            //await client.login(email, password);
             await AsyncStorage.setItem('token', client.auth.token+'');
             await AsyncStorage.setItem('refresh_token', client.auth.refresh_token+'');
 
             navigation.navigate('Resources', { client });
 
         } catch (error) {
-            alert('Mauvais identifiants');
+            ToastAndroid.show('Mauvais identifiants' , ToastAndroid.CENTER);
         }
         setIsLoading(false);
     }
@@ -85,8 +88,8 @@ export default function LoginScreen({ route, navigation }: Props) {
                             <ScrollView style={CommonStyles.itemsContainer}>
                                 <Header label="Connexion" />
                                 <View style={LoginStyles.loginContainer}>
-                                    <InputText placeholder="Email" type='email-address' />
-                                    <InputText placeholder="Mot de passe" type='default' secureTextEntry={true} />
+                                    <InputText placeholder="Email" type='email-address' onChangeText={(value) => setEmail(value)}/>
+                                    <InputText placeholder="Mot de passe" type='default' secureTextEntry={true} onChangeText={(value) => setPassword(value)}/>
                                 </View>
                                 <View style={LoginStyles.registerContainer}>
                                     <Text style={LoginStyles.text}> Pas de compte ? </Text>
