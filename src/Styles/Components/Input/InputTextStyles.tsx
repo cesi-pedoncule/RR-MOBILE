@@ -16,7 +16,7 @@ export default StyleSheet.create({
     },
     txtFieldBackgroundNotValid: {
         justifyContent: 'center',
-        width: 261,
+        width: "70%",
         height: 55,
         margin: 10,
         backgroundColor: COLORS.ComponentBackground,
