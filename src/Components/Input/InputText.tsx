@@ -1,4 +1,4 @@
-import { View, Text, TextInput, KeyboardType, TextInputFocusEventData, NativeSyntheticEvent } from 'react-native'
+import { View, Text, TextInput, KeyboardType } from 'react-native'
 import React from 'react'
 import inputTextStyles from '../../Styles/Components/Input/InputTextStyles';
 
