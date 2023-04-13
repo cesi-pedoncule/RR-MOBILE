@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
     resourcesContainer: {
-        marginHorizontal: 20,
+        paddingHorizontal: 20,
         justifyContent: 'center',
         paddingBottom: 80,
     },

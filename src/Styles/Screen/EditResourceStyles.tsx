@@ -8,7 +8,7 @@ export default StyleSheet.create({
         width : "100%",
         paddingLeft : 10,
         paddingRight : 10,
-        marginTop : 5,
+        marginVertical : 5,
     },
     addNameResource: {
         color: COLORS.Black,

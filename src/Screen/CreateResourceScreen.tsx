@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, TextInput, Switch, TouchableOpacity, FlatList} from 'react-native';
+import { View, Text, ScrollView, TextInput, Switch, TouchableOpacity, FlatList, ToastAndroid, ActivityIndicator} from 'react-native';
 import React, { useState } from 'react';
 import CommonStyles from '../Styles/CommonStyles';
 import TopBar from '../Components/Input/TopBar';
@@ -22,24 +22,34 @@ export default function CreateResourceScreen({ route, navigation }: Props) {
     const client = route.params.client;
     const user = client.auth.me;
 
-    const [ attachments, setAttachments ] = useState<AttachmentBuilder[]>([]);
-
+    const [ attachmentsBuilder, setAttachmentsBuilder ] = useState<AttachmentBuilder[]>([]);
     const [ newResource ] = useState<ResourceBuilder>(new ResourceBuilder());
     const [ showSelectCategories, setShowSelectCategories ] = useState<boolean>(false);
     const [ isPublic, setIsPublic ] = useState<boolean>(false);
     const [ categories, setCategories ] = useState<Category[]>([]);
+    const [ isLoading, setIsLoading ] = useState<boolean>(false);
+
     const toggleSwitch = () => setIsPublic(previousState => !previousState);
 
     const onClickSend = async () => {
-        newResource.setIsPublic(isPublic);
-        newResource.setCategories(categories);
+        setIsLoading(true);
 
-        newResource.setAttachments(attachments);
+        try {
+            newResource.setIsPublic(isPublic);
+            newResource.setCategories(categories);
+    
+            newResource.setAttachments(attachmentsBuilder);
+    
+            if(user){
+                await user.resources.create(newResource);
+            }
+            navigation.goBack();
 
-        if(user){
-            await user.resources.create(newResource);
+        } catch(error) {
+            ToastAndroid.show("Une erreur s'est produite" , ToastAndroid.CENTER);
         }
-        navigation.goBack();
+
+        setIsLoading(false);
     }
 
     const onClickAddCategory = () => {
@@ -48,13 +58,17 @@ export default function CreateResourceScreen({ route, navigation }: Props) {
 
     const onClickAddFile = () => {
         DocumentPicker.getDocumentAsync({copyToCacheDirectory: false}).then((file) => {
-            if(file.type === "success"){
+            if(file.type === "success" && attachmentsBuilder.length < 6){
                 const attachment = new AttachmentBuilder().setFile(file);
-                attachments.push(attachment);
-                setAttachments([...attachments ]);
+                attachmentsBuilder.push(attachment);
+                setAttachmentsBuilder([...attachmentsBuilder ]);
+            } else if (attachmentsBuilder.length == 6) {
+                ToastAndroid.show("Vous avez atteint le seuil maximum de fichier importé" , ToastAndroid.CENTER);
             }
         })
     }
+
+
 
     return (
         <View style={CommonStyles.container}>
@@ -78,16 +92,23 @@ export default function CreateResourceScreen({ route, navigation }: Props) {
                         <InputTextDescription onChangeText={(text) => newResource.setDescription(text)} defaultValue={""}/>
                         <ButtonFile text={'Ajouter un fichier'} callBack={onClickAddFile}/>
                         {
-                            attachments.map((attachment, index) => {
-                                return attachment.file ? <MediaButton attachment={attachment.file!} key={index} /> : <Text style={CommonStyles.textEmptyResult}>Test file</Text>
-                            })
+                            attachmentsBuilder.map((attachment, index) => 
+                                <MediaButton 
+                                    isDeleted={true} 
+                                    key={index}
+                                    idAttachement={index} 
+                                    attachment={attachment.file!} 
+                                    attachmentsBuilder={attachmentsBuilder} 
+                                    setAttachementsBuilder={setAttachmentsBuilder} 
+                                />
+                            )
                         }
                         <View style={CreateResourceStyles.switchContainer}>
                             <Switch trackColor={{false: COLORS.ComponentBackground, true: COLORS.ComponentBackground}} thumbColor={COLORS.AccentColor} onValueChange={toggleSwitch} value={isPublic}/>
                             <Text style={{color: COLORS.Black}}> Privé / Publique </Text>
                         </View>
                         <View style={CreateResourceStyles.sendButtonContainer}>
-                            <InputButton label={'Envoyer'} callBack={onClickSend} style={CreateResourceStyles.sendButton}/>
+                            <InputButton label={'Envoyer'} isLoading={isLoading} callBack={onClickSend} style={CreateResourceStyles.sendButton}/>
                         </View>
                     </View>
                 </ScrollView>

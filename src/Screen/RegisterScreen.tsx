@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ActivityIndicator, ScrollView, Text, ToastAndroid, View } from "react-native";
+import { ScrollView, Text, ToastAndroid, View } from "react-native";
 import Header from "../Components/Header";
 import InputButton from "../Components/Button/InputButton";
 import Link from "../Components/Button/Link";
@@ -96,29 +96,26 @@ export default function RegisterScreen({ route, navigation }: Props) {
         <View style={CommonStyles.container}>
             <TopBar hideSearchBar={true} navigation={navigation} />
             <View style={CommonStyles.content}>
-                {
-                    isLoading ? <ActivityIndicator size="large" color={COLORS.AccentColor} style={CommonStyles.loader} /> : 
-                    <ScrollView style={CommonStyles.itemsContainer}>
-                        <Header label="Inscription" />
-                        <View style={LoginStyles.loginContainer}>
-                            <InputText placeholder="Nom" type='default' onChangeText={(value) => newUser.setName(value)} onBlur={onBlurName} isValid={isValidName}/>
-                            <InputText placeholder="Prénom" type='default' onChangeText={(value) => newUser.setFirstname(value)} onBlur={onBlurFirstName} isValid={isValidFirstname}/>
-                            <InputText placeholder="Email" type='email-address' onChangeText={(value) => newUser.setEmail(value)} onBlur={onBlurEmail} isValid={isValidEmail} />
-                            <InputText placeholder="Mot de passe" type='default' secureTextEntry={true} onChangeText={(value) => newUser.setPassword(value)} onBlur={onBlurPassword} isValid={isValidPassword} />
-                            <View style={RegisterStyles.rulesContainer}>
-                                <Text style={RegisterStyles.rulesText}>Minimum 1 majuscule</Text>
-                                <Text style={RegisterStyles.rulesText}>Minimum 1 chiffre</Text>
-                                <Text style={RegisterStyles.rulesText}>Entre 7-13 caractères</Text>
-                            </View>
-                            <InputText placeholder="Confirmation de mot de passe" type='default' secureTextEntry={true} onChangeText={(value) => setPasswordConfirm(value)} onBlur={onBlurPasswordConfim} isValid={isValidPasswordConfirm} />
+                <ScrollView style={CommonStyles.itemsContainer}>
+                    <Header label="Inscription" />
+                    <View style={LoginStyles.loginContainer}>
+                        <InputText placeholder="Nom" type='default' onChangeText={(value) => newUser.setName(value)} onBlur={onBlurName} isValid={isValidName}/>
+                        <InputText placeholder="Prénom" type='default' onChangeText={(value) => newUser.setFirstname(value)} onBlur={onBlurFirstName} isValid={isValidFirstname}/>
+                        <InputText placeholder="Email" type='email-address' onChangeText={(value) => newUser.setEmail(value)} onBlur={onBlurEmail} isValid={isValidEmail} />
+                        <InputText placeholder="Mot de passe" type='default' secureTextEntry={true} onChangeText={(value) => newUser.setPassword(value)} onBlur={onBlurPassword} isValid={isValidPassword} />
+                        <View style={RegisterStyles.rulesContainer}>
+                            <Text style={RegisterStyles.rulesText}>Minimum 1 majuscule</Text>
+                            <Text style={RegisterStyles.rulesText}>Minimum 1 chiffre</Text>
+                            <Text style={RegisterStyles.rulesText}>Entre 7-13 caractères</Text>
                         </View>
-                        <View style={RegisterStyles.registerContainer}>
-                            <Text style={{color: COLORS.Black,}}> Déjà un compte ? </Text>
-                            <Link label="Connectez-vous maintenant" callBack={onClickLoginText} />
-                            <InputButton label="Valider" callBack={onClickRegisterButton} style={RegisterStyles.registerButton} isDisabled={isDisabled}/>
-                        </View>              
-                    </ScrollView>
-                }
+                        <InputText placeholder="Confirmation de mot de passe" type='default' secureTextEntry={true} onChangeText={(value) => setPasswordConfirm(value)} onBlur={onBlurPasswordConfim} isValid={isValidPasswordConfirm} />
+                    </View>
+                    <View style={RegisterStyles.registerContainer}>
+                        <Text style={{color: COLORS.Black,}}> Déjà un compte ? </Text>
+                        <Link label="Connectez-vous maintenant" callBack={onClickLoginText} />
+                        <InputButton isLoading={isLoading} label="Valider" callBack={onClickRegisterButton} style={RegisterStyles.registerButton} isDisabled={isDisabled}/>
+                    </View>              
+                </ScrollView>
             </View>
         </View>
     );

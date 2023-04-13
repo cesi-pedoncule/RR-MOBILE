@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ActivityIndicator, ScrollView, Text, ToastAndroid, View } from "react-native";
+import { ScrollView, Text, ToastAndroid, View } from "react-native";
 import Header from "../Components/Header";
 import InputButton from "../Components/Button/InputButton";
 import Link from "../Components/Button/Link";
@@ -8,7 +8,6 @@ import LoginStyles from "../Styles/Screen/LoginStyles";
 import InputText from "../Components/Input/InputText";
 import TopBar from "../Components/Input/TopBar";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { COLORS } from "../Styles/Colors";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { NavigationParamList } from "../Types/navigation";
 
@@ -82,23 +81,20 @@ export default function LoginScreen({ route, navigation }: Props) {
             <TopBar hideSearchBar={true} navigation={navigation} />
             <View style={CommonStyles.content}>
                 <View style={LoginStyles.container}>
-                    {
-                        isLoading ? <ActivityIndicator size="large" color={COLORS.AccentColor} style={CommonStyles.loader} /> : 
-                        <View>
-                            <ScrollView style={CommonStyles.itemsContainer}>
-                                <Header label="Connexion" />
-                                <View style={LoginStyles.loginContainer}>
-                                    <InputText placeholder="Email" type='email-address' onChangeText={(value) => setEmail(value)}/>
-                                    <InputText placeholder="Mot de passe" type='default' secureTextEntry={true} onChangeText={(value) => setPassword(value)}/>
-                                </View>
-                                <View style={LoginStyles.registerContainer}>
-                                    <Text style={LoginStyles.text}> Pas de compte ? </Text>
-                                    <Link label="Inscrivez-vous maintenant" callBack={onClickRegisterText}/>
-                                    <InputButton label="Se connecter" callBack={onClickLoginButton} style={LoginStyles.loginButton} />
-                                </View>
-                            </ScrollView>
-                        </View>
-                    }
+                    <View>
+                        <ScrollView style={CommonStyles.itemsContainer}>
+                            <Header label="Connexion" />
+                            <View style={LoginStyles.loginContainer}>
+                                <InputText placeholder="Email" type='email-address' onChangeText={(value) => setEmail(value)}/>
+                                <InputText placeholder="Mot de passe" type='default' secureTextEntry={true} onChangeText={(value) => setPassword(value)}/>
+                            </View>
+                            <View style={LoginStyles.registerContainer}>
+                                <Text style={LoginStyles.text}> Pas de compte ? </Text>
+                                <Link label="Inscrivez-vous maintenant" callBack={onClickRegisterText}/>
+                                <InputButton isLoading={isLoading} label="Se connecter" callBack={onClickLoginButton} style={LoginStyles.loginButton} />
+                            </View>
+                        </ScrollView>
+                    </View>
                 </View>
             </View>
         </View>

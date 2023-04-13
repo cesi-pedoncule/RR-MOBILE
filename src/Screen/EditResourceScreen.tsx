@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, Switch, TouchableOpacity, TextInput, FlatList } from 'react-native'
+import { View, Text, ScrollView, Switch, TouchableOpacity, TextInput, FlatList, ToastAndroid } from 'react-native'
 import React, { useState } from 'react'
 import CommonStyles from '../Styles/CommonStyles'
 import EditResourceStyles from '../Styles/Screen/EditResourceStyles'
@@ -11,7 +11,7 @@ import { NavigationParamList } from '../Types/navigation'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import CategoriesModal from '../Components/CategoriesModal'
 import CategoryButton from '../Components/Button/CategoryButton'
-import { AttachmentBuilder, Resource } from 'rr-apilib'
+import { Attachment, AttachmentBuilder, Category, Resource } from 'rr-apilib'
 import IconButton from '../Components/Button/IconButton'
 import * as DocumentPicker from 'expo-document-picker'
 import MediaButton from '../Components/Button/MediaButton'
@@ -22,17 +22,47 @@ export default function EditResourceScreen({ route, navigation }: Props) {
 
     const client = route.params.client;
 
-    const [ resource, setResource ] = useState<Resource|undefined>(route.params.resource);
+    const resource:Resource = route.params.resource;
+    const [ title, setTitle ] = useState<string>(resource ? resource.title : "");
+    const [ description, setDescription ] = useState(resource ? resource.description : "");
+    const [ categories, setCategories ] = useState<Category[]>(Array.from(resource ? resource.categories.cache.values() : []));
     const [ showSelectCategories, setShowSelectCategories ] = useState<boolean>(false);
     const [ isPublic, setIsPublic ] = useState(resource ? resource.isPublic : false);
+    const [ isLoading, setIsLoading ] = useState<boolean>(false);
+    // Les attachmentsBuilder sont les attachments qu'on ajoute et qu'on montre qu'on peut supprimer comme pour dans CreateResourceScreen => des nouvelles attachments
+    const [ attachmentsBuilder, setAttachmentsBuilder ] = useState<AttachmentBuilder[]>([]);
+    // Les attachmentsToDelete est une liste à la base vide, qu'on remplie à chaque fois qu'on veut supprimer une attachment, 
+    // elle permet de supprimer les attachments seulement quand on clique si on valide la modification de la ressource
+    const [ attachmentsToDelete, setAttachmentsToDelete ] = useState<Attachment[]>([]);
+    // Les attachmentsToShow sont les attachments de base qu'on montre à l'écran, et qu'on diminue quand on supprime une attachment => C'est juste un state de visualisation
+    const [ attachmentsToShow, setAttachmentsToShow ] = useState<Attachment[]>(resource ? Array.from(resource.attachments.cache.values()) : []);
     
     const toggleSwitch = () => setIsPublic(previousState => !previousState);
 
     const onClickSend = async () => {
-        resource &&
+        setIsLoading(true);
+
+        try {
+            resource.title = title;
+            resource.description = description;
+            
+            await resource.categories.set(categories);
             await client.resources.edit(resource);
 
-        navigation.goBack();
+            attachmentsBuilder.map(async (attachment) => 
+                await resource.attachments.create(attachment)
+            );
+
+            attachmentsToDelete.map(async (attachmentToDelete) =>
+                await resource.attachments.delete(attachmentToDelete)
+            );
+            navigation.goBack();
+
+        } catch(error) {
+            ToastAndroid.show("Une erreur s'est produite" , ToastAndroid.CENTER);
+        }
+
+        setIsLoading(false);
     }
 
     const onClickAddCategory = () => {
@@ -41,11 +71,12 @@ export default function EditResourceScreen({ route, navigation }: Props) {
 
     const onClickAddFile = () => {
         DocumentPicker.getDocumentAsync({copyToCacheDirectory: false}).then(async (file) => {
-            if(file.type === "success" && resource){
+            if(file.type === "success" && (attachmentsBuilder.length + resource.attachments.cache.size) < 6){
                 const attachment = new AttachmentBuilder().setFile(file).setRessource(resource);
-                await resource.attachments.create(attachment);
-                setResource(undefined);
-                setResource(resource);
+                attachmentsBuilder.push(attachment);
+                setAttachmentsBuilder([...attachmentsBuilder ]);
+            } else if (resource && attachmentsBuilder.length + resource.attachments.cache.size == 6) {
+                ToastAndroid.show("Vous avez atteint le seuil maximum de fichier importé" , ToastAndroid.CENTER);
             }
         })
     }
@@ -53,40 +84,58 @@ export default function EditResourceScreen({ route, navigation }: Props) {
     return (
         <View style={CommonStyles.container}>
             <TopBar hideSearchBar={true} navigation={navigation}/>
-            {
-                resource && 
-                <View style={CommonStyles.content}>
+            <View style={CommonStyles.content}>
                 <IconButton iconStyle={CommonStyles.returnBtn} callBack={() => navigation.goBack()} iconSize={24} iconName={"arrow-left-top"}/>  
                 <ScrollView style={CommonStyles.itemsContainer}>
                     <View style={EditResourceStyles.container}>
-                        <TextInput style={EditResourceStyles.addNameResource} placeholder={"Titre de la ressource"} defaultValue={resource.title} onChangeText={(text) => resource.title = text}></TextInput>
+                        <TextInput style={EditResourceStyles.addNameResource} placeholder={"Titre de la ressource"} defaultValue={title} onChangeText={(text) => setTitle(text)}></TextInput>
                         <View style={EditResourceStyles.categorieContainer}>
                             <FlatList showsHorizontalScrollIndicator={false} horizontal style={EditResourceStyles.categorieList} 
-                                data={Array.from(resource.categories.cache.values())}
+                                data={categories}
                                 renderItem={({item}) => <CategoryButton navigation={navigation} category={item}/>}
                                 keyExtractor={item => item.id}
                             />
                             <TouchableOpacity onPress={onClickAddCategory} style={EditResourceStyles.addCategorieContainer}>
                                 <Text style={EditResourceStyles.addCategorieText}>{'+'}</Text>
                             </TouchableOpacity>
-                            <CategoriesModal client={client} showSelectCategories={showSelectCategories} setShowSelectCategories={setShowSelectCategories} resource={resource}/>
+                            <CategoriesModal client={client} showSelectCategories={showSelectCategories} setShowSelectCategories={setShowSelectCategories} setCategories={setCategories}/>
                         </View>
-                        <InputTextDescription defaultValue={resource.description} onChangeText={(text) => resource.description = text}/>
+                        <InputTextDescription defaultValue={resource.description} onChangeText={(text) => setDescription(text)}/>
                         <ButtonFile text={'Ajouter un fichier'} callBack={onClickAddFile}/>
                         {
-                            Array.from(resource.attachments.cache.values()).map((attachment, index) => 
-                                <MediaButton key={index} attachment={attachment}/>
+                            attachmentsToShow.map((attachment, index) => 
+                                <MediaButton 
+                                    isDeleted={true} 
+                                    key={index} 
+                                    idAttachement={index} 
+                                    attachment={attachment} 
+                                    attachementsToDelete={attachmentsToDelete} 
+                                    setAttachementsToDelete={setAttachmentsToDelete} 
+                                    attachementsToShow={attachmentsToShow}
+                                    setAttachementsToShow={setAttachmentsToShow}
+                                />
+                            )
+                        }
+                        {
+                            attachmentsBuilder.map((attachment, index) => 
+                                <MediaButton 
+                                    isDeleted={true} 
+                                    key={index}
+                                    idAttachement={index} 
+                                    attachment={attachment.file!} 
+                                    attachmentsBuilder={attachmentsBuilder} 
+                                    setAttachementsBuilder={setAttachmentsBuilder} 
+                                />
                             )
                         }
                         <View style={EditResourceStyles.switchContainer}>
                             <Switch trackColor={{false: COLORS.ComponentBackground, true: COLORS.ComponentBackground}} thumbColor={COLORS.AccentColor} onValueChange={toggleSwitch} value={isPublic}/>
                             <Text style={{color: COLORS.Black}}> Privé / Publique </Text>
                         </View>
-                        <InputButton label={'Modifier'} callBack={onClickSend} style={EditResourceStyles.sendButton}/>
+                        <InputButton label={'Modifier'} isLoading={isLoading} callBack={onClickSend} style={EditResourceStyles.sendButton}/>
                     </View>
                 </ScrollView>
             </View>
-            }
         </View>
     )
 }

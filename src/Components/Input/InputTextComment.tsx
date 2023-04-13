@@ -1,4 +1,4 @@
-import { View, TextInput, TouchableOpacity } from 'react-native'
+import { View, TextInput, TouchableOpacity, ToastAndroid } from 'react-native'
 import React, { useState } from 'react'
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import InputTextCommentStyles from '../../Styles/Components/Input/InputTextCommentStyles'
@@ -25,7 +25,7 @@ export default function InputTextComment({resource, setComments}:Props) {
 
             setComments(comments);
         } else {
-            alert("La zone de texte est vide")
+            ToastAndroid.show("La zone de texte est vide" , ToastAndroid.CENTER);
         }
 
         setInputText('');
