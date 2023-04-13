@@ -1,6 +1,5 @@
 import { View } from 'react-native';
-import React, { useState } from 'react'
-import { Resource, User } from 'rr-apilib';
+import { User } from 'rr-apilib';
 import { BarChart } from "react-native-chart-kit";
 
 import StatDashBoardStyles from '../Styles/Components/StatDashBoardStyles'
@@ -21,8 +20,6 @@ export default function StatDashBoard({ user } : Props) {
         )
     }
 
-    const [resources] = useState<Resource[]>(Array.from(user.resources.cache.values()));
-
     let numberResourceFirstMonth: number = 0;
     let numberResourceSecMonth: number = 0;
     let numberResourceThirdMonth: number = 0;
@@ -31,7 +28,7 @@ export default function StatDashBoard({ user } : Props) {
     const secMonth: number = date.getMonth()-1 < 0 ? date.getMonth()-1+12 : date.getMonth()-1;
     const thirdMonth: number = date.getMonth();
 
-    resources.map((resource) => {
+    Array.from(user.resources.cache.values()).map((resource) => {
         if(resource.createdAt.getMonth() == firstMonth){
             numberResourceFirstMonth++;
         }
