@@ -62,7 +62,7 @@ export default function EditResourceScreen({ route, navigation }: Props) {
             navigation.goBack();
 
         } catch(error) {
-            ToastAndroid.show("Une erreur s'est produite" , ToastAndroid.CENTER);
+            ToastAndroid.show("Problème lors de l'édition" , ToastAndroid.CENTER);
         }
 
         setIsLoading(false);

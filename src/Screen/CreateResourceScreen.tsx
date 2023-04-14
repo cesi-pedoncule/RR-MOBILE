@@ -46,7 +46,7 @@ export default function CreateResourceScreen({ route, navigation }: Props) {
             navigation.goBack();
 
         } catch(error) {
-            ToastAndroid.show("Une erreur s'est produite" , ToastAndroid.CENTER);
+            ToastAndroid.show("Problème lors de la création" , ToastAndroid.CENTER);
         }
 
         setIsLoading(false);

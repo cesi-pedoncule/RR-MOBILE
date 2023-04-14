@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Resource } from 'rr-apilib'
 import { NavigationParamList } from '../../Types/navigation'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
-import { View, Text, TouchableOpacity, GestureResponderEvent, FlatList } from 'react-native'
+import { View, Text, TouchableOpacity, GestureResponderEvent, FlatList, ToastAndroid } from 'react-native'
 import ResourceCardStyles from '../../Styles/Components/Card/ResourceCardStyles'
 import IconButton from '../Button/IconButton'
 import LikeButton from '../Button/LikeButton'
@@ -48,11 +48,15 @@ export default function ResourceCardWithoutUser({ resourceData, setResources, se
     }
 
     const onClickDeleteResource = async () => {
-        if(user != null && setResources != null && setResourcesFiltered != null){
-            await user.resources.delete(resource);
-            const newResources = Array.from(user.resources.cache.values());
-            setResources(newResources);
-            setResourcesFiltered(newResources);
+        try {
+            if(user != null && setResources != null && setResourcesFiltered != null){
+                await user.resources.delete(resource);
+                const newResources = Array.from(user.resources.cache.values());
+                setResources(newResources);
+                setResourcesFiltered(newResources);
+            }
+        } catch(error) {
+            ToastAndroid.show("Problème lors de la suppression" , ToastAndroid.CENTER);
         }
     }
 

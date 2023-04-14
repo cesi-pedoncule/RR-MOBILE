@@ -7,6 +7,6 @@ export async function likeClickHandle(resource: Resource, setResource: React.Dis
         const newResource = resource.isLiked ? await resource.unlike() : await resource.like();
         newResource && setResource(newResource);
     } else {
-        ToastAndroid.show("Vous devez être connecté pour liker une ressource" , ToastAndroid.CENTER);
+        ToastAndroid.show("Vous devez être connecté pour aimer une ressource" , ToastAndroid.CENTER);
     }
 }
