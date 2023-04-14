@@ -32,10 +32,13 @@ export default function ShareResourceScreen({ route, navigation }: Props) {
 	}
 
 	const handleChangeSearch = (text: string) => {
-		const filteredResources = resources.filter((resource) => 
-			resource.title.toLowerCase().includes(text.toLowerCase())
-		);
-		setResourcesFiltered([...filteredResources.splice(0, 6)]);
+		if(client.auth.me != null){
+			const filteredResources = Array.from(client.auth.me.resources.cache.values()).filter((resource) => 
+				resource.title.toLowerCase().includes(text.toLowerCase())
+			);
+			setResources([...filteredResources])
+			setResourcesFiltered([...filteredResources.splice(0, 6)]);
+		}
 	}
 
 	useEffect(() => {
