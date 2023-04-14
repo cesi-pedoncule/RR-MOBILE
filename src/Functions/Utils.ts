@@ -1,4 +1,5 @@
 import React from "react";
+import { ToastAndroid } from "react-native";
 import { Resource } from "rr-apilib";
 
 export async function likeClickHandle(resource: Resource, setResource: React.Dispatch<React.SetStateAction<Resource>>) {
@@ -6,6 +7,6 @@ export async function likeClickHandle(resource: Resource, setResource: React.Dis
         const newResource = resource.isLiked ? await resource.unlike() : await resource.like();
         newResource && setResource(newResource);
     } else {
-        alert("Vous devez être connecté pour liker une ressource");
+        ToastAndroid.show("Vous devez être connecté pour liker une ressource" , ToastAndroid.CENTER);
     }
 }

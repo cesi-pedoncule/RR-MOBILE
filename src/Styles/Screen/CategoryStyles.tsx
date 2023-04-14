@@ -5,7 +5,7 @@ export default StyleSheet.create({
 		  paddingBottom: 80,
     },
     columnWrapperStyle: {
-        marginHorizontal: 20,
+        paddingHorizontal: 20,
         justifyContent: 'center',
     }
 });

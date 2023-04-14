@@ -40,7 +40,7 @@ export default function ResourceDetailsScreen({ route, navigation }: Props) {
                     <View style={ResourceDetailsStyles.btnFile}>
                         {
                             Array.from(resource.attachments.cache.values()).map((attachment, index) => (
-                                    <MediaButton attachment={attachment} key={index}/>
+                                    <MediaButton isDeleted={false} attachment={attachment} key={index} idAttachement={index}/>
                                 )
                             )
                         }

@@ -20,7 +20,7 @@ export default StyleSheet.create({
         borderRadius: 15,
     },
     resourceContainer: {
-        marginHorizontal: 20,
+        paddingHorizontal: 20,
         justifyContent: 'center',
     },
     cardBackground: {

@@ -1,7 +1,5 @@
 import React from "react";
 import { Text, TouchableOpacity } from "react-native";
-
-import CommonStyles from "../../Styles/CommonStyles";
 import LinkStyles from "../../Styles/Components/Button/LinkStyles";
 
 interface Props {

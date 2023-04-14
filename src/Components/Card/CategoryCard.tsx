@@ -1,6 +1,6 @@
 import React from 'react'
 import { Category, Resource } from 'rr-apilib';
-import { Text, TouchableOpacity } from 'react-native'
+import { Text, ToastAndroid, TouchableOpacity } from 'react-native'
 import { NavigationParamList } from '../../Types/navigation';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
@@ -17,7 +17,7 @@ export default function CategoryCard({ navigation, category, resources }:Props) 
     const handleOnPress = () => {
 
         if (category.resources.cache.size === 0) {
-            alert("Cette catégorie ne contient aucune ressource.")
+            ToastAndroid.show("Cette catégorie ne contient aucune ressource" , ToastAndroid.CENTER);
         } else {
             navigation.navigate('CategoryDetails', { category: category, client: category.client })
         }
