@@ -29,13 +29,16 @@ export default function EditResourceScreen({ route, navigation }: Props) {
     const [ showSelectCategories, setShowSelectCategories ] = useState<boolean>(false);
     const [ isPublic, setIsPublic ] = useState(resource ? resource.isPublic : false);
     const [ isLoading, setIsLoading ] = useState<boolean>(false);
-    // Les attachmentsBuilder sont les attachments qu'on ajoute et qu'on montre qu'on peut supprimer comme pour dans CreateResourceScreen => des nouvelles attachments
+    // Les attachmentsBuilder sont les attachments qu'on rajoute, et qu'on peut supprimer comme pour dans CreateResourceScreen => des nouvelles attachments
+    // Elles sont affichées sur l'écran
     const [ attachmentsBuilder, setAttachmentsBuilder ] = useState<AttachmentBuilder[]>([]);
     // Les attachmentsToDelete est une liste à la base vide, qu'on remplie à chaque fois qu'on veut supprimer une attachment, 
-    // elle permet de supprimer les attachments seulement quand on clique si on valide la modification de la ressource
+    // elle permet de supprimer les attachments, déjà présente avant l'édition, seulement si on valide la modification de la ressource 
+    // Elles ne sont pas affichées
     const [ attachmentsToDelete, setAttachmentsToDelete ] = useState<Attachment[]>([]);
-    // Les attachmentsToShow sont les attachments de base qu'on montre à l'écran, et qu'on diminue quand on supprime une attachment => C'est juste un state de visualisation
-    const [ attachmentsToShow, setAttachmentsToShow ] = useState<Attachment[]>(resource ? Array.from(resource.attachments.cache.values()) : []);
+    // Les attachmentsToShow sont les attachments qui était déjà présente avantl'édition, qu'on montre à l'écran, 
+    // et qu'on diminue quand on supprime une attachment => C'est juste un state de visualisation, elle n'est pas prise en compte au moment de valider la modif
+    const [ attachmentsToShow, setAttachmentsToShow ] = useState<Attachment[]>(Array.from(resource.attachments.cache.values()));
     
     const toggleSwitch = () => setIsPublic(previousState => !previousState);
 
