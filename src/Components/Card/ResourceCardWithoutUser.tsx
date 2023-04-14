@@ -98,7 +98,7 @@ export default function ResourceCardWithoutUser({ resourceData, setResources, se
                         <LikeButton resource={resource} setResource={setResource} onClick={onDoubleClick}/>
                         <CommentButton commentNumber={numberCommentResource}/>
                         <IconButton callBack={onClickEditResource} iconStyle={ResourceCardStyles.buttonsEditionResource} iconSize={24} iconName={"square-edit-outline"} iconColor={COLORS.Black}/>
-                        <IconButton isDisabled={isLoading} isLoading={isLoading} callBack={onClickDeleteResource} iconStyle={ResourceCardStyles.buttonsEditionResource} iconSize={24} iconName={"delete-outline"} iconColor={COLORS.Black}/>
+                        <IconButton callBack={onClickDeleteResource} iconStyle={ResourceCardStyles.buttonsEditionResource} iconSize={24} iconName={"delete-outline"} iconColor={COLORS.Black}/>
                         <StateButton resource={resource}/>
                     </View>
                 </View>
