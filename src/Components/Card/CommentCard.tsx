@@ -1,4 +1,4 @@
-import { View, Text, ScrollView } from 'react-native'
+import { View, Text, ScrollView, ToastAndroid } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { Comment, Resource } from 'rr-apilib';
 import CommentCardStyles from '../../Styles/Components/Card/CommentCardStyles';
@@ -16,9 +16,13 @@ export default function CommentCard({comment, setComments, resource}:Props) {
     const user = resource.client.auth.me;
 
     const onClickDeleteComment = async () => {
-        const res = await resource.comments.delete(comment);
-        const newComments:Comment[] = Array.from(res.comments.cache.values());
-        setComments(newComments);
+        try {
+            const res = await resource.comments.delete(comment);
+            const newComments:Comment[] = Array.from(res.comments.cache.values());
+            setComments(newComments);
+        } catch(error) {
+            ToastAndroid.show("Problème lors de la suppression" , ToastAndroid.CENTER);
+        }
     };
 
     useEffect(() => {

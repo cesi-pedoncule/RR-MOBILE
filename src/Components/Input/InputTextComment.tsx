@@ -15,17 +15,21 @@ export default function InputTextComment({resource, setComments}:Props) {
     const [inputText, setInputText] = useState('');
 
     const onClickAddComment = async () => {
-        if(inputText != ''){
-            const builder = new CommentBuilder()
-                .setComment(inputText)
-                .setRessource(resource);
+        try {
+            if(inputText != ''){
+                const builder = new CommentBuilder()
+                    .setComment(inputText)
+                    .setRessource(resource);
 
-            const res = await resource.comments.create(builder);
-            const comments = Array.from(res.comments.sort().values());
+                const res = await resource.comments.create(builder);
+                const comments = Array.from(res.comments.sort().values());
 
-            setComments(comments);
-        } else {
-            ToastAndroid.show("La zone de texte est vide" , ToastAndroid.CENTER);
+                setComments(comments);
+            } else {
+                ToastAndroid.show("La zone de texte est vide" , ToastAndroid.CENTER);
+            }
+        } catch(error) {
+            ToastAndroid.show("Problème lors de l'ajout d'un commentaire" , ToastAndroid.CENTER);
         }
 
         setInputText('');
