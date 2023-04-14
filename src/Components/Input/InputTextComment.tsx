@@ -4,6 +4,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import InputTextCommentStyles from '../../Styles/Components/Input/InputTextCommentStyles'
 import { Comment, CommentBuilder, Resource } from 'rr-apilib';
 import { COLORS } from '../../Styles/Colors';
+import IconButton from '../Button/IconButton';
 
 interface Props {
     resource: Resource;
@@ -13,32 +14,43 @@ interface Props {
 export default function InputTextComment({resource, setComments}:Props) {
     
     const [inputText, setInputText] = useState('');
+    const [ isLoading, setIsLoading ] = useState<boolean>(false);
 
     const onClickAddComment = async () => {
-        if(inputText != ''){
-            const builder = new CommentBuilder()
-                .setComment(inputText)
-                .setRessource(resource);
+        setIsLoading(true);
 
-            const res = await resource.comments.create(builder);
-            const comments = Array.from(res.comments.sort().values());
+        try {
+            if(inputText != ''){
+                const builder = new CommentBuilder()
+                    .setComment(inputText)
+                    .setRessource(resource);
 
-            setComments(comments);
-        } else {
-            ToastAndroid.show("La zone de texte est vide" , ToastAndroid.CENTER);
+                const res = await resource.comments.create(builder);
+                const comments = Array.from(res.comments.sort().values());
+
+                setComments(comments);
+            } else {
+                ToastAndroid.show("La zone de texte est vide" , ToastAndroid.CENTER);
+            }
+        } catch(error) {
+            ToastAndroid.show("Problème lors de l'ajout d'un commentaire" , ToastAndroid.CENTER);
         }
 
         setInputText('');
+        setIsLoading(false);
     }
 
     return (
         <View style={InputTextCommentStyles.txtFieldBackground}>
             <TextInput style={InputTextCommentStyles.txtFieldInput} multiline={true} value={inputText} onChangeText={(newInputText) => setInputText(newInputText)}/>
-            <TouchableOpacity onPress={onClickAddComment}>
-				{
-					<MaterialCommunityIcons style={InputTextCommentStyles.sendButtonInput} name="comment-arrow-left-outline" size={24} color={COLORS.Black} />
-				}
-			</TouchableOpacity>
+            <IconButton 
+                isDisabled={isLoading} 
+                isLoading={isLoading} 
+                callBack={onClickAddComment} 
+                iconStyle={InputTextCommentStyles.sendButtonInput} 
+                iconSize={24} 
+                iconName={"comment-arrow-left-outline"} 
+            />
         </View>
     )
 }

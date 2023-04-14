@@ -21,9 +21,10 @@ export default function CategoriesScreen({ route, navigation }: Props) {
     const [refreshing, setRefreshing] = useState(false);
 
     const handleChangeSearch = (text: string) => {
-        const filteredCategories = categories.filter((category) => 
+        const filteredCategories = Array.from(client.categories.cache.values()).filter((category) => 
             category.name.toLowerCase().includes(text.toLowerCase())
         );
+        setCategories([...filteredCategories]);
         setCategoriesFiltered([...filteredCategories.slice(0, 8)])
     }
   
@@ -37,7 +38,7 @@ export default function CategoriesScreen({ route, navigation }: Props) {
     }, [categories, navigation])
 
     const onRefresh = useCallback(async () => {
-        const refreshCategories:Category[] = Array.from(client.categories.cache.values())
+        const refreshCategories:Category[] = Array.from(client.categories.cache.values());
 		setCategories([...refreshCategories]);
 		setCategoriesFiltered([...refreshCategories.slice(0, 8)]);
 		setRefreshing(false);

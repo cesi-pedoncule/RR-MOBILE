@@ -46,7 +46,7 @@ export default function CreateResourceScreen({ route, navigation }: Props) {
             navigation.goBack();
 
         } catch(error) {
-            ToastAndroid.show("Une erreur s'est produite" , ToastAndroid.CENTER);
+            ToastAndroid.show("Problème lors de la création" , ToastAndroid.CENTER);
         }
 
         setIsLoading(false);
@@ -108,7 +108,7 @@ export default function CreateResourceScreen({ route, navigation }: Props) {
                             <Text style={{color: COLORS.Black}}> Privé / Publique </Text>
                         </View>
                         <View style={CreateResourceStyles.sendButtonContainer}>
-                            <InputButton label={'Envoyer'} isLoading={isLoading} callBack={onClickSend} style={CreateResourceStyles.sendButton}/>
+                            <InputButton label={'Envoyer'} isDisabled={isLoading} isLoading={isLoading} callBack={onClickSend} style={CreateResourceStyles.sendButton}/>
                         </View>
                     </View>
                 </ScrollView>
