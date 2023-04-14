@@ -14,8 +14,11 @@ interface Props {
 export default function CommentCard({comment, setComments, resource}:Props) {
     const [isDeleted, setIsDeleted] = useState<boolean>(false);
     const user = resource.client.auth.me;
+    const [ isLoading, setIsLoading ] = useState<boolean>(false);
 
     const onClickDeleteComment = async () => {
+        setIsLoading(true);
+
         try {
             const res = await resource.comments.delete(comment);
             const newComments:Comment[] = Array.from(res.comments.cache.values());
@@ -23,6 +26,8 @@ export default function CommentCard({comment, setComments, resource}:Props) {
         } catch(error) {
             ToastAndroid.show("Problème lors de la suppression" , ToastAndroid.CENTER);
         }
+
+        setIsLoading(false);
     };
 
     useEffect(() => {
@@ -54,7 +59,15 @@ export default function CommentCard({comment, setComments, resource}:Props) {
             {
                 isDeleted && 
                 <View style={CommentCardStyles.deleteCommentButton}>
-                    <IconButton callBack={onClickDeleteComment} iconSize={24} iconStyle={CommentCardStyles.buttonsDeleteResource} iconName={"delete-outline"} iconColor={COLORS.Black}/>
+                    <IconButton 
+                        isDisabled={isLoading} 
+                        isLoading={isLoading} 
+                        callBack={onClickDeleteComment} 
+                        iconSize={24} 
+                        iconStyle={CommentCardStyles.buttonsDeleteResource} 
+                        iconName={"delete-outline"} 
+                        iconColor={COLORS.Black}
+                    />
                 </View>
             }
         </View>

@@ -4,6 +4,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import InputTextCommentStyles from '../../Styles/Components/Input/InputTextCommentStyles'
 import { Comment, CommentBuilder, Resource } from 'rr-apilib';
 import { COLORS } from '../../Styles/Colors';
+import IconButton from '../Button/IconButton';
 
 interface Props {
     resource: Resource;
@@ -13,8 +14,11 @@ interface Props {
 export default function InputTextComment({resource, setComments}:Props) {
     
     const [inputText, setInputText] = useState('');
+    const [ isLoading, setIsLoading ] = useState<boolean>(false);
 
     const onClickAddComment = async () => {
+        setIsLoading(true);
+
         try {
             if(inputText != ''){
                 const builder = new CommentBuilder()
@@ -33,16 +37,20 @@ export default function InputTextComment({resource, setComments}:Props) {
         }
 
         setInputText('');
+        setIsLoading(false);
     }
 
     return (
         <View style={InputTextCommentStyles.txtFieldBackground}>
             <TextInput style={InputTextCommentStyles.txtFieldInput} multiline={true} value={inputText} onChangeText={(newInputText) => setInputText(newInputText)}/>
-            <TouchableOpacity onPress={onClickAddComment}>
-				{
-					<MaterialCommunityIcons style={InputTextCommentStyles.sendButtonInput} name="comment-arrow-left-outline" size={24} color={COLORS.Black} />
-				}
-			</TouchableOpacity>
+            <IconButton 
+                isDisabled={isLoading} 
+                isLoading={isLoading} 
+                callBack={onClickAddComment} 
+                iconStyle={InputTextCommentStyles.sendButtonInput} 
+                iconSize={24} 
+                iconName={"comment-arrow-left-outline"} 
+            />
         </View>
     )
 }

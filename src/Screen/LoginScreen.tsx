@@ -91,7 +91,7 @@ export default function LoginScreen({ route, navigation }: Props) {
                             <View style={LoginStyles.registerContainer}>
                                 <Text style={LoginStyles.text}> Pas de compte ? </Text>
                                 <Link label="Inscrivez-vous maintenant" callBack={onClickRegisterText}/>
-                                <InputButton isLoading={isLoading} label="Se connecter" callBack={onClickLoginButton} style={LoginStyles.loginButton} />
+                                <InputButton isDisabled={isLoading} isLoading={isLoading} label="Se connecter" callBack={onClickLoginButton} style={LoginStyles.loginButton} />
                             </View>
                         </ScrollView>
                     </View>

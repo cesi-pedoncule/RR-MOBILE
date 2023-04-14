@@ -135,7 +135,7 @@ export default function EditResourceScreen({ route, navigation }: Props) {
                             <Switch trackColor={{false: COLORS.ComponentBackground, true: COLORS.ComponentBackground}} thumbColor={COLORS.AccentColor} onValueChange={toggleSwitch} value={isPublic}/>
                             <Text style={{color: COLORS.Black}}> Privé / Publique </Text>
                         </View>
-                        <InputButton label={'Modifier'} isLoading={isLoading} callBack={onClickSend} style={EditResourceStyles.sendButton}/>
+                        <InputButton label={'Modifier'} isDisabled={isLoading} isLoading={isLoading} callBack={onClickSend} style={EditResourceStyles.sendButton}/>
                     </View>
                 </ScrollView>
             </View>

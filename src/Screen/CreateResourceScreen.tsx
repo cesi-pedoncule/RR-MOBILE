@@ -108,7 +108,7 @@ export default function CreateResourceScreen({ route, navigation }: Props) {
                             <Text style={{color: COLORS.Black}}> Privé / Publique </Text>
                         </View>
                         <View style={CreateResourceStyles.sendButtonContainer}>
-                            <InputButton label={'Envoyer'} isLoading={isLoading} callBack={onClickSend} style={CreateResourceStyles.sendButton}/>
+                            <InputButton label={'Envoyer'} isDisabled={isLoading} isLoading={isLoading} callBack={onClickSend} style={CreateResourceStyles.sendButton}/>
                         </View>
                     </View>
                 </ScrollView>

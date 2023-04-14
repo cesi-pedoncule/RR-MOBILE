@@ -88,7 +88,7 @@ export default function RegisterScreen({ route, navigation }: Props) {
     }
 
     useEffect(() => {
-        !validateEmail(newUser.email) || !validatePassword(newUser.password) || newUser.password != passwordConfirm || newUser.firstname.length == 0 || newUser.name.length == 0 ? 
+        !validateEmail(newUser.email) || !validatePassword(newUser.password) || newUser.password != passwordConfirm || newUser.firstname.length == 0 || newUser.name.length == 0 || isLoading ? 
         setIsDisabled(true) : setIsDisabled(false);
     });
 
