@@ -69,7 +69,7 @@ export default function RegisterScreen({ route, navigation }: Props) {
         setIsValidPassword(validatePassword(newUser.password))
     }
 
-    const onBlurPasswordConfim = () => {
+    const onBlurPasswordConfirm = () => {
         newUser.password != passwordConfirm &&
         ToastAndroid.show('Mots de passes différents ' , ToastAndroid.CENTER);
         setIsValidPasswordConfirm(newUser.password == passwordConfirm)
@@ -108,7 +108,7 @@ export default function RegisterScreen({ route, navigation }: Props) {
                             <Text style={RegisterStyles.rulesText}>Minimum 1 chiffre</Text>
                             <Text style={RegisterStyles.rulesText}>Entre 7-13 caractères</Text>
                         </View>
-                        <InputText placeholder="Confirmation de mot de passe" type='default' secureTextEntry={true} onChangeText={(value) => setPasswordConfirm(value)} onBlur={onBlurPasswordConfim} isValid={isValidPasswordConfirm} />
+                        <InputText placeholder="Confirmation de mot de passe" type='default' secureTextEntry={true} onChangeText={(value) => setPasswordConfirm(value)} onBlur={onBlurPasswordConfirm} isValid={isValidPasswordConfirm} />
                     </View>
                     <View style={RegisterStyles.registerContainer}>
                         <Text style={{color: COLORS.Black,}}> Déjà un compte ? </Text>
