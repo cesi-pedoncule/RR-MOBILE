@@ -16,12 +16,11 @@ import CommonStyles from '../../Styles/CommonStyles'
 interface Props {
     resourceData: Resource;
     navigation: NativeStackNavigationProp<NavigationParamList>;
-    setResources?: React.Dispatch<React.SetStateAction<Resource[]>>;
     setResourcesFiltered?: React.Dispatch<React.SetStateAction<Resource[]>>;
     onDoubleClick: () => void;
 }
 
-export default function ResourceCardWithoutUser({ resourceData, setResources, setResourcesFiltered, navigation, onDoubleClick}: Props) {
+export default function ResourceCardWithoutUser({ resourceData, setResourcesFiltered, navigation, onDoubleClick}: Props) {
     const [resource, setResource] = useState<Resource>(resourceData);
     const numberCommentResource = resource.comments.cache.size;
     const categories = Array.from(resource.categories.cache.values());
@@ -53,10 +52,9 @@ export default function ResourceCardWithoutUser({ resourceData, setResources, se
         setIsLoading(true);
 
         try {
-            if(user != null && setResources != null && setResourcesFiltered != null){
+            if(user != null && setResourcesFiltered != null){
                 await user.resources.delete(resource);
                 const newResources = Array.from(user.resources.cache.values());
-                setResources(newResources);
                 setResourcesFiltered(newResources);
             }
         } catch(error) {

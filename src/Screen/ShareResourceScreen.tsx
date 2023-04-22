@@ -17,15 +17,8 @@ export default function ShareResourceScreen({ route, navigation }: Props) {
 	
 	const client = route.params.client;
 
-	const [ resources, setResources ] = useState<Resource[]>([]);
 	const [ resourcesFiltered, setResourcesFiltered ] = useState<Resource[]>([]);
-	const [refreshing, setRefreshing] = useState(false);
-
-	useEffect(() => {
-		if(client.auth.me == null){
-			navigation.navigate("Login", { client });
-		}
-	})
+	const [ refreshing, setRefreshing ] = useState(false);
 
 	const onClickShareNewItem = () => {
 		navigation.navigate("CreateResourceScreen", { client });
@@ -36,24 +29,22 @@ export default function ShareResourceScreen({ route, navigation }: Props) {
 			const filteredResources = Array.from(client.auth.me.resources.cache.values()).filter((resource) => 
 				resource.title.toLowerCase().includes(text.toLowerCase())
 			);
-			setResources([...filteredResources])
 			setResourcesFiltered([...filteredResources.splice(0, 6)]);
 		}
 	}
 
 	useEffect(() => {
+		if(client.auth.me == null){
+			navigation.navigate("Login", { client });
+		}
 		navigation.addListener('focus', () => {
             onRefresh();
         });
-        if (resourcesFiltered.length === 0 && resources.length !== 0) {
-            setResourcesFiltered([...resources.slice(0, 6)]);
-        }
-    }, [resources, navigation]);
+    }, [navigation]);
 
 	const onRefresh = useCallback(async () => {
 		if(client.auth.me != null){
 			const refreshResources:Resource[] = Array.from(client.auth.me.resources.cache.values());
-			setResources([...refreshResources]);
 			setResourcesFiltered([...refreshResources.slice(0, 6)]);
 			setRefreshing(false)
 		}
@@ -63,7 +54,7 @@ export default function ShareResourceScreen({ route, navigation }: Props) {
 		return (
 			<View>
 				{
-					resources.length >= 6 && resourcesFiltered.length !== resources.length && resourcesFiltered.length != 0 &&
+					!client.auth.me || client.auth.me.resources.cache.size >= 6 && resourcesFiltered.length !== client.auth.me.resources.cache.size && resourcesFiltered.length != 0 &&
 					<ActivityIndicator size="large" color={COLORS.AccentColor} style={CommonStyles.loadMoreContent} />
 				}	
 			</View>
@@ -79,7 +70,9 @@ export default function ShareResourceScreen({ route, navigation }: Props) {
 	}
 
 	const onShowMoreItems = () => {
-		setResourcesFiltered(resourcesFiltered.concat(resources.slice(resourcesFiltered.length, resourcesFiltered.length + 6)));
+		if (client.auth.me) {
+			setResourcesFiltered(resourcesFiltered.concat(Array.from(client.auth.me.resources.cache.values()).slice(resourcesFiltered.length, resourcesFiltered.length + 6)));
+		}
 	}
 
   	return (
@@ -92,7 +85,7 @@ export default function ShareResourceScreen({ route, navigation }: Props) {
 					ListEmptyComponent={<Text style={CommonStyles.textEmptyResult}>Aucune ressource n'a été trouvée.</Text>}
 					contentContainerStyle = {ShareResourceStyles.resourcesContainer}
 					data={resourcesFiltered}
-					renderItem={({item}) => <ResourceCardWithoutUser resourceData={item} navigation={navigation} setResources={setResources} setResourcesFiltered={setResourcesFiltered}  onDoubleClick={onRefresh}/>}
+					renderItem={({item}) => <ResourceCardWithoutUser resourceData={item} navigation={navigation} setResourcesFiltered={setResourcesFiltered}  onDoubleClick={onRefresh}/>}
 					keyExtractor={item => item.id}
 					refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
 					ListHeaderComponent={renderHeader}

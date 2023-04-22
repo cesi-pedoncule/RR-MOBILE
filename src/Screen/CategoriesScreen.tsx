@@ -16,30 +16,24 @@ export default function CategoriesScreen({ route, navigation }: Props) {
 
     const client = route.params.client;
 
-    const [ categories, setCategories ] = useState<Category[]>([]);
     const [ categoriesFiltered, setCategoriesFiltered ] = useState<Category[]>([]);
-    const [refreshing, setRefreshing] = useState(false);
+    const [ refreshing, setRefreshing ] = useState(false);
 
     const handleChangeSearch = (text: string) => {
         const filteredCategories = Array.from(client.categories.cache.values()).filter((category) => 
             category.name.toLowerCase().includes(text.toLowerCase())
         );
-        setCategories([...filteredCategories]);
-        setCategoriesFiltered([...filteredCategories.slice(0, 8)])
+        setCategoriesFiltered([...filteredCategories.slice(0, 8)]);
     }
   
     useEffect(() => {
-        if (categoriesFiltered.length === 0 && categories.length !== 0) {
-            setCategoriesFiltered([...categories.slice(0, 8)]);
-        }
         navigation.addListener('focus', () => {
             onRefresh();
         });
-    }, [categories, navigation])
+    }, [navigation])
 
     const onRefresh = useCallback(async () => {
         const refreshCategories:Category[] = Array.from(client.categories.cache.values());
-		setCategories([...refreshCategories]);
 		setCategoriesFiltered([...refreshCategories.slice(0, 8)]);
 		setRefreshing(false);
  	 }, []);
@@ -48,7 +42,7 @@ export default function CategoriesScreen({ route, navigation }: Props) {
 		return (
 			<View>
 				{
-					categories.length >= 8  && categoriesFiltered.length !== categories.length && categoriesFiltered.length != 0 &&
+					client.categories.cache.size >= 8  && categoriesFiltered.length !== client.categories.cache.size && categoriesFiltered.length != 0 &&
 					<ActivityIndicator size="large" color={COLORS.AccentColor} style={CommonStyles.loadMoreContent} />
 				}	
 			</View>
@@ -64,7 +58,7 @@ export default function CategoriesScreen({ route, navigation }: Props) {
 	}
 
 	const onShowMoreItems = () => {
-		setCategoriesFiltered(categoriesFiltered.concat(categories.slice(categoriesFiltered.length, categoriesFiltered.length + 6)));
+		setCategoriesFiltered(categoriesFiltered.concat(Array.from(client.categories.cache.values()).slice(categoriesFiltered.length, categoriesFiltered.length + 6)));
 	}
 
     return (
