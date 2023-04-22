@@ -29,9 +29,6 @@ export default function CategoryDetailsScreen ({ navigation, route }: Props) {
 	}
 
     useEffect(() => {
-        if (resourcesFiltered.length === 0 && resources.length !== 0) {
-            setResourcesFiltered([...resources.slice(0, 6)]);
-        }
         navigation.addListener('focus', () => {
             onRefresh();
         });
