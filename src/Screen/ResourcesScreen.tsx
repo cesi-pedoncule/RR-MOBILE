@@ -16,15 +16,13 @@ export default function ResourcesScreen({ navigation, route } : Props) {
     
     const client = route.params.client;
 
-    const [ resources, setResources ] = useState<Resource[]>([]);
     const [ resourcesFiltered, setResourcesFiltered ] = useState<Resource[]>([]);
-    const [refreshing, setRefreshing] = useState(false);
+    const [ refreshing, setRefreshing ] = useState(false);
 
     const handleChangeSearch = (text: string) => {
         const filteredResources = Array.from(client.resources.cache.values()).filter((resource) =>
             resource.title.toLowerCase().includes(text.toLowerCase())
         );
-        setResources([...filteredResources]);
         setResourcesFiltered([...filteredResources.splice(0, 6)]);
     }
 
@@ -32,23 +30,19 @@ export default function ResourcesScreen({ navigation, route } : Props) {
         navigation.addListener('focus', () => {
             onRefresh();
         });
-        if (resourcesFiltered.length === 0 && resources.length !== 0) {
-            setResourcesFiltered([...resources.slice(0, 6)]);
-        }
-    }, [resources, navigation]);
+    }, [navigation]);
 
     const onRefresh = useCallback(async () => {
-        const refreshResources:Resource[] = Array.from(client.resources.getValidateResources().filter(resource => resource.isPublic == true).values());
-        setResources([...refreshResources]);
+        const refreshResources:Resource[] = Array.from(client.resources.getValidateResources().filter(resource => resource.isPublic).values());
         setResourcesFiltered([...refreshResources.slice(0, 6)]);
         setRefreshing(false)
-      }, []);
+    }, []);
 
     const renderFooter = () => {
 		return (
 			<View>
 				{
-					resources.length >= 6 && resourcesFiltered.length !== resources.length && resourcesFiltered.length != 0 &&
+					client.resources.cache.size >= 6 && resourcesFiltered.length !== client.resources.cache.size && resourcesFiltered.length != 0 &&
 					<ActivityIndicator size="large" color={COLORS.AccentColor} style={CommonStyles.loadMoreContent} />
 				}	
 			</View>
@@ -64,7 +58,7 @@ export default function ResourcesScreen({ navigation, route } : Props) {
 	}
 
 	const onShowMoreItems = () => {
-		setResourcesFiltered(resourcesFiltered.concat(resources.slice(resourcesFiltered.length, resourcesFiltered.length + 6)));
+		setResourcesFiltered(resourcesFiltered.concat(Array.from(client.resources.cache.values()).slice(resourcesFiltered.length, resourcesFiltered.length + 6)));
 	}
 
     return (
