@@ -75,7 +75,7 @@ export default function EditResourceScreen({ route, navigation }: Props) {
     const onClickAddFile = () => {
         DocumentPicker.getDocumentAsync({copyToCacheDirectory: false}).then(async (file) => {
             if(file.type === "success" && (attachmentsBuilder.length + resource.attachments.cache.size) < 6){
-                const attachment = new AttachmentBuilder().setFile(file).setRessource(resource);
+                const attachment = new AttachmentBuilder().setFile(file as any).setRessource(resource);
                 attachmentsBuilder.push(attachment);
                 setAttachmentsBuilder([...attachmentsBuilder ]);
             } else if (resource && attachmentsBuilder.length + resource.attachments.cache.size == 6) {
