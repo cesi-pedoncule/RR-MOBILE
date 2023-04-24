@@ -1,4 +1,4 @@
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Client } from 'rr-apilib';
 import LoginScreen from './src/Screen/LoginScreen';
@@ -13,6 +13,7 @@ import { useState } from 'react';
 import { ActivityIndicator, Image, LogBox, View } from 'react-native';
 import CommonStyles from './src/Styles/CommonStyles';
 import { COLORS } from './src/Styles/Colors';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Stack = createStackNavigator<NavigationParamList>();
 const client = new Client();
@@ -21,12 +22,30 @@ LogBox.ignoreLogs([
     'Non-serializable values were found in the navigation state',
 ]);
 
-export default function App() {
+interface Props {
+    navigation: any;
+}
+
+export default function App({ navigation }: Props) {
 
     const [ isLoad, setIsLoad ] = useState<boolean>(false);
 
     const loadClient = async () => {
         await client.fetch();
+
+        const refresh_token = await AsyncStorage.getItem('refresh_token');
+
+        if (refresh_token !== null) {
+            client.auth.refresh_token = refresh_token;
+
+            try {
+                await client.auth.refresh();
+            } catch (error) {
+                await AsyncStorage.removeItem('refresh_token');
+                navigation.navigate('Resources', { client });                
+            }
+        }
+
         setIsLoad(true);
     }
 
