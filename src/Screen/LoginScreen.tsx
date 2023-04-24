@@ -28,8 +28,7 @@ export default function LoginScreen({ route, navigation }: Props) {
         setIsLoading(true);
 
         try {
-            await client.login('user0@example.com', 'password');
-            //await client.login(email, password);
+            await client.login(email, password);
             await AsyncStorage.setItem('token', client.auth.token+'');
             await AsyncStorage.setItem('refresh_token', client.auth.refresh_token+'');
 
