@@ -16,7 +16,7 @@ type Props = NativeStackScreenProps<NavigationParamList, 'CategoryDetails'>;
 export default function CategoryDetailsScreen ({ navigation, route }: Props) {
     const category = route.params.category;
     const client = route.params.client;
-    const [ resources, setResources ] = useState<Resource[]>(Array.from(category.resources.getValidateResources().values()));
+    const [ resources, setResources ] = useState<Resource[]>([]);
     const [ resourcesFiltered, setResourcesFiltered ] = useState<Resource[]>([]);
     const [ refreshing, setRefreshing ] = useState(false);
 
@@ -38,6 +38,16 @@ export default function CategoryDetailsScreen ({ navigation, route }: Props) {
     }, [resources, navigation]);
 
     const onRefresh = useCallback(async () => {
+        const newCategorie = client.categories.cache.get(category.id);
+        if(newCategorie){
+            const refreshResources:Resource[] = Array.from(newCategorie.resources.getValidateResources().values());
+            setResources([...refreshResources]);
+            setResourcesFiltered([...refreshResources.slice(0, 6)]);
+            setRefreshing(false);
+        }
+    }, []);
+
+    const onRefreshFetchAll = useCallback(async () => {
         setRefreshing(true);
         await client.resources.fetchAll();
         const newCategorie = client.categories.cache.get(category.id);
@@ -83,7 +93,7 @@ export default function CategoryDetailsScreen ({ navigation, route }: Props) {
                     data={resourcesFiltered}
                     renderItem={({item}) => <ResourceCardWithUser resourceData={item} navigation={navigation} onDoubleClick={onRefresh}/>}
                     keyExtractor={item => item.id}
-                    refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
+                    refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefreshFetchAll} />}
                     ListHeaderComponent={renderHeader}
                     ListFooterComponent={renderFooter}
                     onEndReached={onShowMoreItems}

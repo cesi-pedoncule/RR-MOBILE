@@ -34,6 +34,19 @@ export default function ResourceDetailsScreen({ route, navigation }: Props) {
         }
     }, []);
 
+    const onRefreshFetchAll = useCallback(async () => {
+        if(!resource){
+            return
+        } 
+        const refreshResource = await client.resources.fetch(resource.id);
+        if(refreshResource){
+            setResource(undefined)
+            setResource(refreshResource);
+            setComments(Array.from(refreshResource ? refreshResource.comments.sort().values() : []))
+            setRefreshing(false)
+        }
+    }, []);
+
     const renderHeader = () => {
 		return resource ? (
 			<View>
@@ -70,7 +83,7 @@ export default function ResourceDetailsScreen({ route, navigation }: Props) {
                     contentContainerStyle = {ResourceDetailsStyles.resourceContainer}
                     data={comments}
                     renderItem={({item}) => <CommentCard comment={item} setComments={setComments} resource={resource}/>}
-                    refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
+                    refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefreshFetchAll} />}
                     keyExtractor={item => item.id}
                     ListHeaderComponent={renderHeader}
                     onEndReachedThreshold={0}

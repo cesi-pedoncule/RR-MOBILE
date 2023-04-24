@@ -16,7 +16,7 @@ export default function ResourcesScreen({ navigation, route } : Props) {
     
     const client = route.params.client;
 
-    const [ resourcesFiltered, setResourcesFiltered ] = useState<Resource[]>(Array.from(client.resources.getValidateResources().filter(resource => resource.isPublic).values()));
+    const [ resourcesFiltered, setResourcesFiltered ] = useState<Resource[]>([]);
     const [ refreshing, setRefreshing ] = useState(false);
 
     const handleChangeSearch = (text: string) => {
@@ -33,6 +33,12 @@ export default function ResourcesScreen({ navigation, route } : Props) {
     }, [navigation]);
 
     const onRefresh = useCallback(async () => {
+        const refreshResources:Resource[] = Array.from(client.resources.getValidateResources().filter(resource => resource.isPublic).values());
+        setResourcesFiltered([...refreshResources.slice(0, 6)]);
+        setRefreshing(false);
+    }, []);
+
+    const onRefreshFetchAll = useCallback(async () => {
         setRefreshing(true)
         await client.resources.fetchAll();
         const refreshResources:Resource[] = Array.from(client.resources.getValidateResources().filter(resource => resource.isPublic).values());
@@ -73,7 +79,7 @@ export default function ResourcesScreen({ navigation, route } : Props) {
                     data={resourcesFiltered}
                     renderItem={({item}) => <ResourceCardWithUser resourceData={item} navigation={navigation} onDoubleClick={onRefresh}/>}
                     keyExtractor={item => item.id}
-                    refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
+                    refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefreshFetchAll} />}
                     ListHeaderComponent={renderHeader}
                     ListFooterComponent={renderFooter}
                     onEndReached={onShowMoreItems}

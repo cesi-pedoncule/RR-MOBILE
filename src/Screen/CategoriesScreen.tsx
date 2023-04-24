@@ -16,7 +16,7 @@ export default function CategoriesScreen({ route, navigation }: Props) {
 
     const client = route.params.client;
 
-    const [ categoriesFiltered, setCategoriesFiltered ] = useState<Category[]>(Array.from(client.categories.cache.values()));
+    const [ categoriesFiltered, setCategoriesFiltered ] = useState<Category[]>([]);
     const [ refreshing, setRefreshing ] = useState(false);
 
     const handleChangeSearch = (text: string) => {
@@ -33,6 +33,12 @@ export default function CategoriesScreen({ route, navigation }: Props) {
     }, [navigation])
 
     const onRefresh = useCallback(async () => {
+        const refreshCategories:Category[] = Array.from(client.categories.cache.values());
+		setCategoriesFiltered([...refreshCategories.slice(0, 8)]);
+		setRefreshing(false);
+ 	 }, []);
+
+      const onRefreshFetchAll = useCallback(async () => {
         setRefreshing(true);
         await client.categories.fetchAll();
         const refreshCategories:Category[] = Array.from(client.categories.cache.values());
@@ -80,7 +86,7 @@ export default function CategoriesScreen({ route, navigation }: Props) {
                         </View>
                     }
                     keyExtractor={item => item.id}
-                    refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
+                    refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefreshFetchAll} />}
                     ListHeaderComponent={renderHeader}
                     ListFooterComponent={renderFooter}
                     onEndReached={onShowMoreItems}

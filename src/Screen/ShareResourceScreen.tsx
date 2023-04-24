@@ -17,7 +17,7 @@ export default function ShareResourceScreen({ route, navigation }: Props) {
 	
 	const client = route.params.client;
 
-	const [ resourcesFiltered, setResourcesFiltered ] = useState<Resource[]>(client.auth.me ? Array.from(client.auth.me.resources.cache.values()) : []);
+	const [ resourcesFiltered, setResourcesFiltered ] = useState<Resource[]>([]);
 	const [ refreshing, setRefreshing ] = useState(false);
 
 	const onClickShareNewItem = () => {
@@ -44,6 +44,14 @@ export default function ShareResourceScreen({ route, navigation }: Props) {
 
 	const onRefresh = useCallback(async () => {
 		if(client.auth.me != null){
+			const refreshResources:Resource[] = Array.from(client.auth.me.resources.cache.values());
+			setResourcesFiltered([...refreshResources.slice(0, 6)]);
+			setRefreshing(false);
+		}
+ 	 }, []);
+
+	const onRefreshFetchAll = useCallback(async () => {
+		if(client.auth.me != null){
 			setRefreshing(true)
 			await client.resources.fetchAll();
 			const refreshResources:Resource[] = Array.from(client.auth.me.resources.cache.values());
@@ -51,6 +59,7 @@ export default function ShareResourceScreen({ route, navigation }: Props) {
 			setRefreshing(false);
 		}
  	 }, []);
+
 
 	const renderFooter = () => {
 		return (
@@ -89,7 +98,7 @@ export default function ShareResourceScreen({ route, navigation }: Props) {
 					data={resourcesFiltered}
 					renderItem={({item}) => <ResourceCardWithoutUser resourceData={item} navigation={navigation} setResourcesFiltered={setResourcesFiltered}  onDoubleClick={onRefresh}/>}
 					keyExtractor={item => item.id}
-					refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
+					refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefreshFetchAll} />}
 					ListHeaderComponent={renderHeader}
 					ListFooterComponent={renderFooter}
 					onEndReached={onShowMoreItems}
