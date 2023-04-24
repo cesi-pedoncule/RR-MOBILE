@@ -16,7 +16,7 @@ export default function ResourcesScreen({ navigation, route } : Props) {
     
     const client = route.params.client;
 
-    const [ resourcesFiltered, setResourcesFiltered ] = useState<Resource[]>([]);
+    const [ resourcesFiltered, setResourcesFiltered ] = useState<Resource[]>(Array.from(client.resources.getValidateResources().filter(resource => resource.isPublic).values()));
     const [ refreshing, setRefreshing ] = useState(false);
 
     const handleChangeSearch = (text: string) => {
@@ -33,9 +33,11 @@ export default function ResourcesScreen({ navigation, route } : Props) {
     }, [navigation]);
 
     const onRefresh = useCallback(async () => {
+        setRefreshing(true)
+        await client.resources.fetchAll();
         const refreshResources:Resource[] = Array.from(client.resources.getValidateResources().filter(resource => resource.isPublic).values());
         setResourcesFiltered([...refreshResources.slice(0, 6)]);
-        setRefreshing(false)
+        setRefreshing(false);
     }, []);
 
     const renderFooter = () => {
@@ -63,22 +65,20 @@ export default function ResourcesScreen({ navigation, route } : Props) {
 
     return (
         <View style={CommonStyles.container}>
-            <TopBar onChangeSearch={handleChangeSearch} navigation={navigation}/>
+            <TopBar onChangeSearch={handleChangeSearch} navigation={navigation} client={client}/>
             <View style={CommonStyles.content}>
-                {
-                    <FlatList style={CommonStyles.itemsContainer} 
-                        ListEmptyComponent={<Text style={CommonStyles.textEmptyResult}>Aucune ressource n'a été trouvée.</Text>}
-                        contentContainerStyle = {ResourcesStyles.resourcesContainer}
-                        data={resourcesFiltered}
-                        renderItem={({item}) => <ResourceCardWithUser resourceData={item} navigation={navigation} onDoubleClick={onRefresh}/>}
-                        keyExtractor={item => item.id}
-                        refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
-                        ListHeaderComponent={renderHeader}
-                        ListFooterComponent={renderFooter}
-                        onEndReached={onShowMoreItems}
-                        onEndReachedThreshold={0}
-                    />
-                }
+                <FlatList style={CommonStyles.itemsContainer} 
+                    ListEmptyComponent={<Text style={CommonStyles.textEmptyResult}>Aucune ressource n'a été trouvée.</Text>}
+                    contentContainerStyle = {ResourcesStyles.resourcesContainer}
+                    data={resourcesFiltered}
+                    renderItem={({item}) => <ResourceCardWithUser resourceData={item} navigation={navigation} onDoubleClick={onRefresh}/>}
+                    keyExtractor={item => item.id}
+                    refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
+                    ListHeaderComponent={renderHeader}
+                    ListFooterComponent={renderFooter}
+                    onEndReached={onShowMoreItems}
+                    onEndReachedThreshold={0}
+                />
             </View>
         </View>
     )

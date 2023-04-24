@@ -77,7 +77,7 @@ export default function LoginScreen({ route, navigation }: Props) {
 
     return (
         <View style={CommonStyles.container}>
-            <TopBar hideSearchBar={true} navigation={navigation} />
+            <TopBar hideSearchBar={true} navigation={navigation} client={client}/>
             <View style={CommonStyles.content}>
                 <View style={LoginStyles.container}>
                     <View>

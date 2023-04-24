@@ -25,10 +25,13 @@ export default function ResourceDetailsScreen({ route, navigation }: Props) {
         if(!resource){
             return
         } 
-        const refreshResource = client.resources.cache.get(resource.id);
-        setResource(undefined)
-        refreshResource && setResource(refreshResource);
-        setRefreshing(false)
+        const refreshResource = await client.resources.fetch(resource.id);
+        if(refreshResource){
+            setResource(undefined)
+            setResource(refreshResource);
+            setComments(Array.from(refreshResource ? refreshResource.comments.sort().values() : []))
+            setRefreshing(false)
+        }
     }, []);
 
     const renderHeader = () => {
@@ -60,7 +63,7 @@ export default function ResourceDetailsScreen({ route, navigation }: Props) {
 
     return resource ? (
         <View style={CommonStyles.container}>
-            <TopBar hideSearchBar={true} navigation={navigation}/>
+            <TopBar hideSearchBar={true} navigation={navigation} client={client}/>
             <View style={CommonStyles.content}>
                 <FlatList style={CommonStyles.itemsContainer} 
                     ListEmptyComponent={<Text style={CommonStyles.textEmptyResult}>Aucun commentaire n'a été posté.</Text>}

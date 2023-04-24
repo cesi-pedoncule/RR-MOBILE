@@ -94,7 +94,7 @@ export default function RegisterScreen({ route, navigation }: Props) {
 
     return (
         <View style={CommonStyles.container}>
-            <TopBar hideSearchBar={true} navigation={navigation} />
+            <TopBar hideSearchBar={true} navigation={navigation} client={client}/>
             <View style={CommonStyles.content}>
                 <ScrollView style={CommonStyles.itemsContainer}>
                     <Header label="Inscription" />

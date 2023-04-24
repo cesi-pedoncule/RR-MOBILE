@@ -16,9 +16,9 @@ type Props = NativeStackScreenProps<NavigationParamList, 'CategoryDetails'>;
 export default function CategoryDetailsScreen ({ navigation, route }: Props) {
     const category = route.params.category;
     const client = route.params.client;
-    const [ resources, setResources ] = useState<Resource[]>([]);
+    const [ resources, setResources ] = useState<Resource[]>(Array.from(category.resources.getValidateResources().values()));
     const [ resourcesFiltered, setResourcesFiltered ] = useState<Resource[]>([]);
-    const [refreshing, setRefreshing] = useState(false);
+    const [ refreshing, setRefreshing ] = useState(false);
 
     const handleChangeSearch = (text: string) => {
 		const filteredResources = Array.from(category.resources.getValidateResources().values()).filter((resource) =>
@@ -38,12 +38,14 @@ export default function CategoryDetailsScreen ({ navigation, route }: Props) {
     }, [resources, navigation]);
 
     const onRefresh = useCallback(async () => {
+        setRefreshing(true);
+        await client.resources.fetchAll();
         const newCategorie = client.categories.cache.get(category.id);
         if(newCategorie){
             const refreshResources:Resource[] = Array.from(newCategorie.resources.getValidateResources().values());
             setResources([...refreshResources]);
             setResourcesFiltered([...refreshResources.slice(0, 6)]);
-            setRefreshing(false)
+            setRefreshing(false);
         }
     }, []);
 
@@ -73,7 +75,7 @@ export default function CategoryDetailsScreen ({ navigation, route }: Props) {
 
     return (
         <View style={CommonStyles.container}>
-            <TopBar onChangeSearch={handleChangeSearch} navigation={navigation} />
+            <TopBar onChangeSearch={handleChangeSearch} navigation={navigation} client={client} />
             <View style={CommonStyles.content}>
                 <FlatList style={CommonStyles.itemsContainer} 
                     ListEmptyComponent={<Text style={CommonStyles.textEmptyResult}>Aucune ressource n'a été trouvée.</Text>}

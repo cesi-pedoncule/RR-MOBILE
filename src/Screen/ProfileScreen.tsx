@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { View, Text, ScrollView } from 'react-native'
 import Header from "../Components/Header";
 import StatDashBoard from "../Components/StatDashBoard";
@@ -18,7 +18,7 @@ export default function ProfileScreen({ route, navigation }: Props) {
         if (user == null) {
             navigation.navigate('Login', { client });
         }
-    })
+    });
 
     const userProfileName = user?.name + ' ' + user?.firstname;
 

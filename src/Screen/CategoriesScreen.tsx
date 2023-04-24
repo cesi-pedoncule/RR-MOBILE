@@ -16,7 +16,7 @@ export default function CategoriesScreen({ route, navigation }: Props) {
 
     const client = route.params.client;
 
-    const [ categoriesFiltered, setCategoriesFiltered ] = useState<Category[]>([]);
+    const [ categoriesFiltered, setCategoriesFiltered ] = useState<Category[]>(Array.from(client.categories.cache.values()));
     const [ refreshing, setRefreshing ] = useState(false);
 
     const handleChangeSearch = (text: string) => {
@@ -33,6 +33,8 @@ export default function CategoriesScreen({ route, navigation }: Props) {
     }, [navigation])
 
     const onRefresh = useCallback(async () => {
+        setRefreshing(true);
+        await client.categories.fetchAll();
         const refreshCategories:Category[] = Array.from(client.categories.cache.values());
 		setCategoriesFiltered([...refreshCategories.slice(0, 8)]);
 		setRefreshing(false);
@@ -63,29 +65,27 @@ export default function CategoriesScreen({ route, navigation }: Props) {
 
     return (
         <View style={CommonStyles.container}>
-            <TopBar onChangeSearch={handleChangeSearch} navigation={navigation} />
+            <TopBar onChangeSearch={handleChangeSearch} navigation={navigation} client={client} />
             <View style={CommonStyles.content}>
-                {
-                    <FlatList style={CommonStyles.itemsContainer} 
-                        ListEmptyComponent={<Text style={CommonStyles.textEmptyResult}>Aucune catégorie n'a été trouvée.</Text>}
-                        columnWrapperStyle={CategoryStyles.columnWrapperStyle}
-                        contentContainerStyle={CategoryStyles.categoriesContainer}
-                        initialNumToRender={2}
-                        numColumns={2}
-                        data={categoriesFiltered}
-                        renderItem={({item, index}) => 
-                            <View style={{flex: 1,marginLeft: index % 2 !== 0 ? 20 : 0}}>
-                                <CategoryCard category={item} navigation={navigation} resources={Array.from(item.resources.getValidateResources().values())}/>
-                            </View>
-                        }
-                        keyExtractor={item => item.id}
-                        refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
-                        ListHeaderComponent={renderHeader}
-                        ListFooterComponent={renderFooter}
-                        onEndReached={onShowMoreItems}
-                        onEndReachedThreshold={0}
-                    />
-                }
+                <FlatList style={CommonStyles.itemsContainer} 
+                    ListEmptyComponent={<Text style={CommonStyles.textEmptyResult}>Aucune catégorie n'a été trouvée.</Text>}
+                    columnWrapperStyle={CategoryStyles.columnWrapperStyle}
+                    contentContainerStyle={CategoryStyles.categoriesContainer}
+                    initialNumToRender={2}
+                    numColumns={2}
+                    data={categoriesFiltered}
+                    renderItem={({item, index}) => 
+                        <View style={{flex: 1,marginLeft: index % 2 !== 0 ? 20 : 0}}>
+                            <CategoryCard category={item} navigation={navigation} resources={Array.from(item.resources.getValidateResources().values())}/>
+                        </View>
+                    }
+                    keyExtractor={item => item.id}
+                    refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
+                    ListHeaderComponent={renderHeader}
+                    ListFooterComponent={renderFooter}
+                    onEndReached={onShowMoreItems}
+                    onEndReachedThreshold={0}
+                />
             </View>
         </View>
     )

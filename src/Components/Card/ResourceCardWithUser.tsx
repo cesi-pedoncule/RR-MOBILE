@@ -54,13 +54,13 @@ export default function ResourceCardWithUser({ resourceData, navigation, styleCo
         <TouchableOpacity onPress={(e) => onPress(e)} style={[ResourceCardStyles.container, styleContainer]}>
             <View>
                 <View style={ResourceCardStyles.lineButtonsAndUser}>
-                    <Text style={ResourceCardStyles.cardUser} numberOfLines={1}>{username}</Text>
+                    <Text style={ResourceCardStyles.cardTitle} numberOfLines={1}>{resource.title}</Text>
                     <View style={ResourceCardStyles.userAndButtonsContainer}>
                         <LikeButton resource={resource} setResource={setResource} onClick={onDoubleClick}/>
                         <CommentButton commentNumber={numberCommentResource}/>
                     </View>    
                 </View>
-                <Text style={ResourceCardStyles.cardTitle} numberOfLines={1}>{resource.title}</Text>
+                <Text style={ResourceCardStyles.cardUser} numberOfLines={1}>{username}</Text>
                 <FlatList horizontal style={ResourceCardStyles.categoriesContainer} 
                     data={categories}
                     renderItem={({item}) => <CategoryButton navigation={navigation} category={item}/>}

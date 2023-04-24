@@ -14,6 +14,7 @@ import { ActivityIndicator, Image, LogBox, View } from 'react-native';
 import CommonStyles from './src/Styles/CommonStyles';
 import { COLORS } from './src/Styles/Colors';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 const Stack = createStackNavigator<NavigationParamList>();
 const client = new Client();
@@ -22,9 +23,8 @@ LogBox.ignoreLogs([
     'Non-serializable values were found in the navigation state',
 ]);
 
-interface Props {
-    navigation: any;
-}
+
+type Props = NativeStackScreenProps<NavigationParamList, 'Resources'>;
 
 export default function App({ navigation }: Props) {
 

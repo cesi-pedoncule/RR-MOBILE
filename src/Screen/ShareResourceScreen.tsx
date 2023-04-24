@@ -17,7 +17,7 @@ export default function ShareResourceScreen({ route, navigation }: Props) {
 	
 	const client = route.params.client;
 
-	const [ resourcesFiltered, setResourcesFiltered ] = useState<Resource[]>([]);
+	const [ resourcesFiltered, setResourcesFiltered ] = useState<Resource[]>(client.auth.me ? Array.from(client.auth.me.resources.cache.values()) : []);
 	const [ refreshing, setRefreshing ] = useState(false);
 
 	const onClickShareNewItem = () => {
@@ -40,13 +40,15 @@ export default function ShareResourceScreen({ route, navigation }: Props) {
 		navigation.addListener('focus', () => {
             onRefresh();
         });
-    }, [navigation]);
+    });
 
 	const onRefresh = useCallback(async () => {
 		if(client.auth.me != null){
+			setRefreshing(true)
+			await client.resources.fetchAll();
 			const refreshResources:Resource[] = Array.from(client.auth.me.resources.cache.values());
 			setResourcesFiltered([...refreshResources.slice(0, 6)]);
-			setRefreshing(false)
+			setRefreshing(false);
 		}
  	 }, []);
 
@@ -78,9 +80,9 @@ export default function ShareResourceScreen({ route, navigation }: Props) {
   	return (
 		<View style={CommonStyles.container}>
 			{
-				client.auth.me != null && <TopBar onChangeSearch={handleChangeSearch} navigation={navigation} />
+				client.auth.me != null && <TopBar onChangeSearch={handleChangeSearch} navigation={navigation} client={client}/>
 			}
-			<View style={CommonStyles.content}> 
+			<View style={CommonStyles.content}>
 				<FlatList style={CommonStyles.itemsContainer} 
 					ListEmptyComponent={<Text style={CommonStyles.textEmptyResult}>Aucune ressource n'a été trouvée.</Text>}
 					contentContainerStyle = {ShareResourceStyles.resourcesContainer}

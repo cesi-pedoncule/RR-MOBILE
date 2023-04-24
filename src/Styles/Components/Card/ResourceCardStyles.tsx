@@ -15,17 +15,17 @@ export default StyleSheet.create({
     },
     cardUser:{
         color: COLORS.Black,
-        fontWeight: 'bold',
-        fontSize: 20,
-        marginLeft: 20,
-    },
-    cardTitle:{
-        color: COLORS.Black,
         textDecorationStyle: 'solid',
         textDecorationLine: 'underline',
         fontSize: 16,
-        marginHorizontal:20,  
-        marginBottom: 10,
+        marginHorizontal:20,
+        marginBottom: 5,
+    },
+    cardTitle:{
+        color: COLORS.Black,
+        fontWeight: 'bold',
+        fontSize: 20,
+        marginLeft: 20,
     },
     cardText:{
         color: COLORS.ForegroundHolder,
@@ -67,6 +67,7 @@ export default StyleSheet.create({
         flexDirection : "row",
         overflow:'scroll',
         marginHorizontal:20,  
+        marginVertical: 5
     },
     buttonsEditionResource: {
         alignItems: 'center',
