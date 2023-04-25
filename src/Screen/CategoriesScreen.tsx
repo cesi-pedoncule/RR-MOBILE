@@ -21,7 +21,7 @@ export default function CategoriesScreen({ route, navigation }: Props) {
 
     const handleChangeSearch = (text: string) => {
         const filteredCategories = Array.from(client.categories.cache.values()).filter((category) => 
-            category.name.toLowerCase().includes(text.toLowerCase())
+            category.name.toLowerCase().includes(text.toLowerCase()) && category.isVisible
         );
         setCategoriesFiltered([...filteredCategories.slice(0, 8)]);
     }
@@ -33,7 +33,7 @@ export default function CategoriesScreen({ route, navigation }: Props) {
     }, [navigation])
 
     const onRefresh = useCallback(async () => {
-        const refreshCategories:Category[] = Array.from(client.categories.cache.values());
+        const refreshCategories:Category[] = Array.from(client.categories.cache.filter((category) => category.isVisible).values());
 		setCategoriesFiltered([...refreshCategories.slice(0, 8)]);
 		setRefreshing(false);
  	 }, []);
@@ -41,7 +41,7 @@ export default function CategoriesScreen({ route, navigation }: Props) {
       const onRefreshFetchAll = useCallback(async () => {
         setRefreshing(true);
         await client.categories.fetchAll();
-        const refreshCategories:Category[] = Array.from(client.categories.cache.values());
+        const refreshCategories:Category[] = Array.from(client.categories.cache.filter((category) => category.isVisible).values());
 		setCategoriesFiltered([...refreshCategories.slice(0, 8)]);
 		setRefreshing(false);
  	 }, []);

@@ -15,7 +15,7 @@ interface Props {
 }
 
 export default function CategoriesModal({client, resource, setCategories, showSelectCategories, setShowSelectCategories}: Props) {
-    const items = client.categories.cache.toJSON();
+    const items = client.categories.cache.filter((category) => category.isVisible).toJSON();
     const [selectedItems, setSelectedItems] = useState<string[]>();
 
     const onSelectedItemsChange = (selectedItems:string[]) => {
