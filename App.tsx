@@ -9,7 +9,7 @@ import NavBar from './src/Components/NavBar';
 import EditResourceScreen from './src/Screen/EditResourceScreen';
 import CategoryDetailsScreen from './src/Screen/CategoryDetailsScreen';
 import { NavigationParamList } from './src/Types/navigation';
-import { useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { ActivityIndicator, Image, LogBox, View } from 'react-native';
 import CommonStyles from './src/Styles/CommonStyles';
 import { COLORS } from './src/Styles/Colors';
@@ -29,6 +29,7 @@ interface Props {
 export default function App({ navigation }: Props) {
 
     const [ isLoad, setIsLoad ] = useState<boolean>(false);
+    const client = useMemo(() => new Client(), []);
 
     const loadClient = async () => {
         await client.fetch();
@@ -49,7 +50,9 @@ export default function App({ navigation }: Props) {
         setIsLoad(true);
     }
 
-    loadClient();
+    useEffect(() => {
+        loadClient();
+    }, [])
 
     if(!isLoad) {
         return (
