@@ -14,6 +14,7 @@ export default StyleSheet.create({
         elevation: 2,
     },
     cardUser:{
+        width: '70%',
         color: COLORS.Black,
         textDecorationStyle: 'solid',
         textDecorationLine: 'underline',
@@ -22,6 +23,7 @@ export default StyleSheet.create({
         marginBottom: 5,
     },
     cardTitle:{
+        width: '70%',
         color: COLORS.Black,
         fontWeight: 'bold',
         fontSize: 20,
