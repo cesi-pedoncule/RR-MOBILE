@@ -8,13 +8,14 @@ import IconButton from "../Button/IconButton";
 
 interface Props {
     onChangeSearch?: (text: string) => void;
+    value?: string;
     hideSearchBar?: boolean;
     hideLogout?: boolean;
     client?: Client;
     navigation: any;
 }
 
-export default function TopBar({onChangeSearch, hideSearchBar=false, hideLogout=true, client, navigation}: Props) {
+export default function TopBar({onChangeSearch, value, hideSearchBar=false, hideLogout=true, client, navigation}: Props) {
 
     const onClickDisconnect = async () => {
         client?.auth.logout();
@@ -32,7 +33,7 @@ export default function TopBar({onChangeSearch, hideSearchBar=false, hideLogout=
         <View style={TopbarStyles.topBarBackground}>
             <IconButton iconStyle={TopbarStyles.btnHomeBackground} callBack={onPressButton} iconSize={24} iconName={"bookshelf"}/>
             {
-                !hideSearchBar && onChangeSearch && <SearchBar onChangeSearch={onChangeSearch}/>
+                !hideSearchBar && onChangeSearch && <SearchBar value={value} onChangeSearch={onChangeSearch}/>
             }
             {
                 !hideLogout && <IconButton iconStyle={TopbarStyles.disconnectContainer} callBack={onClickDisconnect} iconSize={24} iconName={"logout"}/>

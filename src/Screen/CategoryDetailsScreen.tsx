@@ -16,36 +16,34 @@ type Props = NativeStackScreenProps<NavigationParamList, 'CategoryDetails'>;
 export default function CategoryDetailsScreen ({ navigation, route }: Props) {
     const category = route.params.category;
     const client = route.params.client;
-    const [ resources, setResources ] = useState<Resource[]>([]);
+
+    const [ searchText, setSearchText ] = useState<string>('');
     const [ resourcesFiltered, setResourcesFiltered ] = useState<Resource[]>([]);
     const [ refreshing, setRefreshing ] = useState(false);
 
     const handleChangeSearch = (text: string) => {
+        setSearchText(text);
 		const filteredResources = Array.from(category.resources.getValidateResources().values()).filter((resource) =>
-			resource.title.toLowerCase().includes(text.toLowerCase())
+			resource.title.toLowerCase().includes(searchText.toLowerCase())
 		);
-        setResources([...filteredResources]);
 		setResourcesFiltered(filteredResources.splice(0, 6));
 	}
 
     useEffect(() => {
-        if (resourcesFiltered.length === 0 && resources.length !== 0) {
-            setResourcesFiltered([...resources.slice(0, 6)]);
-        }
         navigation.addListener('focus', () => {
             onRefresh();
         });
-    }, [resources, navigation]);
+    }, [navigation]);
 
-    const onRefresh = useCallback(async () => {
+    const onRefresh = () => {
         const newCategorie = client.categories.cache.get(category.id);
         if(newCategorie){
             const refreshResources:Resource[] = Array.from(newCategorie.resources.getValidateResources().values());
-            setResources([...refreshResources]);
             setResourcesFiltered([...refreshResources.slice(0, 6)]);
             setRefreshing(false);
+            setSearchText('');
         }
-    }, []);
+    };
 
     const onRefreshFetchAll = useCallback(async () => {
         setRefreshing(true);
@@ -53,9 +51,9 @@ export default function CategoryDetailsScreen ({ navigation, route }: Props) {
         const newCategorie = client.categories.cache.get(category.id);
         if(newCategorie){
             const refreshResources:Resource[] = Array.from(newCategorie.resources.getValidateResources().values());
-            setResources([...refreshResources]);
             setResourcesFiltered([...refreshResources.slice(0, 6)]);
             setRefreshing(false);
+            setSearchText('');
         }
     }, []);
 
@@ -63,7 +61,7 @@ export default function CategoryDetailsScreen ({ navigation, route }: Props) {
 		return (
 			<View>
 				{
-					resources.length >= 6 && resourcesFiltered.length !== resources.length && resourcesFiltered.length !=0 &&
+					searchText.length === 0 && category.resources.getValidateResources().size >= 6 && resourcesFiltered.length !== category.resources.getValidateResources().size && resourcesFiltered.length != 0 &&
 					<ActivityIndicator size="large" color={COLORS.AccentColor} style={CommonStyles.loadMoreContent} />
 				}	
 			</View>
@@ -80,12 +78,13 @@ export default function CategoryDetailsScreen ({ navigation, route }: Props) {
 	}
 
 	const onShowMoreItems = () => {
-		setResourcesFiltered(resourcesFiltered.concat(resources.slice(resourcesFiltered.length, resourcesFiltered.length + 6)));
+        searchText.length === 0 &&
+		setResourcesFiltered(resourcesFiltered.concat(Array.from(category.resources.getValidateResources().values()).slice(resourcesFiltered.length, resourcesFiltered.length + 6)));
 	}
 
     return (
         <View style={CommonStyles.container}>
-            <TopBar onChangeSearch={handleChangeSearch} navigation={navigation} client={client} />
+            <TopBar value={searchText} onChangeSearch={handleChangeSearch} navigation={navigation} client={client} />
             <View style={CommonStyles.content}>
                 <FlatList style={CommonStyles.itemsContainer} 
                     ListEmptyComponent={<Text style={CommonStyles.textEmptyResult}>Aucune ressource n'a été trouvée.</Text>}

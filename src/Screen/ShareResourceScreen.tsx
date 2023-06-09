@@ -17,6 +17,7 @@ export default function ShareResourceScreen({ route, navigation }: Props) {
 	
 	const client = route.params.client;
 
+    const [ searchText, setSearchText ] = useState<string>('');
 	const [ resourcesFiltered, setResourcesFiltered ] = useState<Resource[]>([]);
 	const [ refreshing, setRefreshing ] = useState(false);
 
@@ -26,8 +27,9 @@ export default function ShareResourceScreen({ route, navigation }: Props) {
 
 	const handleChangeSearch = (text: string) => {
 		if(client.auth.me != null){
+			setSearchText(text);
 			const filteredResources = Array.from(client.auth.me.resources.cache.values()).filter((resource) => 
-				resource.title.toLowerCase().includes(text.toLowerCase())
+				resource.title.toLowerCase().includes(searchText.toLowerCase())
 			);
 			setResourcesFiltered([...filteredResources.splice(0, 6)]);
 		}
@@ -40,15 +42,16 @@ export default function ShareResourceScreen({ route, navigation }: Props) {
 		navigation.addListener('focus', () => {
             onRefresh();
         });
-    });
+    }), [navigation];
 
-	const onRefresh = useCallback(async () => {
+	const onRefresh = () => {
 		if(client.auth.me != null){
 			const refreshResources:Resource[] = Array.from(client.auth.me.resources.cache.values());
 			setResourcesFiltered([...refreshResources.slice(0, 6)]);
 			setRefreshing(false);
+			setSearchText('');
 		}
- 	 }, []);
+ 	 };
 
 	const onRefreshFetchAll = useCallback(async () => {
 		if(client.auth.me != null){
@@ -57,6 +60,7 @@ export default function ShareResourceScreen({ route, navigation }: Props) {
 			const refreshResources:Resource[] = Array.from(client.auth.me.resources.cache.values());
 			setResourcesFiltered([...refreshResources.slice(0, 6)]);
 			setRefreshing(false);
+			setSearchText('');
 		}
  	 }, []);
 
@@ -65,7 +69,7 @@ export default function ShareResourceScreen({ route, navigation }: Props) {
 		return (
 			<View>
 				{
-					!client.auth.me || client.auth.me.resources.cache.size >= 6 && resourcesFiltered.length !== client.auth.me.resources.cache.size && resourcesFiltered.length != 0 &&
+					!client.auth.me || searchText.length === 0 && client.auth.me.resources.cache.size >= 6 && resourcesFiltered.length !== client.auth.me.resources.cache.size && resourcesFiltered.length != 0 &&
 					<ActivityIndicator size="large" color={COLORS.AccentColor} style={CommonStyles.loadMoreContent} />
 				}	
 			</View>
@@ -81,7 +85,7 @@ export default function ShareResourceScreen({ route, navigation }: Props) {
 	}
 
 	const onShowMoreItems = () => {
-		if (client.auth.me) {
+		if (client.auth.me && searchText.length === 0) {
 			setResourcesFiltered(resourcesFiltered.concat(Array.from(client.auth.me.resources.cache.values()).slice(resourcesFiltered.length, resourcesFiltered.length + 6)));
 		}
 	}
@@ -89,7 +93,7 @@ export default function ShareResourceScreen({ route, navigation }: Props) {
   	return (
 		<View style={CommonStyles.container}>
 			{
-				client.auth.me != null && <TopBar onChangeSearch={handleChangeSearch} navigation={navigation} client={client}/>
+				client.auth.me != null && <TopBar value={searchText} onChangeSearch={handleChangeSearch} navigation={navigation} client={client}/>
 			}
 			<View style={CommonStyles.content}>
 				<FlatList style={CommonStyles.itemsContainer} 

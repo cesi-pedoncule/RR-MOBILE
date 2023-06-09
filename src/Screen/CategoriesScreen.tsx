@@ -16,12 +16,14 @@ export default function CategoriesScreen({ route, navigation }: Props) {
 
     const client = route.params.client;
 
+    const [ searchText, setSearchText ] = useState<string>('');
     const [ categoriesFiltered, setCategoriesFiltered ] = useState<Category[]>([]);
     const [ refreshing, setRefreshing ] = useState(false);
 
     const handleChangeSearch = (text: string) => {
+        setSearchText(text);
         const filteredCategories = Array.from(client.categories.cache.values()).filter((category) => 
-            category.name.toLowerCase().includes(text.toLowerCase()) && category.isVisible
+            category.name.toLowerCase().includes(searchText.toLowerCase()) && category.isVisible
         );
         setCategoriesFiltered([...filteredCategories.slice(0, 8)]);
     }
@@ -32,11 +34,12 @@ export default function CategoriesScreen({ route, navigation }: Props) {
         });
     }, [navigation])
 
-    const onRefresh = useCallback(async () => {
+    const onRefresh = () => {
         const refreshCategories:Category[] = Array.from(client.categories.cache.filter((category) => category.isVisible).values());
 		setCategoriesFiltered([...refreshCategories.slice(0, 8)]);
 		setRefreshing(false);
- 	 }, []);
+        setSearchText('');
+ 	 };
 
       const onRefreshFetchAll = useCallback(async () => {
         setRefreshing(true);
@@ -44,13 +47,14 @@ export default function CategoriesScreen({ route, navigation }: Props) {
         const refreshCategories:Category[] = Array.from(client.categories.cache.filter((category) => category.isVisible).values());
 		setCategoriesFiltered([...refreshCategories.slice(0, 8)]);
 		setRefreshing(false);
+        setSearchText('');
  	 }, []);
 
     const renderFooter = () => {
 		return (
 			<View>
 				{
-					client.categories.cache.size >= 8  && categoriesFiltered.length !== client.categories.cache.size && categoriesFiltered.length != 0 &&
+					searchText.length === 0 && client.categories.cache.size >= 8  && categoriesFiltered.length !== client.categories.cache.size && categoriesFiltered.length != 0 &&
 					<ActivityIndicator size="large" color={COLORS.AccentColor} style={CommonStyles.loadMoreContent} />
 				}	
 			</View>
@@ -66,12 +70,13 @@ export default function CategoriesScreen({ route, navigation }: Props) {
 	}
 
 	const onShowMoreItems = () => {
+        searchText.length === 0 && 
 		setCategoriesFiltered(categoriesFiltered.concat(Array.from(client.categories.cache.values()).slice(categoriesFiltered.length, categoriesFiltered.length + 6)));
 	}
 
     return (
         <View style={CommonStyles.container}>
-            <TopBar onChangeSearch={handleChangeSearch} navigation={navigation} client={client} />
+            <TopBar value={searchText} onChangeSearch={handleChangeSearch} navigation={navigation} client={client} />
             <View style={CommonStyles.content}>
                 <FlatList style={CommonStyles.itemsContainer} 
                     ListEmptyComponent={<Text style={CommonStyles.textEmptyResult}>Aucune catégorie n'a été trouvée.</Text>}
