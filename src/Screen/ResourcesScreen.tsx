@@ -20,9 +20,9 @@ export default function ResourcesScreen({ navigation, route } : Props) {
     const [ refreshing, setRefreshing ] = useState(false);
 
     const handleChangeSearch = (text: string) => {
-        const filteredResources = Array.from(client.resources.cache.values()).filter((resource) =>
+        const filteredResources = Array.from(client.resources.getValidateResources().filter((resource) =>
             resource.title.toLowerCase().includes(text.toLowerCase())
-        );
+        ).values());
         setResourcesFiltered([...filteredResources.splice(0, 6)]);
     }
 
@@ -50,7 +50,7 @@ export default function ResourcesScreen({ navigation, route } : Props) {
 		return (
 			<View>
 				{
-					client.resources.cache.size >= 6 && resourcesFiltered.length !== client.resources.cache.size && resourcesFiltered.length != 0 &&
+					client.resources.getValidateResources().size >= 6 && resourcesFiltered.length !== client.resources.getValidateResources().size && resourcesFiltered.length != 0 &&
 					<ActivityIndicator size="large" color={COLORS.AccentColor} style={CommonStyles.loadMoreContent} />
 				}	
 			</View>
@@ -66,7 +66,7 @@ export default function ResourcesScreen({ navigation, route } : Props) {
 	}
 
 	const onShowMoreItems = () => {
-		setResourcesFiltered(resourcesFiltered.concat(Array.from(client.resources.cache.values()).slice(resourcesFiltered.length, resourcesFiltered.length + 6)));
+		setResourcesFiltered(resourcesFiltered.concat(Array.from(client.resources.getValidateResources().values()).slice(resourcesFiltered.length, resourcesFiltered.length + 6)));
 	}
 
     return (

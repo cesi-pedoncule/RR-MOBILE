@@ -62,8 +62,6 @@ export default function LoginScreen({ route, navigation }: Props) {
                 } catch (error) {
                     await AsyncStorage.removeItem('token');
                     await AsyncStorage.removeItem('refresh_token');
-
-                    await client.refresh();
                 }
             } 
 

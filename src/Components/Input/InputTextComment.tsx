@@ -1,9 +1,7 @@
-import { View, TextInput, TouchableOpacity, ToastAndroid } from 'react-native'
+import { View, TextInput, ToastAndroid } from 'react-native'
 import React, { useState } from 'react'
-import { MaterialCommunityIcons } from '@expo/vector-icons';
 import InputTextCommentStyles from '../../Styles/Components/Input/InputTextCommentStyles'
 import { Comment, CommentBuilder, Resource } from 'rr-apilib';
-import { COLORS } from '../../Styles/Colors';
 import IconButton from '../Button/IconButton';
 
 interface Props {

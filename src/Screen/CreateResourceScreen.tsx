@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, TextInput, Switch, TouchableOpacity, FlatList, ToastAndroid, ActivityIndicator} from 'react-native';
+import { View, Text, ScrollView, TextInput, Switch, TouchableOpacity, FlatList, ToastAndroid} from 'react-native';
 import React, { useState } from 'react';
 import CommonStyles from '../Styles/CommonStyles';
 import TopBar from '../Components/Input/TopBar';
@@ -59,7 +59,7 @@ export default function CreateResourceScreen({ route, navigation }: Props) {
     const onClickAddFile = () => {
         DocumentPicker.getDocumentAsync({copyToCacheDirectory: false}).then((file) => {
             if(file.type === "success" && attachmentsBuilder.length < 6){
-                const attachment = new AttachmentBuilder().setFile(file);
+                const attachment = new AttachmentBuilder().setFile(file as any);
                 attachmentsBuilder.push(attachment);
                 setAttachmentsBuilder([...attachmentsBuilder ]);
             } else if (attachmentsBuilder.length == 6) {

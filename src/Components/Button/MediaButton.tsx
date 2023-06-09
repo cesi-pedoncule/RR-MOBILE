@@ -2,11 +2,10 @@ import { Text, ToastAndroid, TouchableOpacity, View } from "react-native"
 import { COLORS } from "../../Styles/Colors"
 import ButtonFileStyles from "../../Styles/Components/Button/ButtonFileStyles"
 import { MaterialCommunityIcons } from '@expo/vector-icons'
-import { Attachment, AttachmentBuilder, Resource } from "rr-apilib";
+import { Attachment, AttachmentBuilder, AttachmentDataFile } from "rr-apilib";
 import * as Linking from 'expo-linking';
 import CommonStyles from "../../Styles/CommonStyles";
 import IconButton from "./IconButton";
-import { AttachmentDataFile } from "rr-apilib/lib/builders/AttachmentBuilder";
 
 interface Props {
     attachmentsBuilder?: AttachmentBuilder[],
