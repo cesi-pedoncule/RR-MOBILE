@@ -23,7 +23,7 @@ export default function CategoriesScreen({ route, navigation }: Props) {
     const handleChangeSearch = (text: string) => {
         setSearchText(text);
         const filteredCategories = Array.from(client.categories.cache.values()).filter((category) => 
-            category.name.toLowerCase().includes(searchText.toLowerCase()) && category.isVisible
+            category.name.toLowerCase().includes(text.toLowerCase()) && category.isVisible
         );
         setCategoriesFiltered([...filteredCategories.slice(0, 8)]);
     }

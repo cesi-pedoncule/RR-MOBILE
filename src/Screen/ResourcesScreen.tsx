@@ -23,7 +23,7 @@ export default function ResourcesScreen({ navigation, route } : Props) {
     const handleChangeSearch = (text: string) => {
         setSearchText(text);
         const filteredResources = Array.from(client.resources.getValidateResources().filter((resource) =>
-            resource.title.toLowerCase().includes(searchText.toLowerCase())
+            resource.title.toLowerCase().includes(text.toLowerCase())
         ).values());
         setResourcesFiltered([...filteredResources.splice(0, 6)]);
     }

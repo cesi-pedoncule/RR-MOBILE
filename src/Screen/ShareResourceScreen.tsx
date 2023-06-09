@@ -29,7 +29,7 @@ export default function ShareResourceScreen({ route, navigation }: Props) {
 		if(client.auth.me != null){
 			setSearchText(text);
 			const filteredResources = Array.from(client.auth.me.resources.cache.values()).filter((resource) => 
-				resource.title.toLowerCase().includes(searchText.toLowerCase())
+				resource.title.toLowerCase().includes(text.toLowerCase())
 			);
 			setResourcesFiltered([...filteredResources.splice(0, 6)]);
 		}

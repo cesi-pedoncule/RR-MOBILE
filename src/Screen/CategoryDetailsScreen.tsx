@@ -24,7 +24,7 @@ export default function CategoryDetailsScreen ({ navigation, route }: Props) {
     const handleChangeSearch = (text: string) => {
         setSearchText(text);
 		const filteredResources = Array.from(category.resources.getValidateResources().values()).filter((resource) =>
-			resource.title.toLowerCase().includes(searchText.toLowerCase())
+			resource.title.toLowerCase().includes(text.toLowerCase())
 		);
 		setResourcesFiltered(filteredResources.splice(0, 6));
 	}
