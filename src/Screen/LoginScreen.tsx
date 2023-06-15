@@ -24,6 +24,10 @@ export default function LoginScreen({ route, navigation }: Props) {
         navigation.navigate('Register', { client });
     }
 
+    const onClickForgotPassword = () => {
+        navigation.navigate('SendResetPassword', { client });
+    }
+
     const onClickLoginButton = async () => {
         setIsLoading(true);
 
@@ -84,6 +88,7 @@ export default function LoginScreen({ route, navigation }: Props) {
                             <View style={LoginStyles.loginContainer}>
                                 <InputText placeholder="Email" type='email-address' onChangeText={(value) => setEmail(value)}/>
                                 <InputText placeholder="Mot de passe" type='default' secureTextEntry={true} onChangeText={(value) => setPassword(value)}/>
+                                <Link label="Mot de passe oublié" callBack={onClickForgotPassword}/>
                             </View>
                             <View style={LoginStyles.registerContainer}>
                                 <Text style={LoginStyles.text}> Pas de compte ? </Text>
