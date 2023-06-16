@@ -1,7 +1,7 @@
-import { Modal, TouchableOpacity, View, Text } from 'react-native'
-import React, { useState } from 'react'
-import MultiSelect from 'react-native-multiple-select'
-import { Category, Client, Resource } from 'rr-apilib'
+import { Modal, TouchableOpacity, View, Text } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import MultiSelect from 'react-native-multiple-select';
+import { Category, Client, Resource } from 'rr-apilib';
 import CategoriesModalStyles from '../Styles/Components/CategoriesModalStyles';
 import { COLORS } from '../Styles/Colors';
 import Header from './Header';
@@ -15,8 +15,9 @@ interface Props {
 }
 
 export default function CategoriesModal({client, resource, setCategories, showSelectCategories, setShowSelectCategories}: Props) {
-    const items = client.categories.cache.filter((category) => category.isVisible).toJSON();
-    const [selectedItems, setSelectedItems] = useState<string[]>();
+
+    const items = Array.from(client.categories.cache.filter((category) => category.isVisible));
+    const [ selectedItems, setSelectedItems ] = useState<string[]>(new Array());
 
     const onSelectedItemsChange = (selectedItems:string[]) => {
         const newCategories: Category[]= [];
@@ -35,7 +36,15 @@ export default function CategoriesModal({client, resource, setCategories, showSe
 
         resource &&
             resource.categories.set([...newCategories]);
-    }
+    };
+
+    useEffect(() => {
+        if(resource) {
+            for(const category of resource.categories.cache.values()) {
+                selectedItems.push(category.id);
+            }
+        }
+    }, []);
 
     return (
         <Modal animationType="slide" transparent={true} visible={showSelectCategories} onRequestClose={() => { setShowSelectCategories(!showSelectCategories); }}>
@@ -48,6 +57,7 @@ export default function CategoriesModal({client, resource, setCategories, showSe
                                 fixedHeight={true}
                                 items={items}
                                 uniqueKey="id"
+                                displayKey="name"
                                 onSelectedItemsChange={onSelectedItemsChange}
                                 selectedItems={selectedItems}
                                 selectText="Sélectioner une catégorie"
@@ -58,7 +68,6 @@ export default function CategoriesModal({client, resource, setCategories, showSe
                                 selectedItemTextColor={COLORS.AccentColor}
                                 selectedItemIconColor={COLORS.AccentColor}
                                 itemTextColor={COLORS.Black}
-                                displayKey="name"
                                 searchInputStyle={{ color: COLORS.Black }}
                                 hideSubmitButton={true}
                                 styleRowList={{backgroundColor: COLORS.LightBackgroundColor}}
