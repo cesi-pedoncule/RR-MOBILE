@@ -8,13 +8,13 @@ import Header from './Header';
 
 interface Props {
     client: Client;
-    resource?: Resource;
+    categories ?: Category[];
     setCategories ?: React.Dispatch<React.SetStateAction<Category[]>>;
     showSelectCategories: boolean;
     setShowSelectCategories: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function CategoriesModal({client, resource, setCategories, showSelectCategories, setShowSelectCategories}: Props) {
+export default function CategoriesModal({client, categories, setCategories, showSelectCategories, setShowSelectCategories}: Props) {
 
     const items = Array.from(client.categories.cache.filter((category) => category.isVisible).values());
     const [ selectedItems, setSelectedItems ] = useState<string[]>(new Array());
@@ -33,14 +33,11 @@ export default function CategoriesModal({client, resource, setCategories, showSe
         
         setCategories &&
             setCategories([...newCategories]);
-
-        resource &&
-            resource.categories.set([...newCategories]);
     };
 
     useEffect(() => {
-        if(resource) {
-            for(const category of resource.categories.cache.values()) {
+        if(categories) {
+            for(const category of categories) {
                 selectedItems.push(category.id);
             }
         }
@@ -53,7 +50,6 @@ export default function CategoriesModal({client, resource, setCategories, showSe
                 <Header label={'Ajouter des catégories'}/>
                     <View style={CategoriesModalStyles.multiSelectContainer}>
                             <MultiSelect
-                                hideTags
                                 fixedHeight={true}
                                 items={items}
                                 uniqueKey="id"

@@ -101,7 +101,7 @@ export default function EditResourceScreen({ route, navigation }: Props) {
                             <TouchableOpacity onPress={onClickAddCategory} style={EditResourceStyles.addCategorieContainer}>
                                 <Text style={EditResourceStyles.addCategorieText}>{'+'}</Text>
                             </TouchableOpacity>
-                            <CategoriesModal client={client} showSelectCategories={showSelectCategories} setShowSelectCategories={setShowSelectCategories} setCategories={setCategories}/>
+                            <CategoriesModal client={client} showSelectCategories={showSelectCategories} setShowSelectCategories={setShowSelectCategories} categories={categories} setCategories={setCategories}/>
                         </View>
                         <InputTextDescription defaultValue={resource.description} onChangeText={(text) => setDescription(text)}/>
                         <ButtonFile text={'Ajouter un fichier'} callBack={onClickAddFile}/>
