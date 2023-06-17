@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, ScrollView } from 'react-native'
 import Header from "../Components/Header";
 import StatDashBoard from "../Components/StatDashBoard";
@@ -8,7 +8,6 @@ import ProfileStyles from "../Styles/Screen/ProfileStyles";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { NavigationParamList } from "../Types/navigation";
 import { Resource } from "rr-apilib";
-import ResourceCardWithUser from "../Components/Card/ResourceCardWithUser";
 import UserCard from "../Components/Card/UserCard";
 import ResourceLikedCard from "../Components/Card/ResourceLikedCard";
 
@@ -57,42 +56,51 @@ export default function ProfileScreen({ route, navigation }: Props) {
                                 <Text style={ProfileStyles.profileDescription}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed efficitur risus tempus, eleifend sem in, ornare quam. Integer ultrices</Text>
                                 <Text style={[CommonStyles.title, ProfileStyles.profileTitle]} numberOfLines={1}>Statistiques</Text>
                                 <StatDashBoard user={me}/>
-                                <View style={ProfileStyles.itemsContainer}>
-                                    <Text style={ProfileStyles.textHolder}>Personnes suivi : ({followsUser.length})</Text>
-                                    <ScrollView style={ProfileStyles.itemsScrollView} horizontal showsHorizontalScrollIndicator={false}>
-                                        {
-                                            followsUser.map((user, id) => 
-                                                <View style={ProfileStyles.itemContainer} key={id}>
-                                                    <UserCard key={id} navigation={navigation} user={user.user}/>
-                                                </View>
-                                            )
-                                        }
-                                    </ScrollView>
-                                </View>
-                                <View style={ProfileStyles.itemsContainer}>
-                                    <Text style={ProfileStyles.textHolder}>Personnes qui nous suive : ({followersUser.length})</Text>
-                                    <ScrollView style={ProfileStyles.itemsScrollView} horizontal showsHorizontalScrollIndicator={false}>
-                                        {
-                                            followersUser.map((user, id) => 
-                                                <View style={ProfileStyles.itemContainer} key={id}>
-                                                    <UserCard key={id} navigation={navigation} user={user.user}/>
-                                                </View>
-                                            )
-                                        }
-                                    </ScrollView>
-                                </View>
-                                <View style={ProfileStyles.itemsContainer}>
-                                    <Text style={ProfileStyles.textHolder}>Ressource aimé : ({resourcesLiked.length})</Text>
-                                    <ScrollView style={ProfileStyles.itemsScrollView} horizontal showsHorizontalScrollIndicator={false}>
-                                        {
-                                            resourcesLiked.map((resource, id) => 
-                                                <View style={ProfileStyles.itemContainer} key={id}>
-                                                    <ResourceLikedCard key={id} navigation={navigation} resourceData={resource} onDoubleClick={onRefresh}/>
-                                                </View>
-                                            )
-                                        }
-                                    </ScrollView>
-                                </View>
+                                {
+                                    followsUser.length !== 0 && 
+                                    <View style={ProfileStyles.itemsContainer}>
+                                        <Text style={ProfileStyles.textHolder}>Personnes suivi : ({followsUser.length})</Text>
+                                        <ScrollView style={ProfileStyles.itemsScrollView} horizontal showsHorizontalScrollIndicator={false}>
+                                            {
+                                                followsUser.map((user, id) => 
+                                                    <View style={ProfileStyles.itemContainer} key={id}>
+                                                        <UserCard key={id} navigation={navigation} user={user.user}/>
+                                                    </View>
+                                                )
+                                            }
+                                        </ScrollView>
+                                    </View>
+                                }
+                                {
+                                    followersUser.length !== 0 && 
+                                    <View style={ProfileStyles.itemsContainer}>
+                                        <Text style={ProfileStyles.textHolder}>Personnes qui nous suive : ({followersUser.length})</Text>
+                                        <ScrollView style={ProfileStyles.itemsScrollView} horizontal showsHorizontalScrollIndicator={false}>
+                                            {
+                                                followersUser.map((user, id) => 
+                                                    <View style={ProfileStyles.itemContainer} key={id}>
+                                                        <UserCard key={id} navigation={navigation} user={user.user}/>
+                                                    </View>
+                                                )
+                                            }
+                                        </ScrollView>
+                                    </View>
+                                }
+                                {
+                                    resourcesLiked.length !== 0 &&
+                                    <View style={ProfileStyles.itemsContainer}>
+                                        <Text style={ProfileStyles.textHolder}>Ressource aimé : ({resourcesLiked.length})</Text>
+                                        <ScrollView style={ProfileStyles.itemsScrollView} horizontal showsHorizontalScrollIndicator={false}>
+                                            {
+                                                resourcesLiked.map((resource, id) => 
+                                                    <View style={ProfileStyles.itemContainer} key={id}>
+                                                        <ResourceLikedCard key={id} navigation={navigation} resourceData={resource} onDoubleClick={onRefresh}/>
+                                                    </View>
+                                                )
+                                            }
+                                        </ScrollView>
+                                    </View>
+                                }
                             </View>
                         </ScrollView>
                     </View>

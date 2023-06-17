@@ -1,7 +1,8 @@
 import {
     Category,
     Client,
-    Resource
+    Resource,
+    User
 } from "rr-apilib";
 
 export type NavigationParamList = {
@@ -17,5 +18,6 @@ export type NavigationParamList = {
     Categories: { client: Client };
     ShareResource: { client: Client };
     Profile: { client: Client };
+    UserDetails: { client: Client, user: User };
     SendResetPassword: { client: Client };
 }

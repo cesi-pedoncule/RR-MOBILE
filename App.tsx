@@ -16,9 +16,9 @@ import { COLORS } from './src/Styles/Colors';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import SendResetPasswordScreen from './src/Screen/SendResetPasswordScreen';
+import UserDetailsScreen from './src/Screen/UserDetailsScreen';
 
 const Stack = createStackNavigator<NavigationParamList>();
-const client = new Client();
 
 LogBox.ignoreLogs([
     'Non-serializable values were found in the navigation state',
@@ -75,6 +75,7 @@ export default function App({ navigation }: Props) {
                 <Stack.Screen name="NavBar" component={NavBar} options={{ headerShown: false }} initialParams={{ client }}/>
                 <Stack.Screen name="Login" component={LoginScreen} initialParams={{ client }} />
                 <Stack.Screen name="SendResetPassword" component={SendResetPasswordScreen} initialParams={{ client }} />
+                <Stack.Screen name="UserDetails" component={UserDetailsScreen} initialParams={{ client }} />
                 <Stack.Screen name="Register" component={RegisterScreen} initialParams={{ client }} />
                 <Stack.Screen name="ResourceDetails" component={ResourceDetailsScreen} initialParams={{ client }} />
                 <Stack.Screen name="CategoryDetails" component={CategoryDetailsScreen} initialParams={{ client }} />
