@@ -17,6 +17,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import SendResetPasswordScreen from './src/Screen/SendResetPasswordScreen';
 import UserDetailsScreen from './src/Screen/UserDetailsScreen';
+import UsersScreen from './src/Screen/UsersScreen';
 
 const Stack = createStackNavigator<NavigationParamList>();
 
@@ -75,6 +76,7 @@ export default function App({ navigation }: Props) {
                 <Stack.Screen name="NavBar" component={NavBar} options={{ headerShown: false }} initialParams={{ client }}/>
                 <Stack.Screen name="Login" component={LoginScreen} initialParams={{ client }} />
                 <Stack.Screen name="SendResetPassword" component={SendResetPasswordScreen} initialParams={{ client }} />
+                <Stack.Screen name="Users" component={UsersScreen} initialParams={{ client }} />
                 <Stack.Screen name="UserDetails" component={UserDetailsScreen} initialParams={{ client }} />
                 <Stack.Screen name="Register" component={RegisterScreen} initialParams={{ client }} />
                 <Stack.Screen name="ResourceDetails" component={ResourceDetailsScreen} initialParams={{ client }} />

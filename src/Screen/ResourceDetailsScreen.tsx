@@ -79,6 +79,7 @@ export default function ResourceDetailsScreen({ route, navigation }: Props) {
             <TopBar hideSearchBar={true} navigation={navigation} client={client}/>
             <View style={CommonStyles.content}>
                 <FlatList style={CommonStyles.itemsContainer} 
+                    showsVerticalScrollIndicator={false}
                     ListEmptyComponent={<Text style={CommonStyles.textEmptyResult}>Aucun commentaire n'a été posté.</Text>}
                     contentContainerStyle = {ResourceDetailsStyles.resourceContainer}
                     data={comments}

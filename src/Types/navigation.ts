@@ -18,6 +18,7 @@ export type NavigationParamList = {
     Categories: { client: Client };
     ShareResource: { client: Client };
     Profile: { client: Client };
+    Users: { client: Client };
     UserDetails: { client: Client, user: User };
     SendResetPassword: { client: Client };
 }

@@ -51,13 +51,13 @@ export default function SendResetPasswordScreen({ route, navigation }: Props) {
 
     return (
         <View style={CommonStyles.container}>
-            <TopBar hideSearchBar={true} navigation={navigation} client={client}/>
+            <TopBar hideSearchBar={true} hideHomeButton={false} navigation={navigation} client={client}/>
             <View style={CommonStyles.content}>
                 <View style={SendResetPasswordStyles.container}>
                     <View style={{marginTop : 20, marginLeft: 15}}>
                         <IconButton iconStyle={CommonStyles.returnBtnInFlatList} callBack={() => navigation.goBack()} iconSize={24} iconName={"arrow-left-top"}/>  
                     </View>
-                    <ScrollView style={CommonStyles.itemsContainer}>
+                    <ScrollView style={CommonStyles.itemsContainer} showsVerticalScrollIndicator={false}>
                         <View style={{alignItems: 'center', paddingHorizontal: 30}}>
                             <Header label="Renitialisation du mot de passe" />
                         </View>

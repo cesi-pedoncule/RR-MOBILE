@@ -11,7 +11,7 @@ export default StyleSheet.create({
         height: 55,
         zIndex: 1,
     },
-    btnHomeBackground: {
+    buttonBackground: {
         padding: 10,
         justifyContent: 'center',
         textAlign: 'center',

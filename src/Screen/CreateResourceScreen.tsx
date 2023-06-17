@@ -75,7 +75,7 @@ export default function CreateResourceScreen({ route, navigation }: Props) {
             <TopBar hideSearchBar={true} navigation={navigation} client={client}/>
             <View style={CommonStyles.content}>
                 <IconButton iconStyle={CommonStyles.returnBtn} callBack={() => navigation.goBack()} iconSize={24} iconName={"arrow-left-top"}/>  
-                <ScrollView style={CommonStyles.itemsContainer}>
+                <ScrollView style={CommonStyles.itemsContainer} showsVerticalScrollIndicator={false}>
                     <View style={CreateResourceStyles.container}>
                         <TextInput style={CreateResourceStyles.addNameResource} placeholder={"Titre de la ressource"} onChangeText={(text) => newResource.setTitle(text)}/>
                         <View style={CreateResourceStyles.categorieContainer}>

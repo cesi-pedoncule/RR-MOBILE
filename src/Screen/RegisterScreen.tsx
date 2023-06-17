@@ -94,9 +94,9 @@ export default function RegisterScreen({ route, navigation }: Props) {
 
     return (
         <View style={CommonStyles.container}>
-            <TopBar hideSearchBar={true} navigation={navigation} client={client}/>
+            <TopBar hideSearchBar={true} hideHomeButton={false} navigation={navigation} client={client}/>
             <View style={CommonStyles.content}>
-                <ScrollView style={CommonStyles.itemsContainer}>
+                <ScrollView style={CommonStyles.itemsContainer} showsVerticalScrollIndicator={false}>
                     <Header label="Inscription" />
                     <View style={LoginStyles.loginContainer}>
                         <InputText placeholder="Nom" type='default' onChangeText={(value) => newUser.setName(value)} onBlur={onBlurName} isValid={isValidName}/>

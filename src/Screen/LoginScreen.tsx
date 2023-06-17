@@ -79,11 +79,11 @@ export default function LoginScreen({ route, navigation }: Props) {
 
     return (
         <View style={CommonStyles.container}>
-            <TopBar hideSearchBar={true} navigation={navigation} client={client}/>
+            <TopBar hideSearchBar={true} hideHomeButton={false} navigation={navigation} client={client}/>
             <View style={CommonStyles.content}>
                 <View style={LoginStyles.container}>
                     <View>
-                        <ScrollView style={CommonStyles.itemsContainer}>
+                        <ScrollView style={CommonStyles.itemsContainer} showsVerticalScrollIndicator={false}>
                             <Header label="Connexion" />
                             <View style={LoginStyles.loginContainer}>
                                 <InputText placeholder="Email" type='email-address' onChangeText={(value) => setEmail(value)}/>

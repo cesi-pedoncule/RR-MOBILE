@@ -97,6 +97,7 @@ export default function ShareResourceScreen({ route, navigation }: Props) {
 			}
 			<View style={CommonStyles.content}>
 				<FlatList style={CommonStyles.itemsContainer} 
+					showsVerticalScrollIndicator={false}
 					ListEmptyComponent={<Text style={CommonStyles.textEmptyResult}>Aucune ressource n'a été trouvée.</Text>}
 					contentContainerStyle = {ShareResourceStyles.resourcesContainer}
 					data={resourcesFiltered}

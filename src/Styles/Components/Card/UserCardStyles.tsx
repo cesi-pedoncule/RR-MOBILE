@@ -3,7 +3,7 @@ import { COLORS } from "../../Colors";
 
 export default StyleSheet.create({
     cardBackground: {
-        width: 170,
+        width: "100%",
         aspectRatio: 1.7,
         backgroundColor: COLORS.ComponentBackground,
         borderRadius: 20,

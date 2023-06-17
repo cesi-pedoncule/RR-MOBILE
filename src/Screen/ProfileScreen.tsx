@@ -93,7 +93,7 @@ export default function ProfileScreen({ route, navigation }: Props) {
                                         <ScrollView style={ProfileStyles.itemsScrollView} horizontal showsHorizontalScrollIndicator={false}>
                                             {
                                                 resourcesLiked.map((resource, id) => 
-                                                    <View style={ProfileStyles.itemContainer} key={id}>
+                                                    <View style={{marginHorizontal: 5}} key={id}>
                                                         <ResourceLikedCard key={id} navigation={navigation} resourceData={resource} onDoubleClick={onRefresh}/>
                                                     </View>
                                                 )

@@ -13,10 +13,16 @@ interface Props {
 export default function UserCard({ navigation, user }:Props) {
     
     const handleOnPress = () => {
-        user && user.id !== user.client.me?.id && navigation.navigate('UserDetails', {
-            user: user,
-            client: user.client, 
-        })
+        if(user && user.id !== user.client.me?.id) {
+            navigation.navigate('UserDetails', {
+                user: user,
+                client: user.client, 
+            })
+        } else if(user) {
+            navigation.navigate('Profile', {
+                client: user.client, 
+            })
+        }
     }
     
     return (

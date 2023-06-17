@@ -11,11 +11,12 @@ interface Props {
     value?: string;
     hideSearchBar?: boolean;
     hideLogout?: boolean;
+    hideHomeButton?: boolean;
     client?: Client;
     navigation: any;
 }
 
-export default function TopBar({onChangeSearch, value, hideSearchBar=false, hideLogout=true, client, navigation}: Props) {
+export default function TopBar({onChangeSearch, value, hideSearchBar=false, hideLogout=true, hideHomeButton = true, client, navigation}: Props) {
 
     const onClickDisconnect = async () => {
         client?.auth.logout();
@@ -25,13 +26,13 @@ export default function TopBar({onChangeSearch, value, hideSearchBar=false, hide
         navigation.navigate('Login');
     }
 
-    const onPressButton = () => {
-        navigation.navigate('Resources', { client });
-    }
-
     return (
         <View style={TopbarStyles.topBarBackground}>
-            <IconButton iconStyle={TopbarStyles.btnHomeBackground} callBack={onPressButton} iconSize={24} iconName={"bookshelf"}/>
+            {
+                !hideHomeButton ? <IconButton iconStyle={TopbarStyles.buttonBackground} callBack={() => navigation.navigate('Resources', { client })} iconSize={24} iconName={"bookshelf"}/>
+                :
+                <IconButton iconStyle={TopbarStyles.buttonBackground} callBack={() => navigation.navigate('Users', { client })} iconSize={24} iconName={"account-multiple"}/>
+            }
             {
                 !hideSearchBar && onChangeSearch && <SearchBar value={value} onChangeSearch={onChangeSearch}/>
             }

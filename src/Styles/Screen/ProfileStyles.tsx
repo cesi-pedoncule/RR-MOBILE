@@ -46,6 +46,7 @@ export default StyleSheet.create({
         width: "100%",
     },    
     itemContainer: {
-        paddingRight: 15,
+        width:170,
+        marginHorizontal: 5,
     },
 });

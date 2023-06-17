@@ -87,6 +87,7 @@ export default function CategoryDetailsScreen ({ navigation, route }: Props) {
             <TopBar value={searchText} onChangeSearch={handleChangeSearch} navigation={navigation} client={client} />
             <View style={CommonStyles.content}>
                 <FlatList style={CommonStyles.itemsContainer} 
+                    showsVerticalScrollIndicator={false}
                     ListEmptyComponent={<Text style={CommonStyles.textEmptyResult}>Aucune ressource n'a été trouvée.</Text>}
                     contentContainerStyle = {CategoryDetailsStyles.resourcesContainer}
                     data={resourcesFiltered}

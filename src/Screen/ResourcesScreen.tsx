@@ -79,6 +79,7 @@ export default function ResourcesScreen({ navigation, route } : Props) {
             <TopBar onChangeSearch={handleChangeSearch} value={searchText} navigation={navigation} client={client}/>
             <View style={CommonStyles.content}>
                 <FlatList style={CommonStyles.itemsContainer} 
+                    showsVerticalScrollIndicator={false}
                     ListEmptyComponent={<Text style={CommonStyles.textEmptyResult}>Aucune ressource n'a été trouvée.</Text>}
                     contentContainerStyle = {ResourcesStyles.resourcesContainer}
                     data={resourcesFiltered}

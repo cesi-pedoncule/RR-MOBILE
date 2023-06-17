@@ -89,7 +89,7 @@ export default function EditResourceScreen({ route, navigation }: Props) {
             <TopBar hideSearchBar={true} navigation={navigation} client={client}/>
             <View style={CommonStyles.content}>
                 <IconButton iconStyle={CommonStyles.returnBtn} callBack={() => navigation.goBack()} iconSize={24} iconName={"arrow-left-top"}/>  
-                <ScrollView style={CommonStyles.itemsContainer}>
+                <ScrollView style={CommonStyles.itemsContainer} showsVerticalScrollIndicator={false}>
                     <View style={EditResourceStyles.container}>
                         <TextInput style={EditResourceStyles.addNameResource} placeholder={"Titre de la ressource"} defaultValue={title} onChangeText={(text) => setTitle(text)}></TextInput>
                         <View style={EditResourceStyles.categorieContainer}>
