@@ -4,7 +4,10 @@ import { COLORS } from "../Colors";
 export default StyleSheet.create({
     profileContainer: {
         alignItems: 'center',
+        width: "100%",
+        height: "100%",
         padding: 10,
+        paddingBottom: 80,
     },
     profileTitle: {
         fontSize: 32,
@@ -25,5 +28,24 @@ export default StyleSheet.create({
         marginVertical: 10,
         marginHorizontal: 10,
         justifyContent: 'center',
+    },
+    textHolder: {
+        fontSize: 20,
+        fontWeight: '800',
+        color: COLORS.ForegroundHolder,
+        textAlign: 'left',
+        marginBottom: 10,
+    },
+    itemsContainer: {
+        width: "100%",
+        marginTop: 10,
+        paddingHorizontal: 5,
+    },
+    itemsScrollView: {
+        flexDirection: 'row',
+        width: "100%",
+    },    
+    itemContainer: {
+        paddingRight: 15,
     },
 });
