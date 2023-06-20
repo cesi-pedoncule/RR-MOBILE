@@ -1,20 +1,20 @@
-import React, { useEffect, useState } from "react";
-import { View, Text, ActivityIndicator, FlatList, RefreshControl } from 'react-native'
-import CommonStyles from "../../Styles/CommonStyles";
-import TopBar from "../../Components/Input/TopBar";
-import UsersStyles from "../../Styles/Screen/User/UsersStyles";
-import { COLORS } from "../../Styles/Colors";
-import type { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { NavigationParamList } from "../../Types/navigation";
-import Header from "../../Components/Header";
-import { Category, User } from "rr-apilib";
-import UserCard from "../../Components/Card/User/UserCard";
-import IconButton from "../../Components/Button/IconButton";
+import { View, Text, FlatList, ActivityIndicator, RefreshControl } from 'react-native'
+import React, { useEffect, useState } from 'react'
+import { NavigationParamList } from '../../../Types/navigation';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import CommonStyles from '../../../Styles/CommonStyles';
+import TopBar from '../../../Components/Input/TopBar';
+import IconButton from '../../../Components/Button/IconButton';
+import Header from '../../../Components/Header';
+import { COLORS } from '../../../Styles/Colors';
+import { User } from 'rr-apilib';
+import AdminUsersStyles from '../../../Styles/Screen/Admin/User/AdminUsersStyles';
+import UserCardAdmin from '../../../Components/Card/User/UserCardAdmin';
 
-type Props = NativeStackScreenProps<NavigationParamList, 'Users'>;
+type Props = NativeStackScreenProps<NavigationParamList, 'AdminUsers'>;
 
-export default function UsersScreen({ route, navigation }: Props) {
-
+export default function AdminUsersScreen({ route, navigation }: Props) {
+    
     const client = route.params.client;
 
     const [ searchText, setSearchText ] = useState<string>('');
@@ -62,14 +62,6 @@ export default function UsersScreen({ route, navigation }: Props) {
 		)
 	}
 
-	const renderHeader = () => {
-		return (
-			<View style={CommonStyles.listHeaderComponent}>
-				<Header label={"Les utilisateurs"}/>
-			</View>
-		)
-	}
-
 	const onShowMoreItems = () => {
         searchText.length === 0 && 
 		setUsers(users.concat(Array.from(client.users.cache.values()).slice(users.length, users.length + 6)));
@@ -82,22 +74,24 @@ export default function UsersScreen({ route, navigation }: Props) {
                 <View style={{ marginTop : 20, paddingHorizontal: 15 }}>
                     <IconButton iconStyle={CommonStyles.returnBtnInFlatList} callBack={() => navigation.goBack()} iconSize={24} iconName={"arrow-left-top"}/> 
                 </View>
-                <FlatList style={{marginBottom: 10}} 
+                <View style={CommonStyles.headerComponentWithReturn}>
+                    <Header label={"Les utilisateurs"}/>
+                </View>
+                <FlatList style={{marginTop: 20, marginBottom: 10}} 
                     showsVerticalScrollIndicator={false}
                     ListEmptyComponent={<Text style={CommonStyles.textEmptyResult}>Aucun utilisateur n'a été trouvée.</Text>}
-                    columnWrapperStyle={UsersStyles.columnWrapperStyle}
-                    contentContainerStyle={UsersStyles.categoriesContainer}
+                    columnWrapperStyle={AdminUsersStyles.columnWrapperStyle}
+                    contentContainerStyle={AdminUsersStyles.categoriesContainer}
                     initialNumToRender={2}
                     numColumns={2}
                     data={users}
                     renderItem={({item, index}) => 
                         <View style={{flex: 1, marginLeft: index % 2 !== 0 ? 20 : 0, marginBottom: 15}}>
-                            <UserCard key={index} navigation={navigation} user={item}/>
+                            <UserCardAdmin key={index} navigation={navigation} user={item}/>
                         </View>
                     }
                     keyExtractor={item => item.id}
                     refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefreshFetchAll} />}
-                    ListHeaderComponent={renderHeader}
                     ListFooterComponent={renderFooter}
                     onEndReached={onShowMoreItems}
                     onEndReachedThreshold={0}

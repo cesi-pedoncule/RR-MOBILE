@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, ActivityIndicator, FlatList, RefreshControl } from 'react-native'
 import { Resource } from "rr-apilib";
 import InputButton from "../../Components/Button/InputButton";
@@ -53,7 +53,7 @@ export default function ShareResourceScreen({ route, navigation }: Props) {
 		}
  	 };
 
-	const onRefreshFetchAll = useCallback(async () => {
+	const onRefreshFetchAll = async () => {
 		if(client.auth.me != null){
 			setRefreshing(true)
 			await client.resources.fetchAll();
@@ -62,7 +62,7 @@ export default function ShareResourceScreen({ route, navigation }: Props) {
 			setRefreshing(false);
 			setSearchText('');
 		}
- 	 }, []);
+ 	 };
 
 
 	const renderFooter = () => {

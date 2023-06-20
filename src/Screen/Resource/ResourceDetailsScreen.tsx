@@ -1,5 +1,5 @@
 import { View, Text, FlatList, RefreshControl } from 'react-native'
-import React, { useCallback, useState } from 'react'
+import React, { useState } from 'react'
 import CommentCard from '../../Components/Card/CommentCard'
 import { Comment, Resource } from 'rr-apilib'
 import ResourceDetailsStyles from "../../Styles/Screen/Resource/ResourceDetailsStyles";
@@ -21,7 +21,7 @@ export default function ResourceDetailsScreen({ route, navigation }: Props) {
     const [ comments, setComments ] = useState<Comment[]>(Array.from(resource ? resource.comments.sort().values() : []));
     const [refreshing, setRefreshing] = useState(false);
 
-    const onRefresh = useCallback(async () => {
+    const onRefresh = async () => {
         if(!resource){
             return
         } 
@@ -32,9 +32,9 @@ export default function ResourceDetailsScreen({ route, navigation }: Props) {
             setComments(Array.from(refreshResource ? refreshResource.comments.sort().values() : []))
             setRefreshing(false)
         }
-    }, []);
+    };
 
-    const onRefreshFetchAll = useCallback(async () => {
+    const onRefreshFetchAll = async () => {
         if(!resource){
             return
         } 
@@ -45,7 +45,7 @@ export default function ResourceDetailsScreen({ route, navigation }: Props) {
             setComments(Array.from(refreshResource ? refreshResource.comments.sort().values() : []))
             setRefreshing(false)
         }
-    }, []);
+    };
 
     const renderHeader = () => {
 		return resource ? (

@@ -56,6 +56,13 @@ export default StyleSheet.create({
     listHeaderComponent: {
         marginBottom: 20,
     },
+    headerComponentWithReturn: {
+        position: 'absolute', 
+        alignItems: 'center', 
+        justifyContent: 'center', 
+        width: "100%", 
+        top: 20
+    },
     loadMoreContent: {
         alignItems: 'center',
     },

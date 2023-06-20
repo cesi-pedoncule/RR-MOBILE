@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, ActivityIndicator, FlatList, RefreshControl } from 'react-native'
 import CommonStyles from "../../Styles/CommonStyles";
 import TopBar from "../../Components/Input/TopBar";
@@ -41,14 +41,14 @@ export default function CategoriesScreen({ route, navigation }: Props) {
         setSearchText('');
  	 };
 
-      const onRefreshFetchAll = useCallback(async () => {
+      const onRefreshFetchAll = async () => {
         setRefreshing(true);
         await client.categories.fetchAll();
         const refreshCategories:Category[] = Array.from(client.categories.cache.filter((category) => category.isVisible).values());
 		setCategoriesFiltered([...refreshCategories.slice(0, 8)]);
 		setRefreshing(false);
         setSearchText('');
- 	 }, []);
+ 	 };
 
     const renderFooter = () => {
 		return (

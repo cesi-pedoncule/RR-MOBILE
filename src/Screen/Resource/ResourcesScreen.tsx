@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, ActivityIndicator, Text, FlatList, RefreshControl } from 'react-native'
 import { Resource } from "rr-apilib";
 import CommonStyles from "../../Styles/CommonStyles";
@@ -41,14 +41,14 @@ export default function ResourcesScreen({ navigation, route } : Props) {
         setSearchText('');
     };
 
-    const onRefreshFetchAll = useCallback(async () => {
+    const onRefreshFetchAll = async () => {
         setRefreshing(true)
         await client.resources.fetchAll();
         const refreshResources:Resource[] = Array.from(client.resources.getValidateResources().filter(resource => resource.isPublic).values());
         setResourcesFiltered([...refreshResources.slice(0, 6)]);
         setRefreshing(false);
         setSearchText('');
-    }, []);
+    };
 
     const renderFooter = () => {
 		return (

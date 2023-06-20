@@ -23,19 +23,19 @@ export default function AdminMenuScreen({ route, navigation }: Props) {
 
     return (
         <View style={CommonStyles.container}>
-        <TopBar hideSearchBar={true} hideLogout={false} hideHomeButton={false} client={client} navigation={navigation} />
+        <TopBar hideSearchBar={true} hideHomeButton={false} client={client} navigation={navigation} />
             <View style={CommonStyles.content}>
                 <View style={{marginTop : 20, marginLeft: 15}}>
                     <IconButton iconStyle={CommonStyles.returnBtnInFlatList} callBack={() => navigation.goBack()} iconSize={24} iconName={"arrow-left-top"}/>  
                 </View>
-                <View style={{position: 'absolute', alignItems: 'center', justifyContent: 'center', width: "100%", top: 20}}>
+                <View style={CommonStyles.headerComponentWithReturn}>
                     <Header label={"Administration"}/>
                 </View>
                 <ScrollView contentContainerStyle={AdminMenuStyles.itemsContainer}>
                     {
                         me?.isSuperAdmin && 
                         <View style={AdminMenuStyles.buttonContainer}>
-                            <InputButton label="Utilisateurs" callBack={onClickAdminButton} style={AdminMenuStyles.button}/>
+                            <InputButton label="Utilisateurs" callBack={() => navigation.navigate('AdminUsers',{ client })} style={AdminMenuStyles.button}/>
                         </View>
                     }
                     {

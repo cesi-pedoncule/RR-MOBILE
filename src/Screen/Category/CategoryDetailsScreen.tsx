@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Resource } from "rr-apilib";
 import { ActivityIndicator, FlatList, RefreshControl, Text, View } from "react-native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
@@ -45,7 +45,7 @@ export default function CategoryDetailsScreen ({ navigation, route }: Props) {
         }
     };
 
-    const onRefreshFetchAll = useCallback(async () => {
+    const onRefreshFetchAll = async () => {
         setRefreshing(true);
         await client.resources.fetchAll();
         const newCategorie = client.categories.cache.get(category.id);
@@ -55,7 +55,7 @@ export default function CategoryDetailsScreen ({ navigation, route }: Props) {
             setRefreshing(false);
             setSearchText('');
         }
-    }, []);
+    };
 
     const renderFooter = () => {
 		return (

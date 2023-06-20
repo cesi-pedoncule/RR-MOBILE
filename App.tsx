@@ -19,6 +19,8 @@ import SendResetPasswordScreen from './src/Screen/SendResetPasswordScreen';
 import UserDetailsScreen from './src/Screen/User/UserDetailsScreen';
 import UsersScreen from './src/Screen/User/UsersScreen';
 import AdminMenuScreen from './src/Screen/Admin/AdminMenuScreen';
+import AdminUsersScreen from './src/Screen/Admin/User/AdminUsersScreen';
+import AdminUserScreen from './src/Screen/Admin/User/AdminUserScreen';
 
 const Stack = createStackNavigator<NavigationParamList>();
 
@@ -85,6 +87,8 @@ export default function App({ navigation }: Props) {
                 <Stack.Screen name="CreateResourceScreen" component={CreateResourceScreen} initialParams={{ client }} />
                 <Stack.Screen name="EditResourceScreen" component={EditResourceScreen} initialParams={{ client }} />
                 <Stack.Screen name="AdminMenu" component={AdminMenuScreen} initialParams={{ client }} />
+                <Stack.Screen name="AdminUsers" component={AdminUsersScreen} initialParams={{ client }} />
+                <Stack.Screen name="AdminUser" component={AdminUserScreen} initialParams={{ client }} />
             </Stack.Navigator>
         </NavigationContainer>
   );
