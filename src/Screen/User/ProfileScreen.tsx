@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, ScrollView } from 'react-native'
-import Header from "../Components/Header";
-import StatDashBoard from "../Components/StatDashBoard";
-import TopBar from "../Components/Input/TopBar";
-import CommonStyles from "../Styles/CommonStyles";
-import ProfileStyles from "../Styles/Screen/ProfileStyles";
+import Header from "../../Components/Header";
+import StatDashBoard from "../../Components/StatDashBoard";
+import TopBar from "../../Components/Input/TopBar";
+import CommonStyles from "../../Styles/CommonStyles";
+import ProfileStyles from "../../Styles/Screen/User/ProfileStyles";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { NavigationParamList } from "../Types/navigation";
+import { NavigationParamList } from "../../Types/navigation";
 import { Resource } from "rr-apilib";
-import UserCard from "../Components/Card/UserCard";
-import ResourceLikedCard from "../Components/Card/ResourceLikedCard";
+import UserCard from "../../Components/Card/User/UserCard";
+import ResourceLikedCard from "../../Components/Card/Resource/ResourceLikedCard";
 
 type Props = NativeStackScreenProps<NavigationParamList, 'Profile'>;
 

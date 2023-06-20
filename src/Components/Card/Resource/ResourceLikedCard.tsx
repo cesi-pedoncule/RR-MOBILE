@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { Resource, User } from 'rr-apilib';
 import { GestureResponderEvent, Text, TouchableOpacity, View } from 'react-native'
-import { NavigationParamList } from '../../Types/navigation';
+import { NavigationParamList } from '../../../Types/navigation';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import ResourceLikedCardStyles from '../../Styles/Components/Card/ResourceLikedCardStyles';
-import { likeClickHandle } from '../../Functions/Utils';
-import LikeButton from '../Button/LikeButton';
+import ResourceLikedCardStyles from '../../../Styles/Components/Card/Resource/ResourceLikedCardStyles';
+import { likeClickHandle } from '../../../Functions/Utils';
+import LikeButton from '../../Button/LikeButton';
 
 interface Props {
     navigation: NativeStackNavigationProp<NavigationParamList>;

@@ -1,10 +1,10 @@
 import React from 'react'
 import { Category, Resource } from 'rr-apilib';
 import { Text, ToastAndroid, TouchableOpacity } from 'react-native'
-import { NavigationParamList } from '../../Types/navigation';
+import { NavigationParamList } from '../../../Types/navigation';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
-import CategoryCardStyles from '../../Styles/Components/Card/CategoryCardStyles';
+import CategoryCardStyles from '../../../Styles/Components/Card/Category/CategoryCardStyles';
 
 interface Props {
     navigation: NativeStackNavigationProp<NavigationParamList>;

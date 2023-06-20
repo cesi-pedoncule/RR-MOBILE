@@ -3,11 +3,11 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import NavBarStyles from '../Styles/Components/NavBarStyles'; 
 import { COLORS } from '../Styles/Colors';
-import ProfileScreen from '../Screen/ProfileScreen';
+import ProfileScreen from '../Screen/User/ProfileScreen';
 import { NavigationParamList } from '../Types/navigation';
-import ResourcesScreen from '../Screen/ResourcesScreen';
-import CategoriesScreen from '../Screen/CategoriesScreen';
-import ShareResourceScreen from '../Screen/ShareResourceScreen';
+import ResourcesScreen from '../Screen/Resource/ResourcesScreen';
+import CategoriesScreen from '../Screen/Category/CategoriesScreen';
+import ShareResourceScreen from '../Screen/Resource/ShareResourceScreen';
 
 type Props = NativeStackScreenProps<NavigationParamList, 'NavBar'>;
 const Tab = createBottomTabNavigator<NavigationParamList>();

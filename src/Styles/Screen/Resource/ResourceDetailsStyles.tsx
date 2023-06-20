@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { COLORS } from "../Colors";
+import { COLORS } from "../../Colors";
 
 export default StyleSheet.create({
     centerContent: {

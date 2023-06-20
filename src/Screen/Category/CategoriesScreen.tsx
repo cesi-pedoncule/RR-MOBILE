@@ -1,13 +1,13 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { View, Text, ActivityIndicator, FlatList, RefreshControl } from 'react-native'
-import CommonStyles from "../Styles/CommonStyles";
-import TopBar from "../Components/Input/TopBar";
-import CategoryCard from "../Components/Card/CategoryCard";
-import CategoryStyles from "../Styles/Screen/CategoryStyles";
-import { COLORS } from "../Styles/Colors";
+import CommonStyles from "../../Styles/CommonStyles";
+import TopBar from "../../Components/Input/TopBar";
+import CategoryCard from "../../Components/Card/Category/CategoryCard";
+import CategoryStyles from "../../Styles/Screen/Category/CategoryStyles";
+import { COLORS } from "../../Styles/Colors";
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { NavigationParamList } from "../Types/navigation";
-import Header from "../Components/Header";
+import { NavigationParamList } from "../../Types/navigation";
+import Header from "../../Components/Header";
 import { Category } from "rr-apilib";
 
 type Props = NativeStackScreenProps<NavigationParamList, 'Categories'>;

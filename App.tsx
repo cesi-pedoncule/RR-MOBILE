@@ -3,11 +3,11 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { Client } from 'rr-apilib';
 import LoginScreen from './src/Screen/LoginScreen';
 import RegisterScreen from './src/Screen/RegisterScreen';
-import ResourceDetailsScreen from './src/Screen/ResourceDetailsScreen';
-import CreateResourceScreen from './src/Screen/CreateResourceScreen';
+import ResourceDetailsScreen from './src/Screen/Resource/ResourceDetailsScreen';
+import CreateResourceScreen from './src/Screen/Resource/CreateResourceScreen';
 import NavBar from './src/Components/NavBar';
-import EditResourceScreen from './src/Screen/EditResourceScreen';
-import CategoryDetailsScreen from './src/Screen/CategoryDetailsScreen';
+import EditResourceScreen from './src/Screen/Resource/EditResourceScreen';
+import CategoryDetailsScreen from './src/Screen/Category/CategoryDetailsScreen';
 import { NavigationParamList } from './src/Types/navigation';
 import { useEffect, useMemo, useState } from 'react';
 import { ActivityIndicator, Image, LogBox, View } from 'react-native';
@@ -16,8 +16,8 @@ import { COLORS } from './src/Styles/Colors';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import SendResetPasswordScreen from './src/Screen/SendResetPasswordScreen';
-import UserDetailsScreen from './src/Screen/UserDetailsScreen';
-import UsersScreen from './src/Screen/UsersScreen';
+import UserDetailsScreen from './src/Screen/User/UserDetailsScreen';
+import UsersScreen from './src/Screen/User/UsersScreen';
 
 const Stack = createStackNavigator<NavigationParamList>();
 

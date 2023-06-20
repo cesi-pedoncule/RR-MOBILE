@@ -1,16 +1,16 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { View, Text, ScrollView, ToastAndroid } from 'react-native'
-import Header from "../Components/Header";
-import StatDashBoard from "../Components/StatDashBoard";
-import TopBar from "../Components/Input/TopBar";
-import CommonStyles from "../Styles/CommonStyles";
-import UserDetailsStyles from "../Styles/Screen/UserDetailsStyles";
+import Header from "../../Components/Header";
+import StatDashBoard from "../../Components/StatDashBoard";
+import TopBar from "../../Components/Input/TopBar";
+import CommonStyles from "../../Styles/CommonStyles";
+import UserDetailsStyles from "../../Styles/Screen/User/UserDetailsStyles";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { NavigationParamList } from "../Types/navigation";
+import { NavigationParamList } from "../../Types/navigation";
 import { Resource } from "rr-apilib";
-import UserCard from "../Components/Card/UserCard";
-import ResourceLikedCard from "../Components/Card/ResourceLikedCard";
-import IconButton from "../Components/Button/IconButton";
+import UserCard from "../../Components/Card/User/UserCard";
+import ResourceLikedCard from "../../Components/Card/Resource/ResourceLikedCard";
+import IconButton from "../../Components/Button/IconButton";
 
 type Props = NativeStackScreenProps<NavigationParamList, 'UserDetails'>;
 

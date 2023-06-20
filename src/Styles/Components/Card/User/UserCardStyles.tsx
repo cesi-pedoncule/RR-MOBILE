@@ -1,13 +1,13 @@
 import { StyleSheet } from "react-native";
-import { COLORS } from "../../Colors";
+import { COLORS } from "../../../Colors";
 
 export default StyleSheet.create({
     cardBackground: {
         width: "100%",
-        aspectRatio: 1,
+        aspectRatio: 1.7,
         backgroundColor: COLORS.ComponentBackground,
         borderRadius: 20,
-        marginBottom: 20,
+        marginBottom: 5,
         alignSelf: 'flex-end',
         paddingRight:20,
         shadowColor: COLORS.Black,

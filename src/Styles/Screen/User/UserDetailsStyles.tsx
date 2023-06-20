@@ -1,7 +1,10 @@
 import { StyleSheet } from "react-native";
-import { COLORS } from "../Colors";
+import { COLORS } from "../../Colors";
 
 export default StyleSheet.create({
+    scrollViewContainer: {
+        marginBottom: 10,
+    },
     profileContainer: {
         alignItems: 'center',
         width: "100%",
@@ -46,7 +49,15 @@ export default StyleSheet.create({
         width: "100%",
     },    
     itemContainer: {
-        width:170,
-        marginHorizontal: 5,
+        paddingRight: 15,
     },
+    returnFollowContainer: {
+        display: 'flex',
+        flexDirection: 'row',
+        width: '100%',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        marginTop : 20, 
+        paddingHorizontal: 15
+    }
 });

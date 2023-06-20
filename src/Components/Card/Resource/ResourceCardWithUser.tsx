@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import { Resource } from 'rr-apilib'
-import { NavigationParamList } from '../../Types/navigation'
+import { NavigationParamList } from '../../../Types/navigation'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import { View, Text, TouchableOpacity, GestureResponderEvent, FlatList } from 'react-native'
-import ResourceCardStyles from '../../Styles/Components/Card/ResourceCardStyles'
-import LikeButton from '../Button/LikeButton'
-import CommentButton from '../Button/CommentButton'
-import CategoryButton from '../Button/CategoryButton'
-import { likeClickHandle } from '../../Functions/Utils'
+import ResourceCardStyles from '../../../Styles/Components/Card/Resource/ResourceCardStyles'
+import LikeButton from '../../Button/LikeButton'
+import CommentButton from '../../Button/CommentButton'
+import CategoryButton from '../../Button/CategoryButton'
+import { likeClickHandle } from '../../../Functions/Utils'
 
 interface Props {
     resourceData: Resource;

@@ -1,16 +1,16 @@
 import { View, Text, FlatList, RefreshControl } from 'react-native'
 import React, { useCallback, useState } from 'react'
-import CommentCard from '../Components/Card/CommentCard'
+import CommentCard from '../../Components/Card/CommentCard'
 import { Comment, Resource } from 'rr-apilib'
-import ResourceDetailsStyles from "../Styles/Screen/ResourceDetailsStyles";
-import TopBar from '../Components/Input/TopBar'
-import CommonStyles from '../Styles/CommonStyles'
-import InputTextComment from '../Components/Input/InputTextComment'
+import ResourceDetailsStyles from "../../Styles/Screen/Resource/ResourceDetailsStyles";
+import TopBar from '../../Components/Input/TopBar'
+import CommonStyles from '../../Styles/CommonStyles'
+import InputTextComment from '../../Components/Input/InputTextComment'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
-import { NavigationParamList } from '../Types/navigation'
-import IconButton from '../Components/Button/IconButton'
-import ResourceCardWithUser from '../Components/Card/ResourceCardWithUser'
-import MediaButton from '../Components/Button/MediaButton';
+import { NavigationParamList } from '../../Types/navigation'
+import IconButton from '../../Components/Button/IconButton'
+import ResourceCardWithUser from '../../Components/Card/Resource/ResourceCardWithUser'
+import MediaButton from '../../Components/Button/MediaButton';
 
 type Props = NativeStackScreenProps<NavigationParamList, 'ResourceDetails'>;
 

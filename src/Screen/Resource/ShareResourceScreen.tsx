@@ -1,15 +1,15 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { View, Text, ActivityIndicator, FlatList, RefreshControl } from 'react-native'
 import { Resource } from "rr-apilib";
-import InputButton from "../Components/Button/InputButton";
-import TopBar from "../Components/Input/TopBar";
-import ResourceCardWithoutUser from "../Components/Card/ResourceCardWithoutUser";
-import CommonStyles from "../Styles/CommonStyles";
-import ShareResourceStyles from "../Styles/Screen/ShareResourceStyles";
-import { COLORS } from "../Styles/Colors";
+import InputButton from "../../Components/Button/InputButton";
+import TopBar from "../../Components/Input/TopBar";
+import ResourceCardWithoutUser from "../../Components/Card/Resource/ResourceCardWithoutUser";
+import CommonStyles from "../../Styles/CommonStyles";
+import ShareResourceStyles from "../../Styles/Screen/Resource/ShareResourceStyles";
+import { COLORS } from "../../Styles/Colors";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { NavigationParamList } from "../Types/navigation";
-import Header from "../Components/Header";
+import { NavigationParamList } from "../../Types/navigation";
+import Header from "../../Components/Header";
 
 type Props = NativeStackScreenProps<NavigationParamList, 'ShareResource'>;
 

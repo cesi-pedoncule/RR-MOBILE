@@ -1,15 +1,15 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { View, Text, ActivityIndicator, FlatList, RefreshControl } from 'react-native'
-import CommonStyles from "../Styles/CommonStyles";
-import TopBar from "../Components/Input/TopBar";
-import UsersStyles from "../Styles/Screen/UsersStyles";
-import { COLORS } from "../Styles/Colors";
+import CommonStyles from "../../Styles/CommonStyles";
+import TopBar from "../../Components/Input/TopBar";
+import UsersStyles from "../../Styles/Screen/User/UsersStyles";
+import { COLORS } from "../../Styles/Colors";
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { NavigationParamList } from "../Types/navigation";
-import Header from "../Components/Header";
+import { NavigationParamList } from "../../Types/navigation";
+import Header from "../../Components/Header";
 import { Category, User } from "rr-apilib";
-import UserCard from "../Components/Card/UserCard";
-import IconButton from "../Components/Button/IconButton";
+import UserCard from "../../Components/Card/User/UserCard";
+import IconButton from "../../Components/Button/IconButton";
 
 type Props = NativeStackScreenProps<NavigationParamList, 'Users'>;
 

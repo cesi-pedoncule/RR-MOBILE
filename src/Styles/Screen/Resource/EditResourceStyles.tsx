@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { COLORS } from "../Colors";
+import { COLORS } from "../../Colors";
 
 export default StyleSheet.create({
     container: {
@@ -8,7 +8,7 @@ export default StyleSheet.create({
         width : "100%",
         paddingLeft : 10,
         paddingRight : 10,
-        marginTop : 5,
+        marginVertical : 5,
     },
     addNameResource: {
         color: COLORS.Black,
@@ -16,8 +16,8 @@ export default StyleSheet.create({
         textAlign: 'center',
         height: 40,
         width : "90%",
-        paddingHorizontal: 10,
         borderRadius : 10,
+        paddingHorizontal: 10,
         shadowColor: COLORS.Black,
         shadowOpacity: 0.3,
         shadowOffset: { width: 4, height: 4},
@@ -31,10 +31,6 @@ export default StyleSheet.create({
         marginTop:20,
         borderRadius: 15,
         transition: 0.2,
-        shadowColor: COLORS.Black,
-        shadowOpacity: 0.3,
-        shadowOffset: { width: 4, height: 4},
-        elevation: 2,
     },
     categorieList: {
         marginRight: 10,
@@ -70,7 +66,4 @@ export default StyleSheet.create({
         justifyContent: 'space-between',
         marginTop:20,
     },
-    sendButtonContainer: {
-        height : 100,
-    }
 });

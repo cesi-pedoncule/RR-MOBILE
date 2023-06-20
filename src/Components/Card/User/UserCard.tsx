@@ -1,9 +1,9 @@
 import React from 'react'
 import { User } from 'rr-apilib';
 import { Text, TouchableOpacity } from 'react-native'
-import { NavigationParamList } from '../../Types/navigation';
+import { NavigationParamList } from '../../../Types/navigation';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import UserCardStyles from '../../Styles/Components/Card/UserCardStyles';
+import UserCardStyles from '../../../Styles/Components/Card/User/UserCardStyles';
 
 interface Props {
     navigation: NativeStackNavigationProp<NavigationParamList>;

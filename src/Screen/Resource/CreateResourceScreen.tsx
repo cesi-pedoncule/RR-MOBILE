@@ -1,20 +1,20 @@
 import { View, Text, ScrollView, TextInput, Switch, TouchableOpacity, FlatList, ToastAndroid} from 'react-native';
 import React, { useState } from 'react';
-import CommonStyles from '../Styles/CommonStyles';
-import TopBar from '../Components/Input/TopBar';
-import CreateResourceStyles from '../Styles/Screen/CreateResourceStyles';
-import InputTextDescription from '../Components/Input/InputTextDescription';
-import InputButton from '../Components/Button/InputButton';
+import CommonStyles from '../../Styles/CommonStyles';
+import TopBar from '../../Components/Input/TopBar';
+import CreateResourceStyles from '../../Styles/Screen/Resource/CreateResourceStyles';
+import InputTextDescription from '../../Components/Input/InputTextDescription';
+import InputButton from '../../Components/Button/InputButton';
 import { AttachmentBuilder, Category, ResourceBuilder } from 'rr-apilib';
-import ButtonFile from '../Components/Button/ButtonFile';
-import { NavigationParamList } from '../Types/navigation';
+import ButtonFile from '../../Components/Button/ButtonFile';
+import { NavigationParamList } from '../../Types/navigation';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import CategoriesModal from '../Components/CategoriesModal';
-import CategoryButton from '../Components/Button/CategoryButton';
-import { COLORS } from '../Styles/Colors';
-import IconButton from '../Components/Button/IconButton';
+import CategoriesModal from '../../Components/CategoriesModal';
+import CategoryButton from '../../Components/Button/CategoryButton';
+import { COLORS } from '../../Styles/Colors';
+import IconButton from '../../Components/Button/IconButton';
 import * as DocumentPicker from 'expo-document-picker';
-import MediaButton from '../Components/Button/MediaButton';
+import MediaButton from '../../Components/Button/MediaButton';
 
 type Props = NativeStackScreenProps<NavigationParamList, 'CreateResourceScreen'>;
 
