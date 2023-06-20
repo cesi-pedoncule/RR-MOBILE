@@ -21,4 +21,5 @@ export type NavigationParamList = {
     Users: { client: Client };
     UserDetails: { client: Client, user: User };
     SendResetPassword: { client: Client };
+    AdminMenu: { client: Client };
 }

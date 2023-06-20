@@ -10,6 +10,7 @@ import { NavigationParamList } from "../../Types/navigation";
 import { Resource } from "rr-apilib";
 import UserCard from "../../Components/Card/User/UserCard";
 import ResourceLikedCard from "../../Components/Card/Resource/ResourceLikedCard";
+import InputButton from "../../Components/Button/InputButton";
 
 type Props = NativeStackScreenProps<NavigationParamList, 'Profile'>;
 
@@ -100,6 +101,10 @@ export default function ProfileScreen({ route, navigation }: Props) {
                                             }
                                         </ScrollView>
                                     </View>
+                                }
+                                {
+                                    me.isAdmin &&
+                                    <InputButton label="Administration" callBack={()=> navigation.navigate("AdminMenu", { client })} style={ProfileStyles.buttonAdmin}/>
                                 }
                             </View>
                         </ScrollView>

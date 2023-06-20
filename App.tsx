@@ -18,6 +18,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import SendResetPasswordScreen from './src/Screen/SendResetPasswordScreen';
 import UserDetailsScreen from './src/Screen/User/UserDetailsScreen';
 import UsersScreen from './src/Screen/User/UsersScreen';
+import AdminMenuScreen from './src/Screen/Admin/AdminMenuScreen';
 
 const Stack = createStackNavigator<NavigationParamList>();
 
@@ -79,10 +80,11 @@ export default function App({ navigation }: Props) {
                 <Stack.Screen name="Users" component={UsersScreen} initialParams={{ client }} />
                 <Stack.Screen name="UserDetails" component={UserDetailsScreen} initialParams={{ client }} />
                 <Stack.Screen name="Register" component={RegisterScreen} initialParams={{ client }} />
-                <Stack.Screen name="ResourceDetails" component={ResourceDetailsScreen} initialParams={{ client }} />
                 <Stack.Screen name="CategoryDetails" component={CategoryDetailsScreen} initialParams={{ client }} />
+                <Stack.Screen name="ResourceDetails" component={ResourceDetailsScreen} initialParams={{ client }} />
                 <Stack.Screen name="CreateResourceScreen" component={CreateResourceScreen} initialParams={{ client }} />
                 <Stack.Screen name="EditResourceScreen" component={EditResourceScreen} initialParams={{ client }} />
+                <Stack.Screen name="AdminMenu" component={AdminMenuScreen} initialParams={{ client }} />
             </Stack.Navigator>
         </NavigationContainer>
   );
