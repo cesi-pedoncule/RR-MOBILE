@@ -25,6 +25,8 @@ export type NavigationParamList = {
     AdminUsers: { client: Client };
     AdminUser: { client: Client, user: User};
     AdminCategories: { client: Client };
-    AdminCreateCategory: { client: Client }
-    AdminCategory: { client: Client, category: Category }
+    AdminCreateCategory: { client: Client };
+    AdminCategory: { client: Client, category: Category };
+    AdminResourcesValidations: { client: Client };
+    AdminResourceValidate: { client: Client, resource: Resource };
 }

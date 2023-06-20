@@ -17,10 +17,6 @@ export default function AdminMenuScreen({ route, navigation }: Props) {
     const client = route.params.client;
     const me = client.me;
 
-    const onClickAdminButton = () => {
-
-    };
-
     return (
         <View style={CommonStyles.container}>
         <TopBar hideSearchBar={true} hideHomeButton={false} client={client} navigation={navigation} />
@@ -47,7 +43,7 @@ export default function AdminMenuScreen({ route, navigation }: Props) {
                     {
                         me?.isModerator && 
                         <View style={AdminMenuStyles.buttonContainer}>
-                            <InputButton label="Validation de ressources" callBack={onClickAdminButton} style={AdminMenuStyles.button}/>
+                            <InputButton label="Validation de ressources" callBack={() => navigation.navigate('AdminResourcesValidations', { client })} style={AdminMenuStyles.button}/>
                         </View>
                     }
                 </ScrollView>
