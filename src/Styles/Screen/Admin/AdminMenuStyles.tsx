@@ -18,7 +18,7 @@ export default StyleSheet.create({
         elevation: 2,
     },
     itemsContainer : {
-        height: '90%',
+        height: '85%',
         alignItems: 'center',
         justifyContent: 'center',
     },  

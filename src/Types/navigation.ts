@@ -26,4 +26,5 @@ export type NavigationParamList = {
     AdminUser: { client: Client, user: User};
     AdminCategories: { client: Client };
     AdminCreateCategory: { client: Client }
+    AdminCategory: { client: Client, category: Category }
 }

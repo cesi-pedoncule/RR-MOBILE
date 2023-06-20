@@ -23,6 +23,7 @@ import AdminUsersScreen from './src/Screen/Admin/User/AdminUsersScreen';
 import AdminUserScreen from './src/Screen/Admin/User/AdminUserScreen';
 import AdminCategoriesScreen from './src/Screen/Admin/Category/AdminCategoriesScreen';
 import AdminCreateCategoryScreen from './src/Screen/Admin/Category/AdminCreateCategoryScreen';
+import AdminCategoryScreen from './src/Screen/Admin/Category/AdminCategoryScreen';
 
 const Stack = createStackNavigator<NavigationParamList>();
 
@@ -93,6 +94,7 @@ export default function App({ navigation }: Props) {
                 <Stack.Screen name="AdminUser" component={AdminUserScreen} initialParams={{ client }} />
                 <Stack.Screen name="AdminCategories" component={AdminCategoriesScreen} initialParams={{ client }} />
                 <Stack.Screen name="AdminCreateCategory" component={AdminCreateCategoryScreen} initialParams={{ client }} />
+                <Stack.Screen name="AdminCategory" component={AdminCategoryScreen} initialParams={{ client }} />
             </Stack.Navigator>
         </NavigationContainer>
   );

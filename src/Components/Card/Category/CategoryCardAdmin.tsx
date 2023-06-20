@@ -15,7 +15,10 @@ interface Props {
 export default function CategoryCardAdmin({ navigation, category, resources }:Props) {
     
     const handleOnPress = () => {
-        
+        navigation.navigate('AdminCategory', {
+            category: category,
+            client: category.client, 
+        })
     }
     
     return (
