@@ -24,4 +24,6 @@ export type NavigationParamList = {
     AdminMenu: { client: Client };
     AdminUsers: { client: Client };
     AdminUser: { client: Client, user: User};
+    AdminCategories: { client: Client };
+    AdminCreateCategory: { client: Client }
 }

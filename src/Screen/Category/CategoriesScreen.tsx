@@ -54,7 +54,7 @@ export default function CategoriesScreen({ route, navigation }: Props) {
 		return (
 			<View>
 				{
-					searchText.length === 0 && client.categories.cache.size >= 8  && categoriesFiltered.length !== client.categories.cache.size && categoriesFiltered.length != 0 &&
+					searchText.length === 0 && client.categories.cache.filter((category) => category.isVisible).size >= 8  && categoriesFiltered.length !== client.categories.cache.filter((category) => category.isVisible).size && categoriesFiltered.length != 0 &&
 					<ActivityIndicator size="large" color={COLORS.AccentColor} style={CommonStyles.loadMoreContent} />
 				}	
 			</View>
@@ -71,7 +71,7 @@ export default function CategoriesScreen({ route, navigation }: Props) {
 
 	const onShowMoreItems = () => {
         searchText.length === 0 && 
-		setCategoriesFiltered(categoriesFiltered.concat(Array.from(client.categories.cache.values()).slice(categoriesFiltered.length, categoriesFiltered.length + 6)));
+		setCategoriesFiltered(categoriesFiltered.concat(Array.from(client.categories.cache.filter((category) => category.isVisible).values()).slice(categoriesFiltered.length, categoriesFiltered.length + 6)));
 	}
 
     return (

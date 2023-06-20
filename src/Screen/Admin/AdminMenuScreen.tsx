@@ -41,7 +41,7 @@ export default function AdminMenuScreen({ route, navigation }: Props) {
                     {
                         me?.isAdmin && 
                         <View style={AdminMenuStyles.buttonContainer}>
-                            <InputButton label="Catégories" callBack={onClickAdminButton} style={AdminMenuStyles.button}/>
+                            <InputButton label="Catégories" callBack={() => navigation.navigate('AdminCategories',{ client })} style={AdminMenuStyles.button}/>
                         </View>
                     }
                     {
