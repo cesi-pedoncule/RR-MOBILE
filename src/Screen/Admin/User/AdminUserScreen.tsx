@@ -110,7 +110,7 @@ export default function AdminUserScreen({ route, navigation }: Props) {
                     </View>
                     <InputButton isLoading={isLoading} label="Modifier" callBack={onClickEditUser} style={AdminUserStyle.button}/>
                     <View style={AdminUserStyle.booksContainer}>
-                        <Text style={AdminUserStyle.textHolder}>Ressource(s) : ({resources.length})</Text>
+                        {resources.length !== 0 && <Text style={AdminUserStyle.textHolder}>Ressource(s) : ({resources.length})</Text>}
                         {
                             resources.map((resource, id) => 
                                 <ResourceCardWithUser key={id} navigation={navigation} resourceData={resource} onDoubleClick={onRefresh}/>
