@@ -75,8 +75,10 @@ export default function UserDetailsScreen({ route, navigation }: Props) {
                                 <IconButton iconStyle={CommonStyles.returnBtnInFlatList} callBack={onClikFollowUser} iconSize={24} iconName={"cards-heart-outline"}/> 
                             }
                         </View>
-                        <ScrollView style={UserDetailsStyles.scrollViewContainer} showsVerticalScrollIndicator={false}>
+                        <View style={CommonStyles.headerComponentWithReturn}>
                             <Header label={userProfileName}/>
+                        </View>
+                        <ScrollView style={UserDetailsStyles.scrollViewContainer} showsVerticalScrollIndicator={false}>
                             <View style={UserDetailsStyles.profileContainer}>
                                 <Text style={UserDetailsStyles.profileSubTitle}>{user?.resources.cache.size} enregistrement(s)</Text>
                                 <Text style={UserDetailsStyles.profileDescription}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed efficitur risus tempus, eleifend sem in, ornare quam. Integer ultrices</Text>
@@ -119,7 +121,7 @@ export default function UserDetailsScreen({ route, navigation }: Props) {
                                         <ScrollView style={UserDetailsStyles.itemsScrollView} horizontal showsHorizontalScrollIndicator={false}>
                                             {
                                                 resourcesLiked.map((resource, id) => 
-                                                    <View style={UserDetailsStyles.itemContainer} key={id}>
+                                                    <View style={{marginHorizontal: 5}} key={id}>
                                                         <ResourceLikedCard key={id} navigation={navigation} resourceData={resource} onDoubleClick={onRefresh}/>
                                                     </View>
                                                 )

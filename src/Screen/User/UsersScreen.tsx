@@ -62,14 +62,6 @@ export default function UsersScreen({ route, navigation }: Props) {
 		)
 	}
 
-	const renderHeader = () => {
-		return (
-			<View style={CommonStyles.listHeaderComponent}>
-				<Header label={"Les utilisateurs"}/>
-			</View>
-		)
-	}
-
 	const onShowMoreItems = () => {
         searchText.length === 0 && 
 		setUsers(users.concat(Array.from(client.users.cache.values()).slice(users.length, users.length + 6)));
@@ -82,7 +74,10 @@ export default function UsersScreen({ route, navigation }: Props) {
                 <View style={{ marginTop : 20, paddingHorizontal: 15 }}>
                     <IconButton iconStyle={CommonStyles.returnBtnInFlatList} callBack={() => navigation.goBack()} iconSize={24} iconName={"arrow-left-top"}/> 
                 </View>
-                <FlatList style={{marginBottom: 10}} 
+                <View style={CommonStyles.headerComponentWithReturn}>
+                    <Header label={"Les utilisateurs"}/>
+                </View>
+                <FlatList style={{marginBottom: 10, marginTop: 20}} 
                     showsVerticalScrollIndicator={false}
                     ListEmptyComponent={<Text style={CommonStyles.textEmptyResult}>Aucun utilisateur n'a été trouvée.</Text>}
                     columnWrapperStyle={UsersStyles.columnWrapperStyle}
@@ -97,7 +92,6 @@ export default function UsersScreen({ route, navigation }: Props) {
                     }
                     keyExtractor={item => item.id}
                     refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefreshFetchAll} />}
-                    ListHeaderComponent={renderHeader}
                     ListFooterComponent={renderFooter}
                     onEndReached={onShowMoreItems}
                     onEndReachedThreshold={0}
