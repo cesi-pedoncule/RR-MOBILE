@@ -7,7 +7,7 @@ import CommonStyles from "../../Styles/CommonStyles";
 import UserDetailsStyles from "../../Styles/Screen/User/UserDetailsStyles";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { NavigationParamList } from "../../Types/navigation";
-import { Resource } from "rr-apilib";
+import { Resource, UserFollow } from "rr-apilib";
 import UserCard from "../../Components/Card/User/UserCard";
 import ResourceLikedCard from "../../Components/Card/Resource/ResourceLikedCard";
 import IconButton from "../../Components/Button/IconButton";
@@ -23,7 +23,7 @@ export default function UserDetailsScreen({ route, navigation }: Props) {
     const [ followsUser, setFollowsUser ] = useState(user ? Array.from(user.follows.values()) : []);
     const [ followersUser, setFollowersUser ] = useState(user ? Array.from(user.followers.cache.values()) : []);
     const [ resourcesLiked, setResourcesLiked ] = useState(user ? Array.from(user.likedResources.values()): []);
-    const [ isFollow, setIsFollow ] = useState<boolean>(false);
+    const [ isFollow, setIsFollow ] = useState<UserFollow | null>(user.myFollow);
 
     useEffect(() => {
         navigation.addListener('focus', () => {
@@ -43,21 +43,31 @@ export default function UserDetailsScreen({ route, navigation }: Props) {
     };
 
     const onClikFollowUser = async () => {
-        try {
-            user && await user.follow();
-            setIsFollow(true);
-        } catch (error) {
-            ToastAndroid.show("Problème lors du follow" , ToastAndroid.CENTER);
+        if(client.me) {
+            try {
+                user && await user.follow();
+                setIsFollow(user.myFollow);
+            } catch (error) {
+                ToastAndroid.show("Problème lors du follow" , ToastAndroid.CENTER);
+            }
+        } else {
+            ToastAndroid.show("Vouos n'êtes pas connecté" , ToastAndroid.CENTER);
         }
+
     };
 
     const onClikUnFollowUser = async () => {
-        try {
-            user && await user.unfollow();
-            setIsFollow(false);
-        } catch (error) {
-            ToastAndroid.show("Problème lors du unFolllow" , ToastAndroid.CENTER);
+        if(client.me) {
+            try {
+                user && await user.unfollow();
+                setIsFollow(user.myFollow);
+            } catch (error) {
+                ToastAndroid.show("Problème lors du unFolllow" , ToastAndroid.CENTER);
+            }
+        } else {
+            ToastAndroid.show("Vouos n'êtes pas connecté" , ToastAndroid.CENTER);
         }
+
     };
 
     return (
