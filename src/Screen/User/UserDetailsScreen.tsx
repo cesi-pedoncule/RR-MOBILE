@@ -47,11 +47,12 @@ export default function UserDetailsScreen({ route, navigation }: Props) {
             try {
                 user && await user.follow();
                 setIsFollow(user.myFollow);
+                onRefresh();
             } catch (error) {
                 ToastAndroid.show("Problème lors du follow" , ToastAndroid.CENTER);
             }
         } else {
-            ToastAndroid.show("Vouos n'êtes pas connecté" , ToastAndroid.CENTER);
+            ToastAndroid.show("Vous n'êtes pas connecté" , ToastAndroid.CENTER);
         }
 
     };
@@ -61,11 +62,12 @@ export default function UserDetailsScreen({ route, navigation }: Props) {
             try {
                 user && await user.unfollow();
                 setIsFollow(user.myFollow);
+                onRefresh();
             } catch (error) {
                 ToastAndroid.show("Problème lors du unFolllow" , ToastAndroid.CENTER);
             }
         } else {
-            ToastAndroid.show("Vouos n'êtes pas connecté" , ToastAndroid.CENTER);
+            ToastAndroid.show("Vous n'êtes pas connecté" , ToastAndroid.CENTER);
         }
 
     };
@@ -112,7 +114,7 @@ export default function UserDetailsScreen({ route, navigation }: Props) {
                                 {
                                     followersUser.length !== 0 &&
                                     <View style={UserDetailsStyles.itemsContainer}>
-                                        <Text style={UserDetailsStyles.textHolder}>Personnes qui nous suive : ({followersUser.length})</Text>
+                                        <Text style={UserDetailsStyles.textHolder}>Personnes qui le/la suive : ({followersUser.length})</Text>
                                         <ScrollView style={UserDetailsStyles.itemsScrollView} horizontal showsHorizontalScrollIndicator={false}>
                                             {
                                                 followersUser.map((user, id) => 

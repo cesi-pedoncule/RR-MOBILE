@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { View, ActivityIndicator, Text, FlatList, RefreshControl } from 'react-native'
 import { APIValidationState, Resource } from "rr-apilib";
 import CommonStyles from "../../../Styles/CommonStyles";
-import ResourceCardWithUser from "../../../Components/Card/Resource/ResourceCardWithUser";
 import TopBar from "../../../Components/Input/TopBar";
 import ResourcesStyles from "../../../Styles/Screen/Resource/ResourcesStyles";
 import { COLORS } from "../../../Styles/Colors";
@@ -14,7 +13,7 @@ import AdminResourceCard from "../../../Components/Card/Resource/AdminResourceCa
 
 type Props = NativeStackScreenProps<NavigationParamList, 'AdminResourcesValidations'>;
 
-export default function AdminResourceValidationsScreen({ navigation, route } : Props) {
+export default function AdminResourcesValidationsScreen({ navigation, route } : Props) {
     
     const client = route.params.client;
     
@@ -24,9 +23,10 @@ export default function AdminResourceValidationsScreen({ navigation, route } : P
 
     const handleChangeSearch = (text: string) => {
         setSearchText(text);
-        const filteredResources = Array.from(client.resources.getValidateResources().filter((resource) =>
+        const refreshResources = Array.from(client.resources.cache.filter((r) => r.validations.getLastValidationState()?.state === APIValidationState.Pending || !r.validations.getLastValidationState()).values());
+        const filteredResources = refreshResources.filter((resource) =>
             resource.title.toLowerCase().includes(text.toLowerCase())
-        ).values());
+        );
         setResourcesFiltered([...filteredResources.splice(0, 6)]);
     }
 
@@ -86,7 +86,7 @@ export default function AdminResourceValidationsScreen({ navigation, route } : P
                     ListEmptyComponent={<Text style={CommonStyles.textEmptyResult}>Aucune ressource n'a été trouvée.</Text>}
                     contentContainerStyle = {ResourcesStyles.resourcesContainer}
                     data={resourcesFiltered}
-                    renderItem={({item, index}) => <AdminResourceCard key={index} resourceData={item} navigation={navigation} onDoubleClick={onRefresh}/>}
+                    renderItem={({item, index}) => <View style={{height: 210, marginBottom: 20}}><AdminResourceCard key={index} resourceData={item} navigation={navigation} onDoubleClick={onRefresh}/></View>}
                     keyExtractor={item => item.id}
                     refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefreshFetchAll} />}
                     ListFooterComponent={renderFooter}

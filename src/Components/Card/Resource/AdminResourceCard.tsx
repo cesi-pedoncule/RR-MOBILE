@@ -3,7 +3,7 @@ import { Resource } from 'rr-apilib'
 import { NavigationParamList } from '../../../Types/navigation'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import { View, Text, TouchableOpacity, GestureResponderEvent, FlatList, ToastAndroid, ActivityIndicator } from 'react-native'
-import ResourceCardStyles from '../../../Styles/Components/Card/Resource/ResourceCardStyles'
+import AdminResourceCardStyles from '../../../Styles/Components/Card/Resource/AdminResourceCardStyles'
 import IconButton from '../../Button/IconButton'
 import LikeButton from '../../Button/LikeButton'
 import CommentButton from '../../Button/CommentButton'
@@ -81,25 +81,25 @@ export default function AdminResourceCard({ resourceData, setResourcesFiltered, 
     }
 
     return (
-        <TouchableOpacity onPress={(e) => onPress(e)} style={ResourceCardStyles.container}>
+        <TouchableOpacity onPress={(e) => onPress(e)} style={AdminResourceCardStyles.container}>
             {
                 isLoading ? <ActivityIndicator size="large" color={COLORS.Black} style={CommonStyles.loader}/> :
-                <View style={ResourceCardStyles.withoutUserContainer}>
-                <Text style={ResourceCardStyles.cardTitle} numberOfLines={1}>{resource.title}</Text>
-                    <Text style={ResourceCardStyles.cardUser} numberOfLines={1}>{username}</Text>
+                <View style={{height: "100%"}}>
+                    <Text style={AdminResourceCardStyles.cardTitle} numberOfLines={1}>{resource.title}</Text>
+                    <Text style={AdminResourceCardStyles.cardUser} numberOfLines={1}>{username}</Text>
                     <View>
-                        <FlatList showsHorizontalScrollIndicator={false} horizontal style={ResourceCardStyles.categoriesContainer} 
+                        <FlatList showsHorizontalScrollIndicator={false} horizontal style={AdminResourceCardStyles.categoriesContainer} 
                             data={categories}
                             renderItem={({item}) => <CategoryButton navigation={navigation} category={item}/>}
                             keyExtractor={item => item.id}
                         />
                     </View>
-                    <Text style={ResourceCardStyles.cardText} numberOfLines={3}>{description}</Text>
-                    <View style={ResourceCardStyles.buttonsContainer}>
+                    <Text style={AdminResourceCardStyles.cardText} numberOfLines={3}>{description}</Text>
+                    <View style={AdminResourceCardStyles.buttonsContainer}>
                         <LikeButton resource={resource} setResource={setResource} onClick={onDoubleClick}/>
                         <CommentButton commentNumber={numberCommentResource}/>
-                        <IconButton callBack={onClickEditResource} iconStyle={ResourceCardStyles.buttonsEditionResource} iconSize={24} iconName={"square-edit-outline"} iconColor={COLORS.Black}/>
-                        <IconButton callBack={onClickDeleteResource} iconStyle={ResourceCardStyles.buttonsEditionResource} iconSize={24} iconName={"delete-outline"} iconColor={COLORS.Black}/>
+                        <IconButton callBack={onClickEditResource} iconStyle={AdminResourceCardStyles.buttonsEditionResource} iconSize={24} iconName={"square-edit-outline"} iconColor={COLORS.Black}/>
+                        <IconButton callBack={onClickDeleteResource} iconStyle={AdminResourceCardStyles.buttonsEditionResource} iconSize={24} iconName={"delete-outline"} iconColor={COLORS.Black}/>
                         <StateButton resource={resource}/>
                     </View>
                 </View>

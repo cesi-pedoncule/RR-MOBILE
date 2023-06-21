@@ -1,4 +1,4 @@
-import { NavigationContainer, useNavigation } from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Client } from 'rr-apilib';
 import LoginScreen from './src/Screen/LoginScreen';
@@ -24,7 +24,7 @@ import AdminUserScreen from './src/Screen/Admin/User/AdminUserScreen';
 import AdminCategoriesScreen from './src/Screen/Admin/Category/AdminCategoriesScreen';
 import AdminCreateCategoryScreen from './src/Screen/Admin/Category/AdminCreateCategoryScreen';
 import AdminCategoryScreen from './src/Screen/Admin/Category/AdminCategoryScreen';
-import AdminResourceValidationsScreen from './src/Screen/Admin/Resource/AdminResourceValidationsScreen';
+import AdminResourcesValidationsScreen from './src/Screen/Admin/Resource/AdminResourcesValidationsScreen';
 import AdminResourceValidateScreen from './src/Screen/Admin/Resource/AdminResourceValidateScreen';
 
 const Stack = createStackNavigator<NavigationParamList>();
@@ -97,7 +97,7 @@ export default function App({ navigation }: Props) {
                 <Stack.Screen name="AdminCategories" component={AdminCategoriesScreen} initialParams={{ client }} />
                 <Stack.Screen name="AdminCreateCategory" component={AdminCreateCategoryScreen} initialParams={{ client }} />
                 <Stack.Screen name="AdminCategory" component={AdminCategoryScreen} initialParams={{ client }} />
-                <Stack.Screen name="AdminResourcesValidations" component={AdminResourceValidationsScreen} initialParams={{ client }} />
+                <Stack.Screen name="AdminResourcesValidations" component={AdminResourcesValidationsScreen} initialParams={{ client }} />
                 <Stack.Screen name="AdminResourceValidate" component={AdminResourceValidateScreen} initialParams={{ client }} />
             </Stack.Navigator>
         </NavigationContainer>
