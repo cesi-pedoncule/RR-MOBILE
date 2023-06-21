@@ -7,7 +7,7 @@ import CommonStyles from "../../Styles/CommonStyles";
 import UserDetailsStyles from "../../Styles/Screen/User/UserDetailsStyles";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { NavigationParamList } from "../../Types/navigation";
-import { Resource, UserFollow } from "rr-apilib";
+import { Resource, User, UserFollow } from "rr-apilib";
 import UserCard from "../../Components/Card/User/UserCard";
 import ResourceLikedCard from "../../Components/Card/Resource/ResourceLikedCard";
 import IconButton from "../../Components/Button/IconButton";
@@ -21,7 +21,7 @@ export default function UserDetailsScreen({ route, navigation }: Props) {
     const userProfileName = user?.name + ' ' + user?.firstname;
 
     const [ followsUser, setFollowsUser ] = useState(user ? Array.from(user.follows.values()) : []);
-    const [ followersUser, setFollowersUser ] = useState(user ? Array.from(user.followers.cache.values()) : []);
+    const [ followersUser, setFollowersUser ] = useState<User[] | null>([]);
     const [ resourcesLiked, setResourcesLiked ] = useState(user ? Array.from(user.likedResources.values()): []);
     const [ isFollow, setIsFollow ] = useState<UserFollow | null>(user.myFollow);
 
@@ -35,7 +35,10 @@ export default function UserDetailsScreen({ route, navigation }: Props) {
         const refreshResources:Resource[] = user ? Array.from(user.likedResources.values()): [];
         setResourcesLiked([...refreshResources]);
         
-        const refreshFollowers = user ? Array.from(user.followers.cache.values()) : [];
+        const refreshFollowers: User[] = new Array();
+        for(const userFollower of user.followers.cache.values()){
+            userFollower.follower && refreshFollowers.push(userFollower.follower);
+        }
         setFollowersUser([...refreshFollowers]);
 
         const refreshFollows = user ? Array.from(user.follows.values()) : [];
@@ -112,14 +115,14 @@ export default function UserDetailsScreen({ route, navigation }: Props) {
                                     </View>
                                 }
                                 {
-                                    followersUser.length !== 0 &&
+                                    followersUser && followersUser.length !== 0 &&
                                     <View style={UserDetailsStyles.itemsContainer}>
                                         <Text style={UserDetailsStyles.textHolder}>Personnes qui le/la suive : ({followersUser.length})</Text>
                                         <ScrollView style={UserDetailsStyles.itemsScrollView} horizontal showsHorizontalScrollIndicator={false}>
                                             {
                                                 followersUser.map((user, id) => 
                                                     <View style={UserDetailsStyles.itemContainer} key={id}>
-                                                        <UserCard key={id} navigation={navigation} user={user.user}/>
+                                                        <UserCard key={id} navigation={navigation} user={user}/>
                                                     </View>
                                                 )
                                             }
