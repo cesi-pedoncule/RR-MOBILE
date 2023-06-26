@@ -28,7 +28,6 @@ export default function SendResetPasswordScreen({ route, navigation }: Props) {
                 navigation.navigate("Login", { client })
             } catch (error) {
                 ToastAndroid.show("Une erreur s'est produite " , ToastAndroid.CENTER);
-                console.log(error)
             }
         } else {
             setIsValidEmail(false);
